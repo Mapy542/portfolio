@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import { onNavigate } from '$app/navigation';
 
-	import logo from '$lib/img/logo.webp';
+	import logo from '/favicon.svg';
 
 	export let categories: string[] = [];
 

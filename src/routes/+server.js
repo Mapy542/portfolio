@@ -51,8 +51,6 @@ class StoreReader{
                         this.data[key] = await datapromise();
                         
                     }
-
-        console.log("-------------- Heavy Data Load -------------- u done messed up a-a-ron");
     }
 
     getCategories(){
