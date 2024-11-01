@@ -1,0 +1,248 @@
+:root {
+	--font-body: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	--font-mono: 'Fira Mono', monospace;
+
+	--theme-light: #dde;
+	--theme-mid: #99b;
+	--theme-dark: #112;
+	--theme-accent: rgb(17, 93, 255);
+	--theme-link: #009;
+
+	--transition-length: 0.4s;
+
+	--max-full-width: '1920px';
+	--max-tablet-width: '1024px';
+	--max-limit-width: '1366px';
+	--max-width-extra-small: '575.98px';
+	--max-width-SMALL: '767.98px';
+	--max-width-MEDIUM: '991.98px';
+	--max-width-LARGE: '1199.98px';
+	--max-width-X_LARGE: '1366px';
+
+	--min-width-EXTRA_SMALL: '576px';
+	--min-width-SMALL: '768px';
+	--min-width-MEDIUM: '992px';
+	--min-width-LARGE: '1200px';
+	--min-width-X_LARGE: '1367px';
+
+	--primary-font: 'Space Grotesk Light';
+	--title-font: 'Chakra Petch Regular';
+
+	font-family: var(--primary-font);
+	color: var(--color-text);
+}
+
+/*@font-face {
+	font-family: 'Space Grotesk Light';
+	src: url('../lib/fonts/SpaceGrotesk-Light.ttf');
+}
+
+@font-face {
+	font-family: 'Chakra Petch Regular';
+	src: url('../lib/fonts/ChakraPetch-Regular.ttf');
+}*/
+
+body {
+	min-height: 100vh;
+	margin: 0;
+	background-attachment: fixed;
+	background-color: var(--theme-light);
+	background-size: 100vw 100vh;
+	transition: color var(--transition-length) linear;
+	-webkit-transition: var(--transition-length);
+}
+
+body.dark {
+	background-color: var(--theme-dark);
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--title-font);
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+label {
+	/*font-weight: 400;*/
+	color: var(--theme-dark);
+	transition: color var(--transition-length) linear;
+	-webkit-transition: var(--transition-length);
+}
+
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark p,
+body.dark li,
+body.dark label {
+	color: var(--theme-light);
+}
+
+p {
+	line-height: 1.5;
+}
+
+a {
+	color: var(--theme-link);
+	text-decoration: none;
+	transition: color var(--transition-length) linear;
+}
+
+body.dark a {
+	color: var(--theme-accent);
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+h1 {
+	font-size: 2rem;
+	text-align: center;
+}
+
+h2 {
+	font-size: 1.5rem;
+}
+
+h3 {
+	font-size: 1rem;
+}
+
+input,
+button {
+	font-size: inherit;
+	font-family: inherit;
+}
+
+button:focus:not(:focus-visible) {
+	outline: none;
+}
+
+@media (min-width: 720px) {
+	h1 {
+		font-size: 2.4rem;
+	}
+}
+
+.thirds {
+	/* A third of the width for columns*/
+	flex: 2; /* all columns are x/6 of the width  1/3 = 2/6*/
+	flex-direction: column;
+	width: 30%;
+	float: left;
+	border: 2px solid var(--theme-light);
+	border-radius: 5px;
+	background-color: var(--theme-light);
+	transition: background-color var(--transition-length) linear;
+	-webkit-transition: var(--transition-length);
+	padding: 1%;
+}
+
+body.dark .thirds {
+	background-color: var(--theme-dark);
+	border: 2px solid var(--theme-dark);
+}
+
+/*
+.thirds:hover {
+	border: 2px solid var(--ua-dark-grey);
+}
+
+body.dark .thirds:hover {
+	border: 2px solid var(--ua-gold);
+}*/
+
+.seconds {
+	/* A third of the width for columns*/
+	flex: 3;
+	flex-direction: column;
+	width: 49%;
+	float: left;
+	border: 2px solid var(--theme-light);
+	border-radius: 5px;
+	background-color: var(--theme-light);
+	transition: background-color var(--transition-length) linear;
+	-webkit-transition: var(--transition-length);
+	padding: 1%;
+}
+
+body.dark .seconds {
+	background-color: var(--theme-dark);
+	border: 2px solid var(--theme-dark);
+}
+/*
+.seconds:hover {
+	border: 2px solid var(--ua-dark-grey);
+}
+
+body.dark .seconds:hover {
+	border: 2px solid var(--ua-gold);
+}
+*/
+
+.two-thirds {
+	/* A third of the width for columns*/
+	flex: 4;
+	flex-direction: column;
+	width: 65%;
+	float: left;
+	border: 2px solid var(--theme-light);
+	border-radius: 5px;
+	background-color: var(--theme-light);
+	transition: background-color var(--transition-length) linear;
+	-webkit-transition: var(--transition-length);
+	padding: 1%;
+}
+
+body.dark .two-thirds {
+	background-color: var(--theme-dark);
+	border: 2px solid var(--theme-dark);
+}
+
+/*
+.two-thirds:hover {
+	border: 2px solid var(--ua-dark-grey);
+}
+
+body.dark .two-thirds:hover {
+	border: 2px solid var(--ua-gold);
+}*/
+
+@media (max-width: 600px) {
+	.thirds {
+		width: 100%;
+		margin-top: 0;
+		flex: 1;
+	}
+	.seconds {
+		width: 100%;
+		margin-top: 0;
+		flex: 1;
+	}
+	.two-thirds {
+		width: 100%;
+		margin-top: 0;
+		flex: 1;
+	}
+	.flex-columns {
+		flex-direction: column;
+	}
+}
+
+.flex-columns {
+	display: flex;
+}
+
+img {
+	border-radius: 15px;
+}
