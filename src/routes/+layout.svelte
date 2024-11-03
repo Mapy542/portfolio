@@ -1,6 +1,7 @@
 <script>
 	import Header from '../lib/components/Header.svelte';
 	import './styles.css';
+	import './columns.css';
 	import Footer from '../lib/components/Footer.svelte';
 
 	/** @type {import('./$types').PageData} */
