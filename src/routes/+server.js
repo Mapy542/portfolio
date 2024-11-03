@@ -36,12 +36,12 @@ class StoreReader{
             if(push){
                 this.categories.push(category);
                 // @ts-ignore
-                this.quickIndex[category] = [];
+                this.quickIndex[category] = {};
             }
 
             this.docs.push(doc);
             // @ts-ignore
-            this.quickIndex[category].push(key);
+            this.quickIndex[category][doc]  = key;
         }
 
 
@@ -89,11 +89,7 @@ class StoreReader{
      */
     getDocsSRCfromQuickIndex(category, doc){
         // @ts-ignore
-        for(const key in this.quickIndex[category]){
-            if(key.split("/")[5] === doc){
-                return key;
-            }
-        }
+        return this.quickIndex[category][doc] ?? null;
     }
 
     /**
