@@ -1,4 +1,6 @@
 <script>
+	import DynaImage from '$lib/components/DynaImage.svelte';
+
 	/** @type {import('./$types').PageData} */
 	export let data;
 </script>
@@ -50,11 +52,6 @@
 			</p>
 		</div>
 	</div>
-	{#if data}
-		{#each data.props.categories as a}
-			<p>{a}</p>
-		{/each}
-	{/if}
 </section>
 
 <style>

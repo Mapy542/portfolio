@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import { onNavigate } from '$app/navigation';
 
-	import logo from '/favicon.svg';
+	import logo from '$lib/img/logo.webp';
 
 	export let categories: string[] = [];
 
@@ -43,7 +43,7 @@
 		if (isTheme(value)) {
 			theme = value;
 		} else {
-			theme = Themes.Light;
+			theme = Themes.Dark;
 		}
 
 		updateTheme();
@@ -206,7 +206,7 @@
 		left: 0;
 		right: 0;
 		bottom: 0;*/
-		background-color: var(--light-bg-primary);
+		background-color: var(--theme-dark);
 		-webkit-transition: var(--transition-length);
 		transition: var(--transition-length);
 		display: inline-flex;
@@ -224,7 +224,7 @@
 	}
 
 	input:checked + .slider {
-		background-color: var(--dark-bg-primary);
+		background-color: var(--theme-dark);
 		transition: color var(--transition-length) linear;
 		-webkit-transition: var(--transition-length);
 	}
@@ -236,11 +236,11 @@
 	}
 
 	:global(body.dark) input:checked + .slider {
-		background-color: var(--dark-bg-primary);
+		background-color: var(--theme-light);
 	}
 
 	:global(body.dark) input:focus + .slider {
-		box-shadow: 0 0 1px var(--dark-bg-primary);
+		box-shadow: 0 0 1px var(--theme-light);
 	}
 
 	/*input:checked + .slider:before {
@@ -261,7 +261,7 @@
 	.theme-icon {
 		font-size: 20cqw;
 		margin: 10%;
-		color: var(--light-txt-primary);
+		color: var(--theme-light);
 		-webkit-transition: var(--transition-length);
 		transition: var(--transition-length);
 		-webkit-transform: translateX(-30cqw);
@@ -284,6 +284,6 @@
 		-webkit-transform: translateX(30cqw);
 		-ms-transform: translateX(30cqw);
 		transform: translateX(30cqw);
-		color: var(--dark-txt-primary);
+		color: var(--theme-dark);
 	}
 </style>

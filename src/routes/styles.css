@@ -3,11 +3,13 @@
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-mono: 'Fira Mono', monospace;
 
-	--theme-light: #eef;
-	--theme-mid: #999;
+	--theme-light: #ccc;
+	--theme-mid: #2f2d3b;
 	--theme-dark: #112;
 	--theme-accent: rgb(17, 93, 255);
 	--theme-link: #009;
+
+	--theme-img-border-radius: 10px;
 
 	--transition-length: 0.4s;
 
@@ -241,8 +243,4 @@ body.dark .two-thirds:hover {
 
 .flex-columns {
 	display: flex;
-}
-
-img {
-	border-radius: 15px;
 }
