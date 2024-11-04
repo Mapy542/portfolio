@@ -9,7 +9,7 @@ export async function load({ params }) {
   if(!categoryMetaData[category]){
     return {
       status: 404,
-      error: new Error("Category not found.")
+      error: "Category not found"
     }
     } 
     //otherwise, we can proceed assuming the category exists

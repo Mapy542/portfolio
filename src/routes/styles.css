@@ -29,22 +29,22 @@
 	--min-width-LARGE: '1200px';
 	--min-width-X_LARGE: '1367px';
 
-	--primary-font: 'Space Grotesk Light';
-	--title-font: 'Chakra Petch Regular';
+	--primary-font: 'Lora-Regular';
+	--title-font: 'Library3AM';
 
 	font-family: var(--primary-font);
 	color: var(--color-text);
 }
 
-/*@font-face {
-	font-family: 'Space Grotesk Light';
-	src: url('../lib/fonts/SpaceGrotesk-Light.ttf');
+@font-face {
+	font-family: 'Lora-Regular';
+	src: url('$lib/fonts/Lora-Regular.otf');
 }
 
 @font-face {
-	font-family: 'Chakra Petch Regular';
-	src: url('../lib/fonts/ChakraPetch-Regular.ttf');
-}*/
+	font-family: 'Library3AM';
+	src: url('$lib/fonts/Library 3 AM.otf');
+}
 
 body {
 	min-height: 100vh;

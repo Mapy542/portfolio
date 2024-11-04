@@ -4,6 +4,11 @@
 	export let data;
 </script>
 
+{#if data.error}
+	<h1>Error</h1>
+	<p>{data.error}</p>
+{/if}
+
 <div class="flex-columns">
 	<div class="thirds">
 		{#if data.props.image}
