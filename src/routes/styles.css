@@ -30,7 +30,7 @@
 	--min-width-X_LARGE: '1367px';
 
 	--primary-font: 'Lora-Regular';
-	--title-font: 'Library3AM';
+	--title-font: 'Coolvetica';
 
 	font-family: var(--primary-font);
 	color: var(--color-text);
@@ -42,8 +42,8 @@
 }
 
 @font-face {
-	font-family: 'Library3AM';
-	src: url('$lib/fonts/Library 3 AM.otf');
+	font-family: 'Coolvetica';
+	src: url('$lib/fonts/coolvetica rg.otf');
 }
 
 body {
