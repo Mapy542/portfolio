@@ -5,8 +5,8 @@
 
 {#if markdownString !== ''}
 	{#each markdownString.split('\n') as line, index}
-		{#if line === ''}
-			<br />
+		{#if line === '' || line.startsWith('#!')}
+			<!--br-->
 		{:else if line.startsWith('# ')}
 			<h1>{line.replace('# ', '')}</h1>
 		{:else if line.startsWith('## ')}

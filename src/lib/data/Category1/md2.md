@@ -1,3 +1,9 @@
+#! title: The Module Library
+#! date: 2021-09-01
+#! tags: library, module
+#! author: Eli Bukoski
+#! image: thumb.webp
+
 # Module Library
 
 These are files JUST for modules' use. The SBC will not use these files.

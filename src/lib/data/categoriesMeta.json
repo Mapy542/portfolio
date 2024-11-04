@@ -1,0 +1,12 @@
+{
+	"Category1": {
+		"title": "Test Category1",
+		"description": "This is a test category1 with a description",
+		"image": "logo.webp"
+	},
+	"category2": {
+		"title": "Test Category2",
+		"description": "This is a test category2 with a description",
+		"image": "thumb.webp"
+	}
+}

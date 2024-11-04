@@ -2,6 +2,7 @@
 #! date: 2021-09-01
 #! tags: test, cars, logos
 #! author: eli
+#! image: thumb.webp
 
 ```
 #include <iostream>

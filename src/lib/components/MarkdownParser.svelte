@@ -94,7 +94,7 @@
 					{/each}
 				</div>
 			{:else}
-				{#each columnGroup.substring(3).split('```') as codeBlock, index3}
+				{#each columnGroup.split('```') as codeBlock, index3}
 					{#if index3 % 2 == 1}
 						<MdCodeParser markdownString={codeBlock} />
 					{:else}
