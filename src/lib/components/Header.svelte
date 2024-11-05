@@ -84,7 +84,9 @@
 	{#if showCategories}
 		<div class="category-list">
 			{#each categories as category}
-				<a href={'/' + category}><div class="link-block"><p>{category}</p></div></a>
+				<a href={'/' + category}
+					><div class="link-block"><p>{category.replace('-', ' ')}</p></div></a
+				>
 			{/each}
 		</div>
 	{/if}

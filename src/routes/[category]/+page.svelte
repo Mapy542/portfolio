@@ -42,11 +42,15 @@
 							{#if postMeta.title}
 								<h2>{postMeta.title}</h2>
 							{/if}
-							{#if postMeta.date}
-								<p>{postMeta.date}</p>
-							{/if}
-							{#if postMeta.author}
-								<p>{postMeta.author}</p>
+							<p>
+								{#if postMeta.author}{postMeta.author}{/if}
+								{#if postMeta.author && postMeta.date}
+									-
+								{/if}
+								{#if postMeta.date}{postMeta.date}{/if}
+							</p>
+							{#if postMeta.description}
+								<p>{postMeta.description}</p>
 							{/if}
 						</div>
 					</div>
