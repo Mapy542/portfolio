@@ -1,4 +1,4 @@
-import serverReader from "../../+server";
+import serverReader from "../../../lib/components/serverReader";
 import { stripMeta } from "$lib/components/docMetaStripper";
 
 /**@type {import('./$types').PageLoad} */

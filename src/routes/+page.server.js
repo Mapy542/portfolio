@@ -1,4 +1,4 @@
-import serverReader from './+server';
+import serverReader from '../lib/components/serverReader';
 
 /**@type {import('./$types').PageServerLoad} */
 export async function load() {
