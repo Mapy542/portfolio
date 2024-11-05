@@ -10,6 +10,7 @@ export function stripMeta(docSRCArray){
             let tags = [];
             let author = "";
             let image = "";
+            let description = "";
             for(const line of data.split("\n")){
                 if(line.startsWith("#! title: ")){
                     title = line.replace("#! title: ", "").replace(/[\r\n]+/gm, "");
@@ -21,6 +22,8 @@ export function stripMeta(docSRCArray){
                     author = line.replace("#! author: ", "").replace(/[\r\n]+/gm, "");
                 }else if(line.startsWith("#! image: ")){
                     image = line.replace("#! image: ", "").replace(/[\r\n]+/gm, "");
+                }else if(line.startsWith("#! description: ")){
+                    description = line.replace("#! description: ", "").replace(/[\r\n]+/gm, "");
                 }
             }
             if(title){
@@ -29,7 +32,8 @@ export function stripMeta(docSRCArray){
                     date: date,
                     tags: tags,
                     image: image,
-                    author: author
+                    author: author,
+                    description: description
             }
         }
     }

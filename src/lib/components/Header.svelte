@@ -48,6 +48,8 @@
 
 		updateTheme();
 	});
+
+	let showCategories = false;
 </script>
 
 <header>
@@ -58,33 +60,63 @@
 			</a>
 		</div>
 
-		<div class="link-area"></div>
+		<div class="link-area">
+			<button on:click={() => (showCategories = !showCategories)}>Categories</button>
+		</div>
+		<div class="theme-toggle">
+			<label class="switch" aria-label="Dark mode switch">
+				<input
+					type="checkbox"
+					on:change={changeTheme}
+					checked={theme === Themes.Dark}
+					name="dark-mode toggle"
+				/>
+				<span class="slider round">
+					<i
+						class={theme === Themes.Light
+							? 'theme-icon fa-solid fa-sun'
+							: 'theme-icon fa-solid fa-moon'}
+					/>
+				</span>
+			</label>
+		</div>
+	</div>
+	{#if showCategories}
 		<div class="category-list">
 			{#each categories as category}
 				<a href={'/' + category}><div class="link-block"><p>{category}</p></div></a>
 			{/each}
 		</div>
-	</div>
-	<div class="theme-toggle">
-		<label class="switch" aria-label="Dark mode switch">
-			<input
-				type="checkbox"
-				on:change={changeTheme}
-				checked={theme === Themes.Dark}
-				name="dark-mode toggle"
-			/>
-			<span class="slider round">
-				<i
-					class={theme === Themes.Light
-						? 'theme-icon fa-solid fa-sun'
-						: 'theme-icon fa-solid fa-moon'}
-				/>
-			</span>
-		</label>
-	</div>
+	{/if}
 </header>
 
 <style>
+	.category-list {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		width: 100%;
+		flex-direction: row;
+		flex-wrap: wrap;
+		background-color: #ccc;
+		transition: height var(--transition-length) linear;
+	}
+
+	.link-block {
+		background-color: var(--theme-high-mid);
+		border-radius: var(--theme-img-border-radius);
+		padding-left: 1rem;
+		padding-right: 1rem;
+		margin: 10px;
+	}
+
+	:global(body.dark) .category-list {
+		background-color: #223;
+	}
+	:global(body.dark) .link-block {
+		background-color: var(--theme-mid);
+	}
+
 	:root {
 		--nav-page-font-size: 1cqw;
 		--nav-page-vertical-font-size: 1cqh;
@@ -95,7 +127,7 @@
 		height: fit-content; /*auto scale to menu size*/
 		transition: all var(--transition-length) linear;
 
-		background-color: var(--theme-mid);
+		background-color: var(--theme-light);
 		/*transition: color var(--transition-length) linear;*/
 		-webkit-transition: var(--transition-length);
 		background-image: '';
@@ -104,6 +136,10 @@
 		background-attachment: fixed;
 
 		background-position: center;
+	}
+
+	:global(body.dark) header {
+		background-color: var(--theme-dark);
 	}
 
 	.header-container {

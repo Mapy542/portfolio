@@ -4,6 +4,13 @@
 	export let data;
 </script>
 
+<svelte:head>
+	{#if data.props.title}
+		<title>{data.props.title}</title>
+		<meta name="description" content={data.props.description} />
+	{/if}
+</svelte:head>
+
 {#if data.error}
 	<h1>Error</h1>
 	<p>{data.error}</p>

@@ -35,15 +35,15 @@ export const GET=({params})=>{
         url.appendChild(lastmod);
         }
 
-        if(srcMeta[src].image){
-        const image = doc.createElement("image:image");
-        const imageLoc = doc.createElement("image:loc");
-        imageLoc.textContent = rootUrl + srcMeta[src].image;
-        image.appendChild(imageLoc);
-        url.appendChild(image);
-        }
-
         urlset.appendChild(url);
+    }
+    for(const category of serverReader.getCategories()){
+        const url = doc.createElement("url");
+        const loc = doc.createElement("loc");
+        loc.textContent = rootUrl + "/" + category.replace(" ", "%20"); //add the url of the page
+        url.appendChild(loc);
+        urlset.appendChild(url);
+
     }
 
     let serializer = new XMLSerializer();
