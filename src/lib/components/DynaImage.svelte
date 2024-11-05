@@ -28,6 +28,7 @@
 					});
 			} else {
 				error = new Error('Image not found');
+				console.error('Image not found:', src);
 			}
 		}
 	}
