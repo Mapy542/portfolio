@@ -1,4 +1,4 @@
-import serverReader from "../../routes/+server";
+import serverReader from "./serverReader";
 
 export function stripMeta(docSRCArray){
     let stripped = {};

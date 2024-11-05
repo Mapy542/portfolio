@@ -1,4 +1,4 @@
-import serverReader from '../+server.js';
+import serverReader from '../../lib/components/serverReader.js';
 import { stripMeta } from '$lib/components/docMetaStripper.js';
 import { DOMImplementation, XMLSerializer } from 'xmldom';
 

@@ -18,6 +18,7 @@ class StoreReader{
 
 
     async loadAllData(){
+        console.log("Loading all data");
         this.categories = [];
         this.docs = [];
         this.quickIndex = {};
