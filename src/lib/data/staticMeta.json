@@ -5,5 +5,12 @@
 		"description": "Posts not tied to a larger projects or area of work.",
 		"image": "logo.webp",
 		"date": "11/6/2024"
+	},
+	"Eli-Bio": {
+		"url": "/eli",
+		"title": "Eli Bukoski",
+		"description": "A brief bio of Eli Bukoski.",
+		"image": "/headshot/eli.webp",
+		"date": "11/6/2024"
 	}
 }
