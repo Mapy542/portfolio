@@ -1,4 +1,5 @@
 import serverReader from '../../lib/components/serverReader.js';
+import staticMetas from '../../lib/data/staticMeta.json' with {type: "json"};
 import { stripMeta } from '$lib/components/docMetaStripper.js';
 import { DOMImplementation, XMLSerializer } from 'xmldom';
 
@@ -15,13 +16,13 @@ export const GET=({params})=>{
     doc.appendChild(urlset);
 
     let docSrcs = [];
+    let categoryAges = {};
     for(const src of serverReader.getDocs()){
         docSrcs.push(serverReader.getDocsSRCfromDoc(src));
     }
     let srcMeta = stripMeta(docSrcs);
-    console.log(srcMeta);
 
-    for(const src of Object.keys(srcMeta)){
+    for(const src of Object.keys(srcMeta)){ //for each post
         const url = doc.createElement("url");
         const loc = doc.createElement("loc");
         loc.textContent = rootUrl + src.split("/data"
@@ -33,17 +34,52 @@ export const GET=({params})=>{
         const date = new Date(srcMeta[src].date);
         lastmod.textContent = date.toISOString();
         url.appendChild(lastmod);
+
+        const category = src.split("data/")[1].split("/")[0];
+        if(categoryAges[category]){
+            if(categoryAges[category] < date){
+                categoryAges[category] = date;
+            }
+        }else{
+            categoryAges[category] = date;
         }
+    }
 
         urlset.appendChild(url);
     }
-    for(const category of serverReader.getCategories()){
+
+    console.log(categoryAges);
+
+    for(const category of serverReader.getCategories()){ //for each category
         const url = doc.createElement("url");
         const loc = doc.createElement("loc");
-        loc.textContent = rootUrl + "/" + category.replace(" ", "%20"); //add the url of the page
+        const leadingTrim = category.startsWith("/") ? "" : "/";
+        loc.textContent = rootUrl + leadingTrim + category.replace(" ", "%20"); //add the url of the page
         url.appendChild(loc);
         urlset.appendChild(url);
 
+        if(categoryAges[category]){
+            const lastmod = doc.createElement("lastmod");
+            lastmod.textContent = categoryAges[category].toISOString();
+            url.appendChild(lastmod);
+        }
+
+    }
+
+    for(const staticPage of Object.keys(staticMetas)){ //for each static page
+        const url = doc.createElement("url");
+        const loc = doc.createElement("loc");
+        const leadingTrim = staticMetas[staticPage].url.startsWith("/") ? "" : "/";
+        loc.textContent = rootUrl + leadingTrim + staticMetas[staticPage].url.replace(" ", "%20"); //add the url of the page
+        url.appendChild(loc);
+        if(staticMetas[staticPage].date){
+            const lastmod = doc.createElement("lastmod");
+            const date = new Date(staticMetas[staticPage].date);
+            lastmod.textContent = date.toISOString();
+            url.appendChild(lastmod);
+        }
+
+        urlset.appendChild(url);
     }
 
     let serializer = new XMLSerializer();

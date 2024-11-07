@@ -4,6 +4,7 @@
 	import { onNavigate } from '$app/navigation';
 
 	import logo from '$lib/img/logo.webp';
+	import logoInverted from '$lib/img/logo-invert.webp';
 
 	export let categories: string[] = [];
 
@@ -56,7 +57,12 @@
 	<div class="header-container">
 		<div class="header-logo">
 			<a href="/">
-				<img src={logo} alt="logo" class="logo" style="border-radius:revert;" />
+				<img
+					src={theme == Themes.Dark ? logoInverted : logo}
+					alt="logo"
+					class="logo"
+					style="border-radius:revert;"
+				/>
 			</a>
 		</div>
 

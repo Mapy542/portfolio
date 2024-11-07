@@ -25,7 +25,7 @@ class StoreReader{
         this.data = {};
         this.import = import.meta.glob( '$lib/data/**/*',{query: '?raw', import: 'default'}) ?? {};
         for(const key in this.import){
-            if(key.includes("categoriesMeta.json")){
+            if(key.includes(".json")){
                 continue; //skip the categories meta file
             }
             let category = key.split("/")[4];
