@@ -3,7 +3,7 @@
 #! tags: 3d-printing, arduino, electronics, programming
 #! description: A homemade automatic resin filler for a 3D printer.
 #! author: Eli Bukoski
-#! image: resin-filler/resin-filler.jpg
+#! image: resin-filler/resin-filler.webp
 
 # Automatic Resin Filler
 
@@ -29,20 +29,19 @@ An autofiller, also known as an automatic resin dispenser or resin top-off syste
 2. Consistent Print Quality: Maintaining a consistent resin level is crucial for achieving consistent print quality. If the resin level drops too low, it can lead to improper layer exposure and incomplete curing, resulting in defects or failed prints. An autofiller ensures that the proper resin level is maintained, which in turn helps ensure that each layer of the print receives the appropriate amount of light exposure for accurate curing.
 3. Long Unattended Prints: Some 3D prints can take many hours or even days to complete, making it impractical for users to continuously monitor and refill the resin tank. An auto filler enables users to initiate long print jobs and leave the printer unattended with confidence, knowing that the system will automatically replenish the resin as needed.
 4. Time Efficiency: For professional users or businesses, time is of the essence. An autofiller can save valuable time by eliminating the need to pause the printing process, open the printer’s cover, and manually add resin. This can be especially important in settings where multiple prints are queued up back-to-back.
-5. Reduced Material Waste: If a print job runs out of resin due to insufficient monitoring, it can result in a failed print that wastes both time and material. An autofiller helps prevent such failures, reducing material wastage and the associated costs.
-   User Convenience: The convenience of an auto filler is a significant advantage, especially for users who are less experienced with 3D printing or for those who prefer a more hands-off approach. It simplifies the printing process and makes it more accessible to a wider range of users.
-6. Optimized Print Success: In 3D printing, success is often determined by the accuracy of the printing process. An autofiller contributes to the printer’s reliability and the likelihood of successful prints by maintaining optimal printing conditions consistently.
-   While an auto-filler is a valuable feature, not all LCD 3D printers come equipped with it. Users should consider their specific printing needs and the importance of unattended and consistent printing when selecting a printer with or without an auto-filler.
+5. Reduced Material Waste: If a print job runs out of resin due to insufficient monitoring, it can result in a failed print that wastes both time and material. An autofiller helps prevent such failures, reducing material wastage and the associated costs. 6.
+6. User Convenience: The convenience of an auto filler is a significant advantage, especially for users who are less experienced with 3D printing or for those who prefer a more hands-off approach. It simplifies the printing process and makes it more accessible to a wider range of users.
+7. Optimized Print Success: In 3D printing, success is often determined by the accuracy of the printing process. An autofiller contributes to the printer’s reliability and the likelihood of successful prints by maintaining optimal printing conditions consistently.
 
 ## The Homemade Auto-Filler
 
 At the time of creation, I had to print some large parts for work and the 9-hour print that used 430 mL of resin. This was much too large to fit in the 200mL tank, plus I was either asleep or at work for a large portion of the print and wouldn’t be able to refill it.
 
-Some resin auto-fillers use an air pump to pressurize the container of resin, then the pressure forces resin up a tube and out into the vat. This is advantageous because no pumps interact with a resin that can be damaging to other plastics and metals. However, the is no reference to how much resin has entered the vat, especially if the resin bottle leaks. I chose to go with a different route as I need to have an exact amount added to the vat.
+Some resin auto-fillers use an air pump to pressurize the container of resin, then the pressure forces resin up a tube and out into the vat. This is advantageous because no pumps interact with a resin that can be damaging to other plastics and metals. However, there is no reference to how much resin has entered the vat, especially if the resin bottle leaks. I chose to go with a different route focussing on added a specific volume of resin to the vat over time rather than filling to a certain level.
 
 I chose a specific type of pump called a peristaltic pump, as it does not mix the fluid being pumped with any pump parts.
 
-![Peristaltic Pump on the Auto Filler](resin-filler/pump.jpg){Peristaltic Pump on the Auto Filler}
+![Peristaltic Pump on the Auto Filler](resin-filler/pump.webp){Peristaltic Pump on the Auto Filler}
 
 ### Peristaltic Pumps
 
@@ -54,7 +53,7 @@ A peristaltic pump is a type of positive displacement pump that serves the purpo
 
 [Peristaltic Pump](https://www.amazon.com/gp/product/B084TFCP5Q/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
 #% 1,2
-![Peristaltic Pump Used](resin-filler/pump-amazon.png)
+![Peristaltic Pump Used](resin-filler/pump-amazon.webp)
 #%
 
 I chose this peristaltic pump from Amazon that has a stepper motor attached. I can accurately drive the stepper motor with an Arduino and this means the pump will move a consistent amount of resin over time. Therefore the control system can be a time-based system. Some resin fillers use a conductive test to measure the height of the resin, but this would not work well with the shape of the resin vat.
@@ -66,7 +65,7 @@ I chose this peristaltic pump from Amazon that has a stepper motor attached. I c
 Stepper motor driver used in this project:
 [Driver](https://www.amazon.com/gp/product/B07S64MBTR/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
 #% 1,2
-![Stepper Motor Driver](resin-filler/stepper-motor-driver.png)
+![Stepper Motor Driver](resin-filler/stepper-motor-driver.webp)
 #%
 
 I chose this enable/direction/step stepper motor controller for the project because I already had it on hand. Additionally, the driver is very simple to operate from the microcontroller end as it handles the step sequencing and can also limit motor current. The microcontroller only has to set the rotation direction via the direction pin, high or low, and then pulse the step pin to move the motor a set distance.
@@ -80,13 +79,13 @@ In this project, the micro-controller’s purpose is to accept inputs from the u
 The code is available here along with the part files for the enclosure I made. Note that the parts I picked out do not fit in the enclosure correctly.
 [Github](https://github.com/Mapy542/Resin-Doser)
 
-![Inside the Auto Filler](resin-filler/inside.jpg){Inside the Auto Filler}
+![Inside the Auto Filler](resin-filler/inside.webp){Inside the Auto Filler}
 
 ## Assembly and Use
 
 With the project ready to make, I purchased the parts required and laser-cut a housing out of plywood.
 
-![Filler](resin-filler/resin-filler.jpg)
+![Filler](resin-filler/resin-filler.webp)
 
 The design wasn’t big enough for the stepper motor driver to fit, so I let it hang out where the back panel should be. Then I soldered all the required connections from the buttons and LEDs to the Arduino, plus connected the stepper motor and driver circuit. The stepper motor needs 12V power, so a 12V 1A wall wart power supply was used. The power comes into the enclosure and then is split, one into the motor driver, and two stepped down for the Arduino. After fixing a couple of quick mistakes, it was time to calibrate the machine.
 
@@ -98,7 +97,7 @@ Now this is slow. But it’s still faster than the printer consumes resin, so it
 
 I was able to test this a great number of times, and it worked well enough for me to use in production. The auto filler ran 5 430ml batches over 9 hours each, and the tank was essentially at the same level the entire time.
 
-![Holding Pump Output](resin-filler/holding-output.jpg){Holding Auto Filler Pump Output}
+![Holding Pump Output](resin-filler/holding-output.webp)
 
 ## Conclusions
 
@@ -106,4 +105,4 @@ Is this auto-filler worth it? Probably not. You can purchase an auto filler that
 
 However, this certainly was a fun exercise, and it predated the consumer auto filler now available for the Photon. It served its purpose, plus it was a learning opportunity for using: Arduinos, digital motion control, stepper motors, and peristaltic pumps.
 
-![Resin Filler](resin-filler/filler-all.jpg){Resin Filler}
+![Resin Filler](resin-filler/filler-all.webp)
