@@ -1,6 +1,4 @@
 {
-	"job": "Automation Engineer Intern",
-	"company": "Tech Tank",
 	"locations": ["Erie, PA", "Akron, OH"],
 	"skills": [
 		{
@@ -46,9 +44,11 @@
 			]
 		}
 	],
-	"education": {
-		"degree": "Electrical Engineering - BS, Computer Science - Minor",
-		"school": "University of Akron",
-		"graduation": "2028"
-	}
+	"education": [
+		{
+			"degree": "Electrical Engineering - BS, Computer Science - Minor",
+			"school": "University of Akron",
+			"graduation": "2028"
+		}
+	]
 }
