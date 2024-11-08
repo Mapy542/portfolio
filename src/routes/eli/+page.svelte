@@ -19,17 +19,18 @@
 		<h2>Eli Bukoski</h2>
 		<div class="bar" />
 		<p>Electrical Engineer</p>
-		<div class="spacer" style="height: 1em;"></div>
 		<p>
 			{bioData.locations.join(' - ')}
 		</p>
+		<div class="spacer" style="height: 1em;"></div>
+		<a href="/Resume.pdf" download><p style="color: var(--theme-accent);">Resume</p></a>
 	</div>
 	<div class="two-thirds">
 		<h2>Work Experience</h2>
 
 		{#if bioData.skills}
 			<h2>Skills</h2>
-			<div class="flex-container" style="display:flex; flex-wrap: wrap;">
+			<div class="flex-container" id="skills" style="display:flex; flex-wrap: wrap;">
 				<div class="vertical-bar" />
 				{#each bioData.skills as skill}
 					<div class="column">
@@ -42,11 +43,29 @@
 				{/each}
 			</div>
 		{/if}
-		<h2>Education</h2>
+
+		{#if bioData.education}
+			<div id="education" class="flex-container">
+				<h2>Education</h2>
+				{#each bioData.education as edu}
+					<div class="edu-div">
+						<h3>{edu.degree}</h3>
+						<div class="bar" />
+						<p>{edu.school}</p>
+						<p>{edu.graduation}</p>
+					</div>
+				{/each}
+			</div>
+		{/if}
 	</div>
 </div>
 
 <style>
+	.flex-container {
+		border-radius: var(--theme-img-border-radius);
+		transition: all var(--transition-length);
+	}
+
 	.bar {
 		background-color: var(--theme-mid);
 	}
@@ -64,7 +83,19 @@
 		transition: all var(--transition-length);
 	}
 
+	.edu-div {
+		margin-bottom: 2em;
+	}
+
+	.edu-div .bar {
+		transition: all var(--transition-length);
+	}
+
 	.flex-container:hover .vertical-bar {
+		background-color: var(--theme-accent);
+	}
+
+	.edu-div:hover .bar {
 		background-color: var(--theme-accent);
 	}
 
