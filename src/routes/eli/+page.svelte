@@ -23,10 +23,32 @@
 			{bioData.locations.join(' - ')}
 		</p>
 		<div class="spacer" style="height: 1em;"></div>
+		<a href="#work" download><p style="color: var(--theme-accent);">Work Experience</p></a>
+		<a href="#skills" download><p style="color: var(--theme-accent);">Skills</p></a>
+		<a href="#education" download><p style="color: var(--theme-accent);">Education</p></a>
+
 		<a href="/Resume.pdf" download><p style="color: var(--theme-accent);">Resume</p></a>
 	</div>
+
 	<div class="two-thirds">
-		<h2>Work Experience</h2>
+		<div id="bio">
+			<div class="spacer" style="height: 15vh" />
+			<div class="flex-container" style="display:flex; flex-wrap: wrap;">
+				<div class="vertical-bar" />
+				<div class="column">
+					<p>
+						<span style="font-size:larger"><b>With</b></span> a keen eye for elegant engineering designs,
+						strong troubleshooting skills, and a strategic approach to the big picture, I excel at creating
+						solutions that are both effective and refined.
+					</p>
+				</div>
+			</div>
+			<div class="spacer" style="height: 15vh" />
+		</div>
+
+		<div id="work">
+			<h2>Work Experience</h2>
+		</div>
 
 		{#if bioData.skills}
 			<h2>Skills</h2>
@@ -50,7 +72,6 @@
 				{#each bioData.education as edu}
 					<div class="edu-div">
 						<h3>{edu.degree}</h3>
-						<div class="bar" />
 						<p>{edu.school}</p>
 						<p>{edu.graduation}</p>
 					</div>
@@ -70,7 +91,7 @@
 		background-color: var(--theme-mid);
 	}
 	.thirds:hover .bar {
-		background-color: var(--theme-accent);
+		background-color: var(--theme-link);
 	}
 
 	.vertical-bar {
