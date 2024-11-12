@@ -8,10 +8,32 @@
 	export let src: string = '';
 	export let alt: string = '';
 	export let caption: string = '';
-	export let size: string = 'auto';
+	export let scaleFactor: string = '1';
+	export let paddingCount: string = '0';
+
+	function findClosest(value: Number, array: Array<Number>) {
+		let closest = array[0];
+		array.forEach((item) => {
+			if (Math.abs(Number(item) - Number(value)) < Math.abs(Number(closest) - Number(value))) {
+				closest = item;
+			}
+		});
+		return closest;
+	}
+
+	const widths = [
+		100, 125, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300,
+		1400, 1500
+	];
 
 	let innerWidth = 0;
-	$: autosize = Math.min(Math.max(Math.round((innerWidth !== 0 ? innerWidth : 1000) / 400), 1), 5);
+	$: imgWidth =
+		innerWidth !== 0
+			? findClosest(
+					innerWidth * Number(scaleFactor) * (0.75 - 2 ** Number(paddingCount) * 0.05),
+					widths
+				)
+			: 1000;
 
 	let imageUrl: string | null = null;
 	let error: Error | null = null;
@@ -41,16 +63,15 @@
 		<img
 			src={imageUrl}
 			alt={alt !== '' ? alt : caption !== '' ? caption : ''}
-			class={'size-' + (size === 'auto' ? autosize : Number(size) % 6)}
 			loading="lazy"
-			style="border-radius: var(--theme-img-border-radius);"
+			style="width:{imgWidth}px; border-radius: var(--theme-img-border-radius);"
 		/>
 	{:else if error}
 		<p>{error.message}</p>
 	{:else}
 		<div
-			class={'temp-pad size-' + (size === 'auto' ? autosize : Number(size) % 6)}
-			style="aspect-ratio:16/9; border-radius: var(--theme-img-border-radius);"
+			class="temp-pad"
+			style="width:{imgWidth}px; aspect-ratio:16/9; border-radius: var(--theme-img-border-radius);"
 		>
 			<p>Loading...</p>
 		</div>
@@ -66,24 +87,8 @@
 		flex-direction: column;
 	}
 
-	.size-1 {
-		width: 150px;
-	}
-
-	.size-2 {
-		width: 300px;
-	}
-
-	.size-3 {
-		width: 500px;
-	}
-
-	.size-4 {
-		width: 700px;
-	}
-
-	.size-5 {
-		width: 900px;
+	.dyna-image img {
+		transition: all var(--transition-length);
 	}
 	.temp-pad {
 		background-color: var(--theme-mid);

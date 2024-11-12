@@ -9,60 +9,48 @@
 	<title>Home</title>
 	<meta
 		name="description"
-		content="UA Nasa Robotic Mining Competition Team, University of Akron Design Team"
+		content="Bukoski.dev - Personal engineering project portfolio and blog."
 	/>
-	<meta
-		name="keywords"
-		content="NASA, Robotic Mining Competition, Lunabotics, Artemis, Moon to Mars, design team"
-	/>
-	<meta name="author" content="UA NASA Robotic Mining Competition Team" />
+	<meta name="keywords" content="engineering, software, design, projects, portfolio, blog" />
+	<meta name="author" content="Eli Bukoski" />
 </svelte:head>
 
-<section>
-	<h1>Who We Are</h1>
-	<p>
-		The NASA Robotic Mining Team is a student-led engineering design team that designs and builds an
-		autonomous robot for lunar mining. The robot’s design purpose is to traverse and mine in a
-		simulated lunar environment collecting materials 30 cm beneath the surface. Every May, team
-		members spend a week at NASA’s Kennedy Space Center in Florida, where the robot competes against
-		robots built by approximately 50 other teams from other universities all over the US. The team
-		is also focused strongly on K-12 STEM outreach, especially to underrepresented students.
-	</p>
+<h1>Bukoski.dev</h1>
+<p>
+	Home of engineering project blogs and documentation. Here, you'll find projects that reflect my
+	passion for clean, efficient designs and smart problem-solving. I love taking on complex
+	challenges and finding elegant solutions, whether on a team or solo. Take a look to see how I
+	bring ideas to life!
+</p>
 
-	<div class="flex-columns">
-		<div class="thirds">
-			<h3>New Members</h3>
-			<p>
-				Are you a University of Akron student? Are you interested in joining our team?
-				<a href="./new-members">Click here to learn more about joining the team.</a>
-			</p>
-		</div>
-		<div class="thirds">
-			<h3>Sponsors</h3>
-			<p>
-				Do you represent a company? Would your company like to sponsor our team?
-				<a href="./contact-us">Reach out to us here.</a>
-			</p>
-		</div>
-		<div class="thirds">
-			<h3>Outreach</h3>
-			<p>
-				Do you work with K-12 students? Would you like the team to present to your group?
-				<a href="./outreach">See our outreach page here.</a>
-			</p>
-		</div>
+<div class="flex-columns">
+	<div class="seconds">
+		<h2>Biography</h2>
+		<p>A little bit more about <a href="eli">me</a>.</p>
 	</div>
-</section>
+	<div class="seconds">
+		<h2>Projects</h2>
+		<p>Some of the projects I've worked on.</p>
+	</div>
+</div>
+<div class="spacer" style="height: 10em;"></div>
+<div class="flex-columns">
+	<div class="thirds">
+		<h2>Discover Projects</h2>
+		<p>Randomly selected projects for you:</p>
+	</div>
+	{#each data.props.docProps as doc}
+		<div class="thirds">
+			<a href={doc.link}>
+				<h3>{doc.title}</h3>
+				<DynaImage src={doc.image} alt={doc.title} scaleFactor=".3" paddingCount="1" />
+				<p>{doc.description}</p>
+			</a>
+		</div>
+	{/each}
+</div>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
-
 	h1 {
 		width: 100%;
 	}

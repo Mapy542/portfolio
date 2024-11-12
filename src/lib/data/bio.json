@@ -1,46 +1,70 @@
 {
+	"employed": "Tech Tank",
 	"locations": ["Erie, PA", "Akron, OH"],
+	"work": [
+		{
+			"name": "Tech Tank",
+			"location": "Erie, PA",
+			"position": "Automation Engineer Intern",
+			"time": "Jul 2022 - Aug 2024",
+			"responsibilities": [
+				"Developed and implemented safety circuits for robotic cells",
+				"Programmed PLCs for robotic cells",
+				"Programmed 6-axis and Cartesian robots",
+				"Designed and manufactured robotic cells",
+				"Designed and manufactured EOATs",
+				"Designed safety cages for robotic cells"
+			]
+		},
+		{
+			"name": "Bison Hill Stonecrafts",
+			"location": "Erie, PA",
+			"position": "CNC Operator",
+			"time": "Oct 2020 - Dec 2022",
+			"responsibilities": [
+				"Operated CNC machines",
+				"Finished and packaged stone products",
+				"Designed and manufactured custom stone products"
+			]
+		},
+		{
+			"name": "LeBoeuf Lasing",
+			"location": "Waterford, PA",
+			"position": "Business Owner",
+			"time": "Mar 2020 - Present",
+			"responsibilities": [
+				"Design, manufacture, and sell custom woodworking products",
+				"Built and maintain website",
+				"Design product manufacturing processes."
+			]
+		}
+	],
 	"skills": [
 		{
 			"category": "Electrical",
 			"skills": [
-				"PLC Programming",
-				"HMI Design",
-				"Electrical Design",
-				"Electrical Troubleshooting",
-				"Electrical Testing"
+				"Circuit Analysis",
+				"Circuit Design",
+				"Digital Logic Design",
+				"Digital Logic Analysis",
+				"PCB/Schematic Design",
+				"Soldering"
 			]
 		},
 		{
 			"category": "Software",
-			"skills": ["Python", "C++", "Java", "JavaScript", "HTML", "CSS", "SQL"]
+			"skills": ["Python", "C++", "Java", "Kuka RL", "Verilog", "VHDL", "Ladder Logic", "R.O.S."]
 		},
 		{
 			"category": "Automation",
 			"skills": [
-				"Automation Testing",
-				"Automation Frameworks",
-				"Selenium",
-				"Appium",
-				"Robot Framework",
-				"Jenkins",
-				"JMeter",
-				"Postman",
-				"SoapUI",
-				"Junit",
-				"TestNG"
-			]
-		},
-		{
-			"category": "Networking",
-			"skills": [
-				"Network Design",
-				"Network Troubleshooting",
-				"Network Testing",
-				"Network Security",
-				"Network Monitoring",
-				"Network Management",
-				"Network Configuration"
+				"Safety Circuits",
+				"PLC Programming",
+				"6-Axis Robot Programming",
+				"Cartesian Robot Programming",
+				"EOAT Design",
+				"Safety Cage Design",
+				"Robotic Cell Manufacture"
 			]
 		}
 	],
