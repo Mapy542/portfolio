@@ -34,7 +34,17 @@
 				paddingCount={inColumnCount}
 			/>
 		{:else if line.startsWith('[') && line.includes(')')}
-			<p><a href={line.split('(')[1].split(')')[0]}>{line.split('[')[1].split(']')[0]}</a></p>
+			{#if line.includes('.')}
+				<p>
+					<a href={line.split('(')[1].split(')')[0]} download
+						>{line.split('[')[1].split(']')[0]}
+					</a>
+				</p>
+			{:else}
+				<p>
+					<a href={line.split('(')[1].split(')')[0]}>{line.split('[')[1].split(']')[0]} </a>
+				</p>
+			{/if}
 		{:else}
 			<p class={testNumberedList(line) ? 'indented' : ''}>{line}</p>
 		{/if}
