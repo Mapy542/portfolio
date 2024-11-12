@@ -3,9 +3,9 @@
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-mono: 'Fira Mono', monospace;
 
-	--theme-light: #dddde0;
-	--theme-mid: #2f2d3b;
-	--theme-high-mid: #b0adbe;
+	--theme-light: #f8f8f8;
+	--theme-mid: #35343a;
+	--theme-high-mid: #bab9be;
 	--theme-dark: #112;
 	--theme-accent: rgb(17, 93, 255);
 	--theme-dark-accent: rgb(16, 74, 88);

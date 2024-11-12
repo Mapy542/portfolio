@@ -7,21 +7,7 @@
 
 # Automatic Resin Filler
 
-## The 3D Printer
-
-The Anycubic Photon is a line of LCD 3D Printers. I have the Anycubic Photon Mono X. Why does it need an auto filler? Here’s a little background on how it works:
-
-An LCD 3D printer, often referred to as a resin-based 3D printer, utilizes a technology called photopolymers to create three-dimensional objects from liquid resin. These printers are commonly used for creating high-resolution and intricate models, jewelry, dental molds, and other small-scale objects with fine details. Here’s how an LCD DLP 3D printer works:
-
-1. Build Platform and Resin Tank Setup: The printer consists of a build platform and a resin tank. The build platform is where the object is gradually constructed layer by layer. The resin tank holds the liquid photopolymer resin, which becomes solid when exposed to specific wavelengths of light.
-2. Layer Solidification: The projected light causes the liquid resin to solidify or polymerize, adhering to the build platform. The solidified layer forms the base for the subsequent layer to be added on top. The LCD screen forms a mask, like a stencil, that allows light to pass through only in specific areas, solidifying the resin in those regions.
-3. Z-Axis Movement: Once a layer is solidified, the build platform moves slightly upward (along the Z-axis) to make space for the next layer of liquid resin.
-4. Repeating the Process: The process of projecting a layer, solidifying the resin, and moving the build platform upward is repeated for each subsequent layer. This layer-by-layer approach gradually builds the three-dimensional object.
-5. Post-Processing: After the printing process is complete, the object is carefully removed from the build platform. Depending on the resin used, the object might require additional post-processing steps such as washing in a solvent to remove excess resin and then curing under UV light to ensure complete polymerization.
-
-Overall, LCD 3D printers offer high-resolution printing with intricate details, making them suitable for applications where precision is crucial. The use of liquid resin allows for smooth surfaces and fine features that might be challenging to achieve with filament-based Fused Deposition Modeling (FDM) 3D printers.
-
-## Purpose of an Auto Filler
+The Anycubic Photon is a line of LCD 3D Printers. I have the Anycubic Photon Mono X. Why does it need an auto filler?
 
 An autofiller, also known as an automatic resin dispenser or resin top-off system, is a feature found in some LCD 3D printers that helps maintain a consistent level of resin in the resin tank throughout the printing process. The purpose of an autofiller is to enhance the overall printing experience and reduce the need for manual intervention during long or complex print jobs. Here’s why an auto filler is useful for an LCD 3D printer:
 

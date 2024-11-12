@@ -1,6 +1,8 @@
 <script>
 	import DynaImage from './DynaImage.svelte';
 	export let markdownString = '';
+	export let inColumnCount = '0';
+	export let columnRatio = '.5';
 
 	function testNumberedList(line) {
 		return /^\d+\.\s/.test(line);
@@ -28,6 +30,8 @@
 				src={line.split('(')[1].split(')')[0]}
 				alt={line.includes('[') && line.includes(']') ? line.split('[')[1].split(']')[0] : ''}
 				caption={line.includes('{') && line.includes('}') ? line.split('{')[1].split('}')[0] : ''}
+				scaleFactor={columnRatio}
+				paddingCount={inColumnCount}
 			/>
 		{:else if line.startsWith('[') && line.includes(')')}
 			<p><a href={line.split('(')[1].split(')')[0]}>{line.split('[')[1].split(']')[0]}</a></p>

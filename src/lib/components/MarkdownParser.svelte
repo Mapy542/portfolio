@@ -87,7 +87,14 @@
 								{#if index3 % 2 == 1}
 									<MdCodeParser markdownString={codeBlock} />
 								{:else}
-									<MdBasicProcessor markdownString={codeBlock} />
+									<MdBasicProcessor
+										markdownString={codeBlock}
+										columnRatio={String(
+											Number(columnGroup.split('#^')[index2 + 1].substring(0, 3)[0]) /
+												Number(columnGroup.split('#^')[index2 + 1].substring(0, 3)[2])
+										)}
+										inColumnCount="1"
+									/>
 								{/if}
 							{/each}
 						</div>

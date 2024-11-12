@@ -15,7 +15,7 @@
 
 <div class="flex-columns">
 	<div class="thirds">
-		<DynaImage src="headshot/eli.webp" alt="Eli Bukoski" size="2" />
+		<DynaImage src="headshot/eli.webp" alt="Eli Bukoski" scaleFactor=".33" paddingCount="1" />
 		<h2>Eli Bukoski</h2>
 		<div class="bar" />
 		<p>Electrical Engineer</p>
@@ -23,6 +23,11 @@
 			{bioData.locations.join(' - ')}
 		</p>
 		<div class="spacer" style="height: 1em;"></div>
+		{#if bioData.employed}
+			<p>Currently working for {bioData.employed}.</p>
+		{:else}
+			<p>Currently seeking employment.</p>
+		{/if}
 		<a href="#work" download><p style="color: var(--theme-accent);">Work Experience</p></a>
 		<a href="#skills" download><p style="color: var(--theme-accent);">Skills</p></a>
 		<a href="#education" download><p style="color: var(--theme-accent);">Education</p></a>
@@ -48,6 +53,22 @@
 
 		<div id="work">
 			<h2>Work Experience</h2>
+			<div class="flex-container" style="display:flex; flex-wrap: wrap;">
+				{#if bioData.work}
+					{#each bioData.work as job}
+						<div class="work-card">
+							<h3>{job.position}</h3>
+							<p>{job.name} - {job.location}</p>
+							<p>{job.time}</p>
+							<ul>
+								{#each job.responsibilities as role}
+									<li>{role}</li>
+								{/each}
+							</ul>
+						</div>
+					{/each}
+				{/if}
+			</div>
 		</div>
 
 		{#if bioData.skills}
@@ -95,7 +116,7 @@
 	}
 
 	.vertical-bar {
-		width: 0.1em;
+		width: 2px;
 		background-color: var(--theme-mid);
 		margin: 1em;
 		margin-top: 2em;
@@ -104,24 +125,35 @@
 		transition: all var(--transition-length);
 	}
 
-	.edu-div {
-		margin-bottom: 2em;
-	}
-
-	.edu-div .bar {
-		transition: all var(--transition-length);
-	}
-
 	.flex-container:hover .vertical-bar {
 		background-color: var(--theme-accent);
 	}
 
-	.edu-div:hover .bar {
-		background-color: var(--theme-accent);
+	.edu-div {
+		margin-bottom: 2em;
 	}
 
 	.column {
 		flex: 1;
 		text-wrap: wrap;
+	}
+
+	.work-card {
+		margin: 1em;
+		width: 45%;
+		transition: all var(--transition-length);
+		height: min-content;
+		overflow: hidden;
+	}
+
+	.work-card ul {
+		display: none;
+	}
+
+	.work-card:hover {
+		height: fit-content;
+	}
+	.work-card:hover ul {
+		display: block;
 	}
 </style>

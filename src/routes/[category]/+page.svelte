@@ -19,7 +19,12 @@
 <div class="flex-columns">
 	<div class="thirds">
 		{#if data.props.image}
-			<DynaImage src={data.props.image} alt={data.props.title} size="1" />
+			<DynaImage
+				src={data.props.image}
+				alt={data.props.title}
+				scaleFactor="0.33"
+				paddingCount="1"
+			/>
 		{/if}
 		{#if data.props.title}
 			<h1 style="text-align:revert;">{data.props.title}</h1>
@@ -35,7 +40,12 @@
 					<div class="flex-columns linkable">
 						{#if postMeta.image}
 							<div class="thirds inlinkable">
-								<DynaImage src={postMeta.image} alt={postMeta.title} size="1" />
+								<DynaImage
+									src={postMeta.image}
+									alt={postMeta.title}
+									scaleFactor=".22"
+									paddingCount="2"
+								/>
 							</div>
 						{/if}
 						<div class="two-thirds inlinkable">
