@@ -12,5 +12,12 @@
 		"description": "A brief bio of Eli Bukoski.",
 		"image": "/headshot/eli.webp",
 		"date": "11/6/2024"
+	},
+	"K400 Homepage": {
+		"url": "/k400-home",
+		"title": "K400 Laser Homepage",
+		"description": "The homepage for the K400 laser project.",
+		"image": "/k400/k400.webp",
+		"date": "11/11/2024"
 	}
 }
