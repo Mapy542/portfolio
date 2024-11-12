@@ -3,5 +3,10 @@
 		"title": "Personal Projects",
 		"description": "Posts not tied to a larger projects or area of work.",
 		"image": "logo.webp"
+	},
+	"Dust-Collection": {
+		"title": "Dust Collection",
+		"description": "Tips and tricks used on my wood working dust collection system.",
+		"image": "logo.webp"
 	}
 }
