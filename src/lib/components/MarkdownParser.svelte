@@ -1,5 +1,5 @@
 <script>
-	import MdBasicProcessor from './mdBasicParser.svelte';
+	import MdGalleryParser from './mdGalleryParser.svelte';
 	import MdCodeParser from './mdCodeParser.svelte';
 	import hljs from 'highlight.js';
 	import 'highlight.js/styles/github.css';
@@ -11,6 +11,7 @@
 	onMount(() => {
 		hljs.highlightAll();
 	});
+
 	$: {
 		//reactive markdown pre-processor for columns
 		let inColumnGroup = false;
@@ -87,13 +88,13 @@
 								{#if index3 % 2 == 1}
 									<MdCodeParser markdownString={codeBlock} />
 								{:else}
-									<MdBasicProcessor
+									<MdGalleryParser
 										markdownString={codeBlock}
-										columnRatio={String(
+										columnRatioPassThrough={String(
 											Number(columnGroup.split('#^')[index2 + 1].substring(0, 3)[0]) /
 												Number(columnGroup.split('#^')[index2 + 1].substring(0, 3)[2])
 										)}
-										inColumnCount="1"
+										inColumnCountPassThrough="1"
 									/>
 								{/if}
 							{/each}
@@ -105,7 +106,7 @@
 					{#if index3 % 2 == 1}
 						<MdCodeParser markdownString={codeBlock} />
 					{:else}
-						<MdBasicProcessor markdownString={codeBlock} />
+						<MdGalleryParser markdownString={codeBlock} />
 					{/if}
 				{/each}
 			{/if}
