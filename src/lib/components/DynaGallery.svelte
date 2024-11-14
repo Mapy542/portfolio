@@ -7,7 +7,7 @@
 	export let scaleFactor: string = '1';
 	export let paddingCount: string = '0';
 
-	$: interiorScaleFactor = (Number(scaleFactor) / (SRCs.length > 3 ? 4 : 2)) * 1.25;
+	$: interiorScaleFactor = (Number(scaleFactor) / (SRCs.length > 3 ? 4 : SRCs.length)) * 1.25;
 </script>
 
 <div class="dyna-gallery">
