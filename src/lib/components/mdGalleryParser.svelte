@@ -33,15 +33,13 @@
 					} catch (error) {
 						dynaGalleryPreProcess[index].captions.push('');
 					}
-				} catch (error) {
-					console.log('src not found');
-				}
+				} catch (error) {}
 			}
 		}
 	}
 </script>
 
-{#each markdownString.split('#!\n') as mdBlock, index}
+{#each markdownString.split('#!g') as mdBlock, index}
 	{#if index == 0 || index % 2 == 0}
 		<MdBasicParser
 			markdownString={mdBlock}
@@ -53,6 +51,8 @@
 			SRCs={dynaGalleryPreProcess[index - 1].SRC}
 			ALTs={dynaGalleryPreProcess[index - 1].ALT}
 			captions={dynaGalleryPreProcess[index - 1].captions}
+			scaleFactor={columnRatioPassThrough}
+			paddingCount={inColumnCountPassThrough}
 		/>
 	{/if}
 {/each}
