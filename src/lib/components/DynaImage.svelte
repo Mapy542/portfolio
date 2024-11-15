@@ -21,19 +21,25 @@
 		return closest;
 	}
 
+	function innerWidthScale(width: number) {
+		return width < 768 ? width : width * 0.7;
+	}
+
 	const widths = [
-		100, 125, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300,
-		1400, 1500
+		90, 95, 100, 125, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000, 1100, 1200,
+		1300, 1400, 1500
 	];
 
 	let innerWidth = 0;
 	$: imgWidth =
 		innerWidth !== 0
 			? findClosest(
-					innerWidth * Number(scaleFactor) * (0.75 - 2 ** Number(paddingCount) * 0.05),
+					innerWidthScale(innerWidth) *
+						Number(scaleFactor) *
+						(0.75 - 2 ** Number(paddingCount) * 0.05),
 					widths
 				)
-			: 1000;
+			: 1000 * Number(scaleFactor) * (0.75 - 2 ** Number(paddingCount) * 0.05);
 
 	let imageUrl: string | null = null;
 	let error: Error | null = null;
