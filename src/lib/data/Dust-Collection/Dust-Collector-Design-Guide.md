@@ -7,14 +7,18 @@
 
 # Dust Collector Design Guide
 
-A working wood shop needs a way to manage and control dust so the air stays breathable. There are two main strategies to this: wear a mask or pick up airborne dust at the tool. Obviously wearing a mask is easy and cheap, but it can be uncomfortable as 2020 can attest. It also leaves the issue of dust piling up on and under every tool. The other solution is a dust collection system that picks up the dust. Here’s the overview of how and why I built the dust collector used in the woodshop.
+Dust is a commonly overlooked health issue, both in the home shop and in general industry. It can cause respiratory issues, and even be explosive in the right conditions (see CSB link below). A dust collection system is a must for any wood shop, and this guide will help you design and build one. Design templates are included for making the thein baffle separator:
 
-There are templates available here.
+[Tangential Pipe Joint [svg]](/Pipe-Tangential-Joint-Layout.svg)
+[Thein Baffle Wall Template [zip]](/Polycarbonate-Template.zip)
 
-The Collection System
-Design Theories
-There are two more ideas as to how a dust collection works. Either all piping is the same diameter, and one tool is connected at a time, or the pipe is increasing in diameter as more tools connect to it, and all tools are connected to the collector at once.
+[CSB Combustible Dust](https://www.csb.gov/recommendations/mostwanted/combustibledust/)
 
+# The Collection System
+
+## Pipe Design Theories
+
+There are strategies for designing the ducting for a dust collection system. The first is to have a separate pipe for each tool, and a blast gate to block off the tool not in use. Conversely, The second option is most common for large workshops with multiple wood workers, and it can be expensive with large pipes and a huge dust collector adding massive costs.
 The second option is most common for large workshops with multiple wood workers, and it can be expensive with large pipes and a huge dust collector adding massive costs.
 
 Credit to: https://img1.wsimg.com/isteam/ip/

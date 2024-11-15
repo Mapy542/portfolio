@@ -48,7 +48,9 @@
 				"Digital Logic Design",
 				"Digital Logic Analysis",
 				"PCB/Schematic Design",
-				"Soldering"
+				"Embedded Systems",
+				"General Troubleshooting",
+				"Soldering/Rework"
 			]
 		},
 		{
@@ -62,6 +64,7 @@
 				"PLC Programming",
 				"6-Axis Robot Programming",
 				"Cartesian Robot Programming",
+				"Process Control",
 				"EOAT Design",
 				"Safety Cage Design",
 				"Robotic Cell Manufacture"

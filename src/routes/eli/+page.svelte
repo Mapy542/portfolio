@@ -28,9 +28,9 @@
 		{:else}
 			<p>Currently seeking employment.</p>
 		{/if}
-		<a href="#work" download><p style="color: var(--theme-accent);">Work Experience</p></a>
-		<a href="#skills" download><p style="color: var(--theme-accent);">Skills</p></a>
-		<a href="#education" download><p style="color: var(--theme-accent);">Education</p></a>
+		<a href="#work"><p style="color: var(--theme-accent);">Work Experience</p></a>
+		<a href="#skills"><p style="color: var(--theme-accent);">Skills</p></a>
+		<a href="#education"><p style="color: var(--theme-accent);">Education</p></a>
 
 		<a href="/Resume.pdf" download><p style="color: var(--theme-accent);">Resume</p></a>
 	</div>
@@ -136,6 +136,11 @@
 	.column {
 		flex: 1;
 		text-wrap: wrap;
+	}
+
+	.column h3,
+	p {
+		justify-self: center;
 	}
 
 	.work-card {
