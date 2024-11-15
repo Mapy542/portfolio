@@ -9,10 +9,17 @@
 
 Dust is a commonly overlooked health issue, both in the home shop and in general industry. It can cause respiratory issues, and even be explosive in the right conditions (see CSB link below). A dust collection system is a must for any wood shop, and this guide will help you design and build one. Design templates are included for making the thein baffle separator:
 
+#% 1,2
+
+## Resources
+
 [Tangential Pipe Joint [svg]](/Pipe-Tangential-Joint-Layout.svg)
 [Thein Baffle Wall Template [zip]](/Polycarbonate-Template.zip)
 
+#% 1,2
+
 [CSB Combustible Dust](https://www.csb.gov/recommendations/mostwanted/combustibledust/)
+#%
 
 # The Collection System
 

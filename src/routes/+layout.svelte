@@ -37,9 +37,19 @@
 		display: flex;
 		flex-direction: column;
 		padding: 1rem;
-		width: 100%;
 		max-width: 100rem;
 		margin: 0 auto;
 		box-sizing: border-box;
+	}
+
+	@media (min-width: 768px) {
+		main {
+			width: 70vw;
+		}
+	}
+	@media (max-width: 768px) {
+		main {
+			width: 95vw;
+		}
 	}
 </style>

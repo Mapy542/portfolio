@@ -52,6 +52,9 @@
 {/if}
 
 <style>
+	p {
+		margin-bottom: 2em;
+	}
 	.indented {
 		margin-left: 2em;
 	}
