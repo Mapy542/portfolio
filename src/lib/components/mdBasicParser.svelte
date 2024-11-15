@@ -45,7 +45,7 @@
 					<a href={line.split('(')[1].split(')')[0]}>{line.split('[')[1].split(']')[0]} </a>
 				</p>
 			{/if}
-		{:else}
+		{:else if line !== '' && line !== ' '}
 			<p class={testNumberedList(line) ? 'indented' : ''}>{line}</p>
 		{/if}
 	{/each}
