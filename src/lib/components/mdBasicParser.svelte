@@ -34,7 +34,7 @@
 				paddingCount={inColumnCount}
 			/>
 		{:else if line.startsWith('[') && line.includes(')')}
-			{#if line.includes('.')}
+			{#if line.includes('.') && !line.includes('http')}
 				<p>
 					<a href={line.split('(')[1].split(')')[0]} download
 						>{line.split('[')[1].split(']')[0]}
