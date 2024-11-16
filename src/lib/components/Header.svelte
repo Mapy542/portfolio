@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import { onNavigate } from '$app/navigation';
 
 	import logo from '$lib/img/logo.webp';
 	import logoInverted from '$lib/img/logo-invert.webp';
+
+	import './radialBG.css';
 
 	export let categories: string[] = [];
 
@@ -53,7 +53,7 @@
 	let showCategories = false;
 </script>
 
-<header>
+<header class="gradientBG-bottomFade">
 	<div class="header-container">
 		<div class="header-logo">
 			<a href="/">
@@ -95,6 +95,7 @@
 				>
 			{/each}
 		</div>
+		<div class="spacer" style="height: 1em;"></div>
 	{/if}
 </header>
 
@@ -106,23 +107,23 @@
 		width: 100%;
 		flex-direction: row;
 		flex-wrap: wrap;
-		background-color: #ccc;
 		transition: height var(--transition-length) linear;
 	}
 
 	.link-block {
-		background-color: var(--theme-high-mid);
 		border-radius: var(--theme-img-border-radius);
-		padding-left: 1rem;
-		padding-right: 1rem;
+		border: solid 2px var(--theme-dark);
+		padding: 0.5em;
 		margin: 10px;
 	}
 
-	:global(body.dark) .category-list {
-		background-color: #223;
+	.link-block p {
+		padding: revert;
+		margin: 0;
 	}
+
 	:global(body.dark) .link-block {
-		background-color: var(--theme-mid);
+		border: solid 2px var(--theme-light);
 	}
 
 	:root {
@@ -135,19 +136,7 @@
 		height: fit-content; /*auto scale to menu size*/
 		transition: all var(--transition-length) linear;
 
-		background-color: var(--theme-light);
-		/*transition: color var(--transition-length) linear;*/
-		-webkit-transition: var(--transition-length);
-		background-image: '';
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-
 		background-position: center;
-	}
-
-	:global(body.dark) header {
-		background-color: var(--theme-dark);
 	}
 
 	.header-container {
