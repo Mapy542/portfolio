@@ -7,6 +7,7 @@
 	import './radialBG.css';
 
 	export let categories: string[] = [];
+	export let staticPages: any = {};
 
 	//Header Background Img Load
 	const Themes = {
@@ -53,7 +54,7 @@
 	let showCategories = false;
 </script>
 
-<header class="gradientBG-bottomFade">
+<header class="">
 	<div class="header-container">
 		<div class="header-logo">
 			<a href="/">
@@ -67,7 +68,16 @@
 		</div>
 
 		<div class="link-area">
-			<button on:click={() => (showCategories = !showCategories)}>Categories</button>
+			{#each Object.keys(staticPages) as pageName}
+				<a href={staticPages[pageName].url}>
+					<div class="link-block">
+						<p>{staticPages[pageName].title}</p>
+					</div>
+				</a>
+			{/each}
+			<div class="link-block" on:click={() => (showCategories = !showCategories)}>
+				<p>Categories</p>
+			</div>
 		</div>
 		<div class="theme-toggle">
 			<label class="switch" aria-label="Dark mode switch">
@@ -107,7 +117,11 @@
 		width: 100%;
 		flex-direction: row;
 		flex-wrap: wrap;
-		transition: height var(--transition-length) linear;
+		background-color: var(--theme-high-mid);
+	}
+
+	:global(body.dark) .category-list {
+		background-color: var(--theme-mid);
 	}
 
 	.link-block {
@@ -160,8 +174,12 @@
 		/*max-width: 80%;
 		min-width: 40%;*/
 		display: flex;
-		flex-direction: column;
 		border-radius: 5vh;
+		justify-content: space-around;
+		align-items: center;
+		width: 100%;
+		flex-direction: row;
+		flex-wrap: wrap;
 	}
 
 	@media screen and (max-width: 1024px) {
@@ -201,7 +219,7 @@
 	/*-- Theme Switch --*/
 
 	.theme-toggle {
-		width: 8%; /* THIS is the size of the whole theme switch */
+		width: 5%; /* THIS is the size of the whole theme switch */
 		/*min-width: 30px;*/
 		/*max-width: 50px;*/
 		align-self: center;

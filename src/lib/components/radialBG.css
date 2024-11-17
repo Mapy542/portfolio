@@ -12,12 +12,7 @@
 	transition: all var(--transition-length) linear;
 	-webkit-transition: var(--transition-length);
 
-	background: linear-gradient(
-			to top,
-			rgba(var(--theme-light-rgb), 1) 0%,
-			rgba(var(--theme-light-rgb), 0) 10%
-		),
-		radial-gradient(
+	background: radial-gradient(
 			ellipse at left top,
 			rgba(var(--theme-accent-rgb), 0.3) 0%,
 			rgba(var(--theme-light-rgb), 0.1) 100%
