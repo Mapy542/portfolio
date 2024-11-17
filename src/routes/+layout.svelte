@@ -9,7 +9,7 @@
 </script>
 
 <div class="app">
-	<Header categories={data.props.categories} />
+	<Header categories={data.props.categories} staticPages={data.props.staticPages} />
 
 	<main>
 		<slot />
