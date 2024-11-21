@@ -83,7 +83,7 @@
 		</div>
 	{/if}
 	{#if caption !== ''}
-		<p>{caption}</p>
+		<p style="text-wrap: wrap; overflow-wrap: break-word; width: {imgWidth}px;">{caption}</p>
 	{/if}
 </div>
 

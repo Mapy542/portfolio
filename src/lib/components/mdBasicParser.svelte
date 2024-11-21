@@ -42,7 +42,12 @@
 				</p>
 			{:else}
 				<p>
-					<a href={line.split('(')[1].split(')')[0]}>{line.split('[')[1].split(']')[0]} </a>
+					<a
+						href={line.split('(')[1].split(')')[0]}
+						data-sveltekit-preload-code
+						data-sveltekit-reload
+						>{line.split('[')[1].split(']')[0]}
+					</a>
 				</p>
 			{/if}
 		{:else if line !== '' && line !== ' '}
