@@ -40,7 +40,7 @@
 </script>
 
 {#each markdownString.split('#!g') as mdBlock, index}
-	{#if index == 0 || index % 2 == 0}
+	{#if index % 2 == 0}
 		<MdBasicParser
 			markdownString={mdBlock}
 			inColumnCount={inColumnCountPassThrough}
@@ -48,9 +48,9 @@
 		/>
 	{:else}
 		<DynaGallery
-			SRCs={dynaGalleryPreProcess[index - 1].SRC}
-			ALTs={dynaGalleryPreProcess[index - 1].ALT}
-			captions={dynaGalleryPreProcess[index - 1].captions}
+			SRCs={dynaGalleryPreProcess[Math.floor(index / 2)].SRC}
+			ALTs={dynaGalleryPreProcess[Math.floor(index / 2)].ALT}
+			captions={dynaGalleryPreProcess[Math.floor(index / 2)].captions}
 			scaleFactor={columnRatioPassThrough}
 			paddingCount={inColumnCountPassThrough}
 		/>
