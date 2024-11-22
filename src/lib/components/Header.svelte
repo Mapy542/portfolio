@@ -69,11 +69,13 @@
 
 		<div class="link-area">
 			{#each Object.keys(staticPages) as pageName}
-				<a href={staticPages[pageName].url}>
-					<div class="link-block">
-						<p>{staticPages[pageName].title}</p>
-					</div>
-				</a>
+				{#if staticPages[pageName].showHeader}
+					<a href={staticPages[pageName].url}>
+						<div class="link-block">
+							<p>{staticPages[pageName].title}</p>
+						</div>
+					</a>
+				{/if}
 			{/each}
 			<div class="link-block" on:click={() => (showCategories = !showCategories)}>
 				<p>Categories</p>

@@ -14,12 +14,12 @@
 
 	background: radial-gradient(
 			ellipse at left top,
-			rgba(var(--theme-accent-rgb), 0.3) 0%,
+			rgba(var(--theme-accent-rgb), 0.4) 0%,
 			rgba(var(--theme-light-rgb), 0.1) 100%
 		),
 		radial-gradient(
 			ellipse at right bottom,
-			rgba(var(--theme-dark-accent-rgb), 0.2) 0%,
+			rgba(var(--theme-dark-accent-rgb), 0.4) 0%,
 			rgba(var(--theme-light-rgb), 0.1) 100%
 		);
 }
@@ -56,12 +56,12 @@ body.dark .gradientBG-bottomFade {
 		),
 		radial-gradient(
 			ellipse at left top,
-			rgba(var(--theme-accent-rgb), 0.4) 0%,
+			rgba(var(--theme-accent-rgb), 0.6) 0%,
 			rgba(var(--theme-light-rgb), 0.1) 100%
 		),
 		radial-gradient(
 			ellipse at right bottom,
-			rgba(var(--theme-dark-accent-rgb), 0.2) 0%,
+			rgba(var(--theme-dark-accent-rgb), 0.6) 0%,
 			rgba(var(--theme-light-rgb), 0.1) 100%
 		);
 }
@@ -76,12 +76,12 @@ body.dark .gradientBG-topFade {
 		),
 		radial-gradient(
 			ellipse at left top,
-			rgba(var(--theme-accent-rgb), 0.2) 0%,
+			rgba(var(--theme-accent-rgb), 0.4) 0%,
 			rgba(var(--theme-dark-rgb), 0.1) 100%
 		),
 		radial-gradient(
 			ellipse at right bottom,
-			rgba(var(--theme-dark-accent-rgb), 0.1) 0%,
+			rgba(var(--theme-dark-accent-rgb), 0.2) 0%,
 			rgba(var(--theme-dark-rgb), 0.1) 100%
 		);
 }
