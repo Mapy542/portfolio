@@ -4,20 +4,26 @@
 		"title": "Bukoski.dev",
 		"description": "Posts not tied to a larger projects or area of work.",
 		"image": "logo.webp",
-		"date": "11/6/2024"
+		"date": "11/6/2024",
+		"showHeader": false,
+		"showFooter": true
 	},
 	"Eli-Bio": {
 		"url": "/eli",
 		"title": "Eli Bukoski",
 		"description": "A brief bio of Eli Bukoski.",
 		"image": "/headshot/eli.webp",
-		"date": "11/6/2024"
+		"date": "11/6/2024",
+		"showHeader": true,
+		"showFooter": true
 	},
 	"K400 Homepage": {
 		"url": "/k400-home",
 		"title": "K400 Laser Homepage",
 		"description": "The homepage for the K400 laser project.",
 		"image": "/k400/k400.webp",
-		"date": "11/11/2024"
+		"date": "11/11/2024",
+		"showHeader": true,
+		"showFooter": true
 	}
 }

@@ -77,5 +77,11 @@
 			"school": "University of Akron",
 			"graduation": "2028"
 		}
-	]
+	],
+	"contact": {
+		"Email": "mailto:eli@bukoski.dev",
+		"LinkedIn": "https://www.linkedin.com/in/eli-bukoski-b53706328/",
+		"GitHub": "https://github.com/Mapy542",
+		"Instagram": "https://www.instagram.com/elib5542/"
+	}
 }
