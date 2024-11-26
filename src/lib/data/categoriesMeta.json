@@ -8,5 +8,10 @@
 		"title": "Dust Collection",
 		"description": "Tips and tricks used on my wood working dust collection system.",
 		"image": "dust-separator/whole-collector.webp"
+	},
+	"Akron": {
+		"title": "University of Akron",
+		"description": "Posts related to my time at the University of Akron.",
+		"image": "uakron/quad.webp"
 	}
 }
