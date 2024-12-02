@@ -26,7 +26,7 @@ While working on the laser cutter project, I ran into a similar signaling issue 
 
 ![Nano Output](arduino-mmv/mmv-in.webp){Inverted 1-2 us pulses from the Nano M2}
 
-After some online research I found a monostable multi-vibrator, MMV, was what I needed to lengthen the pulses, but I needed to prototype first. You see, traditional MMVs are hardware circuits where a combination of additional complimentary components on a circuit board determines the pulse width. It was prohibitively expensive to develop multiple circuits with a bunch of specific components just to test the theory.
+After some online research I found a monostable multi-vibrator, MMV, was what I needed to lengthen the pulses, but I needed to prototype first. You see, traditional MMVs are hardware circuits where a combination of additional complimentary components on a circuit board determines the pulse width. It was prohibitively expensive buy assorted components and develop multiple circuits with a bunch of specific components just to test the theory.
 
 One cheap device I did have on hand was a bog-standard Arduino Uno. It has an Atmega328 powering it. The CPU itself is much too slow to keep track of times though. At 16MHz, the CPU can only execute 16 instructions per microsecond. It would take way too many instructions for the CPU to count time, so that was out of the question. However, the Atmega328 does have three hardware timers.
 
