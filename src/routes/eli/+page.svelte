@@ -77,9 +77,9 @@
 				<div class="vertical-bar" />
 				{#each bioData.skills as skill}
 					<div class="column">
-						<h3>{skill.category}</h3>
+						<h3 style="justify-self:center;">{skill.category}</h3>
 						{#each skill.skills as skillText}
-							<p>{skillText}</p>
+							<p style="justify-self:center;">{skillText}</p>
 						{/each}
 					</div>
 					<div class="vertical-bar" />
@@ -136,11 +136,6 @@
 	.column {
 		flex: 1;
 		text-wrap: wrap;
-	}
-
-	.column h3,
-	p {
-		justify-self: center;
 	}
 
 	.work-card {
