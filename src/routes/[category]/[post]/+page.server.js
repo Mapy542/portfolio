@@ -11,13 +11,13 @@ export async function load({ params }) {
     try{
         postSrc = serverReader.getDocsSRCfromQuickIndex(category, post);
         if(!postSrc) {
-            postData = "#404 \n Article not found."
+            postData = "# 404 \n## Article not found."
         }else{
             postData = serverReader.getDocData(postSrc);
             postMeta = stripMeta([serverReader.getDocsSRCfromQuickIndex(category, post)]);
         }
     } catch(e){
-        postData = "#500 \n Internal Server Error."
+        postData = "# 500 \n## Internal Server Error."
     }
 
     
