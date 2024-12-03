@@ -32,12 +32,14 @@ for img in images:
     try:
         with Image.open(os.path.join(CWD, img)) as image:
             image = image.convert("RGB")
-            path = img.split(".")[0] + ".webp"
+            path = img.split(".")[0].replace(" ", "-") + ".webp"
             image.save(os.path.join(CWD, path), "webp", quality=75)
 
     except Exception as e:
         print(e)
         print("Error with image: ", img)
         continue
+
+    os.remove(os.path.join(CWD, img))  # remove the original image
 
 print("Done!")
