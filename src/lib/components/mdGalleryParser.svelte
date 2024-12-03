@@ -13,7 +13,7 @@
 		let inGallery = false;
 		let index = 0;
 		for (let line of markdownString.split('\n')) {
-			if (line.startsWith('#!')) {
+			if (line.startsWith('#!g')) {
 				index = inGallery ? index + 1 : index; //increment index if inGallery to setup next gallery
 				inGallery = !inGallery; //toggle inGallery
 			}
@@ -33,7 +33,9 @@
 					} catch (error) {
 						dynaGalleryPreProcess[index].captions.push('');
 					}
-				} catch (error) {}
+				} catch (error) {
+					console.log('Error in mdGalleryParser: ' + error);
+				}
 			}
 		}
 	}
