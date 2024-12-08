@@ -67,8 +67,6 @@ class StoreReader{
      * */
     cacheMetaData(){
         //apply stripped metadata
-        console.log("Caching metadata");
-        console.log(this.allSrcs);
         this.metas = stripMeta(this.allSrcs);
     }
 
@@ -145,6 +143,19 @@ class StoreReader{
        return this.metas[src];
    }
 
+   /**
+    * @brief returns the stripped metadata of all docs given by their src strings, intended for strip meta replacement.
+    * @param {string[]} srcArray
+    * @returns {Object}
+    */
+   cachedStripMetaReplacement(srcArray){
+        let stripped = {};
+        for(const src of srcArray){
+            stripped[src] = this.metas[src];
+        }
+        return stripped;
+   }
+
 };
 
 const serverReader = new StoreReader("");
@@ -152,3 +163,4 @@ await serverReader.loadAllData();
 export default serverReader; //shared instance of the reader
 
 serverReader.cacheMetaData(); //strip and cache metadata from all docs
+console.log("Server reader loaded");
