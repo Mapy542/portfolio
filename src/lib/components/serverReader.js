@@ -1,3 +1,5 @@
+import { stripMeta } from "./docMetaStripper";
+
 class StoreReader{
 
     /**
@@ -12,6 +14,8 @@ class StoreReader{
         this.import={};
         this.categories=[]; //list of categories
         this.docs=[]; //list of all docs
+        this.metas = {}; //list of all stripped metadata
+        this.allSrcs = []; //list of all src strings
         this.quickIndex = {}; //double array of docs inside categories
         }
     }
@@ -49,18 +53,31 @@ class StoreReader{
         }
 
 
-                    //import the actual data
-                    for(const [key, datapromise] of Object.entries(this.import)){
-                        //@ts-ignore
-                        this.data[key] = await datapromise();
-                        
-                    }
+        //import the actual data
+        this.allSrcs = [];
+        for(const [key, datapromise] of Object.entries(this.import)){
+            //@ts-ignore
+            this.data[key] = await datapromise();
+            this.allSrcs.push(key);
+        }
+
+        //apply stripped metadata
+        this.metas = stripMeta(this.allSrcs);
     }
 
+    /**
+     * 
+      * @brief returns a list of all category names
+    * @returns {string[]}
+    */
     getCategories(){
         return this.categories;
     }
 
+    /**
+     * @brief returns a list of all doc names
+     * @returns 
+     */
     getDocs(){
         return this.docs;
     }
@@ -68,7 +85,7 @@ class StoreReader{
     /**
      * @param {string} category
      * @returns {string[]}
-     * 
+     * @breif returns a list of all docs src strings in a category
      * */
     getDocsSRCInCategory(category){
         // @ts-ignore
@@ -77,6 +94,8 @@ class StoreReader{
 
     /**
      * @param {string} doc
+     * @returns {string}
+     * @brief returns the src string of a doc from its name
      */
     getDocsSRCfromDoc(doc){
         for(const key in this.data){
@@ -90,6 +109,8 @@ class StoreReader{
      * 
      * @param {string} category 
      * @param {string} doc 
+     * @returns {string}
+     * @brief returns the src string of a doc from its name and category (more efficient than getDocsSRCfromDoc)
      */
     getDocsSRCfromQuickIndex(category, doc){
         // @ts-ignore
@@ -99,16 +120,28 @@ class StoreReader{
     /**
      * 
      * @param {string} src 
-     * @returns 
+     * @returns  {string}
+     * @brief returns the actual data of a doc from its src string
      */
    getDocData(src){
         // @ts-ignore
        return this.data[src];
    }
 
+    /**
+     * 
+     * @param {string} src 
+     * @returns {string}
+     * @brief returns the stripped metadata of a doc from its src string
+     */
+   getDocMetaData(src){
+       return this.metas[src];
+   }
+
 };
 
 const serverReader = new StoreReader("");
 await serverReader.loadAllData();
+serverReader.chache
 
 export default serverReader; //shared instance of the reader
