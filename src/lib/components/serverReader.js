@@ -151,6 +151,10 @@ class StoreReader{
    cachedStripMetaReplacement(srcArray){
         let stripped = {};
         for(const src of srcArray){
+            if (this.metas[src] === undefined || this.metas[src] === null){
+                console.log("Error: src not found in metas: " + src);
+                continue;
+            } //mimic skipping for no data behavior
             stripped[src] = this.metas[src];
         }
         return stripped;

@@ -1,5 +1,4 @@
 import serverReader from "../../../lib/components/serverReader";
-import { stripMeta } from "$lib/components/docMetaStripper";
 
 /**@type {import('./$types').PageLoad} */
 export async function load({ params }) {
@@ -14,7 +13,7 @@ export async function load({ params }) {
             postData = "# 404 \n## Article not found."
         }else{
             postData = serverReader.getDocData(postSrc);
-            postMeta = stripMeta([serverReader.getDocsSRCfromQuickIndex(category, post)]);
+            postMeta = serverReader.cachedStripMetaReplacement([serverReader.getDocsSRCfromQuickIndex(category, post)]);
         }
     } catch(e){
         postData = "# 500 \n## Internal Server Error."
