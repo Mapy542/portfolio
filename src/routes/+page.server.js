@@ -1,5 +1,4 @@
 import serverReader from '../lib/components/serverReader';
-import { stripMeta } from '$lib/components/docMetaStripper';
 
 /**@type {import('./$types').PageServerLoad} */
 export async function load() {
@@ -7,7 +6,7 @@ export async function load() {
     const doc = docNames[Math.round(Math.random() * docNames.length)] ?? docNames[0];
     const doc2 = docNames[Math.round(Math.random() * docNames.length)] ?? docNames[1];
 
-    const metas = stripMeta([serverReader.getDocsSRCfromDoc(doc), serverReader.getDocsSRCfromDoc(doc2)]);
+    const metas = serverReader.cachedStripMetaReplacement([serverReader.getDocsSRCfromDoc(doc), serverReader.getDocsSRCfromDoc(doc2)]);
 
     let docProps = [];
     for(let meta of Object.keys(metas)) {
