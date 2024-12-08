@@ -58,10 +58,17 @@ class StoreReader{
         for(const [key, datapromise] of Object.entries(this.import)){
             //@ts-ignore
             this.data[key] = await datapromise();
-            this.allSrcs.push(key);
+            this.allSrcs.push(key); //used for caching metadata, we need all src strings
         }
+    }
 
+    /**
+     * @brief caches the stripped metadata of all docs
+     * */
+    cacheMetaData(){
         //apply stripped metadata
+        console.log("Caching metadata");
+        console.log(this.allSrcs);
         this.metas = stripMeta(this.allSrcs);
     }
 
@@ -142,6 +149,6 @@ class StoreReader{
 
 const serverReader = new StoreReader("");
 await serverReader.loadAllData();
-serverReader.chache
-
 export default serverReader; //shared instance of the reader
+
+serverReader.cacheMetaData(); //strip and cache metadata from all docs
