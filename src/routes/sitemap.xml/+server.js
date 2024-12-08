@@ -1,6 +1,5 @@
 import serverReader from '../../lib/components/serverReader.js';
 import staticMetas from '../../lib/data/staticMeta.json' with {type: "json"};
-import { stripMeta } from '$lib/components/docMetaStripper.js';
 import { DOMImplementation, XMLSerializer } from 'xmldom';
 
 const rootUrl = "https://bukoski.dev";
@@ -20,7 +19,7 @@ export const GET=({params})=>{
     for(const src of serverReader.getDocs()){
         docSrcs.push(serverReader.getDocsSRCfromDoc(src));
     }
-    let srcMeta = stripMeta(docSrcs);
+    let srcMeta = serverReader.cachedStripMetaReplacement(docSrcs);
 
     for(const src of Object.keys(srcMeta)){ //for each post
         const url = doc.createElement("url");
@@ -29,7 +28,7 @@ export const GET=({params})=>{
         )[1].replace(".md",""); //add the url of the page
         url.appendChild(loc);
         
-        if(srcMeta[src].date){
+        if(srcMeta[src] && srcMeta[src].date !== undefined){
         const lastmod = doc.createElement("lastmod");
         const date = new Date(srcMeta[src].date);
         lastmod.textContent = date.toISOString();
@@ -47,8 +46,6 @@ export const GET=({params})=>{
 
         urlset.appendChild(url);
     }
-
-    console.log(categoryAges);
 
     for(const category of serverReader.getCategories()){ //for each category
         const url = doc.createElement("url");
