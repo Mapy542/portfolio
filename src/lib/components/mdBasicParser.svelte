@@ -50,8 +50,8 @@
 					</a>
 				</p>
 			{/if}
-		{:else if line !== '' && line !== ' '}
-			<p class={testNumberedList(line) ? 'indented' : ''}>{line}</p>
+		{:else if line !== '' && line !== ' ' && line !== '\r'}
+			<p class={testNumberedList(line) ? 'indented' : ''}>{line.replaceAll('\\*', '*')}</p>
 		{/if}
 	{/each}
 {/if}
