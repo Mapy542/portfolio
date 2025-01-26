@@ -27,11 +27,15 @@
 						dynaGalleryPreProcess[index].ALT.push(line.split('[')[1].split(']')[0]);
 					} catch (error) {
 						dynaGalleryPreProcess[index].ALT.push('');
+						console.log('Error in mdGalleryParser 30: ' + error);
+						continue;
 					}
 					try {
 						dynaGalleryPreProcess[index].captions.push(line.split('{')[1].split('}')[0]);
 					} catch (error) {
 						dynaGalleryPreProcess[index].captions.push('');
+						console.log('Error in mdGalleryParser 36: ' + error);
+						continue;
 					}
 				} catch (error) {
 					console.log('Error in mdGalleryParser: ' + error);

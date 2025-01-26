@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	const images: any = import.meta.glob('$lib/img/**/*.{jpg,jpeg,png,gif,webp}', {
 		eager: false
-		//query: '?url',
-		//import: 'default'
 	});
 
 	export let src: string = '';
@@ -10,6 +10,10 @@
 	export let caption: string = '';
 	export let scaleFactor: string = '1';
 	export let paddingCount: string = '0';
+
+	let imageUrl: string | null = null;
+	let error: Error | null = null;
+	let isLoaded = false;
 
 	function findClosest(value: Number, array: Array<Number>) {
 		let closest = array[0];
@@ -31,18 +35,28 @@
 	];
 
 	let innerWidth = 0;
-	$: imgWidth =
-		innerWidth !== 0
-			? findClosest(
-					innerWidthScale(innerWidth) *
-						Number(scaleFactor) *
-						(0.75 - 2 ** Number(paddingCount) * 0.05),
-					widths
-				)
-			: 1000 * Number(scaleFactor) * (0.75 - 2 ** Number(paddingCount) * 0.05);
+	let imgWidth = widths[0];
 
-	let imageUrl: string | null = null;
-	let error: Error | null = null;
+	onMount(() => {
+		// Set initial width
+		innerWidth = window.innerWidth;
+		imgWidth = findClosest(
+			innerWidthScale(innerWidth) * Number(scaleFactor) * (0.75 - 2 ** Number(paddingCount) * 0.05),
+			widths
+		);
+
+		// Update width on window resize
+		window.addEventListener('resize', () => {
+			innerWidth = window.innerWidth;
+			imgWidth = findClosest(
+				innerWidthScale(innerWidth) *
+					Number(scaleFactor) *
+					(0.75 - 2 ** Number(paddingCount) * 0.05),
+				widths
+			);
+		});
+	});
+
 	$: {
 		if (src) {
 			const importImage = images[`/src/lib/img/${src}`];
@@ -66,18 +80,31 @@
 
 <div class="dyna-image">
 	{#if imageUrl}
+		{#if !isLoaded}
+			<div
+				class="temp-pad"
+				style="width:{imgWidth}px; aspect-ratio:4/3; border-radius: var(--theme-img-border-radius);"
+			>
+				<p>Loading...</p>
+			</div>
+		{/if}
 		<img
 			src={imageUrl}
 			alt={alt !== '' ? alt : caption !== '' ? caption : ''}
 			loading="lazy"
-			style="width:{imgWidth}px; border-radius: var(--theme-img-border-radius);"
+			style="width:{imgWidth}px; border-radius: var(--theme-img-border-radius); visibility: {isLoaded
+				? 'visible'
+				: 'hidden'};"
+			on:load={() => {
+				isLoaded = true;
+			}}
 		/>
 	{:else if error}
 		<p>{error.message}</p>
 	{:else}
 		<div
 			class="temp-pad"
-			style="width:{imgWidth}px; aspect-ratio:16/9; border-radius: var(--theme-img-border-radius);"
+			style="width:{imgWidth}px; aspect-ratio:4/3; border-radius: var(--theme-img-border-radius);"
 		>
 			<p>Loading...</p>
 		</div>
@@ -91,6 +118,7 @@
 	.dyna-image {
 		display: flex;
 		flex-direction: column;
+		width: fit-content;
 	}
 
 	.dyna-image img {

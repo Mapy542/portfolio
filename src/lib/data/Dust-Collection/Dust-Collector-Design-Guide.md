@@ -60,7 +60,7 @@ Dust is picked up at the tool, pulled through piping, and needs to be separated 
 
 Keeping with the budget but powerful theme of 4″ PVC piping, the 2 HP Dust collector offered by Harbor Freight is an amazing deal for the price. It has a sealed 120-volt, 2-horsepower motor and a blower that can pull around 700-1000 cubic feet per minute of air. The filter system is a bit lacking, but that part is easy to upgrade.
 
-![Sealed Motor](dust-separator/sealed-motor.webp){Sealed Motor}
+![Sealed Motor](dust-separator/sealed-motor.webp)
 
 ## Cyclonic Dust Separation
 
@@ -92,7 +92,7 @@ Material:
 
 The cylindrical area can be made from 0.5″ plywood and cut with a router circle jig to cut slots in the disks. The walls of the cylinder are best made from 1/8″ polycarbonate. Polycarbonate can be bent around the diameter of the disks and is non-shattering if large chunks or sharp objects enter the separator. (Plus it allows you to see the separation in action.)
 
-Note the orientation of the entrance to the baffle is critical. It should be located so that the pipe pieces the sidewall just where the slot in the baffle ends. Then as dust falls through the separator it lands within the slot.
+Note the orientation of the entrance to the baffle is critical. It should be located so that the pipe pierces the sidewall just where the slot in the baffle ends. Then as dust falls through the separator it lands within the slot.
 
 Design templates can be found at the top of the article.
 
