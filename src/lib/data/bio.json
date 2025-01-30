@@ -1,12 +1,12 @@
 {
-	"employed": "Tech Tank",
+	"employed": false,
 	"locations": ["Erie, PA", "Akron, OH"],
 	"work": [
 		{
 			"name": "Tech Tank",
 			"location": "Erie, PA",
 			"position": "Automation Engineer Intern",
-			"time": "Jul 2022 - Aug 2024",
+			"time": "Jul 2022 - Jan 2025",
 			"responsibilities": [
 				"Developed and implemented safety circuits for robotic cells",
 				"Programmed PLCs for robotic cells",
@@ -55,7 +55,7 @@
 		},
 		{
 			"category": "Software",
-			"skills": ["Python", "C++", "Java", "Kuka RL", "Verilog", "VHDL", "Ladder Logic", "R.O.S."]
+			"skills": ["Python", "C++", "Java", "Matlab", "Verilog", "VHDL", "Ladder Logic", "R.O.S."]
 		},
 		{
 			"category": "Automation",

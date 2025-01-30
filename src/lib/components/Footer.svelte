@@ -5,7 +5,7 @@
 	import staticMetas from '$lib/data/staticMeta.json';
 </script>
 
-<footer class="gradientBG-topFade">
+<footer>
 	<div class="footer-container">
 		<div class="site-links">
 			<p>Site Links</p>
@@ -96,14 +96,6 @@
 		color: var(--theme-link);
 	}
 
-	:global(body.dark) .contact p {
-		color: var(--theme-accent);
-	}
-
-	:global(body.dark) .site-links-container a p {
-		color: var(--theme-accent);
-	}
-
 	@media (max-width: 600px) {
 		.footer-container {
 			flex-direction: column;
@@ -115,5 +107,10 @@
 		.contact-wrapper {
 			width: 90vw;
 		}
+	}
+
+	footer {
+		background-color: var(--theme-bg-secondary);
+		color: var(--theme-text);
 	}
 </style>
