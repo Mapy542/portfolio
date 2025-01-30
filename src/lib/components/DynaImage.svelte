@@ -125,6 +125,6 @@
 		transition: all var(--transition-length);
 	}
 	.temp-pad {
-		background-color: var(--theme-mid);
+		background-color: var(--theme-bg-secondary);
 	}
 </style>

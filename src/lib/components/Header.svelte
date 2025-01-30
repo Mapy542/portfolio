@@ -27,8 +27,37 @@
 	}
 
 	function updateTheme() {
-		if (theme === 'Dark') window.document.body.classList.add('dark');
-		else window.document.body.classList.remove('dark');
+		if (theme === 'Dark') {
+			let root = window.document.documentElement;
+			root.style.setProperty('--theme-text-primary', 'var(--dark-text-primary)');
+			root.style.setProperty('--theme-text-secondary', 'var(--dark-text-secondary)');
+			root.style.setProperty('--theme-text-tertiary', 'var(--dark-text-tertiary)');
+			root.style.setProperty('--theme-bg-primary', 'var(--dark-bg-primary)');
+			root.style.setProperty('--theme-bg-secondary', 'var(--dark-bg-secondary)');
+			root.style.setProperty('--theme-bg-tertiary', 'var(--dark-bg-tertiary)');
+			root.style.setProperty('--theme-accent', 'var(--dark-accent)');
+			root.style.setProperty('--theme-highlight', 'var(--dark-highlight)');
+			root.style.setProperty('--theme-link', 'var(--dark-link)');
+			root.style.setProperty('--theme-link-hover', 'var(--dark-link-hover)');
+			root.style.setProperty('--theme-link-visited', 'var(--dark-link-visited)');
+
+			window.document.body.classList.add('dark');
+		} else {
+			let root = window.document.documentElement;
+			root.style.setProperty('--theme-text-primary', 'var(--light-text-primary)');
+			root.style.setProperty('--theme-text-secondary', 'var(--light-text-secondary)');
+			root.style.setProperty('--theme-text-tertiary', 'var(--light-text-tertiary)');
+			root.style.setProperty('--theme-bg-primary', 'var(--light-bg-primary)');
+			root.style.setProperty('--theme-bg-secondary', 'var(--light-bg-secondary)');
+			root.style.setProperty('--theme-bg-tertiary', 'var(--light-bg-tertiary)');
+			root.style.setProperty('--theme-accent', 'var(--light-accent)');
+			root.style.setProperty('--theme-highlight', 'var(--light-highlight)');
+			root.style.setProperty('--theme-link', 'var(--light-link)');
+			root.style.setProperty('--theme-link-hover', 'var(--light-link-hover)');
+			root.style.setProperty('--theme-link-visited', 'var(--light-link-visited)');
+
+			window.document.body.classList.remove('dark');
+		}
 	}
 
 	function isTheme(theme: unknown): theme is Theme {
@@ -52,6 +81,9 @@
 	});
 
 	let showCategories = false;
+	function toggleCategories() {
+		showCategories = !showCategories;
+	}
 </script>
 
 <header class="">
@@ -77,9 +109,7 @@
 					</a>
 				{/if}
 			{/each}
-			<div class="link-block" on:click={() => (showCategories = !showCategories)}>
-				<p>Categories</p>
-			</div>
+			<button class="category-button" on:click={toggleCategories}>Toggle Categories</button>
 		</div>
 		<div class="theme-toggle">
 			<label class="switch" aria-label="Dark mode switch">
@@ -99,16 +129,16 @@
 			</label>
 		</div>
 	</div>
-	{#if showCategories}
-		<div class="category-list">
-			{#each categories as category}
-				<a href={'/' + category}
-					><div class="link-block"><p>{category.replace('-', ' ')}</p></div></a
-				>
-			{/each}
-		</div>
-		<div class="spacer" style="height: 1em;"></div>
-	{/if}
+
+	<div class="category-list {showCategories ? 'open' : 'closed'}">
+		<div class="header-end" style="height: 2px;"></div>
+		{#each categories as category}
+			<a href={'/' + category}><div class="link-block"><p>{category.replace('-', ' ')}</p></div></a>
+		{/each}
+		<div class="header-end" style="height: 2px;"></div>
+	</div>
+
+	<div class="spacer" style="height: 1em;"></div>
 </header>
 
 <style>
@@ -119,16 +149,39 @@
 		width: 100%;
 		flex-direction: row;
 		flex-wrap: wrap;
-		background-color: var(--theme-high-mid);
+		background-color: var(--theme-bg-primary);
+
+		overflow: hidden;
+		max-height: 0;
+		transition: max-height 0.5s linear;
 	}
 
-	:global(body.dark) .category-list {
-		background-color: var(--theme-mid);
+	.category-list.open {
+		/*height: auto; /* This will be overridden by max-height */
+		max-height: 500px; /* Adjust this value based on your content */
+	}
+
+	.category-list.closed {
+		max-height: 0;
+	}
+
+	.category-button {
+		background-color: var(--theme-bg-primary);
+		border: solid 2px var(--theme-accent);
+		color: var(--theme-text-primary);
+		padding: 0.5em;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px;
+		cursor: pointer;
+		border-radius: 5px;
 	}
 
 	.link-block {
 		border-radius: var(--theme-img-border-radius);
-		border: solid 2px var(--theme-dark);
+		border: solid 2px var(--theme-accent);
 		padding: 0.5em;
 		margin: 10px;
 	}
@@ -138,20 +191,10 @@
 		margin: 0;
 	}
 
-	:global(body.dark) .link-block {
-		border: solid 2px var(--theme-light);
-	}
-
-	:root {
-		--nav-page-font-size: 1cqw;
-		--nav-page-vertical-font-size: 1cqh;
-		/* ^^^ Set by makeLiTextSize() on page load*/
-	}
 	header {
 		min-height: 10vh;
 		height: fit-content; /*auto scale to menu size*/
 		transition: all var(--transition-length) linear;
-
 		background-position: center;
 	}
 
@@ -259,7 +302,7 @@
 		left: 0;
 		right: 0;
 		bottom: 0;*/
-		background-color: var(--theme-dark);
+		background-color: var(--theme-accent);
 		-webkit-transition: var(--transition-length);
 		transition: var(--transition-length);
 		display: inline-flex;
@@ -277,23 +320,15 @@
 	}
 
 	input:checked + .slider {
-		background-color: var(--theme-dark);
+		background-color: var(--theme-accent);
 		transition: color var(--transition-length) linear;
 		-webkit-transition: var(--transition-length);
 	}
 
 	input:focus + .slider {
-		box-shadow: 0 0 1px var(--light-accent);
+		box-shadow: 0 0 1px var(--theme-highlight);
 		transition: color var(--transition-length) linear;
 		-webkit-transition: var(--transition-length);
-	}
-
-	:global(body.dark) input:checked + .slider {
-		background-color: var(--theme-light);
-	}
-
-	:global(body.dark) input:focus + .slider {
-		box-shadow: 0 0 1px var(--theme-light);
 	}
 
 	/*input:checked + .slider:before {
@@ -314,7 +349,7 @@
 	.theme-icon {
 		font-size: 20cqw;
 		margin: 10%;
-		color: var(--theme-light);
+		color: var(--theme-text-primary);
 		-webkit-transition: var(--transition-length);
 		transition: var(--transition-length);
 		-webkit-transform: translateX(-30cqw);
@@ -337,6 +372,10 @@
 		-webkit-transform: translateX(30cqw);
 		-ms-transform: translateX(30cqw);
 		transform: translateX(30cqw);
-		color: var(--theme-dark);
+	}
+
+	.header-end {
+		background-color: var(--theme-highlight);
+		width: 100%;
 	}
 </style>

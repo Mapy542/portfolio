@@ -1,6 +1,4 @@
 <script>
-	import MdBasicParser from './mdBasicParser.svelte';
-
 	export let markdownString = '';
 </script>
 

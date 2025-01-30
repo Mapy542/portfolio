@@ -1,31 +1,16 @@
-
 .thirds {
 	/* A third of the width for columns*/
 	flex: 2; /* all columns are x/6 of the width  1/3 = 2/6*/
 	flex-direction: column;
 	width: 30%;
 	float: left;
-	border: 2px solid var(--theme-light);
+	border: 2px solid var(--theme-bg-primary);
 	border-radius: 5px;
-	background-color: var(--theme-light);
+	background-color: var(--theme-bg-primary);
 	transition: background-color var(--transition-length) linear;
 	-webkit-transition: var(--transition-length);
 	padding: 1%;
 }
-
-body.dark .thirds {
-	background-color: var(--theme-dark);
-	border: 2px solid var(--theme-dark);
-}
-
-/*
-.thirds:hover {
-	border: 2px solid var(--ua-dark-grey);
-}
-
-body.dark .thirds:hover {
-	border: 2px solid var(--ua-gold);
-}*/
 
 .seconds {
 	/* A third of the width for columns*/
@@ -33,27 +18,13 @@ body.dark .thirds:hover {
 	flex-direction: column;
 	width: 49%;
 	float: left;
-	border: 2px solid var(--theme-light);
+	border: 2px solid var(--theme-bg-primary);
 	border-radius: 5px;
-	background-color: var(--theme-light);
+	background-color: var(--theme-bg-primary);
 	transition: background-color var(--transition-length) linear;
 	-webkit-transition: var(--transition-length);
 	padding: 1%;
 }
-
-body.dark .seconds {
-	background-color: var(--theme-dark);
-	border: 2px solid var(--theme-dark);
-}
-/*
-.seconds:hover {
-	border: 2px solid var(--ua-dark-grey);
-}
-
-body.dark .seconds:hover {
-	border: 2px solid var(--ua-gold);
-}
-*/
 
 .two-thirds {
 	/* A third of the width for columns*/
@@ -61,27 +32,13 @@ body.dark .seconds:hover {
 	flex-direction: column;
 	width: 65%;
 	float: left;
-	border: 2px solid var(--theme-light);
+	border: 2px solid var(--theme-bg-primary);
 	border-radius: 5px;
-	background-color: var(--theme-light);
+	background-color: var(--theme-bg-primary);
 	transition: background-color var(--transition-length) linear;
 	-webkit-transition: var(--transition-length);
 	padding: 1%;
 }
-
-body.dark .two-thirds {
-	background-color: var(--theme-dark);
-	border: 2px solid var(--theme-dark);
-}
-
-/*
-.two-thirds:hover {
-	border: 2px solid var(--ua-dark-grey);
-}
-
-body.dark .two-thirds:hover {
-	border: 2px solid var(--ua-gold);
-}*/
 
 @media (max-width: 600px) {
 	.thirds {

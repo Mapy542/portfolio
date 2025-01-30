@@ -73,14 +73,10 @@
 <style>
 	.linkable {
 		border-radius: var(--theme-img-border-radius);
-		border-color: var(--theme-light);
+		border-color: var(--theme-bg-primary);
 		border-style: solid;
 		margin-bottom: 1rem;
 		transition: all var(--transition-length);
-	}
-
-	:global(body.dark) .linkable {
-		border-color: var(--theme-dark);
 	}
 
 	.inlinkable {
@@ -88,9 +84,6 @@
 	}
 
 	.linkable:hover {
-		border-color: var(--theme-high-mid);
-	}
-	:global(body.dark) .linkable:hover {
-		border-color: var(--theme-mid);
+		border-color: var(--theme-link-hover);
 	}
 </style>
