@@ -22,7 +22,7 @@
 	</div>
 	<div class="hero-text">
 		<div style="width: 60vw;">
-			<h1>Bukoski.dev</h1>
+			<h1 style="color: var(--theme-highlight);">Bukoski.dev</h1>
 			<p>
 				Home of engineering project blogs and documentation. Here, you'll find projects that reflect
 				my passion for clean, efficient designs and smart problem-solving. I love taking on complex
