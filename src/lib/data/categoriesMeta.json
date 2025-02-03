@@ -13,5 +13,10 @@
 		"title": "University of Akron",
 		"description": "Posts related to my time at the University of Akron.",
 		"image": "uakron/quad.webp"
+	},
+	"K400-Updates": {
+		"title": "K400 Updates",
+		"description": "Design and build logs for my home-made large laser cutter.",
+		"image": "laser-overview/laser-in-laser.webp"
 	}
 }
