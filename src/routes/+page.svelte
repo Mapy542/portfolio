@@ -33,6 +33,8 @@
 	</div>
 </div>
 
+<div class="spacer" style="height: 10em;"></div>
+
 <div class="flex-columns">
 	<div class="seconds">
 		<h2>Biography</h2>
@@ -47,7 +49,7 @@
 <div class="flex-columns">
 	<div class="thirds">
 		<h2>Discover Projects</h2>
-		<p>Randomly selected projects for you:</p>
+		<p>Randomly selected posts for you:</p>
 	</div>
 	{#each data.props.docProps as doc}
 		<div class="thirds">
