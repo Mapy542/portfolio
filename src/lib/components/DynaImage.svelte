@@ -59,7 +59,8 @@
 
 	$: {
 		if (src) {
-			const importImage = images[`/src/lib/img/${src}`];
+			const slashCleanedsrc = /^\//.test(src) ? src.slice(1) : src;
+			const importImage = images[`/src/lib/img/${slashCleanedsrc}`];
 			if (importImage) {
 				importImage()
 					.then((module: any) => {
