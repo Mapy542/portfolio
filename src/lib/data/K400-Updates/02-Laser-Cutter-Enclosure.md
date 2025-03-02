@@ -61,6 +61,6 @@ The doors are very different sizes, but both have the same hinge used. Down the 
 
 With the design done and qualified, it’s time to start assembly of the laser cutter. The first step is to build the base everything resides on.
 
-[Next: 0.3 Laser Cutter Base Build](/K400-Updates/Laser-Cutter-Base-Build)
-[Previous: 0.1 Laser Cutter Design](/K400-Updates/Laser-Cutter-Design)
-[Back to Homepage](/K400-Updates)
+[Next: 0.3 Laser Cutter Base Build](/K400-Updates/03-Base-Build)
+[Previous: 0.1 Laser Cutter Design](/K400-Updates/01-Laser-Cutter-Design)
+[Back to Homepage](/k40-home)
