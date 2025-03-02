@@ -35,7 +35,7 @@
 <div class="post-container">
 	{#if data.props.postMetas}
 		{#each data.props.postMetas as postMeta, index}
-			<a href={data.props.postSrcs[index].replace('.md', '')}>
+			<a href={postMeta['source'].replace('.md', '')}>
 				<div class="flex-columns linkable">
 					{#if postMeta.image}
 						<div class="thirds inlinkable">
