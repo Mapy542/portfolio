@@ -5,8 +5,8 @@
 	export let inColumnCount = '0';
 	export let columnRatio = '.5';
 
-	function testNumberedList(line) {
-		return /^\d+\.\s/.test(line);
+	function hasFileEnding(str) {
+		return /\(.*?\..*?\)/.test(str);
 	}
 </script>
 
@@ -35,7 +35,7 @@
 				paddingCount={inColumnCount}
 			/>
 		{:else if line.startsWith('[') && line.includes(')')}
-			{#if line.includes('.') && !line.includes('http')}
+			{#if hasFileEnding(line) && !line.includes('http')}
 				<p>
 					<a href={line.split('(')[1].split(')')[0]} download
 						>{line.split('[')[1].split(']')[0]}
