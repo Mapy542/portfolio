@@ -120,7 +120,7 @@
 					name="dark-mode toggle"
 				/>
 				<span class="slider round">
-					<i
+					<icon
 						class={theme === Themes.Light
 							? 'theme-icon fa-solid fa-sun'
 							: 'theme-icon fa-solid fa-moon'}
