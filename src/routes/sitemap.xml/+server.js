@@ -1,6 +1,6 @@
 import serverReader from '../../lib/components/serverReader.js';
 import staticMetas from '../../lib/data/staticMeta.json' with {type: "json"};
-import { DOMImplementation, XMLSerializer } from 'xmldom';
+import { DOMImplementation, XMLSerializer } from '@xmldom/xmldom';
 
 const rootUrl = "https://bukoski.dev";
 
