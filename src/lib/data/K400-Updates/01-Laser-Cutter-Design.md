@@ -140,5 +140,5 @@ I won’t bore you with the analysis of every single 3D-printed part, but I did 
 
 After having designed and tested the gantry and bed systems, the laser cutter will need an enclosure.
 
-[Next: 0.2 Laser Cutter Enclosure](/K400-Updates/Laser-Cutter-Enclosure)
-[Back to the Updates](/K400-Updates)
+[Next: 0.2 Laser Cutter Enclosure](/K400-Updates/02-Laser-Cutter-Enclosure)
+[Back to the Updates](/k400-home)
