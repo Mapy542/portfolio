@@ -1,5 +1,6 @@
 <script>
 	import DynaImage from './DynaImage.svelte';
+	import MdSublineParser from './mdSublineParser.svelte';
 	export let markdownString = '';
 	export let inColumnCount = '0';
 	export let columnRatio = '.5';
@@ -51,7 +52,7 @@
 				</p>
 			{/if}
 		{:else if line !== '' && line !== ' ' && line !== '\r'}
-			<p class={testNumberedList(line) ? 'indented' : ''}>{line.replaceAll('\\*', '*')}</p>
+			<MdSublineParser markdownString={line} />
 		{/if}
 	{/each}
 {/if}
@@ -59,16 +60,5 @@
 <style>
 	p {
 		margin-bottom: 2em;
-	}
-	.indented {
-		margin-left: 2em;
-	}
-
-	.indented2 {
-		margin-left: 4em;
-	}
-
-	.indented3 {
-		margin-left: 6em;
 	}
 </style>
