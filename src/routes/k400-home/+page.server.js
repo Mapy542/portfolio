@@ -7,11 +7,11 @@ export async function load() {
   let category="K400-Updates";
     //otherwise, we can proceed assuming the category exists
     let postMetas = {};
-    let postSrcs = [];
 try{
      postMetas = serverReader.cachedStripMetaReplacement(Object.values(serverReader.quickIndex[category]) ?? []);
      for(const src of Object.keys(postMetas)){
-            postSrcs.push(src.split("/data")[1]);
+            postMetas[src]['source']=src.split("/data")[1];
+            console.log(postMetas[src]);
         }
 } catch(e){
     return {
@@ -19,10 +19,10 @@ try{
         error: e
     }
 }
+
     return {
         props: {
-            "postMetas": Object.values(postMetas),
-            "postSrcs": postSrcs,
+            "postMetas": Object.values(postMetas).reverse(),
         }
     }
 
