@@ -95,7 +95,7 @@ The parser supports all standard markdown headers. Here is an example of how to 
 Standard text!
 ```
 
-## Lists
+## Lists/ Indentation
 
 The parser support rudimentary numeric lists. This is a WIP feature. Here is an example of how to create a list:
 
@@ -112,3 +112,35 @@ The parser indents the list:
 3. Gamma
 4. 1. Delta
 5. 2. Epsilon
+
+Note for hyphenated lists, the parser will accept both leading spaces or multiple hyphens. Here is an example of how to create a hyphenated list:
+
+- Alpha
+- Beta
+- Gamma
+  - Delta (Double leading spaces with 1 hyphen)
+  - Epsilon
+- - Kilo (Double space hyphen pair)
+- - Lima
+    Note the parser matches [0-9]+. for numeric lists and [ ]\*[-]+ for hyphenated lists.
+    If the parser encounters multiple spaces before a hyphen, it consume 1 space and add an indent level. Otherwise it always consumes the entire indent signature and indents 1 level.
+
+## Style
+
+The parser supports bold, italic, and strikethrough text. Here is an example of how to create styled text:
+
+```
+**Bold Text**
+_Italic Text_
+~~Strikethrough Text~~
+**_Bold and Italic Text_**
+<<Underline Text<<
+```
+
+**Bold Text**
+_Italic Text_
+~~Strikethrough Text~~
+**_Bold and Italic Text_**
+
+Note:
+These inline styles can be used anywhere within a line unlike most other features requiring a newline. They do not currently support nesting.
