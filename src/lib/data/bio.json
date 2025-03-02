@@ -1,12 +1,10 @@
 {
 	"employed": false,
-	"locations": ["Erie, PA", "Akron, OH"],
 	"work": [
 		{
 			"name": "Tech Tank",
 			"location": "Erie, PA",
 			"position": "Automation Engineer Intern",
-			"time": "Jul 2022 - Jan 2025",
 			"responsibilities": [
 				"Developed and implemented safety circuits for robotic cells",
 				"Programmed PLCs for robotic cells",
@@ -20,7 +18,6 @@
 			"name": "Bison Hill Stonecrafts",
 			"location": "Erie, PA",
 			"position": "CNC Operator",
-			"time": "Oct 2020 - Dec 2022",
 			"responsibilities": [
 				"Operated CNC machines",
 				"Finished and packaged stone products",
@@ -31,7 +28,6 @@
 			"name": "LeBoeuf Lasing",
 			"location": "Waterford, PA",
 			"position": "Business Owner",
-			"time": "Mar 2020 - Present",
 			"responsibilities": [
 				"Design, manufacture, and sell custom woodworking products",
 				"Built and maintain website",
