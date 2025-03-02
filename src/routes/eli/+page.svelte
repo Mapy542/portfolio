@@ -19,9 +19,6 @@
 		<h2>Eli Bukoski</h2>
 		<div class="bar" />
 		<p>Electrical Engineer</p>
-		<p>
-			{bioData.locations.join(' - ')}
-		</p>
 		<div class="spacer" style="height: 1em;"></div>
 		{#if bioData.employed}
 			<p>Currently working for {bioData.employed}.</p>
@@ -31,8 +28,6 @@
 		<a href="#work"><p style="color: var(--theme-link);">Work Experience</p></a>
 		<a href="#skills"><p style="color: var(--theme-link);">Skills</p></a>
 		<a href="#education"><p style="color: var(--theme-link);">Education</p></a>
-
-		<a href="/Resume.pdf" download><p style="color: var(--theme-link);">Resume</p></a>
 	</div>
 
 	<div class="two-thirds">
@@ -63,7 +58,6 @@
 				<div class="work-card">
 					<h3>{job.position}</h3>
 					<p>{job.name} - {job.location}</p>
-					<p>{job.time}</p>
 					<ul>
 						{#each job.responsibilities as role}
 							<li>{role}</li>
