@@ -78,6 +78,14 @@ Finally, the gantry will need some extra features such as a drag chain for routi
 
 Mirror mount. I felt, given the complexity of the parts, it was more cost-effective to just purchase rather than design.
 
+### Aside about the Laser Tube Mount
+
+Many laser cutters seem to subscribe to the idea that the laser tube should be incredibly securely mounted to the frame with an all encompassing band mount. This isn't necessarily bad, especially if the laser cutter is being shipped. However these mounts are expensive. I wanted to test printing my own much simpler mount. It would just hold the tube on axis by 2 v-block mounts. Admittedly, it is worse as the tube is supported by 4 contact points, which does create extra stress on the glass tube, but so far as static as the laser cutter is, this has not been a problem. The mount is also much cheaper to produce, and easier to install and remove the tube. The alignment of the tube is perfect since the two angled faces of each mount constrain the tube on-axis, although it is not adjustable.
+
+One other potential downside found during testing, is that the rigid mount tranfers vibrations from frame to the laser tube. When empty of coolant, this causes the tube to resonate, which cannot be good. Hasn't caused any issues yet, but it is something to keep in mind.
+
+![Laser Tube Mount](laser01/Gantryyaxis.webp){Early Laser Tube Mount visible in the bottom left.}
+
 The laser cutter was designed twice up to this point. The first revision relied too heavily on complicated monolithic 3D printing brackets performing many functions. I scrapped that design and started over with the one shown now. However, it was important to make some quick tests of my 3D printed parts before building, using Finite Element Analysis.
 
 # 3D Printing and Variations
