@@ -1,5 +1,4 @@
 import serverReader from "../../lib/components/serverReader.js";
-import categoryMetaData from "$lib/data/categoriesMeta.json" with {type: "json"};
 
 /**@type {import('./$types').PageLoad} */
 export async function load() {
@@ -11,7 +10,6 @@ try{
      postMetas = serverReader.cachedStripMetaReplacement(Object.values(serverReader.quickIndex[category]) ?? []);
      for(const src of Object.keys(postMetas)){
             postMetas[src]['source']=src.split("/data")[1];
-            console.log(postMetas[src]);
         }
 } catch(e){
     return {
