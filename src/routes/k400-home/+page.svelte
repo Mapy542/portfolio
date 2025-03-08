@@ -4,6 +4,25 @@
 	export let data;
 </script>
 
+<svelte:head>
+	<title>K400 Laser Cutter</title>
+	<meta
+		name="description"
+		content="The K400 is my homemade large laser cutter based on the hobbyist generic CO2 laser, the K40."
+	/>
+	<meta property="og:title" content="K400 Laser Cutter" />
+	<meta
+		property="og:description"
+		content="The K400 is my homemade large laser cutter based on the hobbyist generic CO2 laser, the K40."
+	/>
+
+	<meta property="author" content="Eli Bukoski" />
+	<meta
+		property="keywords"
+		content="K400, K40, laser cutter, laser engraver, DIY, homemade, build, design, CO2, laser, cutter, engraver, Eli Bukoski"
+	/>
+</svelte:head>
+
 <div class="flex-columns">
 	<div class="thirds">
 		<h1 style="color:var(--theme-highlight);">K400 Laser Cutter</h1>
