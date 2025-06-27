@@ -56,6 +56,9 @@ class StoreReader{
         //import the actual data
         this.allSrcs = [];
         for(const [key, datapromise] of Object.entries(this.import)){
+            if(key.includes(".json")){
+                continue; //skip the categories meta file
+            }
             //@ts-ignore
             this.data[key] = await datapromise();
             this.allSrcs.push(key); //used for caching metadata, we need all src strings
