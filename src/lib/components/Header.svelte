@@ -4,8 +4,6 @@
 	import logo from '$lib/img/logo.webp';
 	import logoInverted from '$lib/img/logo-invert.webp';
 
-	import './radialBG.css';
-
 	export let categories: string[] = [];
 	export let staticPages: any = {};
 

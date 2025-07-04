@@ -1,5 +1,4 @@
 <script lang="ts">
-	import './radialBG.css';
 	import bioData from '$lib/data/bio.json';
 	import footerData from '$lib/data/headerFooterData.json';
 	import staticMetas from '$lib/data/staticMeta.json';
