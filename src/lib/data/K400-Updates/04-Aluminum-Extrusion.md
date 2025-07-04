@@ -1,6 +1,6 @@
 #! title: 0.4 Aluminum Extrusion Cutting
 #! date: 1/25/2024
-#! tags: aluminum, extrusion, cutting, miter saw, laser cutter, build, construction, design, materials, preparation, assembly, bin, packing, algorithm, optimization, efficiency
+#! tags: aluminum, extrusion, cutting, miter saw, laser cutter, build, construction, design, materials, preparation, assembly, bin, packing, algorithm, optimization, efficiency, laser
 #! description: Optimizing the cutting of aluminum extrusions for the K400 Laser Cutter frame.
 #! author: Eli Bukoski
 #! image: laser04/finished-cuts.webp
