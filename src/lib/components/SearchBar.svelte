@@ -2,19 +2,46 @@
 	import { onMount } from 'svelte';
 
 	export let openSearchOnGo = true; //redirects to the search page when the search button is clicked
+	export let resultsUplift = []; // Array to hold pass search results to the parent page. Only used if non-null. We pass by reference.
+	export let hasSearched = false; // Flag to indicate if a search has been performed
 
 	function handleSearch(event) {
+		hasSearched = true; // Set the flag to indicate a search has been performed
 		const searchTerm = event.target.value.toLowerCase();
-		const positiveMatch = document.getElementById('positiveMatch');
+		const searchBarElement = document.getElementById('positiveMatch');
+
+		const searchText = searchBarElement.value.split(' ').filter((word) => word !== '');
+		if (searchText.length === 0) {
+			resultsUplift.length = 0; // Clear results if search text is empty
+			return;
+		}
+
+		// Separate positive, negative, and tag matches
+		let positiveMatch = searchText.filter((word) => !word.startsWith('-') && !word.includes(':'));
+		let negativeMatch = searchText
+			.filter((word) => word.startsWith('-'))
+			.map((word) => word.slice(1));
+		let tagMatch = searchText
+			.filter((word) => word.includes(':'))
+			.map((word) => word.split(':')[1]);
 
 		let results = fetch(
 			'/api/search?' +
-				(positiveMatch.value ? 'positive=' + positiveMatch.value.split(' ').join(',') : '')
+				('positive=' + positiveMatch.join(',')) +
+				'&negative=' +
+				negativeMatch.join(',') +
+				'&tags=' +
+				tagMatch.join(',')
 		)
 			.then((response) => response.json())
 			.then((data) => {
 				// Process the search results
-				console.log(data);
+				if (Array.isArray(resultsUplift) && Array.isArray(data.results)) {
+					resultsUplift.length = 0; // Clear the previous results
+					resultsUplift.push(...data.results); // Add new results
+				} else if (Array.isArray(resultsUplift)) {
+					resultsUplift.length = 0; // Clear the previous results
+				}
 			})
 			.catch((error) => {
 				console.error('Error fetching search results:', error);
@@ -64,11 +91,6 @@
 		const filterInput = document.querySelector('.filter-input');
 		filterInput.style.display = 'flex';
 	}
-
-	onMount(() => {
-		// Automatically load hidden options when the component mounts
-		loadHiddenOptions();
-	});
 </script>
 
 <div class="search-container">
@@ -87,14 +109,13 @@
 			<button on:click={handleSearch}>Search</button>
 		{/if}
 	</div>
-	{#if !openSearchOnGo}
+	{#if 1 == 2}
 		<button on:click={loadHiddenOptions} class="advanced-search-button">Advanced Search</button>
 		<div class="filter-input">
 			<div id="categoryContainer" class="categoryContainer"></div>
 
 			<select name="author" id="authorFilter">
 				<option value="">Select Author</option>
-				<!-- Options will be populated dynamically -->
 			</select>
 
 			<input type="date" id="dateFilter" name="dateFilter" placeholder="Date" />
