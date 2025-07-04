@@ -1,6 +1,6 @@
 #! title: 0.3 Base Build
 #! date: 7/16/2023
-#! tags: base, lumber, glue, screws, osb, plywood, casters, miter saw, router, joists, beams, columns, frame, laser cutter, build, construction, design, materials, preparation, assembly, next steps
+#! tags: base, lumber, glue, screws, osb, plywood, casters, miter saw, router, joists, beams, columns, frame, laser cutter, build, construction, design, materials, preparation, assembly, laser
 #! description: First build log for the K400 Laser cutter, assembling the base structure from lumber and OSB plywood.
 #! author: Eli Bukoski
 #! image: laser03/finishedbase.webp
