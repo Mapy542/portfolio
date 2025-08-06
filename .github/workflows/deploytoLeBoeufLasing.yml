@@ -13,23 +13,23 @@ jobs:
      runs-on: self-hosted
      steps:       
       - name: stop webserver
-        run: sudo -n /bin/systemctl stop svelte
+        run: sudo -n /bin/systemctl stop portfolio
             
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: rm old code
-        run: rm -rf /var/www/svelte/* /var/www/svelte/.??*
+        run: rm -rf /var/www/portfolio/* /var/www/portfolio/.??*
 
       - name: mv in new code
-        run: mv ./* /var/www/svelte/
+        run: mv ./* /var/www/portfolio/
 
       - name: npm install and build
         run: |
-          cd /var/www/svelte
+          cd /var/www/portfolio
           npm install
           npm run build
 
       - name: restart node service
-        run: sudo -n /bin/systemctl start svelte
+        run: sudo -n /bin/systemctl start portfolio
     
