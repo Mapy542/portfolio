@@ -31,7 +31,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@sveltejs/adapter-node": "^5.2.12",
+		"@sveltejs/adapter-node": "^5.2.13",
 		"highlight": "^0.2.4",
 		"highlight.js": "^11.11.1",
 		"@xmldom/xmldom": "^0.9.8"
