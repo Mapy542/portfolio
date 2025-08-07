@@ -1,5 +1,5 @@
 # This workflow will build and deploy the Svelte website onto a hosting server. DO NOT EDIT. This is not run in an isolated environment.
-
+name: Deploy to Production
 on:
   push:
     branches: 
