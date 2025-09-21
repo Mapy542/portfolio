@@ -1,6 +1,7 @@
 <script>
 	import DynaImage from '$lib/components/DynaImage.svelte';
 	import Search from '$lib/components/SearchBar.svelte';
+	import DynaVideo from '$lib/components/DynaVideo.svelte';
 
 	export let data;
 </script>
@@ -48,8 +49,6 @@
 		/>
 	</div>
 </div>
-
-<Search />
 
 <div style="height: 3rem;" />
 
