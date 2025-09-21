@@ -1,5 +1,6 @@
 <script lang="ts">
 	import DynaImage from './DynaImage.svelte';
+	import DynaVideo from './DynaVideo.svelte';
 
 	export let SRCs: string[] = [];
 	export let ALTs: string[] = [];
@@ -13,13 +14,24 @@
 <div class="dyna-gallery">
 	{#each SRCs as SRC, i}
 		<div class="dyna-gallery__images">
-			<DynaImage
-				src={SRC}
-				alt={ALTs[i]}
-				caption={captions[i]}
-				scaleFactor={String(interiorScaleFactor)}
-				{paddingCount}
-			/>
+			{#if SRC.endsWith('.webm') || SRC.endsWith('.mp4')}
+				<DynaVideo
+					src={SRC}
+					autoplay={false}
+					scaleFactor={String(interiorScaleFactor)}
+					{paddingCount}
+					ariaLabel={captions[i]}
+					poster={ALTs[i].includes('.') ? ALTs[i] : ''}
+				/>
+			{:else}
+				<DynaImage
+					src={SRC}
+					alt={ALTs[i]}
+					caption={captions[i]}
+					scaleFactor={String(interiorScaleFactor)}
+					{paddingCount}
+				/>
+			{/if}
 		</div>
 	{/each}
 </div>

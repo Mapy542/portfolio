@@ -19,7 +19,7 @@ Post metadata is stored in `#!` shebangs within the file. As a matter of formatt
 
 Note: everything after the `: ` is considered the value of the metadata. Everything before the `: ` is considered the key and must match exactly with the keys used in the parser.
 
-## Galleries and Images
+## Galleries, Images, and Videos
 
 Images a built using the DynaImage and DynaGallery components. The DynaImage component is used to display a single image, while the DynaGallery component is used to display a collection of images. The image paths are relative to the `$lib/img/` directory. Here is an example of how to use the DynaImage and DynaGallery components:
 
@@ -43,6 +43,16 @@ Markdown syntax:
 ![me](headshot/eli.webp){captions available}
 #!g
 ```
+
+Videos are also compatible with the same syntax and can be intermingled with photos in a gallery. Note the `[alt]` tag can now be used to provide a poster image for the video. The {caption} tag is put at the arai-label (title) of the video.
+
+Example:
+
+```
+!['poster.webp'](sample-video.mp4){Title}
+```
+
+![](project-highlights/pbv2run.webm){PBV2 in action}
 
 ## Columns
 
