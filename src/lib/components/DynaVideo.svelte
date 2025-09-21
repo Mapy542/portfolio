@@ -163,7 +163,7 @@
 				? 'visible'
 				: 'hidden'};"
 			on:loadedmetadata={handleLoadedMetadata}
-		/>
+		></video>
 	{:else if error}
 		<p>{error.message}</p>
 	{:else}
