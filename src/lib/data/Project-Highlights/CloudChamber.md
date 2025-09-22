@@ -1,7 +1,7 @@
 #! title: Cloud Chamber
 #! date: 9/21/2025
 #! tags: 3d-printing, physics, cloud chamber, CAD, inventor, peltier, radiation, radioactive
-#! description: A mechanically timed ping pong ball launcher vehicle with hanging mass energy storage.
+#! description: A cloud chamber I designed and built for my high school AP Physics class.
 #! author: Eli Bukoski
 #! image: project-highlights/cloudchamberpeliter.webp
 
