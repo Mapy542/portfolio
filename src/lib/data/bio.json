@@ -42,7 +42,6 @@
 				"Circuit Analysis",
 				"Circuit Design",
 				"Digital Logic Design",
-				"Digital Logic Analysis",
 				"PCB/Schematic Design",
 				"Embedded Systems",
 				"General Troubleshooting",
@@ -58,8 +57,7 @@
 			"skills": [
 				"Safety Circuits",
 				"PLC Programming",
-				"6-Axis Robot Programming",
-				"Cartesian Robot Programming",
+				"Industrial Robotics",
 				"Process Control",
 				"EOAT Design",
 				"Safety Cage Design",
