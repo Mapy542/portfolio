@@ -18,5 +18,10 @@
 		"title": "K400 Updates",
 		"description": "Design and build logs for my home-made large laser cutter.",
 		"image": "laser-overview/laser-in-laser.webp"
+	},
+	"Automation": {
+		"title": "Automation",
+		"description": "Posts related to work and other automation projects.",
+		"image": "project-highlights/pbconvoutput.webp"
 	}
 }
