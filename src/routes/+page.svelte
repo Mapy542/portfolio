@@ -42,7 +42,7 @@
 	</div>
 	<div class="seconds">
 		<h2>Projects</h2>
-		<p>Some of the projects I've worked on.</p>
+		<p>Some of the projects I've worked on. <a href="/all-projects">View all projects</a>.</p>
 	</div>
 </div>
 <div class="spacer" style="height: 10em;"></div>
