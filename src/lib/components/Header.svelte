@@ -7,15 +7,12 @@
 	export let categories: string[] = [];
 	export let staticPages: any = {};
 
-	//Header Background Img Load
 	const Themes = {
 		Light: 'Light',
 		Dark: 'Dark'
 	} as const;
-
 	type ThemeKeys = keyof typeof Themes;
 	type Theme = (typeof Themes)[ThemeKeys];
-
 	let theme: Theme = Themes.Light;
 
 	function changeTheme() {
@@ -25,8 +22,8 @@
 	}
 
 	function updateTheme() {
+		const root = window.document.documentElement;
 		if (theme === 'Dark') {
-			let root = window.document.documentElement;
 			root.style.setProperty('--theme-text-primary', 'var(--dark-text-primary)');
 			root.style.setProperty('--theme-text-secondary', 'var(--dark-text-secondary)');
 			root.style.setProperty('--theme-text-tertiary', 'var(--dark-text-tertiary)');
@@ -38,10 +35,8 @@
 			root.style.setProperty('--theme-link', 'var(--dark-link)');
 			root.style.setProperty('--theme-link-hover', 'var(--dark-link-hover)');
 			root.style.setProperty('--theme-link-visited', 'var(--dark-link-visited)');
-
 			window.document.body.classList.add('dark');
 		} else {
-			let root = window.document.documentElement;
 			root.style.setProperty('--theme-text-primary', 'var(--light-text-primary)');
 			root.style.setProperty('--theme-text-secondary', 'var(--light-text-secondary)');
 			root.style.setProperty('--theme-text-tertiary', 'var(--light-text-tertiary)');
@@ -53,28 +48,17 @@
 			root.style.setProperty('--theme-link', 'var(--light-link)');
 			root.style.setProperty('--theme-link-hover', 'var(--light-link-hover)');
 			root.style.setProperty('--theme-link-visited', 'var(--light-link-visited)');
-
 			window.document.body.classList.remove('dark');
 		}
 	}
 
-	function isTheme(theme: unknown): theme is Theme {
-		for (const themeType of Object.keys(Themes)) {
-			if (theme == themeType) return true;
-		}
-
-		return false;
+	function isTheme(value: unknown): value is Theme {
+		return Object.keys(Themes).includes(String(value));
 	}
 
 	onMount(() => {
 		const value = localStorage.getItem('theme');
-
-		if (isTheme(value)) {
-			theme = value;
-		} else {
-			theme = Themes.Dark;
-		}
-
+		theme = isTheme(value) ? (value as Theme) : Themes.Dark;
 		updateTheme();
 	});
 
@@ -84,31 +68,39 @@
 	}
 </script>
 
-<header class="">
+<header class="site-header" role="banner">
 	<div class="header-container">
 		<div class="header-logo">
-			<a href="/">
-				<img
-					src={theme == Themes.Dark ? logoInverted : logo}
-					alt="logo"
-					class="logo"
-					style="border-radius:revert;"
-				/>
+			<a href="/" aria-label="Home">
+				<img src={theme == Themes.Dark ? logoInverted : logo} alt="Site logo" class="logo" />
 			</a>
 		</div>
 
-		<div class="link-area">
-			{#each Object.keys(staticPages) as pageName}
-				{#if staticPages[pageName].showHeader}
-					<a href={staticPages[pageName].url}>
-						<div class="link-block">
-							<p>{staticPages[pageName].title}</p>
-						</div>
-					</a>
-				{/if}
-			{/each}
-			<button class="category-button" on:click={toggleCategories}>Toggle Categories</button>
-		</div>
+		<nav class="primary-nav" aria-label="Primary">
+			<ul class="nav-list">
+				{#each Object.keys(staticPages) as pageName}
+					{#if staticPages[pageName].showHeader}
+						<li class="nav-item">
+							<a class="nav-link" href={staticPages[pageName].url}>
+								{staticPages[pageName].title}
+							</a>
+						</li>
+					{/if}
+				{/each}
+				<li class="nav-item">
+					<button
+						class="nav-link category-toggle"
+						on:click={toggleCategories}
+						aria-expanded={showCategories}
+						aria-controls="category-menu"
+						type="button"
+					>
+						Categories
+					</button>
+				</li>
+			</ul>
+		</nav>
+
 		<div class="theme-toggle">
 			<label class="switch" aria-label="Dark mode switch">
 				<input
@@ -128,74 +120,20 @@
 		</div>
 	</div>
 
-	<div class="category-list {showCategories ? 'open' : 'closed'}">
+	<div
+		id="category-menu"
+		class="category-list {showCategories ? 'open' : 'closed'}"
+		aria-hidden={!showCategories}
+	>
 		<div class="header-end" style="height: 2px;"></div>
 		{#each categories as category}
-			<a href={'/' + category}><div class="link-block"><p>{category.replace('-', ' ')}</p></div></a>
+			<a class="category-chip" href={'/' + category}><span>{category.replace('-', ' ')}</span></a>
 		{/each}
 		<div class="header-end" style="height: 2px;"></div>
 	</div>
-
-	<div class="spacer" style="height: 1em;"></div>
 </header>
 
 <style>
-	.category-list {
-		display: flex;
-		justify-content: space-around;
-		align-items: center;
-		width: 100%;
-		flex-direction: row;
-		flex-wrap: wrap;
-		background-color: var(--theme-bg-primary);
-
-		overflow: hidden;
-		max-height: 0;
-		transition: max-height 0.5s linear;
-	}
-
-	.category-list.open {
-		/*height: auto; /* This will be overridden by max-height */
-		max-height: 500px; /* Adjust this value based on your content */
-	}
-
-	.category-list.closed {
-		max-height: 0;
-	}
-
-	.category-button {
-		background-color: var(--theme-bg-primary);
-		border: solid 2px var(--theme-accent);
-		color: var(--theme-text-primary);
-		padding: 0.5em;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-		margin: 4px 2px;
-		cursor: pointer;
-		border-radius: 5px;
-	}
-
-	.link-block {
-		border-radius: var(--theme-img-border-radius);
-		border: solid 2px var(--theme-accent);
-		padding: 0.5em;
-		margin: 10px;
-	}
-
-	.link-block p {
-		padding: revert;
-		margin: 0;
-	}
-
-	header {
-		min-height: 10vh;
-		height: fit-content; /*auto scale to menu size*/
-		transition: all var(--transition-length) linear;
-		background-position: center;
-	}
-
 	.header-container {
 		display: flex;
 		justify-content: space-between;
@@ -213,61 +151,50 @@
 		width: 100%;
 	}
 
-	.link-area {
-		/*max-width: 80%;
-		min-width: 40%;*/
+	/* Primary nav */
+	.primary-nav {
+		flex: 1;
+	}
+	.nav-list {
 		display: flex;
-		border-radius: 5vh;
-		justify-content: space-around;
 		align-items: center;
-		width: 100%;
-		flex-direction: row;
+		justify-content: center;
+		gap: 0.5rem 0.75rem;
 		flex-wrap: wrap;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.nav-item {
+		display: inline-flex;
+	}
+	.nav-link {
+		color: var(--theme-text-primary);
+		text-decoration: none;
+		padding: 0.4rem 0.8rem;
+		border-radius: 999px;
+		border: 1px solid transparent;
+		transition:
+			background-color 160ms ease,
+			color 160ms ease,
+			border-color 160ms ease;
+	}
+	.nav-link:hover {
+		background: color-mix(in oklab, var(--theme-accent) 15%, transparent 85%);
+		border-color: color-mix(in oklab, var(--theme-accent) 40%, transparent 60%);
+	}
+	.category-toggle {
+		cursor: pointer;
+		background: none;
+		border: none;
+		font: inherit;
 	}
 
-	@media screen and (max-width: 1024px) {
-		/* Biggest menu possible until 1024px */
-		.link-area {
-			width: 85%;
-		}
-	}
-
-	@media screen and (min-width: 1024px) and (max-width: 1440px) {
-		/* Medium menu size */
-		.link-area {
-			width: 75%;
-		}
-	}
-
-	@media screen and (min-width: 1440px) and (max-width: 2560px) {
-		/* Smaller menu size */
-		.link-area {
-			width: 65%;
-		}
-		.header-logo {
-			width: 10%;
-		}
-	}
-
-	@media screen and (min-width: 2560px) {
-		/* Smallest menu size */
-		.link-area {
-			width: 55%;
-		}
-		.header-logo {
-			width: 10%;
-		}
-	}
-
-	/*-- Theme Switch --*/
-
+	/* Theme switch */
 	.theme-toggle {
-		width: 5%; /* THIS is the size of the whole theme switch */
-		/*min-width: 30px;*/
-		/*max-width: 50px;*/
+		width: 5%;
 		align-self: center;
-		margin: 1%;
-		margin-right: 3%;
+		margin: 1% 3% 1% 1%;
 		transition: all var(--transition-length) linear;
 		--webkit-transition: var(--transition-length);
 	}
@@ -275,6 +202,10 @@
 	@media screen and (max-width: 600px) {
 		.theme-toggle {
 			width: 15%;
+		}
+
+		.header-container {
+			flex-direction: column;
 		}
 	}
 
@@ -284,96 +215,88 @@
 		width: 100%;
 		height: 100%;
 	}
-
-	/* Hide default HTML checkbox */
 	.switch input {
 		opacity: 0;
 		width: 0;
 		height: 0;
 	}
-
-	/* The slider */
 	.slider {
-		/*position: absolute;
-		cursor: pointer;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;*/
 		background-color: var(--theme-accent);
-		-webkit-transition: var(--transition-length);
 		transition: var(--transition-length);
 		display: inline-flex;
 		container-type: inline-size;
 		height: 100%;
 	}
-
 	input + .slider {
 		align-items: center;
 		justify-content: center;
 		font-family: 'Font Awesome 5 Free';
-		content: '\f00c';
 		color: #000;
 		font-weight: 600;
 	}
-
 	input:checked + .slider {
 		background-color: var(--theme-accent);
-		transition: color var(--transition-length) linear;
-		-webkit-transition: var(--transition-length);
 	}
-
 	input:focus + .slider {
 		box-shadow: 0 0 1px var(--theme-highlight);
-		transition: color var(--transition-length) linear;
-		-webkit-transition: var(--transition-length);
 	}
-
-	/*input:checked + .slider:before {
-		-webkit-transform: translateX(80%);
-		-ms-transform: translateX(80%);
-		transform: translateX(80%);
-	} WHGAT THIS DOOOOOO*/
-
-	/* Rounded sliders */
 	.slider.round {
 		border-radius: 50dvh;
 	}
-
-	.slider.round:before {
-		border-radius: 0%;
-	} /* WHAT THIS DO?? */
-
 	.theme-icon {
 		font-size: 20cqw;
 		margin: 10%;
 		color: var(--theme-text-primary);
-		-webkit-transition: var(--transition-length);
 		transition: var(--transition-length);
-		-webkit-transform: translateX(-30cqw);
-		-ms-transform: translateX(-30cqw);
 		transform: translateX(-30cqw);
 	}
-
-	/*@media screen and (max-width: 600px) {
-		.theme-icon {
-			font-size: medium;
-		}
-	}
-	@media screen and (max-width: 400px) {
-		.theme-icon {
-			font-size: small;
-		}
-	}*/
-
 	:global(body.dark) .theme-icon {
-		-webkit-transform: translateX(30cqw);
-		-ms-transform: translateX(30cqw);
 		transform: translateX(30cqw);
 	}
 
+	/* Categories */
+	.category-list {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 0.5rem 0.75rem;
+		width: 100%;
+		flex-direction: row;
+		flex-wrap: wrap;
+		background-color: var(--theme-bg-primary);
+		overflow: hidden;
+		max-height: 0;
+		transition: max-height 220ms ease;
+	}
+	.category-list.open {
+		max-height: 520px;
+	}
+	.category-list.closed {
+		max-height: 0;
+	}
 	.header-end {
 		background-color: var(--theme-highlight);
 		width: 100%;
+		opacity: 0.35;
+	}
+
+	.category-chip {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.25rem;
+		padding: 0.35rem 0.7rem;
+		border-radius: 999px;
+		color: var(--theme-text-primary);
+		text-decoration: none;
+		border: 1px solid color-mix(in oklab, var(--theme-accent) 35%, transparent 65%);
+		background: color-mix(in oklab, var(--theme-accent) 8%, transparent 92%);
+		transition:
+			background-color 160ms ease,
+			border-color 160ms ease;
+	}
+	.category-chip:hover {
+		background: color-mix(in oklab, var(--theme-accent) 18%, transparent 82%);
+		border-color: color-mix(in oklab, var(--theme-accent) 55%, transparent 45%);
 	}
 </style>
