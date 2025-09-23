@@ -2,6 +2,17 @@
 	"employed": false,
 	"work": [
 		{
+			"name": "Port Erie Plastics",
+			"location": "Erie, PA",
+			"position": "Automation Engineer Intern",
+			"responsibilities": [
+				"Developed an operator cycle time monitoring/feedback system integrated with Enterprise IQ",
+				"Designed and built a computer vision quality inspection system to verify label and barcode placement on storage containers",
+				"Maintained and programmed Co-bot assembly and ink-stamp stations",
+				"Modeled and printed custom EAOTs and part transfer fixtures"
+			]
+		},
+		{
 			"name": "Tech Tank",
 			"location": "Erie, PA",
 			"position": "Automation Engineer Intern",
@@ -30,8 +41,8 @@
 			"position": "Business Owner",
 			"responsibilities": [
 				"Design, manufacture, and sell custom woodworking products",
-				"Built and maintain website",
-				"Design product manufacturing processes."
+				"Built e-commerce website",
+				"Design product manufacturing processes"
 			]
 		}
 	],
@@ -69,7 +80,8 @@
 		{
 			"degree": "Electrical Engineering - BS, Computer Science - Minor",
 			"school": "University of Akron",
-			"graduation": "2028"
+			"graduation": "2028",
+			"gpa": "3.93"
 		}
 	],
 	"contact": {
