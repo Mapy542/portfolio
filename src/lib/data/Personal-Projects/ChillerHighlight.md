@@ -1,7 +1,7 @@
 #! title: DIY Water Chiller
 #! date: 9/21/2025
-#! tags: refrigeration, chiller, water cooling, DIY, janky
-#! description: A janky DIY water chiller made from an AC for my Laser Cutter.
+#! tags: refrigeration, chiller, water cooling, DIY
+#! description: A DIY water chiller made from an AC for my Laser Cutter.
 #! author: Eli Bukoski
 #! image: project-highlights/chillerinposition.webp
 
