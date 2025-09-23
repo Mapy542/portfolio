@@ -95,6 +95,9 @@
 				<h3>{edu.degree}</h3>
 				<p>{edu.school}</p>
 				<p>{edu.graduation}</p>
+				{#if edu.gpa}
+					<p>GPA: {edu.gpa}</p>
+				{/if}
 			</div>
 		{/each}
 	</div>
@@ -138,14 +141,20 @@
 	}
 
 	.work-card {
-		margin: 1em;
-		width: 45%;
+		margin: 0.5em;
+		width: 42%;
 		transition: all var(--transition-length);
 		max-height: 120px;
 		overflow: hidden;
 		border: 2px solid var(--theme-bg-primary);
 		border-radius: var(--theme-img-border-radius);
 		padding-left: 1em;
+	}
+
+	@media (max-width: 600px) {
+		.work-card {
+			width: 90%;
+		}
 	}
 
 	.work-card ul {
