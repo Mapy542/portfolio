@@ -16,3 +16,6 @@ Because of this, our robot was really competitive especially in the Skills compe
 #!g
 ![Base Robot](project-highlights/vexbasebot.webp){The base robot, with the lift retracted.}
 ![Awards](project-highlights/vexbasebotandawards.webp){Awards won at the state competition, including the Excellence Award.}
+#!g
+
+![](project-highlights/tippingpointskills.webm){A video of our robot performing in the Skills competition.}

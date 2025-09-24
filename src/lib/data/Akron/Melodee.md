@@ -20,7 +20,7 @@ R.O.I. modules were built with AVR microcontrollers and Wiznet ethernet chips as
 ![Melodee at UCF](project-highlights/melodeeatUCF.webp){MELODEE at UCF for the first leg of competition.}
 ![Final Electrical Box](project-highlights/melodeeeboxfinalwithpower.webp){The final electrical box design.}
 ![Melodees Battery](project-highlights/melodeebattery.webp){The battery}
-![Battery in position](project-highlights/melodeebatteryinpos.webp){The battery in position.}
+![Battery in position](project-highlights/melodeebatteryinpos_fix.webp){The battery in position.}
 #!g
 
 ## Roobot over IP PCBs
