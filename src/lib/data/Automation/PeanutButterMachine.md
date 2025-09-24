@@ -22,7 +22,7 @@ Given the lack of clear requirements nor budget, it was an interesting challenge
 
 #!g
 ![Infeed disk magazine](project-highlights/pbmagazine.webp){Infeed disk magazine. Fresh disks are loaded here.}
-![Output disk magazine](project-highlights/pbdisktray.webp){Output disk magazine.}
+![Output disk magazine](project-highlights/pbdisktray_fix.webp){Output disk magazine.}
 ![Sealed Disks](project-highlights/pbsealeddisks.webp){Sealed disks ready for packaging.}
 #!g
 

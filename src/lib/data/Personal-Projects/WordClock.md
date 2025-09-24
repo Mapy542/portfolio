@@ -17,6 +17,6 @@ I also made it into an alarm clock by adding a speaker and audio amplifier. Then
 
 #!g
 ![Front of the clock](project-highlights/wordclockfront.webp){The front of the clock, showing the illuminated words.}
-![Top of the clock](project-highlights/wordclocktop.webp){The top of the clock, showing the stop button}
+![Top of the clock](project-highlights/wordclocktop_fix.webp){The top of the clock, showing the stop button}
 ![Side view of the clock](project-highlights/wordlcockside.webp){The side view of the clock, showing the finger joints.}
 #!g
