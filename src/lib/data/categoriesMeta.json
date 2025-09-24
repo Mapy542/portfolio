@@ -23,5 +23,10 @@
 		"title": "Automation",
 		"description": "Posts related to work and other automation projects.",
 		"image": "project-highlights/pbconvoutput.webp"
+	},
+	"Vex-Robotics": {
+		"title": "Vex Robotics",
+		"description": "Posts related to my highschool Vex Robotics Team.",
+		"image": "project-highlights/vex-xdrive.webp"
 	}
 }
