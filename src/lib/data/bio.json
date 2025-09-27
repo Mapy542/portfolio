@@ -5,6 +5,7 @@
 			"name": "Port Erie Plastics",
 			"location": "Erie, PA",
 			"position": "Automation Engineer Intern",
+			"dates": "May 2025 - August 2025",
 			"responsibilities": [
 				"Developed an operator cycle time monitoring/feedback system integrated with Enterprise IQ",
 				"Designed and built a computer vision quality inspection system to verify label and barcode placement on storage containers",
@@ -16,6 +17,7 @@
 			"name": "Tech Tank",
 			"location": "Erie, PA",
 			"position": "Automation Engineer Intern",
+			"dates": "June 2022 - December 2024",
 			"responsibilities": [
 				"Developed and implemented safety circuits for robotic cells",
 				"Programmed PLCs for robotic cells",
@@ -29,6 +31,7 @@
 			"name": "Bison Hill Stonecrafts",
 			"location": "Erie, PA",
 			"position": "CNC Operator",
+			"dates": "August 2020 - December 2021",
 			"responsibilities": [
 				"Operated CNC machines",
 				"Finished and packaged stone products",
@@ -39,6 +42,7 @@
 			"name": "LeBoeuf Lasing",
 			"location": "Waterford, PA",
 			"position": "Business Owner",
+			"dates": "March 2020 - Present",
 			"responsibilities": [
 				"Design, manufacture, and sell custom woodworking products",
 				"Built e-commerce website",
@@ -54,14 +58,34 @@
 				"Circuit Design",
 				"Digital Logic Design",
 				"PCB/Schematic Design",
+				"Battery Pack Design",
 				"Embedded Systems",
 				"General Troubleshooting",
-				"Soldering/Rework"
+				"Soldering",
+				"SMD Reflow & Rework",
+				"Siglent Oscilloscopes",
+				"Tektronix Oscilloscopes",
+				"Atmel Microcontrollers",
+				"Ethernet & P.O.E."
 			]
 		},
 		{
 			"category": "Software",
-			"skills": ["Python", "C++", "Java", "Matlab", "Verilog", "VHDL", "Ladder Logic", "R.O.S."]
+			"skills": [
+				"Python",
+				"C++",
+				"Matlab",
+				"Verilog",
+				"VHDL",
+				"Ladder Logic",
+				"R.O.S.",
+				"Java",
+				"JavaScript",
+				"HTML/CSS",
+				"SQL",
+				"Git",
+				"Linux"
+			]
 		},
 		{
 			"category": "Automation",
@@ -72,7 +96,15 @@
 				"Process Control",
 				"EOAT Design",
 				"Safety Cage Design",
-				"Robotic Cell Manufacture"
+				"Robotic Cell Manufacture",
+				"Kuka Robotics",
+				"Mitsubishi Electric",
+				"Sepro Robotics",
+				"Milacron IMMs",
+				"Ls Mtron Electric",
+				"SICK Safety Products",
+				"Allen Bradley PLCs",
+				"Rockwell Automation"
 			]
 		}
 	],

@@ -26,20 +26,21 @@
 		"showHeader": true,
 		"showFooter": true
 	},
-	"Search": {
-		"url": "/search",
-		"title": "Search",
-		"description": "Search through the blog posts.",
-		"image": "",
-		"date": "",
-		"showHeader": true,
-		"showFooter": true
-	},
+
 	"All Projects": {
 		"url": "/all-projects",
 		"title": "All Projects",
 		"description": "Browse all projects and posts across all categories.",
 		"image": "logo.webp",
+		"date": "",
+		"showHeader": true,
+		"showFooter": true
+	},
+	"Search": {
+		"url": "/search",
+		"title": "Search",
+		"description": "Search through the blog posts.",
+		"image": "",
 		"date": "",
 		"showHeader": true,
 		"showFooter": true
