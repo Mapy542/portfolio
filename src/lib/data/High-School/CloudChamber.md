@@ -7,7 +7,7 @@
 
 # Launch Vehicle
 
-I designed a built a cloud chamber for our AP Physics class in high school after we found an old field survey kit from the 1960s in our school's storage closet. It contained a large sample of uranium ore which you can see in the video. While in post-event hindsight,handling raw radioactive materials is not recommended due to the interaction with dust, the local police department determined the sources were not imminently dangerous.
+I designed a built a cloud chamber for our AP Physics class in high school after we found an old field survey kit from the 1960s in our school's storage closet. It contained a large sample of uranium ore which you can see in the video. While in post-event hindsight, handling raw radioactive materials is not recommended due to the interaction with dust, the local police department determined the sources were not imminently dangerous.
 
 The cloud chamber uses a peltier cooler to create a temperature gradient, dumping heat into a ice water bath. The cold surface causes alcohol vapor to condense into tiny droplets, which form visible trails when ionized by radiation. You can see the trails in the video below.
 

@@ -21,7 +21,7 @@ I felt it was fine to sacrifice cut time by reusing the less powerful hardware f
 
 During the planning process, I had the chance to acquire an old industrial 3D printer. The Dimension SST 768 from Stratasys, to be exact. It is an impressive washing machine-sized tool, with some uncommon features. It used a whole heated chamber rather than a heated bed like most printers, and every axis was driven with powerful Nema 23 stepper motors on 1/2-inch linear rods. Some other design quirks included the dual hot-end that was such a massive chunk of metal that the printer had a dedicated 120-volt DC power supply to drive it. The supply was developed directly by Stratasys because using 120 volts of direct current is almost unheard of. But AC induces noise into nearby circuits, and it would disrupt the temperature sensors used in the hotend.
 
-I never got the printer working, and support for the old device was non-existent. It felt like a shame to destroy such a unqiue and early industrial 3D printer, but it did take up a large amount of floor space as a 300 pound paperweight. I could reuse much of the motion system for the laser cutter and a 24, 12, and 5-volt power supply to drive all the electronics.
+I never got the printer working, and support for the old device was non-existent. It felt like a shame to destroy such a unique and early industrial 3D printer, but it did take up a large amount of floor space as a 300 pound paperweight. I could reuse much of the motion system for the laser cutter and a 24, 12, and 5-volt power supply to drive all the electronics.
 
 #!g
 ![Stratasys Dimension SST 768](laser01/sst768.webp){Stratasys Dimension SST 768}
@@ -80,9 +80,9 @@ Mirror mount. I felt, given the complexity of the parts, it was more cost-effect
 
 ### Aside about the Laser Tube Mount
 
-Many laser cutters seem to subscribe to the idea that the laser tube should be incredibly securely mounted to the frame with an all encompassing band mount. This isn't necessarily bad, especially if the laser cutter is being shipped. However these mounts are expensive. I wanted to test printing my own much simpler mount. It would just hold the tube on axis by 2 v-block mounts. Admittedly, it is worse as the tube is supported by 4 contact points, which does create extra stress on the glass tube, but so far as static as the laser cutter is, this has not been a problem. The mount is also much cheaper to produce, and easier to install and remove the tube. The alignment of the tube is perfect since the two angled faces of each mount constrain the tube on-axis, although it is not adjustable.
+Many laser cutters seem to subscribe to the idea that the laser tube should be incredibly securely mounted to the frame with an all encompassing band mount. This isn't necessarily bad, especially if the laser cutter is being shipped. However, these mounts are expensive. I wanted to test printing my own much simpler mount. It would just hold the tube on axis by 2 v-block mounts. Admittedly, it is worse as the tube is supported by 4 contact points, which does create extra stress on the glass tube, but so far as static as the laser cutter is, this has not been a problem. The mount is also much cheaper to produce, and easier to install and remove the tube. The alignment of the tube is perfect since the two angled faces of each mount constrain the tube on-axis, although it is not adjustable.
 
-One other potential downside found during testing, is that the rigid mount tranfers vibrations from frame to the laser tube. When empty of coolant, this causes the tube to resonate, which cannot be good. Hasn't caused any issues yet, but it is something to keep in mind.
+One other potential downside found during testing, is that the rigid mount transfers vibrations from frame to the laser tube. When empty of coolant, this causes the tube to resonate, which cannot be good. Hasn't caused any issues yet, but it is something to keep in mind.
 
 ![Laser Tube Mount](laser01/Gantryyaxis.webp){Early Laser Tube Mount visible in the bottom left.}
 
