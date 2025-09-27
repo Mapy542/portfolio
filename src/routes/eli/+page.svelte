@@ -63,6 +63,9 @@
 							<li>{role}</li>
 						{/each}
 					</ul>
+					{#if job.dates}
+						<p><i>{job.dates}</i></p>
+					{/if}
 				</div>
 			{/each}
 		{/if}
