@@ -141,7 +141,6 @@
 
 	.text-input input {
 		width: 75%;
-		min-width: 20em;
 	}
 
 	.filter-input {
