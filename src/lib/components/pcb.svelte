@@ -2,8 +2,6 @@
 </script>
 
 <svg
-	width="120%"
-	height="90vh"
 	viewBox="48 125 70 85"
 	stroke-linecap="round"
 	preserveAspectRatio="xMidYMid meet"
@@ -7733,6 +7731,11 @@
 </svg>
 
 <style>
+	svg {
+		width: 120%;
+		height: 90vh;
+	}
+
 	.draw {
 		stroke-dasharray: 300;
 		stroke-dashoffset: 300;

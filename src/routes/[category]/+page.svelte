@@ -14,6 +14,7 @@
 {#if data.error}
 	<h1>Error</h1>
 	<p>{data.error}</p>
+	<a href="/">Return to home page.</a>
 {/if}
 
 <div class="flex-columns">
@@ -31,6 +32,9 @@
 		{/if}
 		{#if data.props.description}
 			<p>{data.props.description}</p>
+		{/if}
+		{#if data.error === null}
+			<p>Click through to see details, videos, and more.</p>
 		{/if}
 	</div>
 	<div class="two-thirds">
