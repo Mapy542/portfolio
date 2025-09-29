@@ -1,0 +1,11 @@
+Content License (Assets)
+
+Except where otherwise noted, all content under the following paths is NOT covered by the MIT License and is All Rights Reserved by the repository owner:
+
+- src/lib/data/\*\* (Markdown posts and textual content)
+- src/lib/img/\*\* (images, graphics, diagrams)
+- src/lib/vid/\*\* (videos and motion content)
+
+You may not copy, redistribute, modify, or use this content for commercial or non-commercial purposes without prior written permission from the owner.
+
+If you wish to request permission, please open an issue in this repository or contact the owner directly.
