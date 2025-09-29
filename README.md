@@ -110,3 +110,13 @@ Utility scripts help prepare media assets.
 
 - `svelte.config.js` sets permissive prerender error handling and uses `modulepreload` output.
 - Fonts and images are under `src/fonts` and `src/img`; additional static assets live in `static/`.
+
+## Licensing
+
+- Code (everything in this repo except the content folders listed below) is licensed under the MIT License. See `LICENSE`.
+- Content assets are NOT open-licensed and are All Rights Reserved:
+  - `src/lib/data/**` (Markdown posts and textual content)
+  - `src/lib/img/**` (images, graphics, diagrams)
+  - `src/lib/vid/**` (videos and motion content)
+
+See `CONTENT-LICENSE` for details. Do not copy, redistribute, or reuse the content assets without explicit permission.
