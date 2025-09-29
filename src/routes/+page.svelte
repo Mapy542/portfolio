@@ -33,7 +33,7 @@
 	</div>
 </div>
 
-<div class="spacer" style="height: 10em;"></div>
+<div class="spacer"></div>
 
 <div class="flex-columns">
 	<div class="seconds">
@@ -49,7 +49,7 @@
 <div class="flex-columns">
 	<div class="thirds">
 		<h2>Discover Projects</h2>
-		<p>Randomly selected posts for you:</p>
+		<p>Randomly selected posts for you (Click to read more):</p>
 	</div>
 	{#each data.props.docProps as doc}
 		<div class="thirds">
@@ -83,6 +83,16 @@
 		padding-top: 2em;
 		display: flex;
 		justify-content: center;
+	}
+
+	.spacer {
+		height: 10em;
+	}
+
+	@media screen and (max-width: 600px) {
+		.spacer {
+			height: 80vh;
+		}
 	}
 
 	.pcb-container {
