@@ -1,16 +1,36 @@
-<script lang="ts">
-	import { page } from '$app/state';
+<script>
+	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
+
+	export let data;
+
+	// Safe way to access page data during error rendering
+	let currentUrl = '';
+	let statusCode = data?.status || 500;
+
+	// Only access page store in browser environment
+	if (browser) {
+		page.subscribe(($page) => {
+			currentUrl = $page.url.pathname;
+		});
+	}
 </script>
 
 <svelte:head>
-	<title>{$page.status} - {$page.error?.message ?? 'An error occurred'}</title>
-	<meta name="description" content="An error occurred while trying to load the page." />
-	<meta name="keywords" content="error, page not found, 404, 500" />
+	<title>Error {statusCode} - Page Not Found</title>
+	<meta name="description" content="The requested page could not be found." />
 </svelte:head>
 
-<h1>{$page.status}</h1>
-{#if $page.status === 404}
-	<p>The page you are looking for could not be found.</p>
+<h1>Error {statusCode}</h1>
+
+{#if statusCode === 404}
+	<p>Sorry, the page you're looking for doesn't exist.</p>
 {:else}
-	<p>{$page.error?.message ?? 'An unexpected error occurred.'}</p>
+	<p>Something went wrong. Please try again later.</p>
 {/if}
+
+{#if browser && currentUrl}
+	<p>Requested URL: {currentUrl}</p>
+{/if}
+
+<a href="/">Return to homepage</a>
