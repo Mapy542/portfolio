@@ -37,53 +37,8 @@ def create_thumbnails(img_list, sizes):
 
 
 if __name__ == "__main__":
-    # resize the images
-    """
-    i = 0
-    for img in images:
-        print(str(i / len(images) * 100) + "%")
-        i += 1
-        try:
-            with Image.open(os.path.join(CWD, img)) as image:
-                image = image.convert("RGB")
-                path = img.split(".")[0].replace(" ", "-") + ".webp"
-                image.save(os.path.join(CWD, path), "webp", quality=75)
-
-        except Exception as e:
-            print(e)
-            print("Error with image: ", img)
-            continue
-
-        os.remove(os.path.join(CWD, img))  # remove the original image
-
-    print("Done!")
-    """
-
     # create thumbnail folders if they don't exist
-    sizes = [
-        90,
-        95,
-        100,
-        125,
-        150,
-        200,
-        250,
-        300,
-        350,
-        400,
-        450,
-        500,
-        600,
-        700,
-        800,
-        900,
-        1000,
-        1100,
-        1200,
-        1300,
-        1400,
-        1500,
-    ]  # downscale sizes only
+    sizes = [100, 200, 300, 500, 800, 1000, 1200, 1400, 1500]  # downscale sizes only
 
     thumb_dir = os.path.join(CWD, "thumb")
     if not os.path.exists(thumb_dir):
