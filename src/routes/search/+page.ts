@@ -1,4 +1,3 @@
-// since there's no dynamic data here, we can prerender
-// it so that it gets served as a static asset in production
+// Disable prerendering for search page as it relies on dynamic data
 export const prerender = false;
 

@@ -1,1 +1,1 @@
-
+export const prerender = false; // Disable prerendering for homepage such that discover projects works
