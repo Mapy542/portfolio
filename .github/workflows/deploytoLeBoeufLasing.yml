@@ -2,21 +2,24 @@
 name: Deploy to Production
 on:
   push:
-    branches: 
+    branches:
       - main
     paths-ignore:
       - 'archive/**'
       - '.github/**'
 
 jobs:
-    build-and-run:
-     runs-on: self-hosted
-     steps:       
-      - name: stop webserver
-        run: sudo -n /bin/systemctl stop portfolio
-            
+  build-and-run:
+    runs-on: self-hosted
+    steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: generate thumbnails
+        run: python3 ./src/lib/img/thumbnailer.py
+
+      - name: stop webserver
+        run: sudo -n /bin/systemctl stop portfolio
 
       - name: rm old code
         run: rm -rf /var/www/portfolio/* /var/www/portfolio/.??*
@@ -32,4 +35,3 @@ jobs:
 
       - name: restart node service
         run: sudo -n /bin/systemctl start portfolio
-    
