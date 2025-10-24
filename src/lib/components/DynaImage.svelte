@@ -25,11 +25,11 @@
 		}
 
 		static notifyResize() {
-			this.instances.forEach(instance => instance.handleResize());
+			this.instances.forEach((instance) => instance.handleResize());
 		}
 
 		static notifyZoomChange() {
-			this.instances.forEach(instance => instance.handleZoomChange());
+			this.instances.forEach((instance) => instance.handleZoomChange());
 		}
 
 		static initializeEvents() {
@@ -56,38 +56,50 @@
 				window.visualViewport.addEventListener('scroll', handleZoomChange);
 			}
 
-			window.addEventListener('wheel', (e) => {
-				if (e.ctrlKey || e.metaKey) {
-					handleZoomChange();
-				}
-			}, { passive: true });
+			window.addEventListener(
+				'wheel',
+				(e) => {
+					if (e.ctrlKey || e.metaKey) {
+						handleZoomChange();
+					}
+				},
+				{ passive: true }
+			);
 
 			// Touch events for mobile zoom
 			let touchStartDistance = 0;
-			window.addEventListener('touchstart', (e) => {
-				if (e.touches.length === 2) {
-					const touch1 = e.touches[0];
-					const touch2 = e.touches[1];
-					touchStartDistance = Math.hypot(
-						touch1.clientX - touch2.clientX,
-						touch1.clientY - touch2.clientY
-					);
-				}
-			}, { passive: true });
-
-			window.addEventListener('touchmove', (e) => {
-				if (e.touches.length === 2 && touchStartDistance > 0) {
-					const touch1 = e.touches[0];
-					const touch2 = e.touches[1];
-					const currentDistance = Math.hypot(
-						touch1.clientX - touch2.clientX,
-						touch1.clientY - touch2.clientY
-					);
-					if (Math.abs(currentDistance - touchStartDistance) > 50) {
-						handleZoomChange();
+			window.addEventListener(
+				'touchstart',
+				(e) => {
+					if (e.touches.length === 2) {
+						const touch1 = e.touches[0];
+						const touch2 = e.touches[1];
+						touchStartDistance = Math.hypot(
+							touch1.clientX - touch2.clientX,
+							touch1.clientY - touch2.clientY
+						);
 					}
-				}
-			}, { passive: true });
+				},
+				{ passive: true }
+			);
+
+			window.addEventListener(
+				'touchmove',
+				(e) => {
+					if (e.touches.length === 2 && touchStartDistance > 0) {
+						const touch1 = e.touches[0];
+						const touch2 = e.touches[1];
+						const currentDistance = Math.hypot(
+							touch1.clientX - touch2.clientX,
+							touch1.clientY - touch2.clientY
+						);
+						if (Math.abs(currentDistance - touchStartDistance) > 50) {
+							handleZoomChange();
+						}
+					}
+				},
+				{ passive: true }
+			);
 
 			window.addEventListener('orientationchange', handleZoomChange);
 
@@ -99,11 +111,11 @@
 		static cleanup() {
 			if (!this.initialized) return;
 			this.initialized = false;
-			
+
 			clearTimeout(this.resizeTimeout);
 			clearTimeout(this.zoomTimeout);
 			clearInterval(this.zoomCheckInterval);
-			
+
 			// Remove all event listeners
 			// Note: We'd need to store references to clean these up properly
 			// For now, they'll persist but won't have any instances to notify
@@ -194,7 +206,7 @@
 
 	function deriveImageKey(srcPath: string, width: number, zoom: number, dpr: number): string {
 		if (!srcPath || typeof window === 'undefined' || !width) return '';
-		
+
 		const slashCleanedsrc = /^\//.test(srcPath) ? srcPath.slice(1) : srcPath;
 		let thumbRedirect = '';
 
@@ -222,12 +234,14 @@
 	}
 
 	function updateImageSize() {
-		imgWidth = Number(findClosest(
-			innerWidthScale(innerWidth) *
-				Number(scaleFactor) *
-				(0.75 - Math.pow(2, Number(paddingCount)) * 0.05),
-			widths
-		));
+		imgWidth = Number(
+			findClosest(
+				innerWidthScale(innerWidth) *
+					Number(scaleFactor) *
+					(0.75 - Math.pow(2, Number(paddingCount)) * 0.05),
+				widths
+			)
+		);
 	}
 
 	// Calculate the resolution we need based on display size and zoom
@@ -320,7 +334,7 @@
 		if (loadingTimeout) {
 			clearTimeout(loadingTimeout);
 		}
-		
+
 		loadingTimeout = setTimeout(() => {
 			loadImage(src);
 		}, delay);
@@ -442,8 +456,6 @@
 			}
 		};
 	});
-
-
 </script>
 
 <svelte:window bind:innerWidth />
