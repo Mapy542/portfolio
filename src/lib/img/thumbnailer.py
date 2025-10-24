@@ -38,7 +38,7 @@ def create_thumbnails(img_list, sizes):
 
 if __name__ == "__main__":
     # create thumbnail folders if they don't exist
-    sizes = [100, 200, 300, 500, 800, 1000, 1200, 1400, 1500]  # downscale sizes only
+    sizes = [150, 225, 320, 480, 640, 960, 1280, 1920, 2560]  # downscale sizes only
 
     thumb_dir = os.path.join(CWD, "thumb")
     if not os.path.exists(thumb_dir):
