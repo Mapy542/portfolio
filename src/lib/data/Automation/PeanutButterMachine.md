@@ -9,7 +9,7 @@
 
 ## V1
 
-The first version of the Peanut Butter Machine was built in using the remains of another robotic assembly cell. Utilizing a Mitsubishi RV-2AJ robot arm, it spanned across a tabletop, and was indented to handle multiple shapes of treat dishes.
+The first version of the Peanut Butter Machine was built in using the remains of another robotic assembly cell. Utilizing a Mitsubishi RV-2AJ robot arm, it spanned across a tabletop, and was intended to handle multiple shapes of treat dishes.
 
 This first iteration had quite a few shortcomings:
 
