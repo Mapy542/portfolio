@@ -79,8 +79,8 @@ When cutting aluminum, personal protective equipment should be worn, but the wor
 
 These steps are incredibly important to remember. I’ve seen a saw blade and part be ruined in the blink of an eye by this kickback. Thankfully no one was injured, and no issues occurred when cutting extrusion for the laser.
 
-The next steps are to take this cut aluminum and start assembling the laser. This starts with the bed and bed lift system.
+The next steps are to take this cut aluminum and start assembling the laser. This starts with the gantry subsystem.
 
-[Next: 0.5 Building the Bed Lift System](/K400-Updates/05-Bed-Lift-System)
+[Next: 0.5 Building the Gantry System](/K400-Updates/05-Gantry-Build)
 [Previous: 0.3 Building the Laser Base](/K400-Updates/03-Base-Build)
 [Back to Homepage](/k400-home)
