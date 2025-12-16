@@ -60,6 +60,15 @@ for mdFile in mardownFiles:
                         imgPath = match.split(" ")[0]  # in case there's a title after the URL
                         imgPath = imgPath.lstrip("/")  # remove leading slash if present
                         usedImages.add(imgPath)
+
+                # match for metadata "#! image: path"
+                meta_matches = re.findall(
+                    r"#!\s*image:\s*(.*?\.(?:jpg|jpeg|png|gif|webp|pdf))", line, re.IGNORECASE
+                )
+                if meta_matches:
+                    for match in meta_matches:
+                        imgPath = match.lstrip("/")  # remove leading slash if present
+                        usedImages.add(imgPath)
     except Exception as e:
         print(f"Error reading {mdFile}: {e}")
 
