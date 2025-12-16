@@ -72,7 +72,8 @@
 		try {
 			return images[fullPath]().then((mod: any) => mod.default);
 		} catch (e) {
-			throw new Error(`Image not found: ${fullPath}`);
+			error = new Error(`Image not found: ${fullPath}`);
+			return null;
 		}
 	}
 
@@ -106,8 +107,8 @@
 			const requestThumbWidth = findClosestNoOver(targetPagewidth, thumbSizes);
 			try {
 				const imgUrlPromise = resolveImgUrl(src, requestThumbWidth);
+				if (!imgUrlPromise) return;
 				loadandReplaceImg(imgUrlPromise);
-				error = null;
 			} catch (e) {
 				error = e as Error;
 			}
@@ -119,6 +120,7 @@
 		if (isInitialized && untrack(() => isLoaded) && loadTriggered) {
 			try {
 				const imgUrlPromise = resolveImgUrl(src, requestThumbWidth);
+				if (imgUrlPromise === null) return;
 				loadandReplaceImg(imgUrlPromise);
 				error = null;
 			} catch (e) {
