@@ -1,21 +1,11 @@
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount, onDestroy, untrack } from 'svelte';
 
 	const images: any = import.meta.glob('$lib/img/**/*.{jpg,jpeg,png,gif,webp}', {
 		eager: false
 	});
 
 	let { src, alt, caption, scaleFactor, paddingCount } = $props();
-
-	function findClosest(value: number, array: Array<number>) {
-		let closest = array[0];
-		array.forEach((item) => {
-			if (Math.abs(Number(item) - Number(value)) < Math.abs(Number(closest) - Number(value))) {
-				closest = item;
-			}
-		});
-		return closest;
-	}
 
 	function findClosestNoOver(value: number, array: Array<number>) {
 		let closest = array[0];
@@ -30,79 +20,184 @@
 		return closest;
 	}
 
-	function findClosestNoUnder(value: number, array: Array<number>) {
-		let closest = array[0];
-		array.forEach((item) => {
-			if (Math.abs(Number(item) - Number(value)) < Math.abs(Number(closest) - Number(value))) {
-				closest = item;
-			}
-		});
-		if (closest > value) {
-			closest = array[Math.max(0, array.indexOf(closest) - 1)];
+	const thumbSizes = [150, 225, 320, 480, 640, 960, 1280, 1920, 2560]; //see python thumbnailer for sizes
+
+	// Calculate initial width using CSS calc() - works immediately without JS
+	let scaledFactor = $derived(Number(scaleFactor));
+	let paddingFactor = $derived(0.75 - Math.pow(2, Number(paddingCount)) * 0.05);
+	let cssWidth = $derived(`clamp(90px, calc(70vw * ${scaledFactor} * ${paddingFactor}), 2560px)`);
+
+	let zoomLevel = $state(1); // Current zoom level
+	let windowWidth = $state<number>(1080);
+
+	let loadTriggered = $state(false); // Has the image load been triggered?
+	let isInitialized = $state(false); // Has the component been initial loaded? if not, we use placeholder
+	let isLoaded = $state(false); // Has the image finished loading?
+	let error = $state<Error | null>(null);
+
+	let dynaImageContainer: HTMLDivElement;
+	let displayedImgUrl = $state<string | null>(null);
+
+	onMount(() => {
+		///Intersection Observer
+		const options = {
+			rootMargin: '100px' //trigger before fully in view
+		};
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					loadTriggered = true;
+					observer.unobserve(dynaImageContainer);
+				}
+			});
+		}, options);
+		observer.observe(dynaImageContainer);
+
+		//Zoom detection interval
+		const zoomInterval = setInterval(() => {
+			detectZoomLevel();
+		}, 1000);
+	});
+
+	function srcSanitization(src: string) {
+		let sanitizedSrc = src.startsWith('/') ? src.slice(1) : src;
+		return sanitizedSrc;
+	}
+
+	async function resolveImgUrl(src: string, width: number | null) {
+		const basePath = '/src/lib/img/';
+		const thumgExt = width ? `thumb/${width}/` : '';
+		const fullPath = basePath + thumgExt + srcSanitization(src);
+
+		try {
+			return images[fullPath]().then((mod: any) => mod.default);
+		} catch (e) {
+			throw new Error(`Image not found: ${fullPath}`);
 		}
-		return closest;
+	}
+
+	async function loadandReplaceImg(imgUrl: Promise<string>) {
+		isLoaded = false;
+		const newImg = new Image();
+		newImg.src = await imgUrl;
+		newImg.onload = () => {
+			setTimeout(() => {
+				isLoaded = true;
+			}, 100); //small delay to allow for transition
+			displayedImgUrl = newImg.src;
+			//isLoaded = true;
+			isInitialized = true;
+		};
 	}
 
 	function innerWidthScale(width: number) {
 		return width < 600 ? width : width * 0.7;
 	}
 
-	const displayWidths = [
-		90, 95, 100, 125, 150, 200, 250, 300, 350, 400, 450, 500, 600, 700, 800, 900, 1000, 1100, 1200,
-		1300, 1400, 1500
-	];
-	const thumbSizes = [150, 225, 320, 480, 640, 960, 1280, 1920, 2560]; //see python thumbnailer for sizes
+	function jsEmulateCssWidth(scaleFactor: number, paddingFactor: number, winWidth: number) {
+		let baseWidth = innerWidthScale(winWidth);
+		return Math.min(2560, Math.max(90, baseWidth * scaleFactor * paddingFactor));
+	}
 
-	// Calculate initial width using CSS calc() - works immediately without JS
-	let scaledFactor = $derived(Number(scaleFactor));
-	let paddingFactor = $derived(0.75 - Math.pow(2, Number(paddingCount)) * 0.05);
-	let cssWidth = $derived(
-		`clamp(90px, calc(min(100vw, 70vw) * ${scaledFactor} * ${paddingFactor}), 1500px)`
-	);
+	$effect(() => {
+		if (!isInitialized && loadTriggered) {
+			//load image when target src updates
+			const targetPagewidth = jsEmulateCssWidth(scaledFactor, paddingFactor, windowWidth);
+			const requestThumbWidth = findClosestNoOver(targetPagewidth, thumbSizes);
+			try {
+				const imgUrlPromise = resolveImgUrl(src, requestThumbWidth);
+				loadandReplaceImg(imgUrlPromise);
+				error = null;
+			} catch (e) {
+				error = e as Error;
+			}
+		}
+	});
+	$effect(() => {
+		const targetPagewidth = jsEmulateCssWidth(scaledFactor, paddingFactor, windowWidth * zoomLevel);
+		const requestThumbWidth = findClosestNoOver(targetPagewidth, thumbSizes);
+		if (isInitialized && untrack(() => isLoaded) && loadTriggered) {
+			try {
+				const imgUrlPromise = resolveImgUrl(src, requestThumbWidth);
+				loadandReplaceImg(imgUrlPromise);
+				error = null;
+			} catch (e) {
+				error = e as Error;
+			}
+		}
+	});
 
-	let isInitialized = $state(false); // Has the component been initial loaded? if not, we use placeholder
-	let isLoaded = $state(false); // Has the image finished loading?
-	let error = $state<Error | null>(null);
+	//zoom detetction
+	function detectZoomLevel() {
+		if (typeof window === 'undefined') return;
 
-	let imgElement: HTMLImageElement;
-	let displayedImgUrl = $state<string | null>(null);
+		let detectedZoom = 1;
 
-	function resolveImgUrl(src: string, width: number | null) {
-		const basePath = '$lib/img/';
-		const fullPath = basePath + src;
-		const extIndex = src.lastIndexOf('.');
-		const nameOnly = src.substring(0, extIndex);
-		const extOnly = src.substring(extIndex);
-		const thumbName = `${nameOnly}_w${width}${extOnly}`;
-		const thumbPath = basePath + thumbName;
+		// Method 1: Visual viewport (works well on mobile Safari/Chrome for pinch zoom)
+		if (window.visualViewport) {
+			const viewportZoom = window.outerWidth / window.visualViewport.width;
+			if (viewportZoom > 1.02) {
+				// Only use if significantly different from 1
+				detectedZoom = viewportZoom;
+			}
+		}
 
-		if (thumbPath in images) {
-			return images[thumbPath]();
-		} else if (fullPath in images) {
-			return images[fullPath]();
-		} else {
-			throw new Error(`Image not found: ${src}`);
+		// Method 2: Compare document element to window (works better on desktop)
+		if (detectedZoom === 1) {
+			const docElement = document.documentElement;
+			if (docElement) {
+				const computedZoom = window.outerWidth / window.innerWidth;
+				if (computedZoom > 1.02 && computedZoom < 10) {
+					// Reasonable zoom range
+					detectedZoom = computedZoom;
+				}
+			}
+		}
+
+		// Method 3: Use devicePixelRatio changes (for browser zoom on desktop)
+		if (detectedZoom === 1) {
+			const baseDevicePixelRatio = window.devicePixelRatio || 1;
+			// Store the initial DPR to detect changes
+			if (!(window as any).__initialDPR) {
+				(window as any).__initialDPR = baseDevicePixelRatio;
+			}
+			const zoomFromDPR = baseDevicePixelRatio / (window as any).__initialDPR;
+			if (Math.abs(zoomFromDPR - 1) > 0.02) {
+				detectedZoom = zoomFromDPR;
+			}
+		}
+
+		// Method 4: CSS media queries (fallback for desktop zoom detection)
+		if (detectedZoom === 1 && typeof window !== 'undefined') {
+			// Use a test element to detect zoom via CSS
+			const testDiv = document.createElement('div');
+			testDiv.style.position = 'fixed';
+			testDiv.style.top = '-1000px';
+			testDiv.style.width = '100vw';
+			testDiv.style.height = '1px';
+			document.body.appendChild(testDiv);
+
+			const vwInPixels = testDiv.offsetWidth;
+			document.body.removeChild(testDiv);
+
+			if (vwInPixels && window.innerWidth) {
+				const cssZoom = vwInPixels / window.innerWidth;
+				if (Math.abs(cssZoom - 1) > 0.02) {
+					detectedZoom = 1 / cssZoom; // Inverse because zoom makes vw smaller
+				}
+			}
+		}
+
+		// Apply zoom level with some smoothing to avoid constant updates
+		const newZoom = Math.round(detectedZoom * 100) / 100; // Round to 2 decimal places
+		if (Math.abs(newZoom - zoomLevel) > 0.05) {
+			// Only update if change is significant
+			zoomLevel = newZoom;
 		}
 	}
-
-	function loadandReplaceImg(imgUrl: string) {
-		const newImg = new Image();
-		newImg.src = imgUrl;
-		newImg.onload = () => {
-			displayedImgUrl = imgUrl;
-			isLoaded = true;
-			isInitialized = true;
-		};
-	}
-
-	$effect(()=>{
-		//load image when target src updates
-		let targetwidth = 
-
-	});
 </script>
 
-<svelte:window />
+<svelte:window bind:innerWidth={windowWidth} />
 
 <div
 	class="dyna-image"
@@ -111,6 +206,7 @@
 		--padding-factor: {paddingFactor}; 
 		width: {cssWidth};
 	"
+	bind:this={dynaImageContainer}
 >
 	{#if !error}
 		{#if !isInitialized && !isLoaded}
@@ -123,7 +219,6 @@
 			</div>
 		{/if}
 		<img
-			bind:this={imgElement}
 			src={displayedImgUrl}
 			alt={alt !== '' ? alt : caption !== '' ? caption : ''}
 			style="width: 100%; border-radius: var(--theme-img-border-radius); visibility: {isInitialized
@@ -143,8 +238,6 @@
 		display: flex;
 		flex-direction: column;
 		width: fit-content;
-		/* Base width calculation - mobile first */
-		--base-width: calc(100vw * var(--scale-factor, 1) * var(--padding-factor, 0.75));
 	}
 
 	/* Desktop scaling */

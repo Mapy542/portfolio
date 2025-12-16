@@ -13,32 +13,42 @@
 		let inGallery = false;
 		let index = 0;
 		for (let line of markdownString.split('\n')) {
-			if (line.startsWith('#!g')) {
+			if (line.trim() === '') continue; //skip empty lines
+			if (line.includes('#!g')) {
 				index = inGallery ? index + 1 : index; //increment index if inGallery to setup next gallery
 				inGallery = !inGallery; //toggle inGallery
+				continue;
 			}
 			if (inGallery) {
-				if (dynaGalleryPreProcess[index] == undefined) {
+				if (dynaGalleryPreProcess[index] === undefined) {
 					dynaGalleryPreProcess[index] = { SRC: [], ALT: [], captions: [] };
 				}
 				try {
 					dynaGalleryPreProcess[index].SRC.push(line.split('(')[1].split(')')[0]);
 					try {
-						dynaGalleryPreProcess[index].ALT.push(line.split('[')[1].split(']')[0]);
+						if (line.match(/\[(.*?)\]/)) {
+							dynaGalleryPreProcess[index].ALT.push(line.split('[')[1].split(']')[0]);
+						} else {
+							dynaGalleryPreProcess[index].ALT.push('');
+						}
 					} catch (error) {
 						dynaGalleryPreProcess[index].ALT.push('');
 						console.log('Error in mdGalleryParser 30: ' + error);
 						continue;
 					}
 					try {
-						dynaGalleryPreProcess[index].captions.push(line.split('{')[1].split('}')[0]);
+						if (line.match(/{(.*?)}/)) {
+							dynaGalleryPreProcess[index].captions.push(line.split('{')[1].split('}')[0]);
+						} else {
+							dynaGalleryPreProcess[index].captions.push('');
+						}
 					} catch (error) {
 						dynaGalleryPreProcess[index].captions.push('');
 						console.log('Error in mdGalleryParser 36: ' + error);
 						continue;
 					}
 				} catch (error) {
-					console.log('Error in mdGalleryParser: ' + error);
+					console.log('Error in mdGalleryParser: ' + error + ' on line: ' + line);
 				}
 			}
 		}

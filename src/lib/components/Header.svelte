@@ -68,7 +68,7 @@
 	}
 </script>
 
-<header class="site-header" role="banner">
+<header class="site-header">
 	<div class="header-container">
 		<div class="header-logo">
 			<a href="/" aria-label="Home">
@@ -114,7 +114,8 @@
 						class={theme === Themes.Light
 							? 'theme-icon fa-solid fa-sun'
 							: 'theme-icon fa-solid fa-moon'}
-					/>
+					>
+					</icon>
 				</span>
 			</label>
 		</div>
@@ -144,7 +145,7 @@
 	.header-logo {
 		padding: 1rem;
 		width: 15%;
-		max-width: 20vw;
+		max-width: 15rem;
 	}
 
 	.logo {
@@ -197,6 +198,7 @@
 		margin: 1% 3% 1% 1%;
 		transition: all var(--transition-length) linear;
 		--webkit-transition: var(--transition-length);
+		max-width: 5rem;
 	}
 
 	@media screen and (max-width: 600px) {
