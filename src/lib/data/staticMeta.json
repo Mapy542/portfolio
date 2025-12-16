@@ -12,7 +12,7 @@
 		"url": "/eli",
 		"title": "Eli Bukoski",
 		"description": "A brief bio of Eli Bukoski.",
-		"image": "/headshot/eli.webp",
+		"image": "headshot/eli.webp",
 		"date": "3/1/2025",
 		"showHeader": true,
 		"showFooter": true
@@ -21,7 +21,7 @@
 		"url": "/k400-home",
 		"title": "K400 Laser Homepage",
 		"description": "The homepage for the K400 laser project.",
-		"image": "/k400/k400.webp",
+		"image": "laser-overview/far-oput-laser-in-laser.webp",
 		"date": "3/1/2025",
 		"showHeader": true,
 		"showFooter": true

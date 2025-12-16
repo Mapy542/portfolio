@@ -29,3 +29,5 @@ As a result, I was left with a much larger and more stable desk. The walnut incl
 
 ![Full desk](project-highlights/fulldesk.webp){The full desk.}
 ![Stuck Turtle](project-highlights/waterfall-desk.webp){Bottom of the desk, while installing legs.}
+
+![missing](poop.wemb){cart}
