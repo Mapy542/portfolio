@@ -17,4 +17,5 @@ I've since upgraded to a commercial water chiller for on the new laser cutter.
 #!g
 ![Chiller's previous life](project-highlights/chillerasac.webp){The chiller's previous life as an RV AC unit}
 ![Chiller in Position](project-highlights/chillerinposition.webp){The chiller in position under the laser cutter}
+![Corrosion in Evaporator Tank](chiller/chiller-refridgeration-unit.webp){Corrosion in the evaporator tank after extended use}
 #!g
