@@ -46,6 +46,7 @@
 			alt="K400 Laser Cutter"
 			scaleFactor=".66"
 			paddingCount="1"
+			caption=""
 		/>
 	</div>
 </div>
