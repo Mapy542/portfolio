@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 
 	export let openSearchOnGo = true; //redirects to the search page when the search button is clicked
 	export let resultsUplift = []; // Array to hold pass search results to the parent page. Only used if non-null. We pass by reference.
@@ -7,7 +7,6 @@
 
 	function handleSearch(event) {
 		hasSearched = true; // Set the flag to indicate a search has been performed
-		const searchTerm = event.target.value.toLowerCase();
 		const searchBarElement = document.getElementById('positiveMatch');
 
 		const searchText = searchBarElement.value.split(' ').filter((word) => word !== '');
@@ -91,6 +90,22 @@
 		const filterInput = document.querySelector('.filter-input');
 		filterInput.style.display = 'flex';
 	}
+
+	let searchKeywordsCache = '';
+	let searchTimeout;
+	onMount(() => {
+		searchTimeout = setInterval(() => {
+			if (searchKeywordsCache !== document.getElementById('positiveMatch').value) {
+				searchKeywordsCache = document.getElementById('positiveMatch').value;
+				handleSearch(1);
+			}
+		}, 1000);
+	});
+	onDestroy(() => {
+		clearInterval(searchTimeout);
+	});
+
+	$: console.log(searchKeywordsCache);
 </script>
 
 <div class="search-container">
