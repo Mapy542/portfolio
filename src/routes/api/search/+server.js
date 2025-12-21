@@ -11,17 +11,38 @@ const tags = url.searchParams.get("tags") || null;
 let results = [];
 if (positiveMatch){
     //we have csv words to regex match in posts
+    let positiveScore=[];
     const words = positiveMatch.split(",").map(word => word.trim());
     const wholeWordsReg = words.map(word=> `\\b${word}\\b`);
     let allDocSrcs = serverReader.allSrcs || [];
-    let reg = new RegExp(wholeWordsReg.join("|"), "i");
+    let reg = new RegExp(wholeWordsReg.join("|"), "ig");
 
     for (const src of allDocSrcs) {
         let docData = serverReader.getDocData(src);
-        if (docData && reg.test(docData)) {
+        if (docData ) {
+            const score =[...docData.matchAll(reg)];
+            if(score && score?.length>0){
             results.push(src);
+            positiveScore.push(score?.length);
+        }
         }
     }
+
+    //sort results by score metric, greatest score first
+    let combined = [];
+    for(var i=0; i<results.length;i++){
+        combined.push({"result":results[i],"score":positiveScore[i]})
+    }
+
+    combined.sort(function(a,b){
+        return (a.score > b.score ? -1:(a.score == b.score? 0:1))
+    });
+
+    results=[]
+    combined.forEach(element => {
+        results.push(element.result)
+    });
+
 }else{
     results = serverReader.allSrcs || [];
 }

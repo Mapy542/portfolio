@@ -129,6 +129,14 @@
 		}
 	});
 
+	let srcCache = '';
+	$effect(() => {
+		if (isInitialized && isLoaded && !untrack(() => loadTriggered)) {
+			loadTriggered = true;
+			srcCache = src;
+		}
+	});
+
 	//zoom detetction
 	function detectZoomLevel() {
 		if (typeof window === 'undefined') return;

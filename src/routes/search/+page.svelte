@@ -13,7 +13,6 @@
 		let resultsMetas = {};
 		for (const result of resultsUplift) {
 			resultsMetas[result] = data.props.postMetas[result];
-			console.log(result);
 		}
 		return resultsMetas;
 	}
@@ -37,7 +36,7 @@
 
 {#if searched}
 	{#if resultsUplift.length === 0}
-		<p>No results found</p>
+		<p>No results found...</p>
 	{/if}
 	<div class="">
 		{#if resultMetas}
@@ -74,6 +73,14 @@
 			{/each}
 		{/if}
 	</div>
+{:else}
+	<p>How to search!</p>
+	<p>
+		Enter keywords into the search bar, and results will be ranked by how closely they match your
+		query.
+	</p>
+	<p>To negate or remove entries by keyword, append a "-" before the keyword.</p>
+	<p>To further filter by post tags (strict matching), append a ":" before the tag.</p>
 {/if}
 
 <style>
