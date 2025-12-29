@@ -93,7 +93,7 @@ In a similar vein, the X-axis belt clamp was also redesigned to be much better s
 ## Wiring & Bipolar Stepper Motor Configuration
 
 Next was the wiring of the stepper motors. Throughout the design, I chose 4-conductor 20-awg cable. This is probably quite undersized to feed NEMA 23 stepper motors, but I haven’t had any issues so far. The motors recovered from the Dimension printer were 8-wire motors, meaning you could access each of the 4 individual coils. Stepper motors are meant to be driven in 2 phases, A and B, by bipolar stepper motor drivers (which are common), so some of the coils needed to be connected to produce A and B coil pairs. I mirrored the Dimension printer in connecting the coils in series.  
-Notably, after doing some light research on the topic, a bipolar parallel setup allows for higher speeds because the motor inductance is lowered by roughly 4x. This allows the coils to accept more power at high frequency. It does come at the cost of higher motor current for a given output.
+Notably, after doing some light research on the topic, a bipolar parallel setup allows for higher speeds because the motor inductance is lowered by roughly 4x. This allows the coils to accept more power at high frequency. It does come at the cost of higher motor current for a given output. At the time, I didn't know this, and was also working with severely power/thermally limited stepper motor drivers. (I ended up trying to water cool them... see later chapter.)
 
 #!g
 ![Stepper Motor 8 Wire](/laser05/8-wire-stepper.webp){Stepper Motor 8 Wire}
