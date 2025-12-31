@@ -35,6 +35,8 @@
 	let isLoaded = $state(false); // Has the image finished loading?
 	let error = $state<Error | null>(null);
 
+	let srcCache = $state('');
+
 	let dynaImageContainer: HTMLDivElement;
 	let displayedImgUrl = $state<string | null>(null);
 
@@ -100,40 +102,42 @@
 		return Math.min(2560, Math.max(90, baseWidth * scaleFactor * paddingFactor));
 	}
 
+	function fullImgLoad(requestThumbWidth: number) {
+		try {
+			const imgUrlPromise = resolveImgUrl(src, requestThumbWidth);
+			if (!imgUrlPromise) return;
+			loadandReplaceImg(imgUrlPromise);
+			srcCache = src;
+		} catch (e) {
+			error = e as Error;
+		}
+	}
+
 	$effect(() => {
+		//inital load
 		if (!isInitialized && loadTriggered) {
 			//load image when target src updates
 			const targetPagewidth = jsEmulateCssWidth(scaledFactor, paddingFactor, windowWidth);
 			const requestThumbWidth = findClosestNoOver(targetPagewidth, thumbSizes);
-			try {
-				const imgUrlPromise = resolveImgUrl(src, requestThumbWidth);
-				if (!imgUrlPromise) return;
-				loadandReplaceImg(imgUrlPromise);
-			} catch (e) {
-				error = e as Error;
-			}
+			fullImgLoad(requestThumbWidth);
 		}
 	});
 	$effect(() => {
+		//update reload upon width trigger or loadtriggered
 		const targetPagewidth = jsEmulateCssWidth(scaledFactor, paddingFactor, windowWidth * zoomLevel);
 		const requestThumbWidth = findClosestNoOver(targetPagewidth, thumbSizes);
 		if (isInitialized && untrack(() => isLoaded) && loadTriggered) {
-			try {
-				const imgUrlPromise = resolveImgUrl(src, requestThumbWidth);
-				if (imgUrlPromise === null) return;
-				loadandReplaceImg(imgUrlPromise);
-				error = null;
-			} catch (e) {
-				error = e as Error;
-			}
+			fullImgLoad(requestThumbWidth);
 		}
 	});
 
-	let srcCache = '';
 	$effect(() => {
-		if (isInitialized && isLoaded && !untrack(() => loadTriggered)) {
-			loadTriggered = true;
-			srcCache = src;
+		//effect to capture src changes and update image to reflect
+		if (!(String(src) === srcCache)) {
+			if (isInitialized && isLoaded && !loadTriggered) {
+				loadTriggered = true;
+				srcCache = src;
+			}
 		}
 	});
 
