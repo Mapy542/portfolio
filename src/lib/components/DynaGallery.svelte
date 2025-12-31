@@ -28,7 +28,7 @@
 				scaleFactors[enlargedIndex] = interiorScaleFactor;
 			}
 			enlargedIndex = index;
-			scaleFactors[index] = 1.2;
+			scaleFactors[index] = 1;
 		}
 
 		if (imageElements[index]) {
