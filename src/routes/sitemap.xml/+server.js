@@ -1,4 +1,4 @@
-import serverReader from '../../lib/components/serverReader.js';
+import serverReader from '../../lib/components/DataImport/serverReader.js';
 import staticMetas from '../../lib/data/staticMeta.json' with {type: "json"};
 import { DOMImplementation, XMLSerializer } from '@xmldom/xmldom';
 

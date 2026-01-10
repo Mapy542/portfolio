@@ -1,4 +1,4 @@
-import serverReader from '../lib/components/serverReader';
+import serverReader from '../lib/components/DataImport/serverReader';
 import staticMetas from '$lib/data/staticMeta.json' with {type: "json"};
 
 import { dev } from '$app/environment';

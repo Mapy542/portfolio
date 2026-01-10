@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DynaImage from './DynaImage.svelte';
+	import DynaImage from './Dynamics/DynaImage.svelte';
 
 	type CategoryPageData = {
 		title?: string;

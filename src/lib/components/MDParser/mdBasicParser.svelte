@@ -1,6 +1,6 @@
 <script>
-	import DynaImage from './DynaImage.svelte';
-	import DynaVideo from './DynaVideo.svelte';
+	import DynaImage from '../Dynamics/DynaImage.svelte';
+	import DynaVideo from '../Dynamics/DynaVideo.svelte';
 	import MdSublineParser from './mdSublineParser.svelte';
 	export let markdownString = '';
 	export let inColumnCount = '0';
