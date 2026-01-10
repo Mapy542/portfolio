@@ -1,5 +1,5 @@
 <script>
-	import DynaImage from '$lib/components/DynaImage.svelte';
+	import DynaImage from '$lib/components/Dynamics/DynaImage.svelte';
 	import Pcb from '$lib/components/pcb.svelte';
 
 	/** @type {import('./$types').PageData} */
@@ -55,7 +55,7 @@
 		<div class="thirds">
 			<a href={doc.link}>
 				<h3>{doc.title}</h3>
-				<DynaImage src={doc.image} alt={doc.title} scaleFactor=".3" paddingCount="1" />
+				<DynaImage src={doc.image} alt={doc.title} caption="" scaleFactor=".3" paddingCount="1" />
 				<p>{doc.description}</p>
 			</a>
 		</div>

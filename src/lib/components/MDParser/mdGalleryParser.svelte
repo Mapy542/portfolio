@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DynaGallery from './DynaGallery.svelte';
+	import DynaGallery from '../Dynamics/DynaGallery.svelte';
 	import MdBasicParser from './mdBasicParser.svelte';
 
 	export let markdownString = '';

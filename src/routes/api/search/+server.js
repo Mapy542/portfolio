@@ -1,4 +1,4 @@
-import serverReader from "../../../lib/components/serverReader.js";
+import serverReader from "../../../lib/components/DataImport/serverReader.js";
 
 export async function GET({url}){
 const positiveMatch = url.searchParams.get("positive")||null;

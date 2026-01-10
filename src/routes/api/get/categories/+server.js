@@ -1,4 +1,4 @@
-import serverReader from "$lib/components/serverReader";
+import serverReader from "$lib/components/DataImport/serverReader";
 
 //Returns Json Array of all Categories
 export async function GET(){
