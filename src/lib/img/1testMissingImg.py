@@ -11,7 +11,7 @@ for subdir in subdirs:
     images.extend([os.path.join(subdir, img) for img in os.listdir(os.path.join(CWD, subdir))])
 
 images = [
-    img
+    img.replace("\\", "/")  # curse you windows
     for img in images
     if img.endswith(".jpg")
     or img.endswith(".png")
