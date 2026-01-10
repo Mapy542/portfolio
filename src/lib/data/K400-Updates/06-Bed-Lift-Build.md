@@ -76,3 +76,7 @@ With all this in hand, I was ready to finish the bed-lift by splicing the belt t
 
 ![](/laser06/bed-lift.webm)
 (Test Driving The Bed Motor)
+
+[Next: 0.7 Building the Enclosure](/K400-Updates/07-Enclosure-Build)
+[Previous: 0.5 Building the Gantry](/K400-Updates/05-Gantry-Build)
+[Back to Homepage](/k400-home)
