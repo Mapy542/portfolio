@@ -1,5 +1,5 @@
 <script>
-	import DynaImage from '$lib/components/DynaImage.svelte';
+	import DynaImage from '$lib/components/Dynamics/DynaImage.svelte';
 	import SearchBar from '$lib/components/SearchBar.svelte';
 
 	export let data;
