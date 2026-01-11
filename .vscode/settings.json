@@ -1,5 +1,16 @@
 {
 	"json.schemas": [
-		{ "fileMatch": ["/**/manifest.json"], "url": "./schemas/fileDownloadSchema.json" }
+		{
+			"fileMatch": ["/src/lib/downloads/*/manifest.json"],
+			"url": "./schemas/fileDownloadSchema.json"
+		},
+		{
+			"fileMatch": ["/src/lib/data/categoriesMeta.json"],
+			"url": "./schemas/categoriesMetaSchema.json"
+		},
+		{
+			"fileMatch": ["/src/lib/data/staticMeta.json"],
+			"url": "./schemas/staticMetaSchema.json"
+		}
 	]
 }

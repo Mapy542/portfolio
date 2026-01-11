@@ -1,0 +1,33 @@
+{
+	"$id": "categoriesMeta.schema.json",
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Categories Metadata",
+	"description": "Metadata for content categories keyed by category slug/ID.",
+	"type": "object",
+	"patternProperties": {
+		"^[A-Za-z0-9-]+$": {
+			"type": "object",
+			"description": "Metadata for a single category.",
+			"required": ["title", "description", "image"],
+			"properties": {
+				"title": {
+					"type": "string",
+					"minLength": 1,
+					"description": "Display title for the category."
+				},
+				"description": {
+					"type": "string",
+					"minLength": 1,
+					"description": "Brief description of the category content."
+				},
+				"image": {
+					"type": "string",
+					"minLength": 1,
+					"description": "Relative path to the category's representative image."
+				}
+			},
+			"additionalProperties": false
+		}
+	},
+	"additionalProperties": false
+}
