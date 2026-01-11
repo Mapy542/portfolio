@@ -1,0 +1,5 @@
+{
+	"json.schemas": [
+		{ "fileMatch": ["/**/manifest.json"], "url": "./schemas/fileDownloadSchema.json" }
+	]
+}
