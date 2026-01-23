@@ -7,7 +7,6 @@ export async function GET() {
 		resourceLimits: mafiaStore.getResourceLimits(),
 		interestCurve: mafiaStore.getInterestCurveConfig(),
 		transactions: mafiaStore.getTransactions(),
-		llmApiUrl: mafiaStore.getLlmApiUrl(),
 		marketsClosed: mafiaStore.isMarketsClosed(),
 	});
 }

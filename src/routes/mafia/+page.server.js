@@ -1,5 +1,9 @@
 import { mafiaStore } from './mafiaStore.js';
 
+export const csr = true; //header is client side rendered always
+export const prerender = false; //we want to prerender this page if possible
+export const ssr = false; //we want to server side render where possible i think
+
 export async function load() {
 	return {
 		resources: mafiaStore.getAvailableResources(),
