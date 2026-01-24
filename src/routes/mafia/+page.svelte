@@ -356,13 +356,11 @@
 <div class="mafia-container">
 	<header class="boss-header">
 		<div class="header-content">
-			<h1>The Cockroah Mafia</h1>
+			<h1>The Cockroach Mafia</h1>
 			<p class="tagline">A family business. My way or the highway, capisce?</p>
 		</div>
 		<div class="boss-quote">
-			<em>
-				"Little bugs, big wins. I don't waste credits. I let the little bugs sacrifice themselves."
-			</em>
+			<em> "Little bugs, big wins. I don't waste credits." </em>
 		</div>
 	</header>
 
