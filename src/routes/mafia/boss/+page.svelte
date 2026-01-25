@@ -162,21 +162,12 @@
 						</div>
 						<input type="hidden" name="resourceType" value={resource} />
 						<label>
-							Available
+							Available for loans
 							<input
 								name="available"
 								type="number"
 								min="0"
 								bind:value={state.resources[resource]}
-							/>
-						</label>
-						<label>
-							Limit
-							<input
-								name="limit"
-								type="number"
-								min="0"
-								bind:value={state.resourceLimits[resource]}
 							/>
 						</label>
 						<button class="btn" type="submit">Save</button>
