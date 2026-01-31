@@ -224,6 +224,26 @@
 				<p>No trades yet.</p>
 			{/if}
 		</section>
+		<section class="phone-boss-toggle">
+			<h2>Phone the Boss Feature</h2>
+			<form method="POST" action="?/setPhoneBoss" use:enhance>
+				<label>
+					<input
+						type="checkbox"
+						name="enabled"
+						value="true"
+						checked={data.phoneBossEnabled}
+						on:change={(e) => e.target.form.requestSubmit()}
+					/>
+					Enable "Phone the Boss" (replaces LLM advice with phone simulation)
+				</label>
+			</form>
+			<p class="note">
+				{data.phoneBossEnabled
+					? '"Phone the Boss" is currently <b>ENABLED</b>.'
+					: '"Phone the Boss" is currently <b>DISABLED</b>.'}
+			</p>
+		</section>
 		<section class="logout">
 			<form method="POST" action="?/logout" use:enhance>
 				<button class="btn" type="submit">Leave the room</button>

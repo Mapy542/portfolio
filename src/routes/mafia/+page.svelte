@@ -348,6 +348,92 @@
 
 		ctx.restore();
 	}
+
+	// --- Phone the Boss Section State ---
+	let phoneBossActive = structuredClone(data.phoneBossEnabled); // TODO: Replace with real toggle from management page
+	let callInProgress = false;
+	let dialupAudio;
+	let elevatorAudio;
+	let callStep = 0; // 0 = idle, 1 = dialing, 2 = waiting
+	let callTimeout;
+	let extraDelay;
+
+	const phoneBossSaying = 'Sometimes, the best advice comes with a dial tone.';
+
+	function startPhoneBoss() {
+		callInProgress = true;
+		callStep = 1;
+		dialupAudio.currentTime = 0;
+		dialupAudio.play();
+		callTimeout = setTimeout(() => {
+			callStep = 2;
+			dialupAudio.pause();
+			elevatorAudio.currentTime = 0;
+			elevatorAudio.play();
+			extraDelay = setTimeout(() => {
+				startHoldMessages();
+			}, 3000);
+		}, 10000);
+	}
+
+	function hangupPhoneBoss() {
+		callInProgress = false;
+		callStep = 0;
+		dialupAudio.pause();
+		elevatorAudio.pause();
+		clearTimeout(callTimeout);
+		clearTimeout(extraDelay);
+		stopHoldMessages(); // <--- add this
+	}
+
+	// Hold message logic for suspense
+	const holdMessages = [
+		'Connecting to the boss...',
+		'This is what you get for using AT&T.',
+		'aaa',
+		'Your call is very important to us.',
+		'Still waiting... the boss is busy counting credits.',
+		'Did you try turning it off and on again?',
+		'Please hold. The boss is negotiating with a cockroach union.',
+		"Thank you for your patience. Or what's left of it.",
+		'Transferring you to someone who cares...',
+		'All our bugs are currently helping other customers.',
+		'The boss will be with you shortly. Maybe.',
+		'Do not redeem gift cards for credits during the call.',
+		'Please have your franchise ID ready.',
+		'Customers with entomophobia may experience longer wait times.'
+	];
+	let currentHoldMsg = '';
+	let holdMsgInterval;
+
+	function startHoldMessages() {
+		let used = new Set();
+		function nextMsg() {
+			if (used.size === holdMessages.length) used.clear();
+			let idx;
+			do {
+				idx = Math.floor(Math.random() * holdMessages.length);
+			} while (used.has(idx));
+			used.add(idx);
+			if (holdMessages[idx] === 'aaa') {
+				currentHoldMsg =
+					'You are number ' +
+					Math.floor(Math.random() * 90990 + 1000) +
+					' in the queue... wait time: ' +
+					Math.floor(Math.random() * 120 + 30) +
+					' years.';
+			} else {
+				currentHoldMsg = holdMessages[idx];
+			}
+		}
+		nextMsg();
+		holdMsgInterval = setInterval(nextMsg, 6000);
+	}
+
+	function stopHoldMessages() {
+		clearInterval(holdMsgInterval);
+		currentHoldMsg = '';
+	}
 </script>
 
 <div class="mafia-bg">
@@ -486,41 +572,68 @@
 			{/if}
 		</section>
 
-		<!-- Right: Boss Advice & Info Section -->
 		<section class="boss-section">
-			<!-- Ask the Boss -->
-			<div class="ask-boss-card">
-				<h2>ASK THE BOSS</h2>
-				<p class="boss-desc">
-					Got a question? Need some wisdom? The boss is in a good mood today...
-				</p>
-
-				<form method="POST" action="?/askBoss" use:enhance on:submit={handleBossAdvice}>
-					<div class="form-group">
-						<input
-							type="text"
-							name="question"
-							placeholder="What's on your mind, don?"
-							bind:value={bossQuestion}
-							required
-						/>
-					</div>
-					<button type="submit" class="boss-btn" disabled={adviseFetching || !bossQuestion}>
-						{adviseFetching ? '🤔 Boss is thinking...' : '💬 Ask'}
-					</button>
-				</form>
-
-				{#if bossAdvice}
-					<div class="boss-advice">
-						<div class="advice-bubble">
-							{bossAdvice}
+			{#if phoneBossActive}
+				<!-- Phone the Boss Section -->
+				<div class="phone-boss-card">
+					<h2>PHONE THE BOSS</h2>
+					<p class="boss-desc">{phoneBossSaying}</p>
+					{#if !callInProgress}
+						<button class="boss-btn" on:click={startPhoneBoss}>Call the Boss</button>
+					{:else}
+						<div class="call-status">
+							{#if callStep === 1}
+								<p>Connecting to the boss... <span class="dialup-emoji">📡</span></p>
+							{:else if callStep === 2}
+								<p class="wait-msg">{@html currentHoldMsg}</p>
+							{/if}
+							<button class="hangup-btn" on:click={hangupPhoneBoss}>Hang Up</button>
 						</div>
-						{#if form?.fallback}
-							<p class="fallback-note">(Boss is feeling generous today...)</p>
-						{/if}
-					</div>
-				{/if}
-			</div>
+					{/if}
+					<audio bind:this={dialupAudio} src="/src/lib/audio/dial-up-modem-01.wav" preload="auto"
+					></audio>
+					<audio
+						bind:this={elevatorAudio}
+						src="/src/lib/audio/PROJECTEUR - Astra Vision.mp3"
+						preload="auto"
+						loop
+					></audio>
+				</div>
+			{:else}
+				<!-- Ask the Boss -->
+				<div class="ask-boss-card">
+					<h2>ASK THE BOSS</h2>
+					<p class="boss-desc">
+						Got a question? Need some wisdom? The boss is in a good mood today...
+					</p>
+
+					<form method="POST" action="?/askBoss" use:enhance on:submit={handleBossAdvice}>
+						<div class="form-group">
+							<input
+								type="text"
+								name="question"
+								placeholder="What's on your mind, don?"
+								bind:value={bossQuestion}
+								required
+							/>
+						</div>
+						<button type="submit" class="boss-btn" disabled={adviseFetching || !bossQuestion}>
+							{adviseFetching ? '🤔 Boss is thinking...' : '💬 Ask'}
+						</button>
+					</form>
+
+					{#if bossAdvice}
+						<div class="boss-advice">
+							<div class="advice-bubble">
+								{bossAdvice}
+							</div>
+							{#if form?.fallback}
+								<p class="fallback-note">(Boss is feeling generous today...)</p>
+							{/if}
+						</div>
+					{/if}
+				</div>
+			{/if}
 
 			<!-- Resource Status -->
 			<div class="resources-card" class:vault-refreshing={vaultPulsing}>
@@ -1139,5 +1252,80 @@
 	.resource-amount {
 		color: var(--art-deco-bright);
 		font-weight: bold;
+	}
+
+	.phone-boss-card {
+		background: linear-gradient(135deg, #1a1a2e 0%, #0f1a2e 100%);
+		border: 3px solid var(--art-deco-gold);
+		padding: 30px;
+		box-shadow:
+			0 0 0 1px rgba(212, 165, 116, 0.3),
+			inset 0 0 20px rgba(212, 165, 116, 0.05),
+			0 15px 40px rgba(0, 0, 0, 0.6);
+		position: relative;
+		margin-bottom: 20px;
+	}
+
+	.phone-boss-card h2 {
+		margin-top: 0;
+		color: var(--art-deco-bright);
+		border-bottom: 3px double var(--art-deco-gold);
+		padding-bottom: 12px;
+		margin-bottom: 20px;
+		font-size: 1.5em;
+		letter-spacing: 2px;
+		font-family: 'Library-3am', 'Georgia', serif;
+	}
+
+	.phone-boss-card .boss-desc {
+		color: #c0a080;
+		margin: 0 0 15px 0;
+		font-style: italic;
+	}
+
+	.phone-boss-card .boss-btn,
+	.phone-boss-card .hangup-btn {
+		padding: 12px 25px;
+		background: linear-gradient(135deg, var(--art-deco-gold), #b8860b);
+		color: #0d0d1a;
+		border: 2px solid var(--art-deco-bright);
+		font-weight: bold;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		white-space: nowrap;
+		align-self: flex-end;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		box-shadow: 0 4px 15px rgba(212, 165, 116, 0.2);
+		margin-top: 20px;
+		margin-right: 10px;
+	}
+
+	.phone-boss-card .boss-btn:hover,
+	.phone-boss-card .hangup-btn:hover {
+		background: linear-gradient(135deg, var(--art-deco-bright), var(--art-deco-gold));
+		transform: scale(1.05);
+		box-shadow: 0 6px 25px rgba(255, 215, 0, 0.3);
+	}
+
+	.phone-boss-card .call-status {
+		margin-top: 20px;
+		padding: 18px;
+		background: rgba(0, 0, 0, 0.15);
+		border-radius: 8px;
+		border: 1.5px solid var(--art-deco-gold);
+		color: var(--art-deco-bright);
+		font-size: 1.1em;
+	}
+
+	.phone-boss-card .wait-msg {
+		color: #c0a080;
+		font-style: italic;
+		margin: 8px 0 0 0;
+	}
+
+	.phone-boss-card .dialup-emoji {
+		font-size: 1.3em;
+		vertical-align: middle;
 	}
 </style>

@@ -9,7 +9,8 @@ export async function load() {
 		resources: mafiaStore.getAvailableResources(),
 		transactions: mafiaStore.getTransactions(),
 		interestCurve: mafiaStore.getInterestCurveConfig(),
-		marketsClosed: mafiaStore.isMarketsClosed(),
+		marketsClosed: mafiaStore.isMarketsClosed(),	
+			phoneBossEnabled: mafiaStore.getPhoneBossEnabled(),
 	};
 }
 
