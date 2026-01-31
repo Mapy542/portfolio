@@ -17,6 +17,7 @@ export async function load({ cookies }) {
 		transactions: mafiaStore.getTransactions(),
 		llmApiUrl: mafiaStore.getLlmApiUrl(),
 		marketsClosed: mafiaStore.isMarketsClosed(),
+				phoneBossEnabled: mafiaStore.getPhoneBossEnabled(),
 	};
 }
 
@@ -129,5 +130,12 @@ export const actions = {
 			success: true,
 			message: closed ? "Market's closed. No deals today." : 'Market open. Bring the trades.',
 		};
+	},
+
+		setPhoneBoss: async ({ request }) => {
+	  const formData = await request.formData();
+	  const enabled = formData.get('enabled') === 'true';
+	  mafiaStore.setPhoneBossEnabled(enabled);
+	  return { success: true, message: `Phone the Boss is now ${enabled ? 'enabled' : 'disabled'}` };
 	},
 };

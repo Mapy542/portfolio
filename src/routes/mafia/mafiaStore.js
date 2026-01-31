@@ -23,6 +23,9 @@ class MafiaStore {
 	/** @type {boolean} */
 	marketsClosed;
 
+		/** @type {boolean} */
+	phoneBossEnabled;
+
 	constructor() {
 		// Available resources with credit limits
 		this.resourceLimits = {
@@ -94,6 +97,8 @@ class MafiaStore {
 
 		// Market status (when closed, loans cannot be submitted)
 		this.marketsClosed = false;
+
+				this.phoneBossEnabled = false;
 	}
 
 	/**
@@ -301,6 +306,12 @@ class MafiaStore {
 	 */
 	setMarketsClosed(closed) {
 		this.marketsClosed = !!closed;
+	}
+		getPhoneBossEnabled() {
+	  return this.phoneBossEnabled;
+	}
+	setPhoneBossEnabled(val) {
+	  this.phoneBossEnabled = !!val;
 	}
 }
 
