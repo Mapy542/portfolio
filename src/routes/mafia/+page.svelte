@@ -2,6 +2,9 @@
 	import { enhance } from '$app/forms';
 	import { onMount } from 'svelte';
 
+	import dialup from '$lib/audio/dial-up-modem-01.wav';
+	import lobby from '$lib/audio/PROJECTEUR - Astra Vision.mp3';
+
 	/** @type {{resources: Object.<string, number>, transactions: any[], interestCurve: Record<string, { baseRate: number; amplitude: number; decay: number; minRate: number }>}} */
 	export let data;
 	export let form;
@@ -590,14 +593,8 @@
 							<button class="hangup-btn" on:click={hangupPhoneBoss}>Hang Up</button>
 						</div>
 					{/if}
-					<audio bind:this={dialupAudio} src="/src/lib/audio/dial-up-modem-01.wav" preload="auto"
-					></audio>
-					<audio
-						bind:this={elevatorAudio}
-						src="/src/lib/audio/PROJECTEUR - Astra Vision.mp3"
-						preload="auto"
-						loop
-					></audio>
+					<audio bind:this={dialupAudio} src={dialup} preload="auto"></audio>
+					<audio bind:this={elevatorAudio} src={lobby} preload="auto" loop></audio>
 				</div>
 			{:else}
 				<!-- Ask the Boss -->
