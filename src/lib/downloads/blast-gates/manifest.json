@@ -1,8 +1,13 @@
 {
-	"Blast-Gates.zip": {
-		"dateAdded": "2023-05-25",
-		"dateModified": null,
-		"description": "CAD and Manufacturing Files to make the blast-gates.",
-		"thumbnail": "blast-gates/blast-gate.webp"
+	"title": "Blast Gates CAD Files",
+	"desc": "CAD Files to use when manufacturing DIY blast gates",
+	"heroImg": "blast-gates/blast-gate.webp",
+	"content": {
+		"Blast-Gate.zip": {
+			"dateAdded": "2023-05-25",
+			"dateModified": null,
+			"description": "CAD and Manufacturing Files to make the blast-gates.",
+			"thumbnail": "blast-gates/blast-gate.webp"
+		}
 	}
 }

@@ -13,8 +13,7 @@ Dust is a commonly overlooked health issue, both in the home shop and in general
 
 ## Resources
 
-[Tangential Pipe Joint [svg]](/Pipe-Tangential-Joint-Layout.svg)
-[Thein Baffle Wall Template [zip]](/Polycarbonate-Template.zip)
+[Dust Collector Template Files](/downloads/dust-collector)
 
 #% 1,2
 
