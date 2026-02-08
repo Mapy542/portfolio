@@ -122,7 +122,8 @@ Another very important graph is the Safety Factor. This shows how many times ove
 Using the power of Inventors FEA, it’s time to see whether the laser cutter parts are strong enough for their applications.
 
 You can check out the full analysis of the
-[Idler Pulley Bracket](/Stress-Analysis-Report.pdf)
+[Idler Pulley Bracket](/downloads/k400)
+Stress Analysis Report.
 
 So what does this all mean? The first couple of images highlight the constraints and forces. The bolt holes are all held in place, mimicking bolts, and the axle hole has axial and bearing forces applied. This simulates belt tension in the bearing force and tests to ensure the bracket won’t fail if it’s pushed from the side as well.
 

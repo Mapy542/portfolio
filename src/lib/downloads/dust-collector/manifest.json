@@ -1,0 +1,19 @@
+{
+	"title": "Thein Baffle Tangential Joint Layout Files",
+	"desc": "CAD Files to use when cutting the intersection point between the inlet pipe and the baffle.",
+	"heroImg": "dust-separator/baffle.webp",
+	"content": {
+		"Pipe-Tangential-Joint-Layout.svg": {
+			"dateAdded": "2023-05-25",
+			"dateModified": null,
+			"description": "SVG Layout for cutting the tangential joint for the blast-gate pipe adapter.",
+			"thumbnail": ""
+		},
+		"Polycarbonate-Template.zip": {
+			"dateAdded": "2023-05-25",
+			"dateModified": null,
+			"description": "SVG Layout for cutting the tangential joint for the blast-gate pipe adapter.",
+			"thumbnail": ""
+		}
+	}
+}

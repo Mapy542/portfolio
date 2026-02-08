@@ -44,5 +44,14 @@
 		"date": "",
 		"showHeader": true,
 		"showFooter": true
+	},
+	"Downloads": {
+		"date": "",
+		"image": "logo.webp",
+		"description": "Download content and files.",
+		"title": "Downloads",
+		"url": "/downloads",
+		"showHeader": false,
+		"showFooter": true
 	}
 }

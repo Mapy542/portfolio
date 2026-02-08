@@ -1,4 +1,5 @@
 import serverReader from '../../lib/components/DataImport/serverReader.js';
+import downloadsReader from '$lib/components/DataImport/downloadsReader.js';
 import staticMetas from '../../lib/data/staticMeta.json' with {type: "json"};
 import { DOMImplementation, XMLSerializer } from '@xmldom/xmldom';
 
@@ -78,6 +79,38 @@ export const GET=({params})=>{
 
         urlset.appendChild(url);
     }
+
+    //for each download group, add the group page
+    for(const groupName of downloadsReader.groups){
+        const url = doc.createElement("url");
+        const loc = doc.createElement("loc");
+        const leadingTrim = groupName.startsWith("/") ? "" : "/";
+        loc.textContent = rootUrl + leadingTrim + "downloads/" + groupName.replace(" ", "%20"); //add the url of the page
+        url.appendChild(loc);
+        //iterate thorugh the content of the group to find the most recent date
+        let mostRecentDate = null;
+        for(const fileName of Object.keys(downloadsReader.groupedDownloads[groupName].content)){
+            const download = downloadsReader.groupedDownloads[groupName].content[fileName];
+            if(download.dateModified){
+                const date = new Date(download.dateModified);
+                if(mostRecentDate === null || date > mostRecentDate){
+                    mostRecentDate = date;
+                }
+            }else if(download.dateAdded){
+                const date = new Date(download.dateAdded);
+                if(mostRecentDate === null || date > mostRecentDate){
+                    mostRecentDate = date;
+                }
+            }
+        }
+        if(mostRecentDate){
+            const lastmod = doc.createElement("lastmod");
+            lastmod.textContent = mostRecentDate.toISOString();
+            url.appendChild(lastmod);
+        }
+        urlset.appendChild(url);
+    }
+
 
     let serializer = new XMLSerializer();
     let xmlString = serializer.serializeToString(doc);

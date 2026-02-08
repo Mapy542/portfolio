@@ -32,7 +32,7 @@ There are gates that use this design but are more expensive, but there’s a bet
 ## Making Your Own Blast Gate
 
 Download the Inventor part Files, or stl/svgs:
-[Here!](/Blast-Gate.zip)
+[Here!](/downloads/blast-gates/)
 
 ![Blast Gate in CAD](blast-gates/inventor-file.webp)
 

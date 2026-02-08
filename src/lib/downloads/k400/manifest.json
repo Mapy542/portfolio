@@ -1,0 +1,13 @@
+{
+	"title": "K400 Laser Cutter Files",
+	"desc": "Design and manufacture Files for the K400 Laser",
+	"heroImg": "dust-separator/baffle.webp",
+	"content": {
+		"Stress-Analysis-Report.pdf": {
+			"dateAdded": "2023-01-05",
+			"dateModified": null,
+			"description": "An example FEA stress analysis report for a simple volume. Referenced in K400 post 0.1.",
+			"thumbnail": ""
+		}
+	}
+}

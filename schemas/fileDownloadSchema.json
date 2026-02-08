@@ -4,34 +4,53 @@
 	"title": "File Download Manifest",
 	"description": "Root object keyed by file names (no directories) with metadata for download entries.",
 	"type": "object",
-	"patternProperties": {
-		"^[^/\\\\]+\\.[^/\\\\]+$": {
+	"properties": {
+		"title": {
+			"type": "string",
+			"minLength": 1
+		},
+		"heroImg": {
+			"type": "string",
+			"minLength": 1
+		},
+		"desc": {
+			"type": "string",
+			"minLength": 1
+		},
+		"content": {
 			"type": "object",
-			"description": "Metadata for a downloadable file entry keyed by its filename (no slashes).",
-			"required": ["description", "dateAdded", "dateModified"],
-			"properties": {
-				"description": {
-					"type": "string",
-					"minLength": 1
-				},
-				"thumbnail": {
-					"type": "string",
-					"description": "Optional relative path to a thumbnail image.",
-					"pattern": "^(?![A-Za-z]:[\\\\/])(?!/)(?!.*\\0)[^\\0]+$"
-				},
-				"dateAdded": {
-					"type": "string",
-					"format": "date",
-					"description": "ISO-8601 date the entry was added (YYYY-MM-DD)."
-				},
-				"dateModified": {
-					"type": ["string", "null"],
-					"format": "date",
-					"description": "ISO-8601 date the entry was last modified (YYYY-MM-DD)."
+			"patternProperties": {
+				"^[^/\\\\]+\\.[^/\\\\]+$": {
+					"type": "object",
+					"description": "Metadata for a downloadable file entry keyed by its filename (no slashes).",
+					"required": ["description", "dateAdded", "dateModified"],
+					"properties": {
+						"description": {
+							"type": "string",
+							"minLength": 1
+						},
+						"thumbnail": {
+							"type": "string",
+							"description": "Optional relative path to a thumbnail image.",
+							"pattern": "^(?![A-Za-z]:[\\\\/])(?!/)(?!.*\\0)[^\\0]+$"
+						},
+						"dateAdded": {
+							"type": "string",
+							"format": "date",
+							"description": "ISO-8601 date the entry was added (YYYY-MM-DD)."
+						},
+						"dateModified": {
+							"type": ["string", "null"],
+							"format": "date",
+							"description": "ISO-8601 date the entry was last modified (YYYY-MM-DD)."
+						}
+					},
+					"additionalProperties": false
 				}
 			},
 			"additionalProperties": false
 		}
 	},
+	"required": ["title", "hero-img", "desc", "content"],
 	"additionalProperties": false
 }

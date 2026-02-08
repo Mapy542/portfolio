@@ -2,6 +2,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 
 export default {
   plugins: [sveltekit()],
+  assetsInclude: ['$lib/downloads/**/*'],
   build: {
     rollupOptions: {
       external: ['xmldom'],
