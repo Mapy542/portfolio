@@ -34,6 +34,10 @@ class MafiaStore {
 			minerals: 100000,
 			food: 80000,
 			goods: 60000,
+			motes: 15000,
+			gasses: 15000,
+			crystals: 15000,
+			zro: 5000,
 		};
 
 		// Current available amounts
@@ -43,6 +47,10 @@ class MafiaStore {
 			minerals: 100000,
 			food: 80000,
 			goods: 60000,
+			motes: 15000,
+			gasses: 15000,
+			crystals: 15000,
+			zro: 5000,
 		};
 
 		// Exponential curve for interest calculation
@@ -83,6 +91,30 @@ class MafiaStore {
 				baseRate: 0.44,
 				amplitude: 0.34,
 				decay: 0.15,
+				minRate: 0.1,
+			},
+			motes: {
+				baseRate: 0.46,
+				amplitude: 0.36,
+				decay: 0.15,
+				minRate: 0.1,
+			},
+			gasses: {
+				baseRate: 0.46,
+				amplitude: 0.36,
+				decay: 0.15,
+				minRate: 0.1,
+			},
+			crystals: {
+				baseRate: 0.46,
+				amplitude: 0.36,
+				decay: 0.15,
+				minRate: 0.1,
+			},
+			zro: {
+				baseRate: 0.50,
+				amplitude: 0.40,
+				decay: 0.20,
 				minRate: 0.1,
 			},
 		};
