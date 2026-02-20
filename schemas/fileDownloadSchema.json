@@ -51,6 +51,6 @@
 			"additionalProperties": false
 		}
 	},
-	"required": ["title", "hero-img", "desc", "content"],
+	"required": ["title", "heroImg", "desc", "content"],
 	"additionalProperties": false
 }
