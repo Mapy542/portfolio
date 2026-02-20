@@ -4,39 +4,39 @@
 	"heroImg": "satisfactory/posin.webp",
 	"content": {
 		"posin.png": {
-			"dateAdded": "2024-06-01",
+			"dateAdded": "2026-02-17",
 			"dateModified": null,
 			"description": "Infront of the mountains and somersloop. Uncompressed 4k.",
 			"thumbnail": ""
 		},
 		"soomerloop.png": {
-			"dateAdded": "2024-06-01",
+			"dateAdded": "2026-02-17",
 			"dateModified": null,
 			"description": "Soomerloop! Uncompressed 4k.",
 			"thumbnail": ""
 		},
 		"elevator.png": {
-			"dateAdded": "2024-06-01",
+			"dateAdded": "2026-02-17",
 			"dateModified": null,
 			"description": "Space Elevator! Uncompressed 4k.",
 			"thumbnail": ""
 		},
 		"ded.png": {
-			"dateAdded": "2024-06-01",
+			"dateAdded": "2026-02-17",
 			"dateModified": null,
-			"description": "youll have that on those bigger jobs....",
+			"description": "you'll have that on those bigger jobs....",
 			"thumbnail": ""
 		},
 		"centered.png": {
-			"dateAdded": "2024-06-01",
+			"dateAdded": "2026-02-17",
 			"dateModified": null,
-			"description": "Centered version of posing picture. Uncompressed 4k.",
+			"description": "Centered version of posing picture.",
 			"thumbnail": ""
 		},
 		"aroura.png": {
-			"dateAdded": "2024-06-01",
+			"dateAdded": "2026-02-17",
 			"dateModified": null,
-			"description": "Aurora Borealis localized entierly within your kitchen? Uncompressed 4k.",
+			"description": "Aurora Borealis localized entirely within your kitchen?",
 			"thumbnail": ""
 		}
 	}
