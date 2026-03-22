@@ -1,0 +1,19 @@
+{
+	"title": "K400 Laser Cutter Elec Eng Files",
+	"desc": "Design and manufacture Files for the K400 Laser",
+	"heroImg": "laser-overview/far-oput-laser-in-laser.webp",
+	"content": {
+		"Wiring-Schematic.pdf": {
+			"dateAdded": "2026-03-22",
+			"dateModified": null,
+			"description": "The firstwiring schematic for the K400 Laser Cutter. (M2 Nano)",
+			"thumbnail": "laser08/e-schematic.webp"
+		},
+		"SCH_Laser-Cutter_EasyEda.json": {
+			"dateAdded": "2026-03-22",
+			"dateModified": null,
+			"description": "The firstwiring schematic for the K400 Laser Cutter. (M2 Nano) in EasyEDA format.",
+			"thumbnail": "laser08/e-schematic.webp"
+		}
+	}
+}

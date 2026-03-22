@@ -1,0 +1,25 @@
+{
+	"title": "K400 Laser Cutter Mech Eng Files",
+	"desc": "Design and manufacture Files for the K400 Laser",
+	"heroImg": "laser-overview/far-oput-laser-in-laser.webp",
+	"content": {
+		"Stress-Analysis-Report.pdf": {
+			"dateAdded": "2023-01-05",
+			"dateModified": null,
+			"description": "An example FEA stress analysis report for a simple volume. Referenced in K400 post 0.1.",
+			"thumbnail": ""
+		},
+		"Laser-Full-Ipt.zip": {
+			"dateAdded": "2026-03-22",
+			"dateModified": null,
+			"description": "The full design of the laser cutter build in Autodesk Inventor.",
+			"thumbnail": "laser-overview/far-oput-laser-in-laser.webp"
+		},
+		"Laser-Full-obj.zip": {
+			"dateAdded": "2026-03-22",
+			"dateModified": null,
+			"description": "The full design of the laser cutter build in OBJ format.",
+			"thumbnail": "laser-overview/far-oput-laser-in-laser.webp"
+		}
+	}
+}
