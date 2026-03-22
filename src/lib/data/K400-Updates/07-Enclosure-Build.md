@@ -64,6 +64,6 @@ With the enclosure built, all three subsystems can be integrated and mounted in 
 ![](/laser07/raster-test.webm){Raster Test Cut on Finished K400 Laser Cutter}
 _Preliminary Raster Cut on Finished K400 Laser Cutter_
 
-[Next: 0.8 Electronics and Controller](/K400-Updates/08-Electronics-Controller)
+[Next: 0.8 Electronics and Safety Considerations](/K400-Updates/08-Electronics-Safety)
 [Previous: 0.6 Bed Lift Build](/K400-Updates/06-Bed-Lift-Build)
 [Back to Homepage](/k400-home)
