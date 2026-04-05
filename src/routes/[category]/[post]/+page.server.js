@@ -1,5 +1,17 @@
 import serverReader from "../../../lib/components/DataImport/serverReader";
 
+export const prerender = true;
+
+export function entries() {
+    const entries = [];
+    for (const category of Object.keys(serverReader.quickIndex)) {
+        for (const doc of Object.keys(serverReader.quickIndex[category])) {
+            entries.push({ category, post: doc.replace('.md', '') });
+        }
+    }
+    return entries;
+}
+
 /**@type {import('./$types').PageLoad} */
 export async function load({ params }) {
   const category = params.category;

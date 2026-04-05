@@ -57,11 +57,13 @@
 @font-face {
 	font-family: 'Lora-Regular';
 	src: url('$lib/fonts/Lora-Regular.otf');
+	font-display: swap;
 }
 
 @font-face {
 	font-family: 'Coolvetica';
 	src: url('$lib/fonts/coolvetica rg.otf');
+	font-display: swap;
 }
 
 body {

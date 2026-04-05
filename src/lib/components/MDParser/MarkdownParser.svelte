@@ -1,16 +1,10 @@
 <script>
 	import MdGalleryParser from './mdGalleryParser.svelte';
 	import MdCodeParser from './mdCodeParser.svelte';
-	import hljs from 'highlight.js';
 	import 'highlight.js/styles/github.css';
-	import { onMount } from 'svelte';
 
 	export let markdownString = '';
 	let mdPostProcessed = '';
-
-	onMount(() => {
-		hljs.highlightAll();
-	});
 
 	$: {
 		//reactive markdown pre-processor for columns

@@ -12,7 +12,7 @@ export default {
     // Reduce chunk size to prevent too many simultaneous operations
     chunkSizeWarningLimit: 1000,
     // Optimize asset handling
-    assetsInlineLimit: 4096
+    assetsInlineLimit: 10240
   },
   // Increase file watcher limits
   server: {

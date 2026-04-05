@@ -18,8 +18,9 @@ const config = {
 			handleEntryGeneratorMismatch: 'ignore'
 		},
 		output: {
-			preloadStrategy: 'modulepreload'
-		}		
+			preloadStrategy: 'preload-mjs'
+		},
+		inlineStyleThreshold: 10240		
 	}
 };
 

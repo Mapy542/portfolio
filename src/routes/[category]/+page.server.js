@@ -1,6 +1,12 @@
 import serverReader from "../../lib/components/DataImport/serverReader.js";
 import categoryMetaData from "$lib/data/categoriesMeta.json" with {type: "json"};
 
+export const prerender = true;
+
+export function entries() {
+    return serverReader.getCategories().map(category => ({ category }));
+}
+
 /**@type {import('./$types').PageLoad} */
 export async function load({ params }) {
   const category = params.category ?? "";
