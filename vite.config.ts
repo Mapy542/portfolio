@@ -7,15 +7,6 @@ export default {
     rollupOptions: {
       external: ['xmldom'],
       maxParallelFileOps: 5,
-      output: {
-        // Stable (unhashed) filenames for fonts so preload links in app.html stay valid across builds
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.names?.some((n: string) => /\.(otf|woff2?|ttf)$/i.test(n))) {
-            return '_app/immutable/assets/fonts/[name][extname]';
-          }
-          return '_app/immutable/assets/[name]-[hash][extname]';
-        }
-      }
     },
     // Reduce chunk size to prevent too many simultaneous operations
     chunkSizeWarningLimit: 1000,
