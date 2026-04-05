@@ -1,8 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import logo from '$lib/img/logo.webp';
-	import logoInverted from '$lib/img/logo-invert.webp';
+	import logo from '$lib/img/logo.svg';
+	import logoInverted from '$lib/img/logo-invert.svg';
+
+	import sun from '$lib/img/sun-solid-full.svg';
+	import moon from '$lib/img/moon-solid-full.svg';
 
 	export let categories: string[] = [];
 	export let staticPages: any = {};
@@ -110,12 +113,11 @@
 					name="dark-mode toggle"
 				/>
 				<span class="slider round">
-					<icon
-						class={theme === Themes.Light
-							? 'theme-icon fa-solid fa-sun'
-							: 'theme-icon fa-solid fa-moon'}
-					>
-					</icon>
+					<img
+						src={theme === Themes.Light ? sun : moon}
+						alt={theme === Themes.Light ? 'Light mode' : 'Dark mode'}
+						class="theme-icon"
+					/>
 				</span>
 			</label>
 		</div>
@@ -232,9 +234,6 @@
 	input + .slider {
 		align-items: center;
 		justify-content: center;
-		font-family: 'Font Awesome 5 Free';
-		color: #000;
-		font-weight: 600;
 	}
 	input:checked + .slider {
 		background-color: var(--theme-accent);
@@ -246,9 +245,9 @@
 		border-radius: 50dvh;
 	}
 	.theme-icon {
-		font-size: 20cqw;
+		width: 20cqw;
+		height: 20cqw;
 		margin: 10%;
-		color: var(--theme-text-primary);
 		transition: var(--transition-length);
 		transform: translateX(-30cqw);
 	}

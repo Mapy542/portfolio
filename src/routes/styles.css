@@ -56,14 +56,16 @@
 
 @font-face {
 	font-family: 'Lora-Regular';
-	src: url('$lib/fonts/Lora-Regular.otf');
+	src: url('$lib/fonts/Lora-Regular.woff2') format('woff2'),
+		url('$lib/fonts/Lora-Regular.otf') format('opentype');
 	font-display: swap;
 }
 
 @font-face {
 	font-family: 'Coolvetica';
-	src: url('$lib/fonts/coolvetica rg.otf');
-	font-display: swap;
+	src: url('$lib/fonts/coolvetica rg.woff2') format('woff2'),
+		url('$lib/fonts/coolvetica rg.otf') format('opentype');
+	font-display: optional;
 }
 
 body {
