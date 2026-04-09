@@ -24,7 +24,8 @@
 				"Programmed 6-axis and Cartesian robots",
 				"Designed and manufactured robotic cells",
 				"Designed and manufactured EOATs",
-				"Designed safety cages for robotic cells"
+				"Designed safety cages for robotic cells",
+				"Maintained IMM, with heaters, control wiring, power wiring, and robotic integration."
 			]
 		},
 		{
@@ -54,19 +55,19 @@
 		{
 			"category": "Electrical",
 			"skills": [
-				"Circuit Analysis",
-				"Circuit Design",
-				"Digital Logic Design",
 				"PCB/Schematic Design",
+				"Digital Logic Design",
 				"Battery Pack Design",
 				"Embedded Systems",
-				"General Troubleshooting",
 				"Soldering",
 				"SMD Reflow & Rework",
 				"Siglent Oscilloscopes",
 				"Tektronix Oscilloscopes",
 				"Atmel Microcontrollers",
-				"Ethernet & P.O.E."
+				"STM Microcontrollers",
+				"WCH Microcontrollers",
+				"Ethernet & P.O.E.",
+				"BLDC Motor Control"
 			]
 		},
 		{
