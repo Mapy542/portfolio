@@ -7,6 +7,7 @@
 	let mdPostProcessed = '';
 
 	$: {
+		mdPostProcessed = '';
 		//reactive markdown pre-processor for columns
 		let inColumnGroup = false;
 		for (let i = 0; i < markdownString.length; i++) {

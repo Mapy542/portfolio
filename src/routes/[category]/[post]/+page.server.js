@@ -2,23 +2,26 @@ import serverReader from "../../../lib/components/DataImport/serverReader";
 
 export const prerender = true;
 
+const quickIndex = /** @type {Record<string, Record<string, string>>} */ (serverReader.quickIndex ?? {});
+
 export function entries() {
     const entries = [];
-    for (const category of Object.keys(serverReader.quickIndex)) {
-        for (const doc of Object.keys(serverReader.quickIndex[category])) {
+    for (const category of Object.keys(quickIndex)) {
+        for (const doc of Object.keys(quickIndex[category])) {
             entries.push({ category, post: doc.replace('.md', '') });
         }
     }
     return entries;
 }
 
-/**@type {import('./$types').PageLoad} */
+/**@type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
   const category = params.category;
     const post = params.post + ".md"; // Add .md extension to the post name
     let postData = "";
     let postSrc = "";
-    let postMeta = {};
+        /** @type {Record<string, any>} */
+        let postMeta = {};
     try{
         postSrc = serverReader.getDocsSRCfromQuickIndex(category, post);
         if(!postSrc) {
@@ -34,6 +37,7 @@ export async function load({ params }) {
     
 
     return {
+        postKey: `${category}/${params.post}`,
         props: {
             "markdownContent": postData,
             "postMeta": postMeta[postSrc]

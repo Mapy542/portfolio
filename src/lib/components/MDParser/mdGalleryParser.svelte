@@ -9,6 +9,7 @@
 	let dynaGalleryPreProcess: { SRC: string[]; ALT: string[]; captions: string[] }[] = [];
 
 	$: {
+		dynaGalleryPreProcess = [];
 		//reactive markdown pre-processor for galleries
 		let inGallery = false;
 		let index = 0;

@@ -6,6 +6,7 @@
 	export let inColumnCount = '0';
 	export let columnRatio = '.5';
 
+	/** @param {string} str */
 	function hasFileEnding(str) {
 		return /\(.*?\..*?\)/.test(str);
 	}
@@ -57,10 +58,7 @@
 				</p>
 			{:else}
 				<p>
-					<a
-						href={line.split('(')[1].split(')')[0]}
-						data-sveltekit-preload-code
-						data-sveltekit-reload
+					<a href={line.split('(')[1].split(')')[0]} data-sveltekit-preload-code
 						>{line.split('[')[1].split(']')[0]}
 					</a>
 				</p>
