@@ -35,6 +35,6 @@
 		"@sveltejs/adapter-node": "^5.5.4",
 		"highlight": "^0.2.4",
 		"highlight.js": "^11.11.1",
-		"@xmldom/xmldom": "^0.9.9"
+		"@xmldom/xmldom": "^0.9.10"
 	}
 }
