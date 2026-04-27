@@ -154,3 +154,32 @@ _Italic Text_
 
 Note:
 These inline styles can be used anywhere within a line unlike most other features requiring a newline. They do not currently support nesting.
+
+
+# Mermaid
+
+Mermaid diagrams are supported using the `mermaid` language tag in code blocks. Here is an example of how to create a Mermaid diagram:
+It is rendered via the help of the Mermaid Svelte library. There is a significant delay in rendering, causing reflow. Avoid having mermaid diagrams above the fold for better performance in LCP.
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
+Timeline (Journey):
+
+```mermaid
+journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me
+    section Go to sleep
+      Go to bed: 5: Me
+```
