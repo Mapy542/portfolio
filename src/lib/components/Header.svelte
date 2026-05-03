@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
+	import { theme, Themes, type Theme } from '$lib/stores/theme';
 
 	import logo from '$lib/img/logo.svg';
 	import logoInverted from '$lib/img/logo-invert.svg';
@@ -10,23 +11,15 @@
 	export let categories: string[] = [];
 	export let staticPages: any = {};
 
-	const Themes = {
-		Light: 'Light',
-		Dark: 'Dark'
-	} as const;
-	type ThemeKeys = keyof typeof Themes;
-	type Theme = (typeof Themes)[ThemeKeys];
-	let theme: Theme = Themes.Light;
-
 	function changeTheme() {
-		theme = theme == Themes.Light ? Themes.Dark : Themes.Light;
-		localStorage.setItem('theme', theme);
-		updateTheme();
+		theme.update((currentTheme) => (currentTheme === Themes.Light ? Themes.Dark : Themes.Light));
 	}
 
-	function updateTheme() {
+	function updateTheme(currentTheme: Theme) {
+		if (!browser) return;
+
 		const root = window.document.documentElement;
-		if (theme === 'Dark') {
+		if (currentTheme === Themes.Dark) {
 			root.style.setProperty('--theme-text-primary', 'var(--dark-text-primary)');
 			root.style.setProperty('--theme-text-secondary', 'var(--dark-text-secondary)');
 			root.style.setProperty('--theme-text-tertiary', 'var(--dark-text-tertiary)');
@@ -55,15 +48,7 @@
 		}
 	}
 
-	function isTheme(value: unknown): value is Theme {
-		return Object.keys(Themes).includes(String(value));
-	}
-
-	onMount(() => {
-		const value = localStorage.getItem('theme');
-		theme = isTheme(value) ? (value as Theme) : Themes.Dark;
-		updateTheme();
-	});
+	$: updateTheme($theme);
 
 	let showCategories = false;
 	function toggleCategories() {
@@ -75,7 +60,7 @@
 	<div class="header-container">
 		<div class="header-logo">
 			<a href="/" aria-label="Home">
-				<img src={theme == Themes.Dark ? logoInverted : logo} alt="Site logo" class="logo" />
+				<img src={$theme === Themes.Dark ? logoInverted : logo} alt="Site logo" class="logo" />
 			</a>
 		</div>
 
@@ -109,13 +94,13 @@
 				<input
 					type="checkbox"
 					on:change={changeTheme}
-					checked={theme === Themes.Dark}
+					checked={$theme === Themes.Dark}
 					name="dark-mode toggle"
 				/>
 				<span class="slider round">
 					<img
-						src={theme === Themes.Light ? sun : moon}
-						alt={theme === Themes.Light ? 'Light mode' : 'Dark mode'}
+						src={$theme === Themes.Light ? sun : moon}
+						alt={$theme === Themes.Light ? 'Light mode' : 'Dark mode'}
 						class="theme-icon"
 					/>
 				</span>

@@ -32,9 +32,10 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@friendofsvelte/mermaid": "^0.0.4",
 		"@sveltejs/adapter-node": "^5.5.4",
+		"@xmldom/xmldom": "^0.9.10",
 		"highlight": "^0.2.4",
-		"highlight.js": "^11.11.1",
-		"@xmldom/xmldom": "^0.9.10"
+		"highlight.js": "^11.11.1"
 	}
 }
