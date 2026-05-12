@@ -32,10 +32,13 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@xyflow/svelte": "^1.2.6",
 		"@friendofsvelte/mermaid": "^0.0.4",
 		"@sveltejs/adapter-node": "^5.5.4",
 		"@xmldom/xmldom": "^0.9.10",
 		"highlight": "^0.2.4",
-		"highlight.js": "^11.11.1"
+		"highlight.js": "^11.11.1",
+		"plotly.js-dist-min": "^3.1.2",
+		"zod": "^4.1.12"
 	}
 }

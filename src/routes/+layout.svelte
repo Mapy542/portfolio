@@ -1,4 +1,5 @@
 <script>
+	import { page } from '$app/stores';
 	import Header from '../lib/components/Header.svelte';
 	import './styles.css';
 	import './columns.css';
@@ -11,7 +12,7 @@
 <div class="app">
 	<Header categories={data.props.categories} staticPages={data.props.staticPages} />
 
-	<main>
+	<main class:main--full-width={$page.url.pathname.startsWith('/signal-sim')}>
 		<slot />
 	</main>
 
@@ -38,14 +39,29 @@
 		box-sizing: border-box;
 	}
 
+	main.main--full-width {
+		width: 100%;
+		max-width: none;
+		margin: 0;
+		padding: 1rem clamp(0.75rem, 1.5vw, 1.5rem);
+	}
+
 	@media (min-width: 768px) {
 		main {
 			width: 70vw;
+		}
+
+		main.main--full-width {
+			width: 100%;
 		}
 	}
 	@media (max-width: 768px) {
 		main {
 			width: 95vw;
+		}
+
+		main.main--full-width {
+			width: 100%;
 		}
 	}
 </style>

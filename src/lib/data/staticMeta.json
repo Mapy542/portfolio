@@ -36,6 +36,15 @@
 		"showHeader": true,
 		"showFooter": true
 	},
+	"Signal Sim": {
+		"url": "/signal-sim",
+		"title": "Signal Sim",
+		"description": "A signal flow diagram editor and simulator.",
+		"image": "signal-sim/signal-sim.webp",
+		"date": "5/11/2026",
+		"showHeader": true,
+		"showFooter": true
+	},
 	"Search": {
 		"url": "/search",
 		"title": "Search",
