@@ -40,7 +40,7 @@
 		"url": "/signal-sim",
 		"title": "Signal Sim",
 		"description": "A signal flow diagram editor and simulator.",
-		"image": "signal-sim/signal-sim.webp",
+		"image": "signal-sim/sim-overview.webp",
 		"date": "5/11/2026",
 		"showHeader": true,
 		"showFooter": true
