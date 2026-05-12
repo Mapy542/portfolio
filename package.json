@@ -18,6 +18,7 @@
 		"@sveltejs/kit": "^2.59.1",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@types/eslint": "^9.6.1",
+		"@types/node": "^25.7.0",
 		"eslint": "^10.3.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.17.1",
@@ -32,12 +33,13 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@xyflow/svelte": "^1.2.6",
 		"@friendofsvelte/mermaid": "^0.0.4",
 		"@sveltejs/adapter-node": "^5.5.4",
 		"@xmldom/xmldom": "^0.9.10",
+		"@xyflow/svelte": "^1.2.6",
 		"highlight": "^0.2.4",
 		"highlight.js": "^11.11.1",
+		"lz-string": "^1.5.0",
 		"plotly.js-dist-min": "^3.1.2",
 		"zod": "^4.1.12"
 	}

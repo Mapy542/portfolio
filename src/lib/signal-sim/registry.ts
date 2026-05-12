@@ -1100,9 +1100,9 @@ export function createOutputDefinition(
 export function createExampleProjectDocument(): ProjectDocument {
 	const project = createEmptyProjectDocument('FOC Position Servo Demo');
 	project.meta.description =
-		'Cascaded position, velocity, and d/q current PI loops with encoder feedback, route-pin wire organization, inverse transforms, and kinematics-derived load torque.';
+		'Cascaded multirate position, velocity, and d/q current control with explicit 1/E delays, sampled outer loops, route-pin wire organization, inverse transforms, and kinematics-derived load torque.';
 	project.simulation.duration = 4;
-	project.simulation.stepSize = 0.0005;
+	project.simulation.stepSize = 0.0001;
 
 	const connect = (
 		source: SimulatorNodeDocument,
@@ -1129,71 +1129,89 @@ export function createExampleProjectDocument(): ProjectDocument {
 		return node;
 	};
 
+	const currentLoopStep = project.simulation.stepSize;
+	const velocityLoopStep = currentLoopStep * 5;
+	const positionLoopStep = velocityLoopStep * 5;
+	const velocityDelaySteps = Math.round(velocityLoopStep / currentLoopStep);
+	const positionDelaySteps = Math.round(positionLoopStep / currentLoopStep);
+
 	const positionReference = createNodeFromBlock('step-source', { x: 40, y: 60 });
-	const positionError = createNodeFromBlock('sum', { x: 300, y: 60 });
-	const positionKp = createNodeFromBlock('gain', { x: 560, y: 0 });
-	const positionKi = createNodeFromBlock('gain', { x: 560, y: 120 });
-	const positionIntegrator = createNodeFromBlock('integrator', { x: 820, y: 120 });
-	const positionControl = createNodeFromBlock('sum', { x: 1080, y: 60 });
-	const positionClamp = createNodeFromBlock('signal-clamp', { x: 1340, y: 60 });
+	const positionReferenceSample = createNodeFromBlock('zero-order-hold', { x: 260, y: 0 });
+	const positionMeasuredSample = createNodeFromBlock('zero-order-hold', { x: 260, y: 140 });
+	const positionError = createNodeFromBlock('sum', { x: 520, y: 70 });
+	const positionKp = createNodeFromBlock('gain', { x: 780, y: 0 });
+	const positionKi = createNodeFromBlock('gain', { x: 780, y: 140 });
+	const positionIntegralDelay = createNodeFromBlock('sample-delay', { x: 1040, y: 240 });
+	const positionIntegralSum = createNodeFromBlock('sum', { x: 1040, y: 140 });
+	const positionControl = createNodeFromBlock('sum', { x: 1300, y: 70 });
+	const positionClamp = createNodeFromBlock('signal-clamp', { x: 1560, y: 70 });
 
-	const velocityError = createNodeFromBlock('sum', { x: 300, y: 260 });
-	const velocityKp = createNodeFromBlock('gain', { x: 560, y: 200 });
-	const velocityKi = createNodeFromBlock('gain', { x: 560, y: 320 });
-	const velocityIntegrator = createNodeFromBlock('integrator', { x: 820, y: 320 });
-	const velocityControl = createNodeFromBlock('sum', { x: 1080, y: 260 });
-	const velocityClamp = createNodeFromBlock('signal-clamp', { x: 1340, y: 260 });
+	const velocityReferenceSample = createNodeFromBlock('zero-order-hold', { x: 260, y: 430 });
+	const velocityMeasuredSample = createNodeFromBlock('zero-order-hold', { x: 260, y: 570 });
+	const velocityError = createNodeFromBlock('sum', { x: 520, y: 500 });
+	const velocityKp = createNodeFromBlock('gain', { x: 780, y: 430 });
+	const velocityKi = createNodeFromBlock('gain', { x: 780, y: 570 });
+	const velocityIntegralDelay = createNodeFromBlock('sample-delay', { x: 1040, y: 670 });
+	const velocityIntegralSum = createNodeFromBlock('sum', { x: 1040, y: 570 });
+	const velocityControl = createNodeFromBlock('sum', { x: 1300, y: 500 });
+	const velocityClamp = createNodeFromBlock('signal-clamp', { x: 1560, y: 500 });
 
-	const directAxisReference = createNodeFromBlock('step-source', { x: 40, y: 500 });
-	const directAxisError = createNodeFromBlock('sum', { x: 300, y: 500 });
-	const directAxisKp = createNodeFromBlock('gain', { x: 560, y: 440 });
-	const directAxisKi = createNodeFromBlock('gain', { x: 560, y: 560 });
-	const directAxisIntegrator = createNodeFromBlock('integrator', { x: 820, y: 560 });
-	const directAxisControl = createNodeFromBlock('sum', { x: 1080, y: 500 });
-	const directAxisClamp = createNodeFromBlock('signal-clamp', { x: 1340, y: 500 });
+	const directAxisReference = createNodeFromBlock('step-source', { x: 40, y: 860 });
+	const directAxisError = createNodeFromBlock('sum', { x: 300, y: 860 });
+	const directAxisKp = createNodeFromBlock('gain', { x: 560, y: 800 });
+	const directAxisKi = createNodeFromBlock('gain', { x: 560, y: 920 });
+	const directAxisIntegrator = createNodeFromBlock('integrator', { x: 820, y: 920 });
+	const directAxisControl = createNodeFromBlock('sum', { x: 1080, y: 860 });
+	const directAxisClamp = createNodeFromBlock('signal-clamp', { x: 1340, y: 860 });
 
-	const torqueAxisError = createNodeFromBlock('sum', { x: 300, y: 700 });
-	const torqueAxisKp = createNodeFromBlock('gain', { x: 560, y: 640 });
-	const torqueAxisKi = createNodeFromBlock('gain', { x: 560, y: 760 });
-	const torqueAxisIntegrator = createNodeFromBlock('integrator', { x: 820, y: 760 });
-	const torqueAxisControl = createNodeFromBlock('sum', { x: 1080, y: 700 });
-	const torqueAxisClamp = createNodeFromBlock('signal-clamp', { x: 1340, y: 700 });
+	const torqueAxisError = createNodeFromBlock('sum', { x: 300, y: 1060 });
+	const torqueAxisKp = createNodeFromBlock('gain', { x: 560, y: 1000 });
+	const torqueAxisKi = createNodeFromBlock('gain', { x: 560, y: 1120 });
+	const torqueAxisIntegrator = createNodeFromBlock('integrator', { x: 820, y: 1120 });
+	const torqueAxisControl = createNodeFromBlock('sum', { x: 1080, y: 1060 });
+	const torqueAxisClamp = createNodeFromBlock('signal-clamp', { x: 1340, y: 1060 });
 
-	const inversePark = createNodeFromBlock('inverse-park', { x: 1600, y: 600 });
-	const inverseClarke = createNodeFromBlock('inverse-clarke', { x: 1860, y: 600 });
-	const motor = createNodeFromBlock('inverter-bldc', { x: 2140, y: 560 });
-	const encoder = createNodeFromBlock('encoder', { x: 2440, y: 260 });
-	const clarke = createNodeFromBlock('clarke', { x: 1860, y: 900 });
-	const park = createNodeFromBlock('park', { x: 1600, y: 900 });
-	const frictionGain = createNodeFromBlock('gain', { x: 2140, y: 840 });
-	const accelerationGain = createNodeFromBlock('gain', { x: 2140, y: 980 });
-	const loadSum = createNodeFromBlock('sum', { x: 2440, y: 900 });
+	const inversePark = createNodeFromBlock('inverse-park', { x: 1600, y: 960 });
+	const inverseClarke = createNodeFromBlock('inverse-clarke', { x: 1860, y: 960 });
+	const motor = createNodeFromBlock('inverter-bldc', { x: 2140, y: 920 });
+	const encoder = createNodeFromBlock('encoder', { x: 2440, y: 620 });
+	const clarke = createNodeFromBlock('clarke', { x: 1860, y: 1260 });
+	const park = createNodeFromBlock('park', { x: 1600, y: 1260 });
+	const frictionGain = createNodeFromBlock('gain', { x: 2140, y: 1200 });
+	const accelerationGain = createNodeFromBlock('gain', { x: 2140, y: 1340 });
+	const loadSum = createNodeFromBlock('sum', { x: 2440, y: 1260 });
 
-	const positionFeedbackRouteRight = createRoutePin('Pos Feedback R', { x: 2260, y: 120 });
-	const positionFeedbackRouteLeft = createRoutePin('Pos Feedback L', { x: 180, y: 120 });
-	const velocityReferenceRouteRight = createRoutePin('Vel Ref R', { x: 1480, y: 240 });
-	const velocityReferenceRouteLeft = createRoutePin('Vel Ref L', { x: 180, y: 240 });
-	const velocityFeedbackRouteRight = createRoutePin('Vel Feedback R', { x: 2260, y: 340 });
-	const velocityFeedbackRouteLeft = createRoutePin('Vel Feedback L', { x: 180, y: 340 });
-	const qReferenceRouteRight = createRoutePin('Iq Ref R', { x: 1480, y: 640 });
-	const qReferenceRouteLeft = createRoutePin('Iq Ref L', { x: 180, y: 640 });
-	const dFeedbackRouteRight = createRoutePin('Id Feedback R', { x: 1480, y: 560 });
-	const dFeedbackRouteLeft = createRoutePin('Id Feedback L', { x: 180, y: 560 });
-	const qFeedbackRouteRight = createRoutePin('Iq Feedback R', { x: 1480, y: 760 });
-	const qFeedbackRouteLeft = createRoutePin('Iq Feedback L', { x: 180, y: 760 });
+	const positionFeedbackRouteRight = createRoutePin('Pos Feedback R', { x: 2260, y: 190 });
+	const positionFeedbackRouteLeft = createRoutePin('Pos Feedback L', { x: 180, y: 190 });
+	const velocityReferenceRouteRight = createRoutePin('Vel Ref R', { x: 1740, y: 280 });
+	const velocityReferenceRouteLeft = createRoutePin('Vel Ref L', { x: 180, y: 430 });
+	const velocityFeedbackRouteRight = createRoutePin('Vel Feedback R', { x: 2260, y: 610 });
+	const velocityFeedbackRouteLeft = createRoutePin('Vel Feedback L', { x: 180, y: 610 });
+	const qReferenceRouteRight = createRoutePin('Iq Ref R', { x: 1740, y: 710 });
+	const qReferenceRouteLeft = createRoutePin('Iq Ref L', { x: 180, y: 1060 });
+	const dFeedbackRouteRight = createRoutePin('Id Feedback R', { x: 1480, y: 930 });
+	const dFeedbackRouteLeft = createRoutePin('Id Feedback L', { x: 180, y: 930 });
+	const qFeedbackRouteRight = createRoutePin('Iq Feedback R', { x: 1480, y: 1130 });
+	const qFeedbackRouteLeft = createRoutePin('Iq Feedback L', { x: 180, y: 1130 });
 
 	if (
 		!positionReference ||
+		!positionReferenceSample ||
+		!positionMeasuredSample ||
 		!positionError ||
 		!positionKp ||
 		!positionKi ||
-		!positionIntegrator ||
+		!positionIntegralDelay ||
+		!positionIntegralSum ||
 		!positionControl ||
 		!positionClamp ||
+		!velocityReferenceSample ||
+		!velocityMeasuredSample ||
 		!velocityError ||
 		!velocityKp ||
 		!velocityKi ||
-		!velocityIntegrator ||
+		!velocityIntegralDelay ||
+		!velocityIntegralSum ||
 		!velocityControl ||
 		!velocityClamp ||
 		!directAxisReference ||
@@ -1235,17 +1253,23 @@ export function createExampleProjectDocument(): ProjectDocument {
 	}
 
 	positionReference.label = 'Position Ref';
+	positionReferenceSample.label = 'Position Ref Sample';
+	positionMeasuredSample.label = 'Position Feedback Sample';
 	positionError.label = 'Position Error';
 	positionKp.label = 'Position Kp';
-	positionKi.label = 'Position Ki';
-	positionIntegrator.label = 'Position Integral';
+	positionKi.label = 'Position KiTs';
+	positionIntegralDelay.label = 'Position 1/E';
+	positionIntegralSum.label = 'Position Integral Sum';
 	positionControl.label = 'Position PI Sum';
 	positionClamp.label = 'Velocity Ref Clamp';
 
+	velocityReferenceSample.label = 'Velocity Ref Sample';
+	velocityMeasuredSample.label = 'Velocity Feedback Sample';
 	velocityError.label = 'Velocity Error';
 	velocityKp.label = 'Velocity Kp';
-	velocityKi.label = 'Velocity Ki';
-	velocityIntegrator.label = 'Velocity Integral';
+	velocityKi.label = 'Velocity KiTs';
+	velocityIntegralDelay.label = 'Velocity 1/E';
+	velocityIntegralSum.label = 'Velocity Integral Sum';
 	velocityControl.label = 'Velocity PI Sum';
 	velocityClamp.label = 'Iq Ref Clamp';
 
@@ -1277,16 +1301,26 @@ export function createExampleProjectDocument(): ProjectDocument {
 	positionReference.parameters.initialValue = 0;
 	positionReference.parameters.finalValue = 0.18;
 	positionReference.parameters.stepTime = 0.4;
+	positionReferenceSample.parameters.samplePeriod = positionLoopStep;
+	positionMeasuredSample.parameters.samplePeriod = positionLoopStep;
 	positionError.parameters.operation = 'subtract';
 	positionKp.parameters.gain = 8;
-	positionKi.parameters.gain = 1.2;
+	positionKi.parameters.gain = 1.2 * positionLoopStep;
+	positionIntegralDelay.parameters.steps = positionDelaySteps;
+	positionIntegralDelay.parameters.initialValue = 0;
+	positionIntegralSum.parameters.operation = 'add';
 	positionControl.parameters.operation = 'add';
 	positionClamp.parameters.min = -2.5;
 	positionClamp.parameters.max = 2.5;
 
+	velocityReferenceSample.parameters.samplePeriod = velocityLoopStep;
+	velocityMeasuredSample.parameters.samplePeriod = velocityLoopStep;
 	velocityError.parameters.operation = 'subtract';
 	velocityKp.parameters.gain = 0.9;
-	velocityKi.parameters.gain = 2.5;
+	velocityKi.parameters.gain = 2.5 * velocityLoopStep;
+	velocityIntegralDelay.parameters.steps = velocityDelaySteps;
+	velocityIntegralDelay.parameters.initialValue = 0;
+	velocityIntegralSum.parameters.operation = 'add';
 	velocityControl.parameters.operation = 'add';
 	velocityClamp.parameters.min = -1.8;
 	velocityClamp.parameters.max = 1.8;
@@ -1318,7 +1352,7 @@ export function createExampleProjectDocument(): ProjectDocument {
 	motor.parameters.coulombFriction = 0.02;
 	motor.parameters.constantLoadTorque = 0.04;
 	encoder.parameters.countsPerUnit = 2048;
-	encoder.parameters.samplePeriod = 0.001;
+	encoder.parameters.samplePeriod = currentLoopStep;
 	encoder.parameters.polePairs = 4;
 	frictionGain.parameters.gain = 0.12;
 	accelerationGain.parameters.gain = 0.01;
@@ -1326,16 +1360,22 @@ export function createExampleProjectDocument(): ProjectDocument {
 
 	project.nodes = [
 		positionReference,
+		positionReferenceSample,
+		positionMeasuredSample,
 		positionError,
 		positionKp,
 		positionKi,
-		positionIntegrator,
+		positionIntegralDelay,
+		positionIntegralSum,
 		positionControl,
 		positionClamp,
+		velocityReferenceSample,
+		velocityMeasuredSample,
 		velocityError,
 		velocityKp,
 		velocityKi,
-		velocityIntegrator,
+		velocityIntegralDelay,
+		velocityIntegralSum,
 		velocityControl,
 		velocityClamp,
 		directAxisReference,
@@ -1375,23 +1415,29 @@ export function createExampleProjectDocument(): ProjectDocument {
 	];
 
 	project.edges = [
-		connect(positionReference, 'out', positionError, 'a', 'pos_ref'),
+		connect(positionReference, 'out', positionReferenceSample, 'in', 'pos_ref_src'),
+		connect(positionReferenceSample, 'out', positionError, 'a', 'pos_ref'),
 		connect(positionError, 'out', positionKp, 'in', 'pos_err_p'),
 		connect(positionError, 'out', positionKi, 'in', 'pos_err_i'),
-		connect(positionKi, 'out', positionIntegrator, 'in', 'pos_int_rate'),
+		connect(positionIntegralDelay, 'out', positionIntegralSum, 'a', 'pos_i_prev'),
+		connect(positionKi, 'out', positionIntegralSum, 'b', 'pos_i_step'),
+		connect(positionIntegralSum, 'out', positionIntegralDelay, 'in', 'pos_i_state'),
 		connect(positionKp, 'out', positionControl, 'a', 'pos_p'),
-		connect(positionIntegrator, 'out', positionControl, 'b', 'pos_i'),
+		connect(positionIntegralSum, 'out', positionControl, 'b', 'pos_i'),
 		connect(positionControl, 'out', positionClamp, 'in', 'vel_ref_raw'),
 
 		connect(positionClamp, 'out', velocityReferenceRouteRight, 'in', 'vel_ref_bus_r'),
 		connect(velocityReferenceRouteRight, 'out', velocityReferenceRouteLeft, 'in', 'vel_ref_bus'),
-		connect(velocityReferenceRouteLeft, 'out', velocityError, 'a', 'vel_ref'),
+		connect(velocityReferenceRouteLeft, 'out', velocityReferenceSample, 'in', 'vel_ref_hold_src'),
+		connect(velocityReferenceSample, 'out', velocityError, 'a', 'vel_ref'),
 
 		connect(velocityError, 'out', velocityKp, 'in', 'vel_err_p'),
 		connect(velocityError, 'out', velocityKi, 'in', 'vel_err_i'),
-		connect(velocityKi, 'out', velocityIntegrator, 'in', 'vel_int_rate'),
+		connect(velocityIntegralDelay, 'out', velocityIntegralSum, 'a', 'vel_i_prev'),
+		connect(velocityKi, 'out', velocityIntegralSum, 'b', 'vel_i_step'),
+		connect(velocityIntegralSum, 'out', velocityIntegralDelay, 'in', 'vel_i_state'),
 		connect(velocityKp, 'out', velocityControl, 'a', 'vel_p'),
-		connect(velocityIntegrator, 'out', velocityControl, 'b', 'vel_i'),
+		connect(velocityIntegralSum, 'out', velocityControl, 'b', 'vel_i'),
 		connect(velocityControl, 'out', velocityClamp, 'in', 'iq_ref_raw'),
 
 		connect(velocityClamp, 'out', qReferenceRouteRight, 'in', 'iq_ref_bus_r'),
@@ -1440,13 +1486,15 @@ export function createExampleProjectDocument(): ProjectDocument {
 		connect(motor, 'pos', encoder, 'pos', 'pos'),
 		connect(motor, 'vel', encoder, 'vel', 'vel'),
 
-		connect(encoder, 'pos', positionFeedbackRouteRight, 'in', 'pos_fb_r'),
+		connect(motor, 'pos', positionFeedbackRouteRight, 'in', 'pos_fb_r'),
 		connect(positionFeedbackRouteRight, 'out', positionFeedbackRouteLeft, 'in', 'pos_fb_bus'),
-		connect(positionFeedbackRouteLeft, 'out', positionError, 'b', 'pos_meas'),
+		connect(positionFeedbackRouteLeft, 'out', positionMeasuredSample, 'in', 'pos_sample_src'),
+		connect(positionMeasuredSample, 'out', positionError, 'b', 'pos_meas'),
 
-		connect(encoder, 'vel', velocityFeedbackRouteRight, 'in', 'vel_fb_r'),
+		connect(motor, 'vel', velocityFeedbackRouteRight, 'in', 'vel_fb_r'),
 		connect(velocityFeedbackRouteRight, 'out', velocityFeedbackRouteLeft, 'in', 'vel_fb_bus'),
-		connect(velocityFeedbackRouteLeft, 'out', velocityError, 'b', 'vel_meas'),
+		connect(velocityFeedbackRouteLeft, 'out', velocityMeasuredSample, 'in', 'vel_sample_src'),
+		connect(velocityMeasuredSample, 'out', velocityError, 'b', 'vel_meas'),
 
 		connect(motor, 'vel', frictionGain, 'in', 'friction'),
 		connect(motor, 'accel', accelerationGain, 'in', 'mass'),

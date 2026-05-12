@@ -99,7 +99,7 @@ function formatCompactGlyph(node: SimulatorNodeDocument): string {
 	return definition.shortLabel;
 }
 
-function toFlowNode(node: SimulatorNodeDocument): SignalFlowNode {
+function toFlowNode(node: SimulatorNodeDocument, selectedNodeId: string | null): SignalFlowNode {
 	const definition = getBlockDefinition(node.blockType);
 
 	if (!definition) {
@@ -125,6 +125,7 @@ function toFlowNode(node: SimulatorNodeDocument): SignalFlowNode {
 			parameterSummary: formatParameterSummary(node),
 			supportsState: definition.supportsState
 		},
+		selected: node.id === selectedNodeId,
 		focusable: true,
 		deletable: true,
 		selectable: true,
@@ -132,11 +133,17 @@ function toFlowNode(node: SimulatorNodeDocument): SignalFlowNode {
 	};
 }
 
-export function toFlowNodes(nodes: SimulatorNodeDocument[]): SignalFlowNode[] {
-	return nodes.map(toFlowNode);
+export function toFlowNodes(
+	nodes: SimulatorNodeDocument[],
+	selectedNodeId: string | null = null
+): SignalFlowNode[] {
+	return nodes.map((node) => toFlowNode(node, selectedNodeId));
 }
 
-export function toFlowEdges(edges: SimulatorEdgeDocument[]): SignalFlowEdge[] {
+export function toFlowEdges(
+	edges: SimulatorEdgeDocument[],
+	selectedEdgeId: string | null = null
+): SignalFlowEdge[] {
 	return edges.map((edge) => ({
 		id: edge.id,
 		source: edge.source,
@@ -146,6 +153,7 @@ export function toFlowEdges(edges: SimulatorEdgeDocument[]): SignalFlowEdge[] {
 		label: edge.label,
 		type: 'smoothstep',
 		markerEnd: { type: MarkerType.ArrowClosed },
+		selected: edge.id === selectedEdgeId,
 		data: {
 			sourcePortId: edge.sourcePortId,
 			targetPortId: edge.targetPortId

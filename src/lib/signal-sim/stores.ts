@@ -338,24 +338,24 @@ export function createSignalSimEditorStore(initialProject = createExampleProject
 
 	function addBlock(blockType: string, position?: XYPosition): SimulatorNodeDocument | null {
 		let createdNode: SimulatorNodeDocument | null = null;
+		let createdNodeId: string | null = null;
 
 		applyProjectUpdate((draft) => {
 			createdNode = createNodeFromBlock(blockType, position ?? buildDefaultPosition(draft.nodes.length));
 
 			if (createdNode) {
 				draft.nodes.push(createdNode);
+				createdNodeId = createdNode.id;
 			}
 
 			return draft;
 		});
 
-		const nextCreatedNode = createdNode;
-
-		if (nextCreatedNode) {
-			selection.set({ kind: 'node', id: nextCreatedNode.id });
+		if (createdNodeId) {
+			selection.set({ kind: 'node', id: createdNodeId });
 		}
 
-		return nextCreatedNode;
+		return createdNode;
 	}
 
 	function addConnection(connection: Connection) {

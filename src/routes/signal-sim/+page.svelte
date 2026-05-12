@@ -8,7 +8,8 @@
 		type Connection
 	} from '@xyflow/svelte';
 	import '@xyflow/svelte/dist/style.css';
-	import { onDestroy } from 'svelte';
+	import { onDestroy, onMount, tick } from 'svelte';
+	import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from 'lz-string';
 
 	import BlockNode from '$lib/components/signal-sim/BlockNode.svelte';
 	import SignalPlot from '$lib/components/signal-sim/SignalPlot.svelte';
@@ -76,12 +77,20 @@
 	let paletteCollapsed = false;
 	let inspectorCollapsed = false;
 	let loadError = '';
+	let shareStatus = '';
+	let shareDialogOpen = false;
+	let shareDialogUrl = '';
+	let shareDialogStatus = '';
+	let shareDialogField: HTMLTextAreaElement | null = null;
 	let pendingCsvImportTarget: { nodeId: string; parameterKey: string } | null = null;
 	let animationFrame = 0;
 	let lastAnimationTimestamp = 0;
+	let autoRunTimeout: ReturnType<typeof setTimeout> | null = null;
 
-	$: flowNodes = toFlowNodes($project.nodes);
-	$: flowEdges = toFlowEdges($project.edges);
+	const AUTO_RUN_DELAY_MS = 1000;
+
+	$: flowNodes = toFlowNodes($project.nodes, $selection?.kind === 'node' ? $selection.id : null);
+	$: flowEdges = toFlowEdges($project.edges, $selection?.kind === 'edge' ? $selection.id : null);
 	$: selectedDefinition = $selectedNode ? getBlockDefinition($selectedNode.blockType) : null;
 	$: simulationSeriesByKey = new Map(
 		($simulationResult?.series ?? []).map((series) => [series.key, series])
@@ -109,6 +118,45 @@
 			.trim()
 			.replace(/[^a-z0-9]+/g, '-')
 			.replace(/^-+|-+$/g, '');
+	}
+
+	function decodeLegacyProjectFromUri(value: string): string {
+		const normalized = value.replace(/-/g, '+').replace(/_/g, '/');
+		const paddingLength = (4 - (normalized.length % 4 || 4)) % 4;
+		const decodedBinary = atob(`${normalized}${'='.repeat(paddingLength)}`);
+		const decodedBytes = Uint8Array.from(decodedBinary, (character) => character.charCodeAt(0));
+		return new TextDecoder().decode(decodedBytes);
+	}
+
+	function encodeProjectForUri(value: string): string {
+		return `lz:${compressToEncodedURIComponent(value)}`;
+	}
+
+	function decodeProjectFromUri(value: string): string {
+		if (value.startsWith('lz:')) {
+			const decoded = decompressFromEncodedURIComponent(value.slice(3));
+
+			if (decoded === null) {
+				throw new Error('The shared project URL is invalid or truncated.');
+			}
+
+			return decoded;
+		}
+
+		return decodeLegacyProjectFromUri(value);
+	}
+
+	function getEncodedProjectFromUri(): string | null {
+		const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+		return hashParams.get('project');
+	}
+
+	function buildProjectUri(encodedProject: string): string {
+		const shareUrl = new URL(window.location.href);
+		const hashParams = new URLSearchParams(shareUrl.hash.replace(/^#/, ''));
+		hashParams.set('project', encodedProject);
+		shareUrl.hash = hashParams.toString();
+		return shareUrl.toString();
 	}
 
 	function formatTime(value: number): string {
@@ -197,6 +245,35 @@
 		}
 	}
 
+	function cancelAutoRun() {
+		if (autoRunTimeout !== null) {
+			clearTimeout(autoRunTimeout);
+			autoRunTimeout = null;
+		}
+	}
+
+	async function runSimulationSoon(projectStamp: string) {
+		autoRunTimeout = null;
+
+		if ($project.meta.updatedAt !== projectStamp || !$needsRun || $runState === 'compiling') {
+			return;
+		}
+
+		setPlaying(false);
+		await runSimulation(true);
+	}
+
+	$: if (typeof window !== 'undefined') {
+		const projectStamp = $project.meta.updatedAt;
+		cancelAutoRun();
+
+		if ($needsRun && $runState !== 'compiling') {
+			autoRunTimeout = setTimeout(() => {
+				void runSimulationSoon(projectStamp);
+			}, AUTO_RUN_DELAY_MS);
+		}
+	}
+
 	function rerunSimulation() {
 		setPlaying(false);
 		void runSimulation(true);
@@ -204,7 +281,12 @@
 
 	onDestroy(() => {
 		cancelPlayback();
+		cancelAutoRun();
 		destroy();
+	});
+
+	onMount(() => {
+		loadProjectFromUri({ quietIfMissing: true });
 	});
 
 	function updateSimulationField(
@@ -312,10 +394,6 @@
 			setSelection({ kind: 'edge', id: edges[0].id });
 			return;
 		}
-
-		if (nodes.length === 0 && edges.length === 0) {
-			setSelection(null);
-		}
 	}
 
 	function jumpToStart() {
@@ -334,6 +412,88 @@
 		URL.revokeObjectURL(url);
 	}
 
+	function loadProjectFromUri(options: { quietIfMissing?: boolean } = {}): boolean {
+		const encodedProject = getEncodedProjectFromUri();
+
+		if (!encodedProject) {
+			if (!options.quietIfMissing) {
+				loadError = 'No shared simulator project was found in the current URL.';
+			}
+			shareStatus = '';
+			return false;
+		}
+
+		try {
+			replaceProjectDocument(parseProjectDocumentJson(decodeProjectFromUri(encodedProject)));
+			loadError = '';
+			shareDialogOpen = false;
+			shareDialogStatus = '';
+			shareStatus = 'Loaded project from shared link.';
+			return true;
+		} catch (error) {
+			loadError =
+				error instanceof Error
+					? error.message
+					: 'The project embedded in this URL could not be decoded.';
+			shareStatus = '';
+			return false;
+		}
+	}
+
+	function closeShareProjectDialog() {
+		shareDialogOpen = false;
+		shareDialogStatus = '';
+	}
+
+	async function openShareProjectDialog() {
+		try {
+			const encodedProject = encodeProjectForUri(serializeProjectDocument($project));
+			shareDialogUrl = buildProjectUri(encodedProject);
+			shareDialogStatus =
+				shareDialogUrl.length > 12000
+					? 'This compressed URL is still large and may exceed some browser limits.'
+					: 'This compressed URL is ready to copy.';
+			shareDialogOpen = true;
+			loadError = '';
+			await tick();
+			shareDialogField?.focus();
+			shareDialogField?.select();
+		} catch (error) {
+			loadError =
+				error instanceof Error
+					? error.message
+					: 'Unable to encode this project into a shareable URL.';
+			shareDialogOpen = false;
+			shareDialogStatus = '';
+		}
+	}
+
+	async function copyShareProjectUrl() {
+		if (!shareDialogUrl) {
+			return;
+		}
+
+		if (navigator.clipboard?.writeText) {
+			try {
+				await navigator.clipboard.writeText(shareDialogUrl);
+				shareDialogStatus = 'Share URL copied to clipboard.';
+				return;
+			} catch {
+				// Fall back to selecting the text for manual copy.
+			}
+		}
+
+		shareDialogField?.focus();
+		shareDialogField?.select();
+		shareDialogStatus = 'Press Ctrl+C to copy the selected URL.';
+	}
+
+	function handleShareDialogKeydown(event: KeyboardEvent) {
+		if (event.key === 'Escape') {
+			closeShareProjectDialog();
+		}
+	}
+
 	async function importProjectFile(event: Event) {
 		const input = event.currentTarget as HTMLInputElement;
 		const file = input.files?.[0];
@@ -345,8 +505,10 @@
 		try {
 			replaceProjectDocument(parseProjectDocumentJson(await file.text()));
 			loadError = '';
+			shareStatus = '';
 		} catch (error) {
 			loadError = error instanceof Error ? error.message : 'Unable to load this project file.';
+			shareStatus = '';
 		}
 
 		input.value = '';
@@ -431,10 +593,6 @@
 		return `${option.nodeLabel} - ${option.portLabel} (${option.signalKind}, ${option.timingMode})`;
 	}
 
-	function printWorkspace() {
-		window.print();
-	}
-
 	function formatSignalValue(value: number | undefined) {
 		if (value === undefined || Number.isNaN(value)) {
 			return '--';
@@ -472,6 +630,56 @@
 	onchange={importCsvParameterFile}
 />
 
+{#if shareDialogOpen}
+	<div class="share-dialog-backdrop" role="presentation" onclick={closeShareProjectDialog}>
+		<div
+			class="share-dialog panel-card"
+			role="dialog"
+			aria-modal="true"
+			aria-labelledby="share-project-title"
+			tabindex="-1"
+			onclick={(event) => event.stopPropagation()}
+			onkeydown={handleShareDialogKeydown}
+		>
+			<div class="panel-header">
+				<div>
+					<p class="eyebrow">Share</p>
+					<h2 id="share-project-title">Share project as URL</h2>
+				</div>
+				<button type="button" class="ghost-button" onclick={closeShareProjectDialog}>Close</button>
+			</div>
+
+			<p class="share-dialog__copy">
+				This link includes the current project state in a compressed URL without changing the
+				address bar of your current page.
+			</p>
+
+			<textarea
+				bind:this={shareDialogField}
+				class="share-dialog__field"
+				readonly
+				spellcheck="false"
+				value={shareDialogUrl}
+			></textarea>
+
+			{#if shareDialogStatus}
+				<p class="share-dialog__status">{shareDialogStatus}</p>
+			{/if}
+
+			<div class="share-dialog__actions">
+				<button
+					type="button"
+					class="action-button action-button--primary"
+					onclick={copyShareProjectUrl}
+				>
+					Copy URL
+				</button>
+				<button type="button" class="action-button" onclick={closeShareProjectDialog}>Done</button>
+			</div>
+		</div>
+	</div>
+{/if}
+
 <section class="signal-sim-route">
 	<header class="hero-card panel-card">
 		<div class="hero-card__copy">
@@ -484,19 +692,27 @@
 			</div>
 		</div>
 
-		<div class="hero-actions">
-			<button
-				type="button"
-				class="action-button action-button--primary"
-				onclick={exportProjectFile}
-			>
-				Save JSON
-			</button>
-			<button type="button" class="action-button" onclick={() => fileInput?.click()}>
-				Load JSON
-			</button>
-			<button type="button" class="action-button" onclick={printWorkspace}>Print View</button>
-			<button type="button" class="action-button" onclick={resetProject}>Reset Demo</button>
+		<div class="hero-sidecar">
+			<div class="hero-actions">
+				<button
+					type="button"
+					class="action-button action-button--primary"
+					onclick={exportProjectFile}
+				>
+					Save JSON
+				</button>
+				<button type="button" class="action-button" onclick={() => fileInput?.click()}>
+					Load JSON
+				</button>
+				<button type="button" class="action-button" onclick={openShareProjectDialog}>
+					Share project as URL
+				</button>
+				<button type="button" class="action-button" onclick={resetProject}>Reset Demo</button>
+			</div>
+
+			{#if shareStatus}
+				<p class="hero-share-status">{shareStatus}</p>
+			{/if}
 		</div>
 	</header>
 
@@ -927,10 +1143,6 @@
 				<h2>Output Preview</h2>
 			</div>
 		</div>
-		<p class="results-panel__copy">
-			Each output keeps its binding and display mode directly below its preview so you can tune the
-			watch list where you read it.
-		</p>
 
 		<div class="results-grid">
 			{#each $project.outputs as output}
@@ -1019,14 +1231,6 @@
 						</div>
 
 						<div class="result-config__actions">
-							<p class="result-config__hint">
-								{#if output.kind === 'plot'}
-									Plots draw progressively during playback, and Reset View restores the full time
-									window.
-								{:else}
-									Value widgets show the currently bound signal at the playback cursor.
-								{/if}
-							</p>
 							<button type="button" class="ghost-button" onclick={() => removeOutput(output.id)}
 								>Remove</button
 							>
@@ -1062,6 +1266,14 @@
 				and edit simulation or block parameters from the right. Then add output previews at the
 				bottom, bind each one to a signal, run the model, and use the playback bar to scrub or
 				animate the response.
+			</p>
+			<p>
+				Note this project was vibe-coded. I needed a quick simulation tool for a motor control
+				project, rather than focusing on it as a whole project. While everything I've reviewed seems
+				to function correctly, use this as a quick development tool or visualizer rather than a
+				hard-truth simulation. I'm sure there exists better computation algorithms especially since
+				the line between discrete and continuous elements is quite blurry in this simulator.
+				Needless to say it's spaghetti code.
 			</p>
 		</div>
 	</section>
@@ -1176,6 +1388,66 @@
 		flex-wrap: wrap;
 		justify-content: end;
 		gap: 0.6rem;
+	}
+
+	.hero-sidecar {
+		display: grid;
+		gap: 0.55rem;
+		justify-items: end;
+	}
+
+	.hero-share-status {
+		margin: 0;
+		max-width: 24rem;
+		font-size: 0.82rem;
+		line-height: 1.35;
+		text-align: right;
+		color: var(--theme-text-secondary);
+	}
+
+	.share-dialog-backdrop {
+		position: fixed;
+		inset: 0;
+		z-index: 40;
+		display: grid;
+		place-items: center;
+		padding: 1.5rem;
+		background: rgba(11, 19, 27, 0.52);
+		backdrop-filter: blur(12px);
+	}
+
+	.share-dialog {
+		width: min(40rem, 100%);
+		display: grid;
+		gap: 1rem;
+	}
+
+	.share-dialog__copy,
+	.share-dialog__status {
+		margin: 0;
+		font-size: 0.9rem;
+		line-height: 1.45;
+		color: var(--theme-text-secondary);
+	}
+
+	.share-dialog__field {
+		width: 100%;
+		min-height: 8.5rem;
+		padding: 0.95rem;
+		resize: vertical;
+		border: 1px solid color-mix(in srgb, var(--theme-highlight) 24%, transparent);
+		border-radius: 0.95rem;
+		background: color-mix(in srgb, var(--theme-bg-primary) 76%, white 24%);
+		color: var(--theme-text-primary);
+		font: inherit;
+		line-height: 1.45;
+	}
+
+	.share-dialog__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		gap: 0.65rem;
 	}
 
 	.action-button,
@@ -1771,6 +2043,7 @@
 			grid-template-columns: 1fr;
 		}
 
+		.share-dialog__actions,
 		.result-config__actions {
 			flex-direction: column;
 		}
