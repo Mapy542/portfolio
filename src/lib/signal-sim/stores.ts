@@ -3,6 +3,7 @@ import { derived, get, writable } from 'svelte/store';
 import type { Connection, XYPosition } from '@xyflow/svelte';
 
 import {
+	createEmptyProjectDocument,
 	projectDocumentSchema,
 	stampProjectDocument,
 	type BlockParameterValue,
@@ -553,6 +554,15 @@ export function createSignalSimEditorStore(initialProject = createExampleProject
 		replaceProjectDocument(createExampleProjectDocument());
 	}
 
+	function clearProject() {
+		const currentProject = get(project);
+		replaceProjectDocument({
+			...createEmptyProjectDocument(currentProject.meta.name),
+			meta: { ...currentProject.meta },
+			simulation: { ...currentProject.simulation }
+		});
+	}
+
 	function setProjectName(name: string) {
 		applyProjectUpdate((draft) => {
 			draft.meta.name = name.trim() || draft.meta.name;
@@ -610,6 +620,7 @@ export function createSignalSimEditorStore(initialProject = createExampleProject
 		updateOutput,
 		removeOutput,
 		replaceProjectDocument,
+		clearProject,
 		resetProject,
 		runSimulation,
 		setSelection,

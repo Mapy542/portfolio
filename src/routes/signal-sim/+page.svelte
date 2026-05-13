@@ -5,7 +5,9 @@
 		Controls,
 		MiniMap,
 		SvelteFlow,
-		type Connection
+		type Connection,
+		type Viewport,
+		type XYPosition
 	} from '@xyflow/svelte';
 	import '@xyflow/svelte/dist/style.css';
 	import { onDestroy, onMount, tick } from 'svelte';
@@ -58,6 +60,7 @@
 		updateOutput,
 		removeOutput,
 		replaceProjectDocument,
+		clearProject,
 		resetProject,
 		runSimulation,
 		setSelection,
@@ -71,6 +74,8 @@
 
 	let flowNodes = toFlowNodes([]);
 	let flowEdges = toFlowEdges([]);
+	let flowViewport: Viewport = { x: 0, y: 0, zoom: 1 };
+	let flowShell: HTMLDivElement | null = null;
 	let fileInput: HTMLInputElement | null = null;
 	let csvFileInput: HTMLInputElement | null = null;
 	let blockFilter = '';
@@ -88,6 +93,11 @@
 	let autoRunTimeout: ReturnType<typeof setTimeout> | null = null;
 
 	const AUTO_RUN_DELAY_MS = 1000;
+	const FLOW_SNAP_GRID = 24;
+	const NEW_NODE_GRID_STEP = { x: 288, y: 192 };
+	const NEW_NODE_VIEW_MARGIN = { x: 48, y: 48 };
+	const NEW_NODE_FOOTPRINT = { width: 240, height: 160 };
+	const NEW_NODE_MIN_SEPARATION = 132;
 
 	$: flowNodes = toFlowNodes($project.nodes, $selection?.kind === 'node' ? $selection.id : null);
 	$: flowEdges = toFlowEdges($project.edges, $selection?.kind === 'edge' ? $selection.id : null);
@@ -178,6 +188,93 @@
 			default:
 				return state;
 		}
+	}
+
+	function snapToFlowGrid(value: number): number {
+		return Math.round(value / FLOW_SNAP_GRID) * FLOW_SNAP_GRID;
+	}
+
+	function getViewportPlacementCandidates(): XYPosition[] {
+		if (!flowShell) {
+			return [];
+		}
+
+		const bounds = flowShell.getBoundingClientRect();
+
+		if (bounds.width <= 0 || bounds.height <= 0) {
+			return [];
+		}
+
+		const zoom = flowViewport.zoom || 1;
+		const visibleLeft = -flowViewport.x / zoom;
+		const visibleTop = -flowViewport.y / zoom;
+		const visibleRight = visibleLeft + bounds.width / zoom;
+		const visibleBottom = visibleTop + bounds.height / zoom;
+		const minX = snapToFlowGrid(visibleLeft + NEW_NODE_VIEW_MARGIN.x);
+		const minY = snapToFlowGrid(visibleTop + NEW_NODE_VIEW_MARGIN.y);
+		const maxX = snapToFlowGrid(
+			Math.max(minX, visibleRight - NEW_NODE_FOOTPRINT.width - NEW_NODE_VIEW_MARGIN.x)
+		);
+		const maxY = snapToFlowGrid(
+			Math.max(minY, visibleBottom - NEW_NODE_FOOTPRINT.height - NEW_NODE_VIEW_MARGIN.y)
+		);
+		const candidates: XYPosition[] = [];
+
+		for (let y = minY; y <= maxY; y += NEW_NODE_GRID_STEP.y) {
+			for (let x = minX; x <= maxX; x += NEW_NODE_GRID_STEP.x) {
+				candidates.push({ x, y });
+			}
+		}
+
+		if (candidates.length > 0) {
+			return candidates;
+		}
+
+		return [{ x: minX, y: minY }];
+	}
+
+	function getNearestNodeDistance(candidate: XYPosition): number {
+		const nodePositions = $project.nodes.map((node) => node.position);
+
+		if (nodePositions.length === 0) {
+			return Number.POSITIVE_INFINITY;
+		}
+
+		return nodePositions.reduce(
+			(nearestDistance, position) =>
+				Math.min(nearestDistance, Math.hypot(position.x - candidate.x, position.y - candidate.y)),
+			Number.POSITIVE_INFINITY
+		);
+	}
+
+	function getNextViewportNodePosition(): XYPosition | undefined {
+		const candidates = getViewportPlacementCandidates();
+
+		if (candidates.length === 0) {
+			return undefined;
+		}
+
+		let fallbackCandidate = candidates[0];
+		let fallbackDistance = Number.NEGATIVE_INFINITY;
+
+		for (const candidate of candidates) {
+			const nearestDistance = getNearestNodeDistance(candidate);
+
+			if (nearestDistance >= NEW_NODE_MIN_SEPARATION) {
+				return candidate;
+			}
+
+			if (nearestDistance > fallbackDistance) {
+				fallbackCandidate = candidate;
+				fallbackDistance = nearestDistance;
+			}
+		}
+
+		return fallbackCandidate;
+	}
+
+	function addBlockInViewport(blockType: string) {
+		addBlock(blockType, getNextViewportNodePosition());
 	}
 
 	async function togglePlayback() {
@@ -277,6 +374,22 @@
 	function rerunSimulation() {
 		setPlaying(false);
 		void runSimulation(true);
+	}
+
+	function clearWorkspace() {
+		if (
+			typeof window !== 'undefined' &&
+			!window.confirm(
+				'Clear the current workspace? This removes all blocks, wires, and outputs but keeps the project name and run settings.'
+			)
+		) {
+			return;
+		}
+
+		clearProject();
+		loadError = '';
+		shareStatus = '';
+		closeShareProjectDialog();
 	}
 
 	onDestroy(() => {
@@ -760,7 +873,11 @@
 
 							<div class="palette-cards">
 								{#each group.blocks as block}
-									<button class="palette-card" type="button" onclick={() => addBlock(block.type)}>
+									<button
+										class="palette-card"
+										type="button"
+										onclick={() => addBlockInViewport(block.type)}
+									>
 										<div class="palette-card__top">
 											<strong>{block.title}</strong>
 											<span>{block.shortLabel}</span>
@@ -811,10 +928,11 @@
 				</div>
 			</div>
 
-			<div class="flow-shell">
+			<div class="flow-shell" bind:this={flowShell}>
 				<SvelteFlow
 					bind:nodes={flowNodes}
 					bind:edges={flowEdges}
+					bind:viewport={flowViewport}
 					{nodeTypes}
 					fitView
 					panOnScroll
@@ -868,11 +986,23 @@
 
 					<label>
 						<span>Project Name</span>
-						<input
-							type="text"
-							value={$project.meta.name}
-							onchange={(event) => setProjectName((event.currentTarget as HTMLInputElement).value)}
-						/>
+						<div class="field-with-action">
+							<input
+								type="text"
+								value={$project.meta.name}
+								onchange={(event) =>
+									setProjectName((event.currentTarget as HTMLInputElement).value)}
+							/>
+							<button
+								type="button"
+								class="input-aux-button input-aux-button--danger"
+								aria-label="Clear workspace"
+								title="Clear nodes, wires, and outputs"
+								onclick={clearWorkspace}
+							>
+								Clear
+							</button>
+						</div>
 					</label>
 
 					<div class="numeric-grid">
@@ -1738,6 +1868,13 @@
 		gap: 0.35rem;
 	}
 
+	.field-with-action {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		gap: 0.5rem;
+		align-items: stretch;
+	}
+
 	label span,
 	small,
 	.port-grid p,
@@ -1780,6 +1917,17 @@
 		color: var(--theme-text-primary);
 		font: inherit;
 		cursor: pointer;
+	}
+
+	.field-with-action .input-aux-button {
+		justify-self: stretch;
+		white-space: nowrap;
+	}
+
+	.input-aux-button--danger {
+		border-color: color-mix(in srgb, #9b3939 36%, transparent);
+		background: color-mix(in srgb, #fff1f1 76%, var(--theme-bg-primary) 24%);
+		color: color-mix(in srgb, #7f2020 88%, var(--theme-text-primary) 12%);
 	}
 
 	.numeric-grid,
