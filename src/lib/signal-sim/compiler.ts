@@ -33,6 +33,11 @@ const algebraicBlockTypes = new Set([
 ]);
 const sinkBlockTypes = new Set(['probe', 'note']);
 
+const LARGE_SIMULATION_SAMPLE_COUNT = 250_000;
+const MAX_SIMULATION_SAMPLE_COUNT = 1_000_000;
+const LARGE_SIMULATION_VALUE_COUNT = 10_000_000;
+const MAX_SIMULATION_VALUE_COUNT = 25_000_000;
+
 function classifyNodePhase(blockType: string): CompiledNodePhase {
 	if (statefulBlockTypes.has(blockType)) {
 		return 'stateful';
@@ -306,6 +311,32 @@ export function compileProject(project: ProjectDocument): CompiledProject {
 	}
 
 	const sampleCount = Math.max(1, Math.floor(project.simulation.duration / project.simulation.stepSize) + 1);
+	const projectedValueCount = sampleCount * (signalDescriptors.length + 1);
+
+	if (
+		sampleCount > MAX_SIMULATION_SAMPLE_COUNT ||
+		projectedValueCount > MAX_SIMULATION_VALUE_COUNT
+	) {
+		diagnostics.push(
+			createDiagnostic(
+				'simulation-sample-cap',
+				'error',
+				`This run would generate ${sampleCount.toLocaleString()} time samples and store about ${projectedValueCount.toLocaleString()} values across the timeline and signal traces. That exceeds the current in-browser safety cap. Increase the step size or shorten the duration before running.`
+			)
+		);
+	} else if (
+		sampleCount > LARGE_SIMULATION_SAMPLE_COUNT ||
+		projectedValueCount > LARGE_SIMULATION_VALUE_COUNT
+	) {
+		diagnostics.push(
+			createDiagnostic(
+				'simulation-sample-warning',
+				'warning',
+				`This run will generate ${sampleCount.toLocaleString()} time samples and store about ${projectedValueCount.toLocaleString()} values across the timeline and signal traces. Large runs can become slow or memory-heavy in the browser.`
+			)
+		);
+	}
+
 	const summary = {
 		projectName: project.meta.name,
 		nodeCount: compiledNodes.length,

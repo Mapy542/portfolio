@@ -93,6 +93,8 @@
 	let autoRunTimeout: ReturnType<typeof setTimeout> | null = null;
 
 	const AUTO_RUN_DELAY_MS = 1000;
+	const MIN_SIMULATION_TIME_SECONDS = 0.000001;
+	const MIN_PLAYBACK_RATE = 0.1;
 	const FLOW_SNAP_GRID = 24;
 	const NEW_NODE_GRID_STEP = { x: 288, y: 192 };
 	const NEW_NODE_VIEW_MARGIN = { x: 48, y: 48 };
@@ -417,7 +419,9 @@
 			return;
 		}
 
-		updateSimulationConfig({ [field]: Math.max(0.0001, nextValue) });
+		const minimumValue = field === 'playbackRate' ? MIN_PLAYBACK_RATE : MIN_SIMULATION_TIME_SECONDS;
+
+		updateSimulationConfig({ [field]: Math.max(minimumValue, nextValue) });
 	}
 
 	function updateParameterField(definition: BlockParameterDefinition, event: Event) {
@@ -1010,8 +1014,8 @@
 							<span>Duration (s)</span>
 							<input
 								type="number"
-								min="0.0001"
-								step="0.01"
+								min={MIN_SIMULATION_TIME_SECONDS}
+								step={MIN_SIMULATION_TIME_SECONDS}
 								value={$project.simulation.duration}
 								onchange={(event) => updateSimulationField('duration', event)}
 							/>
@@ -1021,8 +1025,8 @@
 							<span>Step Size (s)</span>
 							<input
 								type="number"
-								min="0.0001"
-								step="0.0001"
+								min={MIN_SIMULATION_TIME_SECONDS}
+								step={MIN_SIMULATION_TIME_SECONDS}
 								value={$project.simulation.stepSize}
 								onchange={(event) => updateSimulationField('stepSize', event)}
 							/>
@@ -1032,7 +1036,7 @@
 							<span>Playback Rate</span>
 							<input
 								type="number"
-								min="0.1"
+								min={MIN_PLAYBACK_RATE}
 								step="0.1"
 								value={$project.simulation.playbackRate}
 								onchange={(event) => updateSimulationField('playbackRate', event)}
