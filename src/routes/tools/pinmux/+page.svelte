@@ -567,7 +567,7 @@
 	.lede {
 		max-width: 65ch;
 		margin: 0.75rem 0 0;
-		color: var(--theme-txt-secondary);
+		color: var(--theme-text-secondary);
 		line-height: 1.6;
 	}
 
@@ -577,7 +577,7 @@
 		letter-spacing: 0.14em;
 		font-size: 0.72rem;
 		font-weight: 700;
-		color: color-mix(in srgb, var(--pinmux-warm) 78%, var(--theme-txt-secondary));
+		color: color-mix(in srgb, var(--pinmux-warm) 78%, var(--theme-text-secondary));
 	}
 
 	.hero-controls {
@@ -612,7 +612,7 @@
 	.field span {
 		font-size: 0.82rem;
 		font-weight: 700;
-		color: var(--theme-txt-secondary);
+		color: var(--theme-text-secondary);
 	}
 
 	.field select,
@@ -631,7 +631,7 @@
 		border: 1px solid var(--pinmux-divider);
 		padding: 0.75rem 0.9rem;
 		background: var(--pinmux-surface-elevated);
-		color: var(--theme-txt-primary);
+		color: var(--theme-text-primary);
 		box-shadow: inset 0 1px 0 color-mix(in srgb, white 4%, transparent);
 	}
 
@@ -640,7 +640,7 @@
 		border-radius: 999px;
 		padding: 0.72rem 1rem;
 		background: var(--pinmux-surface-elevated);
-		color: var(--theme-txt-primary);
+		color: var(--theme-text-primary);
 		cursor: pointer;
 		transition:
 			transform 120ms ease,
@@ -683,7 +683,7 @@
 		padding: 0;
 		border: 0;
 		background: transparent;
-		color: var(--theme-txt-primary);
+		color: var(--theme-text-primary);
 	}
 
 	.action-pill__separator {
@@ -701,7 +701,7 @@
 		font-weight: 700;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		color: var(--theme-txt-secondary);
+		color: var(--theme-text-secondary);
 	}
 
 	.action-pill__icon-button:hover {
@@ -722,7 +722,7 @@
 
 	.pin-focus {
 		background: var(--pinmux-surface-elevated);
-		color: var(--theme-txt-primary);
+		color: var(--theme-text-primary);
 		border: 1px solid var(--pinmux-divider);
 	}
 
@@ -738,7 +738,7 @@
 
 	.pin-focus--gpio small {
 		font-size: 0.72rem;
-		color: var(--theme-txt-secondary);
+		color: var(--theme-text-secondary);
 	}
 
 	.hero-actions {
@@ -772,7 +772,7 @@
 	.panel-meta {
 		margin: 0;
 		font-size: 0.85rem;
-		color: var(--theme-txt-secondary);
+		color: var(--theme-text-secondary);
 	}
 
 	.panel-scroll {
@@ -824,7 +824,7 @@
 	.empty-state,
 	.pin-assignment span,
 	.definition-note p {
-		color: var(--theme-txt-secondary);
+		color: var(--theme-text-secondary);
 	}
 
 	.peripheral-summary,
@@ -846,7 +846,7 @@
 		font-weight: 700;
 		letter-spacing: 0.04em;
 		text-transform: uppercase;
-		color: var(--theme-txt-secondary);
+		color: var(--theme-text-secondary);
 	}
 
 	.signal-toggle-list {
@@ -871,7 +871,7 @@
 	}
 
 	.signal-toggle small {
-		color: var(--theme-txt-secondary);
+		color: var(--theme-text-secondary);
 		font-size: 0.72rem;
 	}
 
@@ -898,7 +898,7 @@
 		border-radius: 0.85rem;
 		background: var(--pinmux-surface-elevated);
 		border: 1px solid color-mix(in srgb, var(--theme-highlight) 12%, transparent);
-		color: var(--theme-txt-secondary);
+		color: var(--theme-text-secondary);
 		font-size: 0.9rem;
 	}
 
@@ -922,7 +922,7 @@
 		font-weight: 700;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		color: var(--theme-txt-secondary);
+		color: var(--theme-text-secondary);
 	}
 
 	.pin-row {
@@ -930,11 +930,16 @@
 		border-radius: 1rem;
 		background: var(--pinmux-surface-muted);
 		border: 1px solid color-mix(in srgb, var(--theme-highlight) 12%, transparent);
+		color: var(--theme-text-primary);
 	}
 
 	.pin-assignment {
 		display: grid;
 		gap: 0.2rem;
+	}
+
+	.pin-assignment strong {
+		color: var(--theme-text-primary);
 	}
 
 	.pin-package {
@@ -947,7 +952,7 @@
 		background: var(--pinmux-surface-elevated);
 		border: 1px solid var(--pinmux-divider);
 		font-weight: 700;
-		color: var(--theme-txt-secondary);
+		color: var(--theme-text-secondary);
 	}
 
 	.pin-assignment {
@@ -977,7 +982,7 @@
 	}
 
 	.diagnostic--info {
-		color: var(--theme-txt-secondary);
+		color: var(--theme-text-secondary);
 	}
 
 	.diagnostic--warning {

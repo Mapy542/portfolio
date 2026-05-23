@@ -217,14 +217,14 @@
 	.package-label {
 		font-size: 1.2rem;
 		font-weight: 700;
-		fill: var(--theme-txt-primary);
+		fill: var(--theme-text-primary);
 	}
 
 	.package-subtitle {
 		font-size: 0.72rem;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		fill: var(--theme-txt-secondary);
+		fill: var(--theme-text-secondary);
 	}
 
 	.pin-dot {
@@ -239,12 +239,12 @@
 	.pin-number {
 		font-size: 0.5rem;
 		font-weight: 700;
-		fill: var(--theme-txt-primary);
+		fill: var(--theme-text-primary);
 	}
 
 	.pin-caption {
 		font-size: 0.6rem;
-		fill: var(--theme-txt-secondary);
+		fill: var(--theme-text-secondary);
 	}
 
 	.package-empty {
@@ -255,6 +255,6 @@
 			color-mix(in srgb, var(--theme-bg-secondary) 78%, var(--theme-bg-primary))
 		);
 		text-align: center;
-		color: var(--theme-txt-secondary);
+		color: var(--theme-text-secondary);
 	}
 </style>

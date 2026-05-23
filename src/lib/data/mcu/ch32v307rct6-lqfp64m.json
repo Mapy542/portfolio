@@ -4,7 +4,7 @@
   "family": "CH32V307",
   "name": "CH32V307RCT6",
   "version": "0.2.0",
-  "description": "Generated from the WCH CH32V307 parser pipeline for CH32V307RCT6 LQFP64M. Includes synthesized routing extracted from Table 3-1 CH32V303/305/307 pin definitions.",
+  "description": "Generated from the WCH CH32V307 parser pipeline for CH32V307RCT6 LQFP64M. Includes synthesized routing extracted from Table 3-1 CH32V303/305/307 pin definitions. CH32V307RCT6 is a CH32V307 MCU in a 64-pin LQFP64M package. This generated definition includes 39 peripheral blocks covering ADC with 16 input channels, CAN, 10M Ethernet, 2 I2C buses, 4 op-amps, USB full-speed, 3 SPI buses, and 8 serial ports.",
   "package": {
     "name": "LQFP64M",
     "kind": "quad",
@@ -666,7 +666,7 @@
       "id": "ADC",
       "family": "ADC",
       "label": "ADC",
-      "description": "Generated from WCH alternate-function extraction for ADC.",
+      "description": "Analog-to-digital converter with 16 analog input channels.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -921,7 +921,7 @@
       "id": "CAN1",
       "family": "CAN",
       "label": "CAN1",
-      "description": "Generated from WCH alternate-function extraction for CAN1.",
+      "description": "Controller Area Network interface with TX and RX signals. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -984,7 +984,7 @@
       "id": "CAN2",
       "family": "CAN",
       "label": "CAN2",
-      "description": "Generated from WCH alternate-function extraction for CAN2.",
+      "description": "Controller Area Network interface with TX and RX signals. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -1047,7 +1047,7 @@
       "id": "DAC1",
       "family": "DAC",
       "label": "DAC1",
-      "description": "Generated from WCH alternate-function extraction for DAC1.",
+      "description": "Digital-to-analog converter with 1 analog output channel.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -1077,7 +1077,7 @@
       "id": "DAC2",
       "family": "DAC",
       "label": "DAC2",
-      "description": "Generated from WCH alternate-function extraction for DAC2.",
+      "description": "Digital-to-analog converter with 1 analog output channel.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -1107,7 +1107,7 @@
       "id": "DVP",
       "family": "DVP",
       "label": "DVP",
-      "description": "Generated from WCH alternate-function extraction for DVP.",
+      "description": "Digital video port interface with pixel, sync, and control signals.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -1339,7 +1339,7 @@
       "id": "ETH",
       "family": "ETH",
       "label": "ETH",
-      "description": "Generated from WCH alternate-function extraction for ETH.",
+      "description": "10M Ethernet interface with differential transmit and receive pairs. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -2070,7 +2070,7 @@
       "id": "FSMC",
       "family": "FSMC",
       "label": "FSMC",
-      "description": "Generated from WCH alternate-function extraction for FSMC.",
+      "description": "Flexible static memory controller interface for address, data, and control signals.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -2107,7 +2107,7 @@
       "id": "I2C1",
       "family": "I2C",
       "label": "I2C1",
-      "description": "Generated from WCH alternate-function extraction for I2C1.",
+      "description": "I2C bus controller with SCL, SDA, and SMBA signals. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -2185,7 +2185,7 @@
       "id": "I2C2",
       "family": "I2C",
       "label": "I2C2",
-      "description": "Generated from WCH alternate-function extraction for I2C2.",
+      "description": "I2C bus controller with SCL, SDA, and SMBA signals.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -2245,7 +2245,7 @@
       "id": "I2S2",
       "family": "I2S",
       "label": "I2S2",
-      "description": "Generated from WCH alternate-function extraction for I2S2.",
+      "description": "I2S digital audio interface with MCK, CK, WS, and SD signals.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -2320,7 +2320,7 @@
       "id": "I2S3",
       "family": "I2S",
       "label": "I2S3",
-      "description": "Generated from WCH alternate-function extraction for I2S3.",
+      "description": "I2S digital audio interface with MCK, CK, WS, and SD signals. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -2434,7 +2434,7 @@
       "id": "OPA1",
       "family": "OPA",
       "label": "OPA1",
-      "description": "Generated from WCH alternate-function extraction for OPA1.",
+      "description": "On-chip operational amplifier with a positive input, a negative input, and an analog output. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -2512,7 +2512,7 @@
       "id": "OPA2",
       "family": "OPA",
       "label": "OPA2",
-      "description": "Generated from WCH alternate-function extraction for OPA2.",
+      "description": "On-chip operational amplifier with a positive input, a negative input, and an analog output. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -2597,7 +2597,7 @@
       "id": "OPA3",
       "family": "OPA",
       "label": "OPA3",
-      "description": "Generated from WCH alternate-function extraction for OPA3.",
+      "description": "On-chip operational amplifier with a positive input, a negative input, and an analog output. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -2675,7 +2675,7 @@
       "id": "OPA4",
       "family": "OPA",
       "label": "OPA4",
-      "description": "Generated from WCH alternate-function extraction for OPA4.",
+      "description": "On-chip operational amplifier with a positive input, a negative input, and an analog output. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -2753,7 +2753,7 @@
       "id": "OSC32",
       "family": "Clock",
       "label": "OSC32",
-      "description": "Generated from WCH alternate-function extraction for OSC32.",
+      "description": "OSC32 peripheral with 2 configurable signals.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -2798,7 +2798,7 @@
       "id": "OTG_FS",
       "family": "USB",
       "label": "OTG_FS",
-      "description": "Generated from WCH alternate-function extraction for OTG_FS.",
+      "description": "USB interface with DM, DP, and ID signals. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -2891,7 +2891,7 @@
       "id": "SDIO",
       "family": "SDIO",
       "label": "SDIO",
-      "description": "Generated from WCH alternate-function extraction for SDIO.",
+      "description": "SDIO interface with CK, CMD, D0, D1, D2, D3, D4, D5, D6, and D7 signals.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -3070,7 +3070,7 @@
       "id": "SPI1",
       "family": "SPI",
       "label": "SPI1",
-      "description": "Generated from WCH alternate-function extraction for SPI1.",
+      "description": "SPI controller with NSS, SCK, MISO, and MOSI signals. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -3177,7 +3177,7 @@
       "id": "SPI2",
       "family": "SPI",
       "label": "SPI2",
-      "description": "Generated from WCH alternate-function extraction for SPI2.",
+      "description": "SPI controller with NSS, SCK, MISO, and MOSI signals.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -3252,7 +3252,7 @@
       "id": "SPI3",
       "family": "SPI",
       "label": "SPI3",
-      "description": "Generated from WCH alternate-function extraction for SPI3.",
+      "description": "SPI controller with NSS, SCK, MISO, and MOSI signals. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -3366,7 +3366,7 @@
       "id": "TIM1",
       "family": "Timer",
       "label": "TIM1",
-      "description": "Generated from WCH alternate-function extraction for TIM1.",
+      "description": "TIM1 peripheral with 9 configurable signals. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -3583,7 +3583,7 @@
       "id": "TIM10",
       "family": "Timer",
       "label": "TIM10",
-      "description": "Generated from WCH alternate-function extraction for TIM10.",
+      "description": "TIM10 peripheral with 9 configurable signals. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -3800,7 +3800,7 @@
       "id": "TIM2",
       "family": "Timer",
       "label": "TIM2",
-      "description": "Generated from WCH alternate-function extraction for TIM2.",
+      "description": "TIM2 peripheral with 5 configurable signals. Supports 4 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -4007,7 +4007,7 @@
       "id": "TIM3",
       "family": "Timer",
       "label": "TIM3",
-      "description": "Generated from WCH alternate-function extraction for TIM3.",
+      "description": "TIM3 peripheral with 5 configurable signals. Supports 3 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -4175,7 +4175,7 @@
       "id": "TIM4",
       "family": "Timer",
       "label": "TIM4",
-      "description": "Generated from WCH alternate-function extraction for TIM4.",
+      "description": "TIM4 peripheral with 4 configurable signals.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -4250,7 +4250,7 @@
       "id": "TIM5",
       "family": "Timer",
       "label": "TIM5",
-      "description": "Generated from WCH alternate-function extraction for TIM5.",
+      "description": "TIM5 peripheral with 4 configurable signals.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -4325,7 +4325,7 @@
       "id": "TIM8",
       "family": "Timer",
       "label": "TIM8",
-      "description": "Generated from WCH alternate-function extraction for TIM8.",
+      "description": "TIM8 peripheral with 9 configurable signals. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -4542,7 +4542,7 @@
       "id": "TIM9",
       "family": "Timer",
       "label": "TIM9",
-      "description": "Generated from WCH alternate-function extraction for TIM9.",
+      "description": "TIM9 peripheral with 9 configurable signals. Supports 4 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -4781,7 +4781,7 @@
       "id": "UART4",
       "family": "UART",
       "label": "UART4",
-      "description": "Generated from WCH alternate-function extraction for UART4.",
+      "description": "UART serial interface with TX and RX signals. Supports 3 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -4855,7 +4855,7 @@
       "id": "UART5",
       "family": "UART",
       "label": "UART5",
-      "description": "Generated from WCH alternate-function extraction for UART5.",
+      "description": "UART serial interface with TX and RX signals. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -4918,7 +4918,7 @@
       "id": "UART6",
       "family": "UART",
       "label": "UART6",
-      "description": "Generated from WCH alternate-function extraction for UART6.",
+      "description": "UART serial interface with TX and RX signals. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -4981,7 +4981,7 @@
       "id": "UART7",
       "family": "UART",
       "label": "UART7",
-      "description": "Generated from WCH alternate-function extraction for UART7.",
+      "description": "UART serial interface with TX and RX signals. Supports 2 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -5044,7 +5044,7 @@
       "id": "UART8",
       "family": "UART",
       "label": "UART8",
-      "description": "Generated from WCH alternate-function extraction for UART8.",
+      "description": "UART serial interface with TX and RX signals. Supports 4 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -5129,7 +5129,7 @@
       "id": "USART1",
       "family": "USART",
       "label": "USART1",
-      "description": "Generated from WCH alternate-function extraction for USART1.",
+      "description": "USART serial interface with synchronous clock support with TX, RX, CTS, RTS, and CK signals. Supports 4 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -5336,7 +5336,7 @@
       "id": "USART2",
       "family": "USART",
       "label": "USART2",
-      "description": "Generated from WCH alternate-function extraction for USART2.",
+      "description": "USART serial interface with synchronous clock support with TX, RX, CTS, RTS, and CK signals.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -5426,7 +5426,7 @@
       "id": "USART3",
       "family": "USART",
       "label": "USART3",
-      "description": "Generated from WCH alternate-function extraction for USART3.",
+      "description": "USART serial interface with synchronous clock support with TX, RX, CTS, RTS, and CK signals. Supports 4 pin-routing options.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -5584,7 +5584,7 @@
       "id": "USBHS",
       "family": "USB",
       "label": "USBHS",
-      "description": "Generated from WCH alternate-function extraction for USBHS.",
+      "description": "USB interface with DM and DP signals.",
       "colorHint": null,
       "routingOptions": [
         {

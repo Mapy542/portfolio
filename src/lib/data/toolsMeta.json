@@ -2,14 +2,14 @@
 	"Signal Sim": {
 		"url": "/signal-sim",
 		"title": "Signal Sim",
-		"description": "A signal flow diagram editor and simulator.",
+		"description": "An interactive signals and systems simulator for developing control loops.",
 		"image": "signal-sim/sim-overview.webp",
 		"date": "5/11/2026"
 	},
 	"Pinmux Peripheral Layout": {
 		"url": "/pinmux",
 		"title": "Pinmux Peripheral Layout Tool",
-		"description": "A tool to visualize and manage the pin multiplexing of microcontroller peripherals.",
+		"description": "A tool to visualize and manage the pin multiplexing of microcontroller peripherals. Primarily designed for WCH and STM microcontrollers.",
 		"image": "pinmux/pinmux-overview.webp",
 		"date": "5/23/2026"
 	}
