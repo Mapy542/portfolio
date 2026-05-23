@@ -12,7 +12,10 @@
 <div class="app">
 	<Header categories={data.props.categories} staticPages={data.props.staticPages} />
 
-	<main class:main--full-width={$page.url.pathname.startsWith('/signal-sim')}>
+	<main
+		class:main--full-width={$page.url.pathname.startsWith('/tools/signal-sim') ||
+			$page.url.pathname.startsWith('/tools/pinmux')}
+	>
 		<slot />
 	</main>
 

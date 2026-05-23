@@ -1,0 +1,4452 @@
+{
+  "id": "wch-ch32v303cbt6-lqfp48-v303cbt6",
+  "vendor": "WCH",
+  "family": "CH32V303",
+  "name": "CH32V303CBT6",
+  "version": "0.2.0",
+  "description": "Generated from the WCH CH32V303 parser pipeline for CH32V303CBT6 LQFP48(V303CBT6). Includes synthesized routing extracted from Table 3-1 CH32V303/305/307 pin definitions.",
+  "package": {
+    "name": "LQFP48(V303CBT6)",
+    "kind": "quad",
+    "pinCount": 48,
+    "numbering": "ccw",
+    "orientationMark": "top-left",
+    "pinsPerSide": 12,
+    "rowPinCount": null,
+    "bodyLabel": "CH32V303CBT6"
+  },
+  "pins": [
+    {
+      "id": "VBAT",
+      "packageNumber": "1",
+      "name": "VBAT",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "PC13",
+      "packageNumber": "2",
+      "name": "PC13",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PC14",
+      "packageNumber": "3",
+      "name": "PC14",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PC15",
+      "packageNumber": "4",
+      "name": "PC15",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "OSC_IN",
+      "packageNumber": "5",
+      "name": "OSC_IN",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "analog"
+      ]
+    },
+    {
+      "id": "OSC_OUT",
+      "packageNumber": "6",
+      "name": "OSC_OUT",
+      "supportedModes": [
+        "auto",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "NRST",
+      "packageNumber": "7",
+      "name": "NRST",
+      "supportedModes": [
+        "auto",
+        "gpio-input"
+      ]
+    },
+    {
+      "id": "VSSA",
+      "packageNumber": "8",
+      "name": "VSSA",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "VDDA",
+      "packageNumber": "9",
+      "name": "VDDA",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "PA0",
+      "packageNumber": "10",
+      "name": "PA0",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA1",
+      "packageNumber": "11",
+      "name": "PA1",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA2",
+      "packageNumber": "12",
+      "name": "PA2",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA3",
+      "packageNumber": "13",
+      "name": "PA3",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA4",
+      "packageNumber": "14",
+      "name": "PA4",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA5",
+      "packageNumber": "15",
+      "name": "PA5",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA6",
+      "packageNumber": "16",
+      "name": "PA6",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA7",
+      "packageNumber": "17",
+      "name": "PA7",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB0",
+      "packageNumber": "18",
+      "name": "PB0",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB1",
+      "packageNumber": "19",
+      "name": "PB1",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB2",
+      "packageNumber": "20",
+      "name": "PB2",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PB10",
+      "packageNumber": "21",
+      "name": "PB10",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB11",
+      "packageNumber": "22",
+      "name": "PB11",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "VSS_1",
+      "packageNumber": "23",
+      "name": "VSS_1",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "VDD_IO_1",
+      "packageNumber": "24",
+      "name": "VDD_IO_1",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "PB12",
+      "packageNumber": "25",
+      "name": "PB12",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB13",
+      "packageNumber": "26",
+      "name": "PB13",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB14",
+      "packageNumber": "27",
+      "name": "PB14",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB15",
+      "packageNumber": "28",
+      "name": "PB15",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA8",
+      "packageNumber": "29",
+      "name": "PA8",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PA9",
+      "packageNumber": "30",
+      "name": "PA9",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PA10",
+      "packageNumber": "31",
+      "name": "PA10",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PA11",
+      "packageNumber": "32",
+      "name": "PA11",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA12",
+      "packageNumber": "33",
+      "name": "PA12",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA13",
+      "packageNumber": "34",
+      "name": "PA13",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "VSS_2",
+      "packageNumber": "35",
+      "name": "VSS_2",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "VDD_2",
+      "packageNumber": "36",
+      "name": "VDD_2",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "PA14",
+      "packageNumber": "37",
+      "name": "PA14",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PA15",
+      "packageNumber": "38",
+      "name": "PA15",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PB3",
+      "packageNumber": "39",
+      "name": "PB3",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PB4",
+      "packageNumber": "40",
+      "name": "PB4",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PB5",
+      "packageNumber": "41",
+      "name": "PB5",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PB6",
+      "packageNumber": "42",
+      "name": "PB6",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PB7",
+      "packageNumber": "43",
+      "name": "PB7",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "BOOT0",
+      "packageNumber": "44",
+      "name": "BOOT0",
+      "supportedModes": [
+        "auto",
+        "gpio-input"
+      ]
+    },
+    {
+      "id": "PB8",
+      "packageNumber": "45",
+      "name": "PB8",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB9",
+      "packageNumber": "46",
+      "name": "PB9",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "VSS_3",
+      "packageNumber": "47",
+      "name": "VSS_3",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "VDD_IO_3",
+      "packageNumber": "48",
+      "name": "VDD_IO_3",
+      "supportedModes": [
+        "auto"
+      ]
+    }
+  ],
+  "peripherals": [
+    {
+      "id": "ADC",
+      "family": "ADC",
+      "label": "ADC",
+      "description": "Generated from WCH alternate-function extraction for ADC.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "IN0",
+          "label": "IN0",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "ADC_IN0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN1",
+          "label": "IN1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA1",
+              "af": "ADC_IN1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN2",
+          "label": "IN2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA2",
+              "af": "ADC_IN2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN3",
+          "label": "IN3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA3",
+              "af": "ADC_IN3",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN4",
+          "label": "IN4",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA4",
+              "af": "ADC_IN4",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN5",
+          "label": "IN5",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA5",
+              "af": "ADC_IN5",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN6",
+          "label": "IN6",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA6",
+              "af": "ADC_IN6",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN7",
+          "label": "IN7",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA7",
+              "af": "ADC_IN7",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN8",
+          "label": "IN8",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB0",
+              "af": "ADC_IN8",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN9",
+          "label": "IN9",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB1",
+              "af": "ADC_IN9",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CAN1",
+      "family": "CAN",
+      "label": "CAN1",
+      "description": "Generated from WCH alternate-function extraction for CAN1.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-2",
+          "label": "Remap 2"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA12",
+              "af": "CAN1_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB9",
+              "af": "CAN1_TX_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA11",
+              "af": "CAN1_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB8",
+              "af": "CAN1_RX_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CAN2",
+      "family": "CAN",
+      "label": "CAN2",
+      "description": "Generated from WCH alternate-function extraction for CAN2.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB13",
+              "af": "CAN2_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB6",
+              "af": "CAN2_TX_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "CAN2_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB5",
+              "af": "CAN2_RX_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DAC1",
+      "family": "DAC",
+      "label": "DAC1",
+      "description": "Generated from WCH alternate-function extraction for DAC1.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "OUT1",
+          "label": "OUT1",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA4",
+              "af": "DAC1_OUT1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DAC2",
+      "family": "DAC",
+      "label": "DAC2",
+      "description": "Generated from WCH alternate-function extraction for DAC2.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "OUT2",
+          "label": "OUT2",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA5",
+              "af": "DAC2_OUT2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DVP",
+      "family": "DVP",
+      "label": "DVP",
+      "description": "Generated from WCH alternate-function extraction for DVP.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "D0",
+          "label": "D0",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA9",
+              "af": "DVP_D0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D1",
+          "label": "D1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA10",
+              "af": "DVP_D1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D5",
+          "label": "D5",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB3",
+              "af": "DVP_D5",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB6",
+              "af": "DVP_D5",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D6",
+          "label": "D6",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB8",
+              "af": "DVP_D6",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D7",
+          "label": "D7",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB9",
+              "af": "DVP_D7",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "HSYNC",
+          "label": "HSYNC",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA4",
+              "af": "DVP_HSYNC",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "PCLK",
+          "label": "PCLK",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA6",
+              "af": "DVP_PCLK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "VSYNC",
+          "label": "VSYNC",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA5",
+              "af": "DVP_VSYNC",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ETH",
+      "family": "ETH",
+      "label": "ETH",
+      "description": "Generated from WCH alternate-function extraction for ETH.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "MII_COL",
+          "label": "MII_COL",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA3",
+              "af": "ETH_MII_COL",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_CRS",
+          "label": "MII_CRS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "ETH_MII_CRS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_MDIO",
+          "label": "MII_MDIO",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA2",
+              "af": "ETH_MII_MDIO",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_PPS_OUT",
+          "label": "MII_PPS_OUT",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB5",
+              "af": "ETH_MII_PPS_OUT",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_RXD2",
+          "label": "MII_RXD2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB0",
+              "af": "ETH_MII_RXD2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_RXD3",
+          "label": "MII_RXD3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB1",
+              "af": "ETH_MII_RXD3",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_RX_CLK",
+          "label": "MII_RX_CLK",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA1",
+              "af": "ETH_MII_RX_CLK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_RX_DV",
+          "label": "MII_RX_DV",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA7",
+              "af": "ETH_MII_RX_DV",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_RX_ER",
+          "label": "MII_RX_ER",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB10",
+              "af": "ETH_MII_RX_ER",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_TXD0",
+          "label": "MII_TXD0",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "ETH_MII_TXD0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_TXD1",
+          "label": "MII_TXD1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB13",
+              "af": "ETH_MII_TXD1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_TXD3",
+          "label": "MII_TXD3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB8",
+              "af": "ETH_MII_TXD3",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_TX_EN",
+          "label": "MII_TX_EN",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB11",
+              "af": "ETH_MII_TX_EN",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RGMII_125IN",
+          "label": "RGMII_125IN",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB1",
+              "af": "ETH_RGMII_125IN",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RGMII_GTXC",
+          "label": "RGMII_GTXC",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA2",
+              "af": "ETH_RGMII_GTXC",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RGMII_MDC",
+          "label": "RGMII_MDC",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "ETH_RGMII_MDC",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RGMII_MDIO",
+          "label": "RGMII_MDIO",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB13",
+              "af": "ETH_RGMII_MDIO",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RGMII_RXD2",
+          "label": "RGMII_RXD2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "ETH_RGMII_RXD2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RGMII_RXD3",
+          "label": "RGMII_RXD3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA1",
+              "af": "ETH_RGMII_RXD3",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RGMII_TXD0",
+          "label": "RGMII_TXD0",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA7",
+              "af": "ETH_RGMII_TXD0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RGMII_TXD3",
+          "label": "RGMII_TXD3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB0",
+              "af": "ETH_RGMII_TXD3",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RGMII_TXEN",
+          "label": "RGMII_TXEN",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA3",
+              "af": "ETH_RGMII_TXEN",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RMII_CRS_DV",
+          "label": "RMII_CRS_DV",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA7",
+              "af": "ETH_RMII_CRS_DV",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RMII_MDIO",
+          "label": "RMII_MDIO",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA2",
+              "af": "ETH_RMII_MDIO",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RMII_PPS_OUT",
+          "label": "RMII_PPS_OUT",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB5",
+              "af": "ETH_RMII_PPS_OUT",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RMII_REF_CLK",
+          "label": "RMII_REF_CLK",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA1",
+              "af": "ETH_RMII_REF_CLK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RMII_TXD0",
+          "label": "RMII_TXD0",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "ETH_RMII_TXD0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RMII_TXD1",
+          "label": "RMII_TXD1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB13",
+              "af": "ETH_RMII_TXD1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RMII_TX_EN",
+          "label": "RMII_TX_EN",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB11",
+              "af": "ETH_RMII_TX_EN",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FSMC",
+      "family": "FSMC",
+      "label": "FSMC",
+      "description": "Generated from WCH alternate-function extraction for FSMC.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "NADV",
+          "label": "NADV",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB7",
+              "af": "FSMC_NADV",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "I2C1",
+      "family": "I2C",
+      "label": "I2C1",
+      "description": "Generated from WCH alternate-function extraction for I2C1.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "SCL",
+          "label": "SCL",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB6",
+              "af": "I2C1_SCL",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB8",
+              "af": "I2C1_SCL_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SDA",
+          "label": "SDA",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB7",
+              "af": "I2C1_SDA",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB9",
+              "af": "I2C1_SDA_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SMBA",
+          "label": "SMBA",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB5",
+              "af": "I2C1_SMBA",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "I2C2",
+      "family": "I2C",
+      "label": "I2C2",
+      "description": "Generated from WCH alternate-function extraction for I2C2.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "SCL",
+          "label": "SCL",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB10",
+              "af": "I2C2_SCL",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SDA",
+          "label": "SDA",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB11",
+              "af": "I2C2_SDA",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SMBA",
+          "label": "SMBA",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "I2C2_SMBA",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "I2S2",
+      "family": "I2S",
+      "label": "I2S2",
+      "description": "Generated from WCH alternate-function extraction for I2S2.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CK",
+          "label": "CK",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB13",
+              "af": "I2S2_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "WS",
+          "label": "WS",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "I2S2_WS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SD",
+          "label": "SD",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB15",
+              "af": "I2S2_SD",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "I2S3",
+      "family": "I2S",
+      "label": "I2S3",
+      "description": "Generated from WCH alternate-function extraction for I2S3.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "MCK",
+          "label": "MCK",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA8",
+              "af": "I2S3_MCK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CK",
+          "label": "CK",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB3",
+              "af": "I2S3_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "WS",
+          "label": "WS",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA15",
+              "af": "I2S3_WS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA4",
+              "af": "I2S3_WS_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SD",
+          "label": "SD",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA9",
+              "af": "I2S3_SD",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB5",
+              "af": "I2S3_SD",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OPA1",
+      "family": "OPA",
+      "label": "OPA1",
+      "description": "Generated from WCH alternate-function extraction for OPA1.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "INP",
+          "label": "INP",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB15",
+              "af": "OPA1_CH0P",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB0",
+              "af": "OPA1_CH1P",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "INN",
+          "label": "INN",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB11",
+              "af": "OPA1_CH0N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA6",
+              "af": "OPA1_CH1N",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "OUT",
+          "label": "OUT",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA3",
+              "af": "OPA1_OUT0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OPA2",
+      "family": "OPA",
+      "label": "OPA2",
+      "description": "Generated from WCH alternate-function extraction for OPA2.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "INP",
+          "label": "INP",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB14",
+              "af": "OPA2_CH0P",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA7",
+              "af": "OPA2_CH1P",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "INN",
+          "label": "INN",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB10",
+              "af": "OPA2_CH0N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA5",
+              "af": "OPA2_CH1N",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "OUT",
+          "label": "OUT",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA2",
+              "af": "OPA2_OUT0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OPA3",
+      "family": "OPA",
+      "label": "OPA3",
+      "description": "Generated from WCH alternate-function extraction for OPA3.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "INP",
+          "label": "INP",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB13",
+              "af": "OPA3_CH0P",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "INN",
+          "label": "INN",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB2",
+              "af": "OPA3_CH0N",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "OUT",
+          "label": "OUT",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA1",
+              "af": "OPA3_OUT0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OPA4",
+      "family": "OPA",
+      "label": "OPA4",
+      "description": "Generated from WCH alternate-function extraction for OPA4.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "INP",
+          "label": "INP",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "OPA4_CH0P",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "INN",
+          "label": "INN",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB1",
+              "af": "OPA4_CH0N",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "OUT",
+          "label": "OUT",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "OPA4_OUT0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OSC32",
+      "family": "Clock",
+      "label": "OSC32",
+      "description": "Generated from WCH alternate-function extraction for OSC32.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "IN",
+          "label": "IN",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PC14",
+              "af": "OSC32_IN",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "OUT",
+          "label": "OUT",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PC15",
+              "af": "OSC32_OUT",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OTG_FS",
+      "family": "USB",
+      "label": "OTG_FS",
+      "description": "Generated from WCH alternate-function extraction for OTG_FS.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "DM",
+          "label": "DM",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA11",
+              "af": "OTG_FS_DM",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB6",
+              "af": "USBFS_DM",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "DP",
+          "label": "DP",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA12",
+              "af": "OTG_FS_DP",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB7",
+              "af": "USBFS_DP",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ID",
+          "label": "ID",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA10",
+              "af": "OTG_FS_ID",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "VBUS",
+          "label": "VBUS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA9",
+              "af": "OTG_FS_VBUS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SDIO",
+      "family": "SDIO",
+      "label": "SDIO",
+      "description": "Generated from WCH alternate-function extraction for SDIO.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "D0",
+          "label": "D0",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB14",
+              "af": "SDIO_D0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D1",
+          "label": "D1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB15",
+              "af": "SDIO_D1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D4",
+          "label": "D4",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB8",
+              "af": "SDIO_D4",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D5",
+          "label": "D5",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB9",
+              "af": "SDIO_D5",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SPI1",
+      "family": "SPI",
+      "label": "SPI1",
+      "description": "Generated from WCH alternate-function extraction for SPI1.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "NSS",
+          "label": "NSS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA4",
+              "af": "SPI1_NSS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA15",
+              "af": "SPI1_NSS_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SCK",
+          "label": "SCK",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA5",
+              "af": "SPI1_SCK",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB3",
+              "af": "SPI1_SCK_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MISO",
+          "label": "MISO",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA6",
+              "af": "SPI1_MISO",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB4",
+              "af": "SPI1_MISO_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MOSI",
+          "label": "MOSI",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA7",
+              "af": "SPI1_MOSI",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB5",
+              "af": "SPI1_MOSI_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SPI2",
+      "family": "SPI",
+      "label": "SPI2",
+      "description": "Generated from WCH alternate-function extraction for SPI2.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "NSS",
+          "label": "NSS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "SPI2_NSS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SCK",
+          "label": "SCK",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB13",
+              "af": "SPI2_SCK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MISO",
+          "label": "MISO",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB14",
+              "af": "SPI2_MISO",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MOSI",
+          "label": "MOSI",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB15",
+              "af": "SPI2_MOSI",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SPI3",
+      "family": "SPI",
+      "label": "SPI3",
+      "description": "Generated from WCH alternate-function extraction for SPI3.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "NSS",
+          "label": "NSS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA15",
+              "af": "SPI3_NSS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA4",
+              "af": "SPI3_NSS_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SCK",
+          "label": "SCK",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB3",
+              "af": "SPI3_SCK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MISO",
+          "label": "MISO",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB4",
+              "af": "SPI3_MISO",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MOSI",
+          "label": "MOSI",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA15",
+              "af": "SPI3_MOSI",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB5",
+              "af": "SPI3_MOSI",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TIM1",
+      "family": "Timer",
+      "label": "TIM1",
+      "description": "Generated from WCH alternate-function extraction for TIM1.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CH1",
+          "label": "CH1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA8",
+              "af": "TIM1_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA8",
+              "af": "TIM1_CH1_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH1N",
+          "label": "CH1N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB13",
+              "af": "TIM1_CH1N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA7",
+              "af": "TIM1_CH1N_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2",
+          "label": "CH2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA9",
+              "af": "TIM1_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA9",
+              "af": "TIM1_CH2_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2N",
+          "label": "CH2N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB14",
+              "af": "TIM1_CH2N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB0",
+              "af": "TIM1_CH2N_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3",
+          "label": "CH3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA10",
+              "af": "TIM1_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA10",
+              "af": "TIM1_CH3_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3N",
+          "label": "CH3N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB15",
+              "af": "TIM1_CH3N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB1",
+              "af": "TIM1_CH3N_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH4",
+          "label": "CH4",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA11",
+              "af": "TIM1_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA11",
+              "af": "TIM1_CH4_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "BKIN",
+          "label": "BKIN",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "TIM1_BKIN",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA6",
+              "af": "TIM1_BKIN_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ETR",
+          "label": "ETR",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA12",
+              "af": "TIM1_ETR",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA12",
+              "af": "TIM1_ETR_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TIM10",
+      "family": "Timer",
+      "label": "TIM10",
+      "description": "Generated from WCH alternate-function extraction for TIM10.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CH1",
+          "label": "CH1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB8",
+              "af": "TIM10_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB3",
+              "af": "TIM10_CH1_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH1N",
+          "label": "CH1N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA12",
+              "af": "TIM10_CH1N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA5",
+              "af": "TIM10_CH1N_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2",
+          "label": "CH2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB9",
+              "af": "TIM10_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB4",
+              "af": "TIM10_CH2_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2N",
+          "label": "CH2N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA13",
+              "af": "TIM10_CH2N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA6",
+              "af": "TIM10_CH2N_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3",
+          "label": "CH3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB5",
+              "af": "TIM10_CH3_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3N",
+          "label": "CH3N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA14",
+              "af": "TIM10_CH3N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA7",
+              "af": "TIM10_CH3N_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH4",
+          "label": "CH4",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PC15",
+              "af": "TIM10_CH4_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "BKIN",
+          "label": "BKIN",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB10",
+              "af": "TIM10_BKIN_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ETR",
+          "label": "ETR",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB11",
+              "af": "TIM10_ETR_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TIM2",
+      "family": "Timer",
+      "label": "TIM2",
+      "description": "Generated from WCH alternate-function extraction for TIM2.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        },
+        {
+          "id": "remap-2",
+          "label": "Remap 2"
+        },
+        {
+          "id": "remap-3",
+          "label": "Remap 3"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CH1",
+          "label": "CH1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "TIM2_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA15",
+              "af": "TIM2_CH1_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            },
+            {
+              "pinId": "PA0",
+              "af": "TIM2_CH1_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PA15",
+              "af": "TIM2_CH1_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2",
+          "label": "CH2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA1",
+              "af": "TIM2_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB3",
+              "af": "TIM2_CH2_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            },
+            {
+              "pinId": "PA1",
+              "af": "TIM2_CH2_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PB3",
+              "af": "TIM2_CH2_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3",
+          "label": "CH3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA2",
+              "af": "TIM2_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA2",
+              "af": "TIM2_CH3_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            },
+            {
+              "pinId": "PB10",
+              "af": "TIM2_CH3_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PB10",
+              "af": "TIM2_CH3_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH4",
+          "label": "CH4",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA3",
+              "af": "TIM2_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA3",
+              "af": "TIM2_CH4_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            },
+            {
+              "pinId": "PB11",
+              "af": "TIM2_CH4_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PB11",
+              "af": "TIM2_CH4_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ETR",
+          "label": "ETR",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "TIM2_ETR",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA15",
+              "af": "TIM2_ETR_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            },
+            {
+              "pinId": "PA0",
+              "af": "TIM2_ETR_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PA15",
+              "af": "TIM2_ETR_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TIM3",
+      "family": "Timer",
+      "label": "TIM3",
+      "description": "Generated from WCH alternate-function extraction for TIM3.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-2",
+          "label": "Remap 2"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CH1",
+          "label": "CH1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA6",
+              "af": "TIM3_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB4",
+              "af": "TIM3_CH1_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2",
+          "label": "CH2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA7",
+              "af": "TIM3_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB5",
+              "af": "TIM3_CH2_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3",
+          "label": "CH3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB0",
+              "af": "TIM3_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB0",
+              "af": "TIM3_CH3_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH4",
+          "label": "CH4",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB1",
+              "af": "TIM3_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB1",
+              "af": "TIM3_CH4_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TIM4",
+      "family": "Timer",
+      "label": "TIM4",
+      "description": "Generated from WCH alternate-function extraction for TIM4.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CH1",
+          "label": "CH1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB6",
+              "af": "TIM4_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2",
+          "label": "CH2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB7",
+              "af": "TIM4_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3",
+          "label": "CH3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB8",
+              "af": "TIM4_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH4",
+          "label": "CH4",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB9",
+              "af": "TIM4_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TIM5",
+      "family": "Timer",
+      "label": "TIM5",
+      "description": "Generated from WCH alternate-function extraction for TIM5.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CH1",
+          "label": "CH1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "TIM5_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2",
+          "label": "CH2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA1",
+              "af": "TIM5_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3",
+          "label": "CH3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA2",
+              "af": "TIM5_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH4",
+          "label": "CH4",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA3",
+              "af": "TIM5_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TIM8",
+      "family": "Timer",
+      "label": "TIM8",
+      "description": "Generated from WCH alternate-function extraction for TIM8.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CH1",
+          "label": "CH1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB6",
+              "af": "TIM8_CH1_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH1N",
+          "label": "CH1N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA7",
+              "af": "TIM8_CH1N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA13",
+              "af": "TIM8_CH1N_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2",
+          "label": "CH2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB7",
+              "af": "TIM8_CH2_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2N",
+          "label": "CH2N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB0",
+              "af": "TIM8_CH2N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA14",
+              "af": "TIM8_CH2N_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3",
+          "label": "CH3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB8",
+              "af": "TIM8_CH3_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3N",
+          "label": "CH3N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB1",
+              "af": "TIM8_CH3N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA15",
+              "af": "TIM8_CH3N_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH4",
+          "label": "CH4",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PC13",
+              "af": "TIM8_CH4_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "BKIN",
+          "label": "BKIN",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA6",
+              "af": "TIM8_BKIN",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB9",
+              "af": "TIM8_BKIN_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ETR",
+          "label": "ETR",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "TIM8_ETR",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA0",
+              "af": "TIM8_ETR_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TIM9",
+      "family": "Timer",
+      "label": "TIM9",
+      "description": "Generated from WCH alternate-function extraction for TIM9.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CH1",
+          "label": "CH1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA2",
+              "af": "TIM9_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA2",
+              "af": "TIM9_CH1_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH1N",
+          "label": "CH1N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB0",
+              "af": "TIM9_CH1N_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2",
+          "label": "CH2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA3",
+              "af": "TIM9_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA3",
+              "af": "TIM9_CH2_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2N",
+          "label": "CH2N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB1",
+              "af": "TIM9_CH2N_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3",
+          "label": "CH3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA4",
+              "af": "TIM9_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA4",
+              "af": "TIM9_CH3_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3N",
+          "label": "CH3N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB2",
+              "af": "TIM9_CH3N_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH4",
+          "label": "CH4",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PC14",
+              "af": "TIM9_CH4_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "BKIN",
+          "label": "BKIN",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA1",
+              "af": "TIM9_BKIN_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ETR",
+          "label": "ETR",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA2",
+              "af": "TIM9_ETR",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA2",
+              "af": "TIM9_ETR_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "UART4",
+      "family": "UART",
+      "label": "UART4",
+      "description": "Generated from WCH alternate-function extraction for UART4.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB0",
+              "af": "UART4_TX_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB1",
+              "af": "UART4_RX_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "UART5",
+      "family": "UART",
+      "label": "UART5",
+      "description": "Generated from WCH alternate-function extraction for UART5.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB4",
+              "af": "UART5_TX_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB5",
+              "af": "UART5_RX_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "UART6",
+      "family": "UART",
+      "label": "UART6",
+      "description": "Generated from WCH alternate-function extraction for UART6.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB8",
+              "af": "UART6_TX_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB9",
+              "af": "UART6_RX_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "UART7",
+      "family": "UART",
+      "label": "UART7",
+      "description": "Generated from WCH alternate-function extraction for UART7.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA6",
+              "af": "UART7_TX_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA7",
+              "af": "UART7_RX_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "UART8",
+      "family": "UART",
+      "label": "UART8",
+      "description": "Generated from WCH alternate-function extraction for UART8.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA14",
+              "af": "UART8_TX_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA15",
+              "af": "UART8_RX_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "USART1",
+      "family": "USART",
+      "label": "USART1",
+      "description": "Generated from WCH alternate-function extraction for USART1.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        },
+        {
+          "id": "remap-2",
+          "label": "Remap 2"
+        },
+        {
+          "id": "remap-3",
+          "label": "Remap 3"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA9",
+              "af": "USART1_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB6",
+              "af": "USART1_TX_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            },
+            {
+              "pinId": "PB15",
+              "af": "USART1_TX_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PA6",
+              "af": "USART1_TX_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA10",
+              "af": "USART1_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB7",
+              "af": "USART1_RX_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            },
+            {
+              "pinId": "PA8",
+              "af": "USART1_RX_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PA7",
+              "af": "USART1_RX_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CTS",
+          "label": "CTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA11",
+              "af": "USART1_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA11",
+              "af": "USART1_CTS_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            },
+            {
+              "pinId": "PA5",
+              "af": "USART1_CTS_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RTS",
+          "label": "RTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA12",
+              "af": "USART1_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA12",
+              "af": "USART1_RTS_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            },
+            {
+              "pinId": "PA9",
+              "af": "USART1_RTS_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CK",
+          "label": "CK",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA8",
+              "af": "USART1_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA8",
+              "af": "USART1_CK_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            },
+            {
+              "pinId": "PA10",
+              "af": "USART1_CK_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PA5",
+              "af": "USART1_CK_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "USART2",
+      "family": "USART",
+      "label": "USART2",
+      "description": "Generated from WCH alternate-function extraction for USART2.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA2",
+              "af": "USART2_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA3",
+              "af": "USART2_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CTS",
+          "label": "CTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "USART2_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RTS",
+          "label": "RTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA1",
+              "af": "USART2_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CK",
+          "label": "CK",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA4",
+              "af": "USART2_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "USART3",
+      "family": "USART",
+      "label": "USART3",
+      "description": "Generated from WCH alternate-function extraction for USART3.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        },
+        {
+          "id": "remap-2",
+          "label": "Remap 2"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB10",
+              "af": "USART3_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA13",
+              "af": "USART3_TX_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB11",
+              "af": "USART3_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA14",
+              "af": "USART3_RX_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CTS",
+          "label": "CTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB13",
+              "af": "USART3_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB13",
+              "af": "USART3_CTS_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RTS",
+          "label": "RTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB14",
+              "af": "USART3_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB14",
+              "af": "USART3_RTS_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CK",
+          "label": "CK",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "USART3_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "USBHS",
+      "family": "USB",
+      "label": "USBHS",
+      "description": "Generated from WCH alternate-function extraction for USBHS.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "DM",
+          "label": "DM",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB6",
+              "af": "USBHS_DM",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "DP",
+          "label": "DP",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB7",
+              "af": "USBHS_DP",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

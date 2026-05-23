@@ -11,6 +11,10 @@
 		{
 			"fileMatch": ["/src/lib/data/staticMeta.json"],
 			"url": "./schemas/staticMetaSchema.json"
+		},
+		{
+			"fileMatch": ["/src/lib/data/toolsMeta.json"],
+			"url": "./schemas/toolsMetaSchema.json"
 		}
 	]
 }

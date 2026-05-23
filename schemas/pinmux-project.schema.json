@@ -1,0 +1,63 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://portfolio.local/schemas/pinmux-project.schema.json",
+	"title": "Pinmux Project",
+	"type": "object",
+	"additionalProperties": false,
+	"required": [
+		"version",
+		"meta",
+		"selectedDefinitionId",
+		"embeddedDefinition",
+		"peripheralStates",
+		"pinStates"
+	],
+	"properties": {
+		"version": { "const": 1 },
+		"meta": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": ["name", "createdAt", "updatedAt"],
+			"properties": {
+				"name": { "type": "string", "minLength": 1 },
+				"createdAt": { "type": "string", "minLength": 1 },
+				"updatedAt": { "type": "string", "minLength": 1 }
+			}
+		},
+		"selectedDefinitionId": { "type": ["string", "null"] },
+		"embeddedDefinition": {
+			"anyOf": [{ "type": "null" }, { "$ref": "./mcu-definition.schema.json" }]
+		},
+		"peripheralStates": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"additionalProperties": false,
+				"required": ["peripheralId", "enabled", "selectedRoutingOptionId", "routingChoiceKind"],
+				"properties": {
+					"peripheralId": { "type": "string", "minLength": 1 },
+					"enabled": { "type": "boolean" },
+					"selectedRoutingOptionId": { "type": ["string", "null"] },
+					"routingChoiceKind": { "enum": ["auto", "explicit"] },
+					"enabledSignalIds": {
+						"type": "array",
+						"items": { "type": "string", "minLength": 1 }
+					}
+				}
+			}
+		},
+		"pinStates": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"additionalProperties": false,
+				"required": ["pinId", "overrideMode", "label"],
+				"properties": {
+					"pinId": { "type": "string", "minLength": 1 },
+					"overrideMode": { "enum": ["auto", "gpio-input", "gpio-output", "analog"] },
+					"label": { "type": "string" }
+				}
+			}
+		}
+	}
+}

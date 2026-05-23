@@ -1,6 +1,7 @@
 import serverReader from '../../lib/components/DataImport/serverReader.js';
 import downloadsReader from '$lib/components/DataImport/downloadsReader.js';
 import staticMetas from '../../lib/data/staticMeta.json' with {type: "json"};
+import toolsMeta from '../../lib/data/toolsMeta.json' with {type: "json"};
 import { DOMImplementation, XMLSerializer } from '@xmldom/xmldom';
 
 const rootUrl = "https://bukoski.dev";
@@ -73,6 +74,22 @@ export const GET=({params})=>{
         if(staticMetas[staticPage].date){
             const lastmod = doc.createElement("lastmod");
             const date = new Date(staticMetas[staticPage].date);
+            lastmod.textContent = date.toISOString();
+            url.appendChild(lastmod);
+        }
+
+        urlset.appendChild(url);
+    }
+
+    for(const toolPage of Object.keys(toolsMeta)){ //for each tool page
+        const url = doc.createElement("url");
+        const loc = doc.createElement("loc");
+        const leadingTrim = toolsMeta[toolPage].url.startsWith("/") ? "" : "/";
+        loc.textContent = rootUrl + "/tools"+ leadingTrim + toolsMeta[toolPage].url.replace(" ", "%20"); //add the url of the page
+        url.appendChild(loc);
+        if(toolsMeta[toolPage].date){
+            const lastmod = doc.createElement("lastmod");
+            const date = new Date(toolsMeta[toolPage].date);
             lastmod.textContent = date.toISOString();
             url.appendChild(lastmod);
         }

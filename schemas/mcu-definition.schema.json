@@ -1,0 +1,146 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://portfolio.local/schemas/mcu-definition.schema.json",
+	"title": "MCU Definition",
+	"type": "object",
+	"additionalProperties": false,
+	"required": [
+		"id",
+		"vendor",
+		"family",
+		"name",
+		"version",
+		"description",
+		"package",
+		"pins",
+		"peripherals"
+	],
+	"properties": {
+		"id": { "type": "string", "minLength": 1 },
+		"vendor": { "type": "string", "minLength": 1 },
+		"family": { "type": "string", "minLength": 1 },
+		"name": { "type": "string", "minLength": 1 },
+		"version": { "type": "string", "minLength": 1 },
+		"description": { "type": "string" },
+		"package": { "$ref": "#/$defs/package" },
+		"pins": {
+			"type": "array",
+			"minItems": 1,
+			"items": { "$ref": "#/$defs/pin" }
+		},
+		"peripherals": {
+			"type": "array",
+			"items": { "$ref": "#/$defs/peripheral" }
+		}
+	},
+	"$defs": {
+		"package": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": [
+				"name",
+				"kind",
+				"pinCount",
+				"numbering",
+				"orientationMark",
+				"pinsPerSide",
+				"rowPinCount",
+				"bodyLabel"
+			],
+			"properties": {
+				"name": { "type": "string", "minLength": 1 },
+				"kind": { "enum": ["quad", "dual-row"] },
+				"pinCount": { "type": "integer", "minimum": 1 },
+				"numbering": { "enum": ["ccw", "cw"] },
+				"orientationMark": { "enum": ["top-left", "top-center"] },
+				"pinsPerSide": { "type": ["integer", "null"], "minimum": 1 },
+				"rowPinCount": { "type": ["integer", "null"], "minimum": 1 },
+				"bodyLabel": { "type": "string", "minLength": 1 }
+			}
+		},
+		"pin": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": ["id", "packageNumber", "name", "supportedModes"],
+			"properties": {
+				"id": { "type": "string", "minLength": 1 },
+				"packageNumber": { "type": "string", "minLength": 1 },
+				"name": { "type": "string", "minLength": 1 },
+				"supportedModes": {
+					"type": "array",
+					"minItems": 1,
+					"items": { "enum": ["auto", "gpio-input", "gpio-output", "analog"] }
+				}
+			}
+		},
+		"routingOption": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": ["id", "label"],
+			"properties": {
+				"id": { "type": "string", "minLength": 1 },
+				"label": { "type": "string", "minLength": 1 },
+				"description": { "type": "string" }
+			}
+		},
+		"candidate": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": ["pinId", "af", "routingOptionIds"],
+			"properties": {
+				"pinId": { "type": "string", "minLength": 1 },
+				"af": { "type": ["string", "null"] },
+				"routingOptionIds": {
+					"type": "array",
+					"items": { "type": "string", "minLength": 1 }
+				},
+				"notes": { "type": "string" }
+			}
+		},
+		"signal": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": ["id", "label", "required", "candidates"],
+			"properties": {
+				"id": { "type": "string", "minLength": 1 },
+				"label": { "type": "string", "minLength": 1 },
+				"required": { "type": "boolean" },
+				"defaultEnabled": { "type": "boolean" },
+				"candidates": {
+					"type": "array",
+					"minItems": 1,
+					"items": { "$ref": "#/$defs/candidate" }
+				}
+			}
+		},
+		"peripheral": {
+			"type": "object",
+			"additionalProperties": false,
+			"required": [
+				"id",
+				"family",
+				"label",
+				"description",
+				"colorHint",
+				"routingOptions",
+				"signals"
+			],
+			"properties": {
+				"id": { "type": "string", "minLength": 1 },
+				"family": { "type": "string", "minLength": 1 },
+				"label": { "type": "string", "minLength": 1 },
+				"description": { "type": "string" },
+				"colorHint": { "type": ["string", "null"] },
+				"routingOptions": {
+					"type": "array",
+					"items": { "$ref": "#/$defs/routingOption" }
+				},
+				"signals": {
+					"type": "array",
+					"minItems": 1,
+					"items": { "$ref": "#/$defs/signal" }
+				}
+			}
+		}
+	}
+}
