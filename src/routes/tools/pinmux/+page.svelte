@@ -508,6 +508,46 @@
 			</div>
 		</aside>
 	</div>
+
+	<section class="panel-card guide-card" aria-labelledby="pinmux-guide-heading">
+		<div class="panel-head guide-card__head">
+			<div>
+				<p class="eyebrow">Guide</p>
+				<h2 id="pinmux-guide-heading">Using This Tool</h2>
+			</div>
+		</div>
+
+		<div class="guide-grid">
+			<article class="guide-block">
+				<h3>Purpose</h3>
+				<p>
+					This planner helps you inspect MCU package pinouts, enable peripheral signal groups,
+					reserve pins for GPIO use, and verify that a chosen routing is still solvable.
+				</p>
+			</article>
+
+			<article class="guide-block">
+				<h3>How To Use</h3>
+				<p>
+					Start by selecting an MCU definition, then enable the peripherals you need. Choose a route
+					when multiple mappings exist, and use pin overrides only when a pin must stay in GPIO or
+					analog mode. The package view and diagnostics panel update as the solver finds a valid
+					arrangement.
+				</p>
+			</article>
+
+			<article class="guide-block">
+				<h3>Report Issues</h3>
+				<p>
+					If you find a bad pin mapping, missing device data, or solver behavior that looks wrong,
+					please raise an issue on
+					<a href="https://github.com/Mapy542/portfolio/issues" target="_blank" rel="noreferrer"
+						>this repository</a
+					>.
+				</p>
+			</article>
+		</div>
+	</section>
 </section>
 
 <style>
@@ -554,6 +594,7 @@
 
 	.hero-copy h1,
 	.panel-head h2,
+	.guide-block h3,
 	.definition-note h3,
 	.diagnostics h3 {
 		margin: 0;
@@ -753,6 +794,41 @@
 		grid-template-columns: minmax(16rem, 18rem) minmax(0, 1fr) minmax(18rem, 21rem);
 		gap: 1rem;
 		align-items: start;
+	}
+
+	.guide-card {
+		padding: 1.15rem;
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.guide-card__head {
+		align-items: start;
+	}
+
+	.guide-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.85rem;
+	}
+
+	.guide-block {
+		display: grid;
+		gap: 0.45rem;
+		padding: 0.95rem;
+		border-radius: 1rem;
+		background: var(--pinmux-surface-muted);
+		border: 1px solid color-mix(in srgb, var(--theme-highlight) 12%, transparent);
+	}
+
+	.guide-block p {
+		margin: 0;
+		line-height: 1.6;
+		color: var(--theme-text-secondary);
+	}
+
+	.guide-block a {
+		color: var(--pinmux-accent);
 	}
 
 	.panel-column {
@@ -992,6 +1068,10 @@
 	@media (max-width: 1100px) {
 		.hero-card,
 		.workspace-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.guide-grid {
 			grid-template-columns: 1fr;
 		}
 

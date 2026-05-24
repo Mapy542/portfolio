@@ -328,9 +328,7 @@
       "packageNumber": "31",
       "name": "MDITP",
       "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output"
+        "auto"
       ]
     },
     {
@@ -338,9 +336,7 @@
       "packageNumber": "32",
       "name": "MDITN",
       "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output"
+        "auto"
       ]
     },
     {
@@ -348,9 +344,7 @@
       "packageNumber": "33",
       "name": "MDIRP",
       "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output"
+        "auto"
       ]
     },
     {
@@ -358,9 +352,7 @@
       "packageNumber": "34",
       "name": "MDIRN",
       "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output"
+        "auto"
       ]
     },
     {
