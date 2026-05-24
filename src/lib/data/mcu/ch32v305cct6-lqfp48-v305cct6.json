@@ -1098,7 +1098,7 @@
       "id": "FSMC",
       "family": "FSMC",
       "label": "FSMC",
-      "description": "Flexible static memory controller interface for address, data, and control signals.",
+      "description": "Flexible memory controller interface for SRAM, PSRAM, NOR, NAND, and LCD-style external buses.",
       "colorHint": null,
       "routingOptions": [
         {
@@ -1839,7 +1839,7 @@
       "id": "SDIO",
       "family": "SDIO",
       "label": "SDIO",
-      "description": "SDIO interface with D0, D1, D4, D5, and D6 signals.",
+      "description": "SDMMC host interface with D0, D1, D4, D5, and D6 signals.",
       "colorHint": null,
       "routingOptions": [
         {

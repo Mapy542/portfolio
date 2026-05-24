@@ -2,6 +2,7 @@
 	import { onDestroy, tick } from 'svelte';
 
 	import PackageVisualizer from '$lib/components/pinmux/PackageVisualizer.svelte';
+	import TransferActionPill from '$lib/components/pinmux/TransferActionPill.svelte';
 	import { pinOverrideModeValues, type PinOverrideMode } from '$lib/pinmux/model';
 	import { createPinmuxStore } from '$lib/pinmux/stores';
 
@@ -20,6 +21,7 @@
 		togglePeripheral,
 		setPeripheralRoutingOption,
 		setPeripheralSignalEnabled,
+		setPeripheralSignalRoutingOption,
 		setPinOverrideMode,
 		setPinLabel,
 		focusPin,
@@ -113,6 +115,17 @@
 		downloadText(`${slugify($projectName)}.csv`, exportCsv(), 'text/csv;charset=utf-8');
 	}
 
+	function getRoutingLabel(
+		routingOptions: Array<{ id: string; label: string }>,
+		routingOptionId: string | null
+	): string | null {
+		if (!routingOptionId) {
+			return null;
+		}
+
+		return routingOptions.find((option) => option.id === routingOptionId)?.label ?? routingOptionId;
+	}
+
 	async function focusPinEditor(pinId: string) {
 		focusPin(pinId);
 		await tick();
@@ -181,36 +194,14 @@
 						{/each}
 					</select>
 
-					<div class="action-pill action-pill--dual" role="group" aria-label="MCU JSON actions">
-						<button
-							type="button"
-							class="action-pill__icon-button"
-							aria-label="Import MCU JSON"
-							title="Import MCU JSON"
-							on:click={triggerDefinitionImport}
-						>
-							<svg class="action-icon" viewBox="0 0 24 24" aria-hidden="true">
-								<path d="M12 15V4" />
-								<path d="M8.5 7.5 12 4l3.5 3.5" />
-								<path d="M5 14.5v3A1.5 1.5 0 0 0 6.5 19h11A1.5 1.5 0 0 0 19 17.5v-3" />
-							</svg>
-						</button>
-						<span class="action-pill__separator" aria-hidden="true"></span>
-						<button
-							type="button"
-							class="action-pill__icon-button"
-							aria-label="Export MCU JSON"
-							title="Export MCU JSON"
-							on:click={handleExportDefinition}
-						>
-							<svg class="action-icon" viewBox="0 0 24 24" aria-hidden="true">
-								<path d="M12 9v11" />
-								<path d="M8.5 16.5 12 20l3.5-3.5" />
-								<path d="M5 9.5v-3A1.5 1.5 0 0 1 6.5 5h11A1.5 1.5 0 0 1 19 6.5v3" />
-							</svg>
-						</button>
-						<span class="action-pill__type">JSON</span>
-					</div>
+					<TransferActionPill
+						groupLabel="MCU JSON actions"
+						formatLabel="JSON"
+						importLabel="Import MCU JSON"
+						exportLabel="Export MCU JSON"
+						onImport={triggerDefinitionImport}
+						onExport={handleExportDefinition}
+					/>
 				</div>
 			</label>
 
@@ -226,53 +217,21 @@
 			</label>
 
 			<div class="hero-actions">
-				<div class="action-pill action-pill--dual" role="group" aria-label="Project JSON actions">
-					<button
-						type="button"
-						class="action-pill__icon-button"
-						aria-label="Import Project JSON"
-						title="Import Project JSON"
-						on:click={triggerProjectImport}
-					>
-						<svg class="action-icon" viewBox="0 0 24 24" aria-hidden="true">
-							<path d="M12 15V4" />
-							<path d="M8.5 7.5 12 4l3.5 3.5" />
-							<path d="M5 14.5v3A1.5 1.5 0 0 0 6.5 19h11A1.5 1.5 0 0 0 19 17.5v-3" />
-						</svg>
-					</button>
-					<span class="action-pill__separator" aria-hidden="true"></span>
-					<button
-						type="button"
-						class="action-pill__icon-button"
-						aria-label="Export Project JSON"
-						title="Export Project JSON"
-						on:click={handleExportProject}
-					>
-						<svg class="action-icon" viewBox="0 0 24 24" aria-hidden="true">
-							<path d="M12 9v11" />
-							<path d="M8.5 16.5 12 20l3.5-3.5" />
-							<path d="M5 9.5v-3A1.5 1.5 0 0 1 6.5 5h11A1.5 1.5 0 0 1 19 6.5v3" />
-						</svg>
-					</button>
-					<span class="action-pill__type">JSON</span>
-				</div>
+				<TransferActionPill
+					groupLabel="Project JSON actions"
+					formatLabel="JSON"
+					importLabel="Import Project JSON"
+					exportLabel="Export Project JSON"
+					onImport={triggerProjectImport}
+					onExport={handleExportProject}
+				/>
 
-				<div class="action-pill" role="group" aria-label="CSV export action">
-					<button
-						type="button"
-						class="action-pill__icon-button"
-						aria-label="Export CSV"
-						title="Export CSV"
-						on:click={handleExportCsv}
-					>
-						<svg class="action-icon" viewBox="0 0 24 24" aria-hidden="true">
-							<path d="M12 9v11" />
-							<path d="M8.5 16.5 12 20l3.5-3.5" />
-							<path d="M5 9.5v-3A1.5 1.5 0 0 1 6.5 5h11A1.5 1.5 0 0 1 19 6.5v3" />
-						</svg>
-					</button>
-					<span class="action-pill__type">CSV</span>
-				</div>
+				<TransferActionPill
+					groupLabel="CSV export action"
+					formatLabel="CSV"
+					exportLabel="Export CSV"
+					onExport={handleExportCsv}
+				/>
 			</div>
 		</div>
 	</header>
@@ -318,13 +277,14 @@
 							<label class="field">
 								<span>Remap / Route</span>
 								<select
-									value={row.activeRoutingOptionId ?? ''}
+									value={row.choiceKind === 'explicit' ? (row.activeRoutingOptionId ?? '') : ''}
 									on:change={(event) =>
 										setPeripheralRoutingOption(
 											row.id,
 											(event.currentTarget as HTMLSelectElement).value || null
 										)}
 								>
+									<option value="">Automatic</option>
 									{#each row.routingOptions as option}
 										<option
 											value={option.id}
@@ -370,6 +330,28 @@
 															? 'default on'
 															: 'default off'}</small
 											>
+											{#if row.routingOptions.length === 0 && signal.enabled && signal.routingOptions.length > 1}
+												<select
+													class="signal-route-select"
+													value={signal.activeRoutingOptionId ?? ''}
+													on:change={(event) =>
+														setPeripheralSignalRoutingOption(
+															row.id,
+															signal.id,
+															(event.currentTarget as HTMLSelectElement).value || null
+														)}
+												>
+													<option value="">Automatic</option>
+													{#each signal.routingOptions as option}
+														<option
+															value={option.id}
+															disabled={!signal.availableRoutingOptionIds.includes(option.id)}
+														>
+															{option.label}
+														</option>
+													{/each}
+												</select>
+											{/if}
 										</label>
 									{/each}
 								</div>
@@ -384,6 +366,11 @@
 									No signals are active yet, so this peripheral is not claiming any pins.
 								{:else if row.choiceKind === 'explicit'}
 									User-preferred route.
+								{:else if row.activeRoutingOptionId}
+									Solver currently uses {getRoutingLabel(
+										row.routingOptions,
+										row.activeRoutingOptionId
+									)} and may reroute it to avoid collisions.
 								{:else}
 									Solver may reroute this peripheral to avoid collisions.
 								{/if}
@@ -543,7 +530,10 @@
 					please raise an issue on
 					<a href="https://github.com/Mapy542/portfolio/issues" target="_blank" rel="noreferrer"
 						>this repository</a
-					>.
+					>. I've used a variety of parsing methods to gather data programmatically from device
+					datasheets. There may be parse errors, or just document ambiguities which lead to issues.
+					Always validate your configuration against official resources before using it in a real
+					design!
 				</p>
 			</article>
 		</div>
@@ -702,63 +692,6 @@
 	.pin-grid input:focus-visible {
 		outline: 2px solid color-mix(in srgb, var(--pinmux-accent) 52%, transparent);
 		outline-offset: 2px;
-	}
-
-	.action-pill {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.1rem;
-		border-radius: 999px;
-		border: 1px solid var(--pinmux-divider);
-		background: var(--pinmux-surface-elevated);
-		padding: 0.2rem 0.32rem 0.2rem 0.2rem;
-		width: max-content;
-	}
-
-	.action-pill__icon-button {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 2.35rem;
-		height: 2.35rem;
-		padding: 0;
-		border: 0;
-		background: transparent;
-		color: var(--theme-text-primary);
-	}
-
-	.action-pill__separator {
-		width: 1px;
-		height: 75%;
-		border-radius: 999px;
-		background: var(--pinmux-divider);
-	}
-
-	.action-pill__type {
-		display: inline-flex;
-		align-items: center;
-		padding: 0 0.78rem 0 0.45rem;
-		font-size: 0.78rem;
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--theme-text-secondary);
-	}
-
-	.action-pill__icon-button:hover {
-		transform: none;
-		border-color: transparent;
-		background: color-mix(in srgb, var(--pinmux-accent) 12%, transparent);
-	}
-
-	.action-icon {
-		width: 1rem;
-		height: 1rem;
-		fill: none;
-		stroke: currentColor;
-		stroke-linecap: round;
-		stroke-linejoin: round;
-		stroke-width: 1.8;
 	}
 
 	.pin-focus {
@@ -934,6 +867,7 @@
 	.signal-toggle {
 		display: inline-flex;
 		align-items: center;
+		flex-wrap: wrap;
 		gap: 0.45rem;
 		padding: 0.4rem 0.65rem;
 		border-radius: 999px;
@@ -949,6 +883,12 @@
 	.signal-toggle small {
 		color: var(--theme-text-secondary);
 		font-size: 0.72rem;
+	}
+
+	.signal-route-select {
+		flex: 1 1 100%;
+		min-width: 0;
+		margin-top: 0.15rem;
 	}
 
 	.signal-toggle--enabled {

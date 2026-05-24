@@ -13,6 +13,7 @@
 	import { onDestroy, onMount, tick } from 'svelte';
 	import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from 'lz-string';
 
+	import TransferActionPill from '$lib/components/pinmux/TransferActionPill.svelte';
 	import BlockNode from '$lib/components/signal-sim/BlockNode.svelte';
 	import SignalPlot from '$lib/components/signal-sim/SignalPlot.svelte';
 	import {
@@ -811,16 +812,14 @@
 
 		<div class="hero-sidecar">
 			<div class="hero-actions">
-				<button
-					type="button"
-					class="action-button action-button--primary"
-					onclick={exportProjectFile}
-				>
-					Save JSON
-				</button>
-				<button type="button" class="action-button" onclick={() => fileInput?.click()}>
-					Load JSON
-				</button>
+				<TransferActionPill
+					groupLabel="Signal simulator JSON actions"
+					formatLabel="JSON"
+					importLabel="Load project JSON"
+					exportLabel="Save project JSON"
+					onImport={() => fileInput?.click()}
+					onExport={exportProjectFile}
+				/>
 				<button type="button" class="action-button" onclick={openShareProjectDialog}>
 					Share project as URL
 				</button>

@@ -4,7 +4,7 @@
   "family": "CH32M030",
   "name": "CH32M030G8R7",
   "version": "0.2.0",
-  "description": "Generated from the WCH CH32M030 parser pipeline for CH32M030G8R7 QSOP28. Includes synthesized routing extracted from Table 2-1 Pin definitions. CH32M030G8R7 is a CH32M030 MCU in a 28-pin QSOP28 package. This generated definition includes 13 peripheral blocks covering ADC with 11 input channels, 1 I2C bus, 1 QII decoder path, 2 ISP current-sense front ends, 1 current sink, 1 SPI bus, and 1 serial port. It also models the CH32M030 motor-control analog stack, including 4 op-amps and 3 comparators arranged into QII and ISP front ends. Package-specific high-voltage and gate-driver pins are exposed directly where they are bonded out.",
+  "description": "Generated from the WCH CH32M030 parser pipeline for CH32M030G8R7 QSOP28. Includes synthesized routing extracted from Table 2-1 Pin definitions. CH32M030G8R7 is a CH32M030 MCU in a 28-pin QSOP28 package. This generated definition includes 14 peripheral blocks covering ADC with 11 input channels, 1 I2C bus, 1 QII decoder path, 2 ISP current-sense front ends, a voltage monitor output, 1 current sink, 1 SPI bus, and 1 serial port. It also models the CH32M030 motor-control analog stack, including 4 op-amps and 3 comparators arranged into QII and ISP front ends. Package-specific high-voltage, MV-domain, and gate-driver pins are exposed directly where they are bonded out.",
   "package": {
     "name": "QSOP28",
     "kind": "dual-row",
@@ -83,7 +83,7 @@
     {
       "id": "PB4",
       "packageNumber": "7",
-      "name": "PB4",
+      "name": "PB4/VDET",
       "supportedModes": [
         "auto",
         "gpio-input",
@@ -116,7 +116,7 @@
     {
       "id": "PB8",
       "packageNumber": "10",
-      "name": "PB8/LO0",
+      "name": "PB8/LO0/MVIO",
       "supportedModes": [
         "auto",
         "gpio-input",
@@ -142,7 +142,7 @@
     {
       "id": "PB9",
       "packageNumber": "13",
-      "name": "PB9/HO0",
+      "name": "PB9/HO0/MVO",
       "supportedModes": [
         "auto",
         "gpio-output"
@@ -151,7 +151,7 @@
     {
       "id": "PB10",
       "packageNumber": "14",
-      "name": "PB10/LO1",
+      "name": "PB10/LO1/MVIO",
       "supportedModes": [
         "auto",
         "gpio-input",
@@ -177,7 +177,7 @@
     {
       "id": "PB11",
       "packageNumber": "17",
-      "name": "PB11/HO1",
+      "name": "PB11/HO1/MVO",
       "supportedModes": [
         "auto",
         "gpio-output"
@@ -186,7 +186,7 @@
     {
       "id": "PB12",
       "packageNumber": "18",
-      "name": "PB12/LO2",
+      "name": "PB12/LO2/MVIO",
       "supportedModes": [
         "auto",
         "gpio-input",
@@ -212,7 +212,7 @@
     {
       "id": "PB13",
       "packageNumber": "21",
-      "name": "PB13/HO2",
+      "name": "PB13/HO2/MVO",
       "supportedModes": [
         "auto",
         "gpio-output"
@@ -1584,6 +1584,36 @@
               "af": "UART1_CTS_2",
               "routingOptionIds": [
                 "remap-2"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "VDET",
+      "family": "VoltageMonitor",
+      "label": "VDET",
+      "description": "Voltage-monitor output signal for the on-chip VDD8 and high-voltage supervision path.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "OUT",
+          "label": "OUT",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB4",
+              "af": "V_DET",
+              "routingOptionIds": [
+                "default"
               ]
             }
           ]

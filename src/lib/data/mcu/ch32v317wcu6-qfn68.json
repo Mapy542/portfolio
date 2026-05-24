@@ -2072,7 +2072,7 @@
       "id": "SDIO",
       "family": "SDIO",
       "label": "SDIO",
-      "description": "SDIO interface with CK, CMD, D0, D1, D2, D3, D4, and D5 signals.",
+      "description": "SDMMC host interface with CK, CMD, D0, D1, D2, D3, D4, and D5 signals.",
       "colorHint": null,
       "routingOptions": [
         {

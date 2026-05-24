@@ -22,6 +22,13 @@ export interface ResolvedSignalAssignment {
 	routingOptionId: string | null;
 }
 
+export interface ResolvedSignalRoutingState {
+	signalId: string;
+	activeRoutingOptionId: string | null;
+	availableRoutingOptionIds: string[];
+	impossibleRoutingOptionIds: string[];
+}
+
 export interface ResolvedPinState {
 	pinId: string;
 	ownerKind: 'free' | 'override' | 'signal';
@@ -42,6 +49,7 @@ export interface ResolvedPeripheralState {
 	impossibleRoutingOptionIds: string[];
 	availableSignalIds: string[];
 	impossibleSignalIds: string[];
+	signalRoutingStates: ResolvedSignalRoutingState[];
 }
 
 export interface PinmuxSolution {

@@ -4,8 +4,10 @@ import { derived, get, writable } from 'svelte/store';
 import {
 	createEmptyPinmuxProjectDocument,
 	getEffectiveEnabledSignalIds,
+	getSignalRoutingOptionIds,
 	isSignalEnabledByDefault,
 	normalizeEnabledSignalIds,
+	normalizeSelectedSignalRoutingOptionIds,
 	parseMcuDefinitionDocumentJson,
 	parsePinmuxProjectDocumentJson,
 	serializeMcuDefinitionDocument,
@@ -56,6 +58,9 @@ export interface PeripheralRow {
 		defaultEnabled: boolean;
 		canEnable: boolean;
 		disabledReason: string | null;
+		routingOptions: Array<{ id: string; label: string }>;
+		activeRoutingOptionId: string | null;
+		availableRoutingOptionIds: string[];
 	}>;
 	isFocused: boolean;
 }
@@ -125,6 +130,7 @@ function upsertPeripheralState(
 		selectedRoutingOptionId: string | null;
 		routingChoiceKind: RoutingChoiceKind;
 		enabledSignalIds?: string[];
+		selectedSignalRoutingOptionIds?: Record<string, string>;
 	}
 ): PinmuxProjectDocument {
 	const existingIndex = project.peripheralStates.findIndex(
@@ -134,10 +140,19 @@ function upsertPeripheralState(
 	const candidate = {
 		peripheralId: peripheral.id,
 		...nextState,
+		selectedRoutingOptionId:
+			nextState.routingChoiceKind === 'explicit' ? nextState.selectedRoutingOptionId : null,
 		enabledSignalIds:
 			nextState.enabledSignalIds !== undefined
 				? normalizeEnabledSignalIds(peripheral, nextState.enabledSignalIds)
-				: existing?.enabledSignalIds
+				: existing?.enabledSignalIds,
+		selectedSignalRoutingOptionIds:
+			nextState.selectedSignalRoutingOptionIds !== undefined
+				? normalizeSelectedSignalRoutingOptionIds(
+						peripheral,
+						nextState.selectedSignalRoutingOptionIds
+					)
+				: existing?.selectedSignalRoutingOptionIds
 	};
 	const peripheralStates = [...project.peripheralStates];
 
@@ -184,9 +199,23 @@ function upsertPinState(
 		pinStates
 	};
 }
+function buildSignalRoutingOptions(signal: PeripheralInstance['signals'][number]) {
+	const options = new Map<string, { id: string; label: string }>();
 
-function getDefaultRoutingOptionId(peripheral: PeripheralInstance): string | null {
-	return peripheral.routingOptions[0]?.id ?? null;
+	for (const candidate of signal.candidates) {
+		for (const optionId of candidate.routingOptionIds) {
+			if (options.has(optionId)) {
+				continue;
+			}
+
+			options.set(optionId, {
+				id: optionId,
+				label: candidate.af ? `${candidate.pinId} / ${candidate.af}` : candidate.pinId
+			});
+		}
+	}
+
+	return [...options.values()];
 }
 
 function colorFromId(id: string): string {
@@ -200,12 +229,37 @@ function colorFromId(id: string): string {
 	return `hsl(${hue} 72% 46%)`;
 }
 
+function parseGridPackageNumber(value: string): { row: number; column: number } | null {
+	const match = /^([A-Z]+)(\d+)$/i.exec(value.trim());
+
+	if (!match) {
+		return null;
+	}
+
+	let row = 0;
+	for (const character of match[1].toUpperCase()) {
+		row = row * 26 + (character.charCodeAt(0) - 64);
+	}
+
+	return {
+		row,
+		column: Number(match[2])
+	};
+}
+
 function comparePackageNumbers(left: string, right: string): number {
 	const leftNumber = Number(left);
 	const rightNumber = Number(right);
 
 	if (Number.isFinite(leftNumber) && Number.isFinite(rightNumber)) {
 		return leftNumber - rightNumber;
+	}
+
+	const leftGrid = parseGridPackageNumber(left);
+	const rightGrid = parseGridPackageNumber(right);
+
+	if (leftGrid && rightGrid) {
+		return leftGrid.row - rightGrid.row || leftGrid.column - rightGrid.column;
 	}
 
 	return left.localeCompare(right, undefined, { numeric: true });
@@ -323,18 +377,23 @@ export function createPinmuxStore() {
 
 						if (
 							!resolved ||
-							!nextState.enabled ||
-							resolved.activeRoutingOptionId === nextState.selectedRoutingOptionId
+							!nextState.enabled
 						) {
 							return nextState;
 						}
 
-						changed = true;
-						return {
-							...nextState,
-							selectedRoutingOptionId: resolved.activeRoutingOptionId,
-							routingChoiceKind: 'auto' as const
-						};
+						if (
+							nextState.routingChoiceKind === 'auto' &&
+							nextState.selectedRoutingOptionId !== null
+						) {
+							changed = true;
+							return {
+								...nextState,
+								selectedRoutingOptionId: null
+							};
+						}
+
+						return nextState;
 					});
 
 					if (changed) {
@@ -418,26 +477,41 @@ export function createPinmuxStore() {
 				const projectState = projectStateMap.get(peripheral.id) ?? {
 					peripheralId: peripheral.id,
 					enabled: false,
-					selectedRoutingOptionId: getDefaultRoutingOptionId(peripheral),
+					selectedRoutingOptionId: null,
 					routingChoiceKind: 'auto' as const
 				};
 				const resolved = resolvedStateMap.get(peripheral.id);
+				const resolvedSignalRoutingStateMap = new Map(
+					resolved?.signalRoutingStates.map((state) => [state.signalId, state]) ?? []
+				);
 				const activeSignalIds = getEffectiveEnabledSignalIds(peripheral, projectState);
 				const availableSignalIds = new Set(
 					resolved?.availableSignalIds ?? peripheral.signals.map((signal) => signal.id)
 				);
-				const signals = peripheral.signals.map((signal) => ({
-					id: signal.id,
-					label: signal.label,
-					required: signal.required,
-					enabled: activeSignalIds.has(signal.id),
-					defaultEnabled: isSignalEnabledByDefault(signal),
-					canEnable: signal.required || availableSignalIds.has(signal.id),
-					disabledReason:
-						signal.required || availableSignalIds.has(signal.id)
-							? null
-							: 'Enabling this signal would leave no conflict-free routing.'
-				}));
+				const signals = peripheral.signals.map((signal) => {
+					const signalRoutingState = resolvedSignalRoutingStateMap.get(signal.id);
+					const routingOptions = buildSignalRoutingOptions(signal);
+
+					return {
+						id: signal.id,
+						label: signal.label,
+						required: signal.required,
+						enabled: activeSignalIds.has(signal.id),
+						defaultEnabled: isSignalEnabledByDefault(signal),
+						canEnable: signal.required || availableSignalIds.has(signal.id),
+						disabledReason:
+							signal.required || availableSignalIds.has(signal.id)
+								? null
+								: 'Enabling this signal would leave no conflict-free routing.',
+						routingOptions,
+						activeRoutingOptionId:
+							signalRoutingState?.activeRoutingOptionId ??
+							projectState.selectedSignalRoutingOptionIds?.[signal.id] ??
+							null,
+						availableRoutingOptionIds:
+							signalRoutingState?.availableRoutingOptionIds ?? getSignalRoutingOptionIds(signal)
+					};
+				});
 				const activeSignalLabels = signals
 					.filter((signal) => signal.enabled)
 					.map((signal) => signal.label);
@@ -455,7 +529,9 @@ export function createPinmuxStore() {
 						label: option.label
 					})),
 					activeRoutingOptionId:
-						resolved?.activeRoutingOptionId ?? projectState.selectedRoutingOptionId ?? null,
+						projectState.routingChoiceKind === 'explicit'
+							? projectState.selectedRoutingOptionId
+							: resolved?.activeRoutingOptionId ?? null,
 					availableRoutingOptionIds:
 						resolved?.availableRoutingOptionIds ??
 						peripheral.routingOptions.map((option) => option.id),
@@ -484,13 +560,6 @@ export function createPinmuxStore() {
 			const assignmentByPin = new Map(
 				($displayedSolveResult?.solution.assignments ?? []).map((assignment) => [assignment.pinId, assignment])
 			);
-			const activeRoutingOptionByPeripheral = new Map(
-				($displayedSolveResult?.solution.peripheralStates ?? []).map((state) => [
-					state.peripheralId,
-					state.activeRoutingOptionId
-				])
-			);
-
 			return [...$activeDefinition.pins]
 				.sort((left, right) => comparePackageNumbers(left.packageNumber, right.packageNumber))
 				.map((pin) => {
@@ -518,9 +587,7 @@ export function createPinmuxStore() {
 								: 'Available',
 						assignedPeripheralId: assignment?.peripheralId ?? null,
 						assignedSignalId: assignment?.signalId ?? null,
-						activeRoutingOptionId: assignment
-							? activeRoutingOptionByPeripheral.get(assignment.peripheralId) ?? null
-							: null,
+						activeRoutingOptionId: assignment?.routingOptionId ?? null,
 						af: assignment?.af ?? null,
 						color: assignment
 							? colorFromId(assignment.peripheralId)
@@ -606,15 +673,18 @@ export function createPinmuxStore() {
 			return;
 		}
 
-		updateProject((current) =>
-			upsertPeripheralState(current, peripheral, {
+		updateProject((current) => {
+			const existingState = current.peripheralStates.find(
+				(state) => state.peripheralId === peripheralId
+			);
+
+			return upsertPeripheralState(current, peripheral, {
 				enabled,
-				selectedRoutingOptionId:
-					current.peripheralStates.find((state) => state.peripheralId === peripheralId)
-						?.selectedRoutingOptionId ?? getDefaultRoutingOptionId(peripheral),
-				routingChoiceKind: 'auto'
-			})
-		);
+				selectedRoutingOptionId: existingState?.selectedRoutingOptionId ?? null,
+				routingChoiceKind: existingState?.routingChoiceKind ?? 'auto',
+				selectedSignalRoutingOptionIds: existingState?.selectedSignalRoutingOptionIds
+			});
+		});
 		focusedPeripheralId.set(peripheralId);
 	}
 
@@ -634,7 +704,10 @@ export function createPinmuxStore() {
 			upsertPeripheralState(current, peripheral, {
 				enabled: true,
 				selectedRoutingOptionId: routingOptionId,
-				routingChoiceKind: 'explicit'
+				routingChoiceKind: routingOptionId === null ? 'auto' : 'explicit',
+				selectedSignalRoutingOptionIds: current.peripheralStates.find(
+					(state) => state.peripheralId === peripheralId
+				)?.selectedSignalRoutingOptionIds
 			})
 		);
 		focusedPeripheralId.set(peripheralId);
@@ -670,12 +743,58 @@ export function createPinmuxStore() {
 
 			return upsertPeripheralState(current, peripheral, {
 				enabled: existingState?.enabled ?? true,
-				selectedRoutingOptionId:
-					existingState?.selectedRoutingOptionId ?? getDefaultRoutingOptionId(peripheral),
+				selectedRoutingOptionId: existingState?.selectedRoutingOptionId ?? null,
 				routingChoiceKind: existingState?.routingChoiceKind ?? 'auto',
+				selectedSignalRoutingOptionIds: existingState?.selectedSignalRoutingOptionIds,
 				enabledSignalIds: peripheral.signals
 					.filter((candidate) => !candidate.required && nextEnabledSignalIds.has(candidate.id))
 					.map((candidate) => candidate.id)
+			});
+		});
+		focusedPeripheralId.set(peripheralId);
+	}
+
+	function setPeripheralSignalRoutingOption(
+		peripheralId: string,
+		signalId: string,
+		routingOptionId: string | null
+	) {
+		const definition = get(activeDefinition);
+		const peripheral = definition?.peripherals.find((candidate) => candidate.id === peripheralId);
+		const signal = peripheral?.signals.find((candidate) => candidate.id === signalId);
+		const row = get(peripheralRows).find((candidate) => candidate.id === peripheralId);
+		const rowSignal = row?.signals.find((candidate) => candidate.id === signalId);
+
+		if (
+			!peripheral ||
+			!signal ||
+			(routingOptionId !== null &&
+				rowSignal &&
+				!rowSignal.availableRoutingOptionIds.includes(routingOptionId))
+		) {
+			return;
+		}
+
+		updateProject((current) => {
+			const existingState = current.peripheralStates.find(
+				(state) => state.peripheralId === peripheralId
+			);
+			const nextSelectedSignalRoutingOptionIds = {
+				...(existingState?.selectedSignalRoutingOptionIds ?? {})
+			};
+
+			if (routingOptionId === null) {
+				delete nextSelectedSignalRoutingOptionIds[signalId];
+			} else {
+				nextSelectedSignalRoutingOptionIds[signalId] = routingOptionId;
+			}
+
+			return upsertPeripheralState(current, peripheral, {
+				enabled: existingState?.enabled ?? true,
+				selectedRoutingOptionId: existingState?.selectedRoutingOptionId ?? null,
+				routingChoiceKind: existingState?.routingChoiceKind ?? 'auto',
+				enabledSignalIds: existingState?.enabledSignalIds,
+				selectedSignalRoutingOptionIds: nextSelectedSignalRoutingOptionIds
 			});
 		});
 		focusedPeripheralId.set(peripheralId);
@@ -724,8 +843,17 @@ export function createPinmuxStore() {
 		const definition = parseMcuDefinitionDocumentJson(json);
 		definitionCatalog.update((definitions) => upsertDefinition(definitions, definition));
 
-		const nextProject = createEmptyPinmuxProjectDocument(definition.id);
-		nextProject.embeddedDefinition = definition;
+		const currentProject = get(project);
+
+		if (currentProject.selectedDefinitionId) {
+			return;
+		}
+
+		const nextProject = {
+			...currentProject,
+			selectedDefinitionId: definition.id,
+			embeddedDefinition: definition
+		};
 		solveResult.set(null);
 		lastSuccessfulSolveResult.set(null);
 		replaceProject(nextProject, 'other');
@@ -798,6 +926,7 @@ export function createPinmuxStore() {
 		togglePeripheral,
 		setPeripheralRoutingOption,
 		setPeripheralSignalEnabled,
+		setPeripheralSignalRoutingOption,
 		setPinOverrideMode,
 		setPinLabel,
 		focusPin,

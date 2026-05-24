@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const PINMUX_PROJECT_VERSION = 1;
 
 export const pinOverrideModeValues = ['auto', 'gpio-input', 'gpio-output', 'analog'] as const;
-export const packageKindValues = ['quad', 'dual-row'] as const;
+export const packageKindValues = ['quad', 'dual-row', 'bga'] as const;
 export const routingChoiceKindValues = ['auto', 'explicit'] as const;
 
 export type PinOverrideMode = (typeof pinOverrideModeValues)[number];
@@ -82,7 +82,8 @@ export const peripheralProjectStateSchema = z.object({
 	enabled: z.boolean(),
 	selectedRoutingOptionId: z.string().nullable(),
 	routingChoiceKind: z.enum(routingChoiceKindValues),
-	enabledSignalIds: z.array(z.string().min(1)).optional()
+	enabledSignalIds: z.array(z.string().min(1)).optional(),
+	selectedSignalRoutingOptionIds: z.record(z.string(), z.string()).optional()
 });
 
 export const pinmuxProjectMetaSchema = z.object({
@@ -173,6 +174,12 @@ export function getOptionalSignalIds(peripheral: PeripheralInstance): string[] {
 	return peripheral.signals.filter((signal) => !signal.required).map((signal) => signal.id);
 }
 
+export function getSignalRoutingOptionIds(signal: PeripheralSignal): string[] {
+	return Array.from(
+		new Set(signal.candidates.flatMap((candidate) => candidate.routingOptionIds))
+	).sort((left, right) => left.localeCompare(right));
+}
+
 export function normalizeEnabledSignalIds(
 	peripheral: PeripheralInstance,
 	signalIds: Iterable<string> | null | undefined
@@ -185,6 +192,27 @@ export function normalizeEnabledSignalIds(
 	const normalized = Array.from(new Set(signalIds)).filter((signalId) => optionalSignalIds.has(signalId));
 
 	return normalized;
+}
+
+export function normalizeSelectedSignalRoutingOptionIds(
+	peripheral: PeripheralInstance,
+	selectedSignalRoutingOptionIds:
+		| Record<string, string>
+		| null
+		| undefined
+): Record<string, string> | undefined {
+	if (!selectedSignalRoutingOptionIds) {
+		return undefined;
+	}
+
+	const signalOptionIdsBySignalId = new Map(
+		peripheral.signals.map((signal) => [signal.id, new Set(getSignalRoutingOptionIds(signal))])
+	);
+	const normalizedEntries = Object.entries(selectedSignalRoutingOptionIds).filter(
+		([signalId, routingOptionId]) => signalOptionIdsBySignalId.get(signalId)?.has(routingOptionId)
+	);
+
+	return normalizedEntries.length > 0 ? Object.fromEntries(normalizedEntries) : undefined;
 }
 
 export function getEffectiveEnabledSignalIds(
