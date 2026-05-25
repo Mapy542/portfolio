@@ -11,11 +11,20 @@
 	} from '@xyflow/svelte';
 	import '@xyflow/svelte/dist/style.css';
 	import { onDestroy, onMount, tick } from 'svelte';
-	import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from 'lz-string';
 
+	import ProjectShareDialog from '$lib/components/share/ProjectShareDialog.svelte';
 	import TransferActionPill from '$lib/components/pinmux/TransferActionPill.svelte';
 	import BlockNode from '$lib/components/signal-sim/BlockNode.svelte';
 	import SignalPlot from '$lib/components/signal-sim/SignalPlot.svelte';
+	import { createTemporaryShareLink } from '$lib/share/api';
+	import { resolveSharedProjectFromUrl } from '$lib/share/load';
+	import { TEMPORARY_SHARE_AVAILABILITY_MESSAGE } from '$lib/share/tools';
+	import {
+		buildCompressedProjectUrl,
+		decodeCompressedProjectJson,
+		encodeCompressedProjectJson,
+		isShareUrlLarge
+	} from '$lib/share/url';
 	import {
 		describePort,
 		isConnectionCompatible,
@@ -71,6 +80,8 @@
 		destroy
 	} = createSignalSimEditorStore();
 
+	const shareTool = 'signal-sim' as const;
+
 	const nodeTypes = { signalBlock: BlockNode };
 
 	let flowNodes = toFlowNodes([]);
@@ -87,7 +98,9 @@
 	let shareDialogOpen = false;
 	let shareDialogUrl = '';
 	let shareDialogStatus = '';
-	let shareDialogField: HTMLTextAreaElement | null = null;
+	let shareDialogShortUrl = '';
+	let shareDialogShortUrlStatus = '';
+	let shareDialogShortUrlPending = false;
 	let pendingCsvImportTarget: { nodeId: string; parameterKey: string } | null = null;
 	let animationFrame = 0;
 	let lastAnimationTimestamp = 0;
@@ -141,35 +154,8 @@
 		return new TextDecoder().decode(decodedBytes);
 	}
 
-	function encodeProjectForUri(value: string): string {
-		return `lz:${compressToEncodedURIComponent(value)}`;
-	}
-
-	function decodeProjectFromUri(value: string): string {
-		if (value.startsWith('lz:')) {
-			const decoded = decompressFromEncodedURIComponent(value.slice(3));
-
-			if (decoded === null) {
-				throw new Error('The shared project URL is invalid or truncated.');
-			}
-
-			return decoded;
-		}
-
-		return decodeLegacyProjectFromUri(value);
-	}
-
-	function getEncodedProjectFromUri(): string | null {
-		const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
-		return hashParams.get('project');
-	}
-
-	function buildProjectUri(encodedProject: string): string {
-		const shareUrl = new URL(window.location.href);
-		const hashParams = new URLSearchParams(shareUrl.hash.replace(/^#/, ''));
-		hashParams.set('project', encodedProject);
-		shareUrl.hash = hashParams.toString();
-		return shareUrl.toString();
+	function describeError(error: unknown, fallback: string): string {
+		return error instanceof Error ? error.message : fallback;
 	}
 
 	function formatTime(value: number): string {
@@ -530,29 +516,62 @@
 		URL.revokeObjectURL(url);
 	}
 
-	function loadProjectFromUri(options: { quietIfMissing?: boolean } = {}): boolean {
-		const encodedProject = getEncodedProjectFromUri();
-
-		if (!encodedProject) {
-			if (!options.quietIfMissing) {
-				loadError = 'No shared simulator project was found in the current URL.';
-			}
-			shareStatus = '';
-			return false;
-		}
-
+	function applyProjectJson(json: string, successMessage = ''): boolean {
 		try {
-			replaceProjectDocument(parseProjectDocumentJson(decodeProjectFromUri(encodedProject)));
+			replaceProjectDocument(parseProjectDocumentJson(json));
 			loadError = '';
 			shareDialogOpen = false;
 			shareDialogStatus = '';
-			shareStatus = 'Loaded project from shared link.';
+			shareDialogShortUrl = '';
+			shareDialogShortUrlStatus = '';
+			shareDialogShortUrlPending = false;
+			shareStatus = successMessage;
 			return true;
 		} catch (error) {
-			loadError =
-				error instanceof Error
-					? error.message
-					: 'The project embedded in this URL could not be decoded.';
+			loadError = describeError(error, 'Unable to load this Signal Sim project.');
+			shareStatus = '';
+			return false;
+		}
+	}
+
+	function getProjectJsonForShare(): string | null {
+		try {
+			return serializeProjectDocument($project);
+		} catch (error) {
+			loadError = describeError(error, 'Unable to serialize this project for sharing.');
+			shareStatus = '';
+			return null;
+		}
+	}
+
+	async function loadProjectFromUri(options: { quietIfMissing?: boolean } = {}): Promise<boolean> {
+		try {
+			const resolvedProject = await resolveSharedProjectFromUrl({
+				currentUrl: new URL(window.location.href),
+				tool: shareTool,
+				decodeLongShare: (encodedProject) =>
+					decodeCompressedProjectJson(encodedProject, {
+						fallbackDecoder: decodeLegacyProjectFromUri,
+						invalidShareMessage: 'The shared project URL is invalid or truncated.'
+					})
+			});
+
+			if (!resolvedProject) {
+				if (!options.quietIfMissing) {
+					loadError = 'No shared simulator project was found in the current URL.';
+				}
+				shareStatus = '';
+				return false;
+			}
+
+			return applyProjectJson(
+				resolvedProject.projectJson,
+				resolvedProject.source === 'short'
+					? 'Loaded project from temporary short URL.'
+					: 'Loaded project from shared link.'
+			);
+		} catch (error) {
+			loadError = describeError(error, 'The project embedded in this URL could not be decoded.');
 			shareStatus = '';
 			return false;
 		}
@@ -561,54 +580,64 @@
 	function closeShareProjectDialog() {
 		shareDialogOpen = false;
 		shareDialogStatus = '';
+		shareDialogShortUrl = '';
+		shareDialogShortUrlStatus = '';
+		shareDialogShortUrlPending = false;
 	}
 
 	async function openShareProjectDialog() {
+		const projectJson = getProjectJsonForShare();
+
+		if (!projectJson) {
+			return;
+		}
+
 		try {
-			const encodedProject = encodeProjectForUri(serializeProjectDocument($project));
-			shareDialogUrl = buildProjectUri(encodedProject);
-			shareDialogStatus =
-				shareDialogUrl.length > 12000
-					? 'This compressed URL is still large and may exceed some browser limits.'
-					: 'This compressed URL is ready to copy.';
+			shareDialogUrl = buildCompressedProjectUrl(
+				encodeCompressedProjectJson(projectJson),
+				window.location.href
+			);
+			shareDialogStatus = isShareUrlLarge(shareDialogUrl)
+				? 'This compressed URL is still large and may exceed some browser limits.'
+				: 'This compressed URL is ready to copy.';
+			shareDialogShortUrl = '';
+			shareDialogShortUrlStatus = '';
+			shareDialogShortUrlPending = false;
 			shareDialogOpen = true;
 			loadError = '';
-			await tick();
-			shareDialogField?.focus();
-			shareDialogField?.select();
 		} catch (error) {
-			loadError =
-				error instanceof Error
-					? error.message
-					: 'Unable to encode this project into a shareable URL.';
+			loadError = describeError(error, 'Unable to encode this project into a shareable URL.');
 			shareDialogOpen = false;
 			shareDialogStatus = '';
 		}
 	}
 
-	async function copyShareProjectUrl() {
-		if (!shareDialogUrl) {
+	async function createShortShareProjectUrl() {
+		if (shareDialogShortUrlPending) {
 			return;
 		}
 
-		if (navigator.clipboard?.writeText) {
-			try {
-				await navigator.clipboard.writeText(shareDialogUrl);
-				shareDialogStatus = 'Share URL copied to clipboard.';
-				return;
-			} catch {
-				// Fall back to selecting the text for manual copy.
-			}
+		const projectJson = getProjectJsonForShare();
+
+		if (!projectJson) {
+			return;
 		}
 
-		shareDialogField?.focus();
-		shareDialogField?.select();
-		shareDialogStatus = 'Press Ctrl+C to copy the selected URL.';
-	}
+		shareDialogShortUrlPending = true;
+		shareDialogShortUrlStatus = 'Creating temporary short URL...';
 
-	function handleShareDialogKeydown(event: KeyboardEvent) {
-		if (event.key === 'Escape') {
-			closeShareProjectDialog();
+		try {
+			const temporaryShare = await createTemporaryShareLink(shareTool, projectJson);
+			shareDialogShortUrl = temporaryShare.url;
+			shareDialogShortUrlStatus = `Temporary short URL ready. ${TEMPORARY_SHARE_AVAILABILITY_MESSAGE}`;
+		} catch (error) {
+			shareDialogShortUrl = '';
+			shareDialogShortUrlStatus = describeError(
+				error,
+				'Unable to create a temporary Signal Sim short URL.'
+			);
+		} finally {
+			shareDialogShortUrlPending = false;
 		}
 	}
 
@@ -620,14 +649,7 @@
 			return;
 		}
 
-		try {
-			replaceProjectDocument(parseProjectDocumentJson(await file.text()));
-			loadError = '';
-			shareStatus = '';
-		} catch (error) {
-			loadError = error instanceof Error ? error.message : 'Unable to load this project file.';
-			shareStatus = '';
-		}
+		applyProjectJson(await file.text());
 
 		input.value = '';
 	}
@@ -748,55 +770,19 @@
 	onchange={importCsvParameterFile}
 />
 
-{#if shareDialogOpen}
-	<div class="share-dialog-backdrop" role="presentation" onclick={closeShareProjectDialog}>
-		<div
-			class="share-dialog panel-card"
-			role="dialog"
-			aria-modal="true"
-			aria-labelledby="share-project-title"
-			tabindex="-1"
-			onclick={(event) => event.stopPropagation()}
-			onkeydown={handleShareDialogKeydown}
-		>
-			<div class="panel-header">
-				<div>
-					<p class="eyebrow">Share</p>
-					<h2 id="share-project-title">Share project as URL</h2>
-				</div>
-				<button type="button" class="ghost-button" onclick={closeShareProjectDialog}>Close</button>
-			</div>
-
-			<p class="share-dialog__copy">
-				This link includes the current project state in a compressed URL without changing the
-				address bar of your current page.
-			</p>
-
-			<textarea
-				bind:this={shareDialogField}
-				class="share-dialog__field"
-				readonly
-				spellcheck="false"
-				value={shareDialogUrl}
-			></textarea>
-
-			{#if shareDialogStatus}
-				<p class="share-dialog__status">{shareDialogStatus}</p>
-			{/if}
-
-			<div class="share-dialog__actions">
-				<button
-					type="button"
-					class="action-button action-button--primary"
-					onclick={copyShareProjectUrl}
-				>
-					Copy URL
-				</button>
-				<button type="button" class="action-button" onclick={closeShareProjectDialog}>Done</button>
-			</div>
-		</div>
-	</div>
-{/if}
+<ProjectShareDialog
+	open={shareDialogOpen}
+	longDescription="This link includes the current project state in a compressed URL without changing the address bar of your current page."
+	longUrl={shareDialogUrl}
+	longStatus={shareDialogStatus}
+	shortDescription={`This option stores a shorter URL on the server. ${TEMPORARY_SHARE_AVAILABILITY_MESSAGE}`}
+	shortUrl={shareDialogShortUrl}
+	shortStatus={shareDialogShortUrlStatus}
+	shortEligible={true}
+	shortPending={shareDialogShortUrlPending}
+	on:close={closeShareProjectDialog}
+	on:createshort={createShortShareProjectUrl}
+/>
 
 <section class="signal-sim-route">
 	<header class="hero-card panel-card">
@@ -1538,51 +1524,6 @@
 		color: var(--theme-text-secondary);
 	}
 
-	.share-dialog-backdrop {
-		position: fixed;
-		inset: 0;
-		z-index: 40;
-		display: grid;
-		place-items: center;
-		padding: 1.5rem;
-		background: rgba(11, 19, 27, 0.52);
-		backdrop-filter: blur(12px);
-	}
-
-	.share-dialog {
-		width: min(40rem, 100%);
-		display: grid;
-		gap: 1rem;
-	}
-
-	.share-dialog__copy,
-	.share-dialog__status {
-		margin: 0;
-		font-size: 0.9rem;
-		line-height: 1.45;
-		color: var(--theme-text-secondary);
-	}
-
-	.share-dialog__field {
-		width: 100%;
-		min-height: 8.5rem;
-		padding: 0.95rem;
-		resize: vertical;
-		border: 1px solid color-mix(in srgb, var(--theme-highlight) 24%, transparent);
-		border-radius: 0.95rem;
-		background: color-mix(in srgb, var(--theme-bg-primary) 76%, white 24%);
-		color: var(--theme-text-primary);
-		font: inherit;
-		line-height: 1.45;
-	}
-
-	.share-dialog__actions {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: flex-end;
-		gap: 0.65rem;
-	}
-
 	.action-button,
 	.ghost-button,
 	.palette-card {
@@ -2194,7 +2135,6 @@
 			grid-template-columns: 1fr;
 		}
 
-		.share-dialog__actions,
 		.result-config__actions {
 			flex-direction: column;
 		}

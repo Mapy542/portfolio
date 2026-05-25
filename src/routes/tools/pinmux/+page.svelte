@@ -1,9 +1,23 @@
 <script lang="ts">
-	import { onDestroy, tick } from 'svelte';
+	import { onDestroy, onMount, tick } from 'svelte';
 
+	import ProjectShareDialog from '$lib/components/share/ProjectShareDialog.svelte';
 	import PackageVisualizer from '$lib/components/pinmux/PackageVisualizer.svelte';
 	import TransferActionPill from '$lib/components/pinmux/TransferActionPill.svelte';
 	import { pinOverrideModeValues, type PinOverrideMode } from '$lib/pinmux/model';
+	import {
+		getRequiredShortShareUnavailableReason,
+		isShortShareEligibleProjectJson
+	} from '$lib/share/project-registry';
+	import { createTemporaryShareLink } from '$lib/share/api';
+	import { resolveSharedProjectFromUrl } from '$lib/share/load';
+	import { TEMPORARY_SHARE_AVAILABILITY_MESSAGE } from '$lib/share/tools';
+	import {
+		buildCompressedProjectUrl,
+		decodeCompressedProjectJson,
+		encodeCompressedProjectJson,
+		isShareUrlLarge
+	} from '$lib/share/url';
 	import { createPinmuxStore } from '$lib/pinmux/stores';
 
 	const {
@@ -33,10 +47,21 @@
 		destroy
 	} = createPinmuxStore();
 
+	const shareTool = 'pinmux' as const;
+
 	onDestroy(destroy);
 
 	let projectFileInput: HTMLInputElement | null = null;
 	let definitionFileInput: HTMLInputElement | null = null;
+	let loadError = '';
+	let shareStatus = '';
+	let shareDialogOpen = false;
+	let shareDialogUrl = '';
+	let shareDialogStatus = '';
+	let shareDialogShortUrl = '';
+	let shareDialogShortUrlStatus = '';
+	let shareDialogShortUrlEligible = false;
+	let shareDialogShortUrlPending = false;
 
 	const overrideModeOptions = pinOverrideModeValues.map((value) => ({
 		value,
@@ -73,6 +98,147 @@
 		definitionFileInput?.click();
 	}
 
+	function describeError(error: unknown, fallback: string): string {
+		return error instanceof Error ? error.message : fallback;
+	}
+
+	function closeShareProjectDialog() {
+		shareDialogOpen = false;
+		shareDialogStatus = '';
+		shareDialogShortUrl = '';
+		shareDialogShortUrlStatus = '';
+		shareDialogShortUrlPending = false;
+	}
+
+	function applyProjectJson(json: string, successMessage = ''): boolean {
+		try {
+			importProjectJson(json);
+			loadError = '';
+			shareStatus = successMessage;
+			closeShareProjectDialog();
+			return true;
+		} catch (error) {
+			loadError = describeError(error, 'Unable to load this Pinmux project.');
+			shareStatus = '';
+			return false;
+		}
+	}
+
+	function getProjectJsonForShare(): string | null {
+		try {
+			return exportProjectJson();
+		} catch (error) {
+			loadError = describeError(error, 'Unable to serialize this Pinmux project for sharing.');
+			shareStatus = '';
+			return null;
+		}
+	}
+
+	function configureShareDialog(projectJson: string) {
+		shareDialogUrl = buildCompressedProjectUrl(
+			encodeCompressedProjectJson(projectJson),
+			window.location.href
+		);
+		shareDialogStatus = isShareUrlLarge(shareDialogUrl)
+			? 'This compressed URL is still large and may exceed some browser limits.'
+			: 'This compressed URL is ready to copy.';
+		shareDialogShortUrl = '';
+		shareDialogShortUrlEligible = isShortShareEligibleProjectJson(shareTool, projectJson);
+		shareDialogShortUrlStatus = shareDialogShortUrlEligible
+			? ''
+			: getRequiredShortShareUnavailableReason(shareTool);
+		shareDialogShortUrlPending = false;
+	}
+
+	async function openShareProjectDialog() {
+		const projectJson = getProjectJsonForShare();
+
+		if (!projectJson) {
+			return;
+		}
+
+		try {
+			configureShareDialog(projectJson);
+			shareDialogOpen = true;
+			loadError = '';
+		} catch (error) {
+			loadError = describeError(error, 'Unable to build a shareable Pinmux URL.');
+			shareStatus = '';
+			closeShareProjectDialog();
+		}
+	}
+
+	async function createShortShareProjectUrl() {
+		if (!shareDialogShortUrlEligible || shareDialogShortUrlPending) {
+			return;
+		}
+
+		const projectJson = getProjectJsonForShare();
+
+		if (!projectJson) {
+			return;
+		}
+
+		if (!isShortShareEligibleProjectJson(shareTool, projectJson)) {
+			shareDialogShortUrlEligible = false;
+			shareDialogShortUrl = '';
+			shareDialogShortUrlStatus = getRequiredShortShareUnavailableReason(shareTool);
+			return;
+		}
+
+		shareDialogShortUrlPending = true;
+		shareDialogShortUrlStatus = 'Creating temporary short URL...';
+
+		try {
+			const temporaryShare = await createTemporaryShareLink(shareTool, projectJson);
+
+			shareDialogShortUrl = temporaryShare.url;
+			shareDialogShortUrlStatus = `Temporary short URL ready. ${TEMPORARY_SHARE_AVAILABILITY_MESSAGE}`;
+		} catch (error) {
+			shareDialogShortUrl = '';
+			shareDialogShortUrlStatus = describeError(
+				error,
+				'Unable to create a temporary Pinmux short URL.'
+			);
+		} finally {
+			shareDialogShortUrlPending = false;
+		}
+	}
+
+	async function loadProjectFromUrl(options: { quietIfMissing?: boolean } = {}): Promise<boolean> {
+		try {
+			const resolvedProject = await resolveSharedProjectFromUrl({
+				currentUrl: new URL(window.location.href),
+				tool: shareTool,
+				decodeLongShare: (encodedProject) =>
+					decodeCompressedProjectJson(encodedProject, {
+						unsupportedFormatMessage: 'This Pinmux share URL uses an unsupported format.',
+						invalidShareMessage: 'The shared Pinmux project URL is invalid or truncated.'
+					})
+			});
+
+			if (!resolvedProject) {
+				if (!options.quietIfMissing) {
+					loadError = 'No shared Pinmux project was found in the current URL.';
+				}
+
+				shareStatus = '';
+				return false;
+			}
+
+			return applyProjectJson(
+				resolvedProject.projectJson,
+				resolvedProject.source === 'short'
+					? 'Loaded Pinmux project from temporary short URL.'
+					: 'Loaded Pinmux project from shared URL.'
+			);
+		} catch (error) {
+			loadError = describeError(error, 'Unable to load the shared Pinmux project.');
+			shareStatus = '';
+			return false;
+		}
+	}
+
 	async function handleProjectImport(event: Event) {
 		const input = event.currentTarget as HTMLInputElement;
 		const file = input.files?.[0];
@@ -81,7 +247,7 @@
 			return;
 		}
 
-		importProjectJson(await file.text());
+		applyProjectJson(await file.text());
 		input.value = '';
 	}
 
@@ -93,7 +259,14 @@
 			return;
 		}
 
-		importDefinitionJson(await file.text());
+		try {
+			importDefinitionJson(await file.text());
+			loadError = '';
+			shareStatus = '';
+		} catch (error) {
+			loadError = describeError(error, 'Unable to load this MCU definition.');
+			shareStatus = '';
+		}
 		input.value = '';
 	}
 
@@ -148,6 +321,10 @@
 			target.select();
 		}
 	}
+
+	onMount(() => {
+		void loadProjectFromUrl({ quietIfMissing: true });
+	});
 </script>
 
 <svelte:head>
@@ -167,6 +344,20 @@
 	accept="application/json,.json"
 	hidden
 	on:change={handleDefinitionImport}
+/>
+
+<ProjectShareDialog
+	open={shareDialogOpen}
+	longDescription="This link keeps the full Pinmux project inside the URL and works without the temporary server store."
+	longUrl={shareDialogUrl}
+	longStatus={shareDialogStatus}
+	shortDescription={`This option stores a shorter URL on the server. ${TEMPORARY_SHARE_AVAILABILITY_MESSAGE}`}
+	shortUrl={shareDialogShortUrl}
+	shortStatus={shareDialogShortUrlStatus}
+	shortEligible={shareDialogShortUrlEligible}
+	shortPending={shareDialogShortUrlPending}
+	on:close={closeShareProjectDialog}
+	on:createshort={createShortShareProjectUrl}
 />
 
 <section class="page-shell">
@@ -232,7 +423,23 @@
 					exportLabel="Export CSV"
 					onExport={handleExportCsv}
 				/>
+
+				<button type="button" class="action-button" on:click={openShareProjectDialog}>
+					Share project as URL
+				</button>
 			</div>
+
+			{#if shareStatus || loadError}
+				<div class="hero-status-group">
+					{#if shareStatus}
+						<p class="hero-share-status">{shareStatus}</p>
+					{/if}
+
+					{#if loadError}
+						<p class="error-banner">{loadError}</p>
+					{/if}
+				</div>
+			{/if}
 		</div>
 	</header>
 
@@ -559,6 +766,22 @@
 		--pinmux-divider: color-mix(in srgb, var(--theme-highlight) 14%, transparent);
 		--pinmux-panel-border: color-mix(in srgb, var(--theme-highlight) 14%, transparent);
 		--pinmux-shadow: color-mix(in srgb, black 12%, transparent);
+		--share-dialog-border: var(--pinmux-panel-border);
+		--share-dialog-surface: var(--pinmux-surface);
+		--share-dialog-shadow: var(--pinmux-shadow);
+		--share-dialog-section-surface: var(--pinmux-surface-muted);
+		--share-dialog-section-border: color-mix(in srgb, var(--theme-highlight) 12%, transparent);
+		--share-dialog-eyebrow: color-mix(in srgb, var(--pinmux-warm) 78%, var(--theme-text-secondary));
+		--share-dialog-field-border: var(--pinmux-divider);
+		--share-dialog-field-surface: var(--pinmux-surface-elevated);
+		--share-dialog-button-surface: var(--pinmux-surface-elevated);
+		--share-dialog-button-border: var(--pinmux-divider);
+		--share-dialog-button-primary-surface: color-mix(
+			in srgb,
+			var(--pinmux-accent) 18%,
+			var(--pinmux-surface-elevated)
+		);
+		--share-dialog-button-primary-border: color-mix(in srgb, var(--pinmux-accent) 30%, transparent);
 	}
 
 	.page-shell {
@@ -685,6 +908,17 @@
 		border-color: color-mix(in srgb, var(--pinmux-accent) 28%, transparent);
 	}
 
+	button:disabled {
+		opacity: 0.56;
+		cursor: not-allowed;
+		transform: none;
+	}
+
+	button:disabled:hover {
+		background: var(--pinmux-surface-elevated);
+		border-color: var(--pinmux-divider);
+	}
+
 	button:focus-visible,
 	.field select:focus-visible,
 	.field input:focus-visible,
@@ -720,6 +954,30 @@
 		flex-wrap: wrap;
 		gap: 0.65rem;
 		align-items: center;
+	}
+
+	.hero-status-group {
+		display: grid;
+		gap: 0.55rem;
+	}
+
+	.hero-share-status,
+	.error-banner {
+		margin: 0;
+		padding: 0.8rem 0.95rem;
+		border-radius: 0.95rem;
+	}
+
+	.hero-share-status {
+		background: color-mix(in srgb, var(--pinmux-accent) 12%, var(--pinmux-surface-elevated));
+		border: 1px solid color-mix(in srgb, var(--pinmux-accent) 26%, transparent);
+		color: var(--theme-text-primary);
+	}
+
+	.error-banner {
+		background: color-mix(in srgb, #8f2416 10%, var(--pinmux-surface-elevated));
+		border: 1px solid color-mix(in srgb, #8f2416 24%, transparent);
+		color: #8f2416;
 	}
 
 	.workspace-grid {
