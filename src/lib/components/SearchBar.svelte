@@ -2,12 +2,18 @@
 	import { onDestroy, onMount } from 'svelte';
 
 	export let openSearchOnGo = true; //redirects to the search page when the search button is clicked
+	/** @type {string[]} */
 	export let resultsUplift = []; // Array to hold pass search results to the parent page. Only used if non-null. We pass by reference.
 	export let hasSearched = false; // Flag to indicate if a search has been performed
+	const showAdvancedSearch = false;
 
-	function handleSearch(event) {
+	function handleSearch() {
 		hasSearched = true; // Set the flag to indicate a search has been performed
 		const searchBarElement = document.getElementById('positiveMatch');
+
+		if (!(searchBarElement instanceof HTMLInputElement)) {
+			return;
+		}
 
 		const searchText = searchBarElement.value.split(' ').filter((word) => word !== '');
 		if (searchText.length === 0) {
@@ -24,7 +30,7 @@
 			.filter((word) => word.includes(':'))
 			.map((word) => word.split(':')[1]);
 
-		let results = fetch(
+		fetch(
 			'/api/search?' +
 				('positive=' + positiveMatch.join(',')) +
 				'&negative=' +
@@ -48,12 +54,20 @@
 	}
 
 	function loadHiddenOptions() {
-		let categoryFetch = fetch('/api/get/categories')
+		fetch('/api/get/categories')
 			.then((response) => response.json())
 			.then((data) => {
 				const categoryContainer = document.getElementById('categoryContainer');
+
+				if (!(categoryContainer instanceof HTMLDivElement)) {
+					return;
+				}
+
 				categoryContainer.innerHTML = ''; // Clear previous options
-				data.forEach((category) => {
+				/** @type {string[]} */
+				const categories = data;
+
+				categories.forEach((category) => {
 					const checkbox = document.createElement('input');
 					checkbox.type = 'checkbox';
 					checkbox.id = category;
@@ -73,12 +87,20 @@
 				});
 			});
 
-		let authorFetch = fetch('/api/get/authors')
+		fetch('/api/get/authors')
 			.then((response) => response.json())
 			.then((data) => {
 				const authorFilter = document.getElementById('authorFilter');
+
+				if (!(authorFilter instanceof HTMLSelectElement)) {
+					return;
+				}
+
 				authorFilter.innerHTML = '<option value="">Select Author</option>'; // Clear previous options
-				data.forEach((author) => {
+				/** @type {string[]} */
+				const authors = data;
+
+				authors.forEach((author) => {
 					const option = document.createElement('option');
 					option.value = author;
 					option.textContent = author;
@@ -88,16 +110,26 @@
 
 		//show the filter input section
 		const filterInput = document.querySelector('.filter-input');
-		filterInput.style.display = 'flex';
+
+		if (filterInput instanceof HTMLElement) {
+			filterInput.style.display = 'flex';
+		}
 	}
 
 	let searchKeywordsCache = '';
+	/** @type {ReturnType<typeof setInterval> | undefined} */
 	let searchTimeout;
 	onMount(() => {
 		searchTimeout = setInterval(() => {
-			if (searchKeywordsCache !== document.getElementById('positiveMatch').value) {
-				searchKeywordsCache = document.getElementById('positiveMatch').value;
-				handleSearch(1);
+			const searchInput = document.getElementById('positiveMatch');
+
+			if (!(searchInput instanceof HTMLInputElement)) {
+				return;
+			}
+
+			if (searchKeywordsCache !== searchInput.value) {
+				searchKeywordsCache = searchInput.value;
+				handleSearch();
 			}
 		}, 1000);
 	});
@@ -124,7 +156,7 @@
 			<button on:click={handleSearch}>Search</button>
 		{/if}
 	</div>
-	{#if 1 == 2}
+	{#if showAdvancedSearch}
 		<button on:click={loadHiddenOptions} class="advanced-search-button">Advanced Search</button>
 		<div class="filter-input">
 			<div id="categoryContainer" class="categoryContainer"></div>

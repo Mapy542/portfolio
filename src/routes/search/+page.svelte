@@ -1,23 +1,38 @@
-<script>
+<script lang="ts">
 	import DynaImage from '$lib/components/Dynamics/DynaImage.svelte';
 	import SearchBar from '$lib/components/SearchBar.svelte';
 
-	export let data;
+	type SearchResultMeta = {
+		author?: string;
+		date?: string;
+		description?: string;
+		image?: string;
+		title?: string;
+	};
 
-	let resultsUplift = [];
+	type SearchPageData = {
+		props?: {
+			postMetas?: Record<string, SearchResultMeta>;
+		};
+	};
+
+	export let data: SearchPageData;
+
+	let resultsUplift: string[] = [];
 	let searched = false;
 
-	let resultMetas = {};
+	let resultEntries: Array<[string, SearchResultMeta]> = [];
 
-	function getResultMetas(resultsUplift) {
-		let resultsMetas = {};
-		for (const result of resultsUplift) {
-			resultsMetas[result] = data.props.postMetas[result];
-		}
-		return resultsMetas;
+	function getResultEntries(results: string[]): Array<[string, SearchResultMeta]> {
+		const postMetas = data.props?.postMetas ?? {};
+
+		return results.flatMap((result) => {
+			const postMeta = postMetas[result];
+			return postMeta ? [[result, postMeta] as [string, SearchResultMeta]] : [];
+		});
 	}
 
-	$: resultMetas = getResultMetas(resultsUplift);
+	$: resultEntries = getResultEntries(resultsUplift);
 </script>
 
 <svelte:head>
@@ -32,22 +47,23 @@
 
 <SearchBar openSearchOnGo={false} bind:resultsUplift bind:hasSearched={searched} />
 
-<div style="height: 4vh;" />
+<div style="height: 4vh;"></div>
 
 {#if searched}
 	{#if resultsUplift.length === 0}
 		<p>No results found...</p>
 	{/if}
 	<div class="">
-		{#if resultMetas}
-			{#each Object.values(resultMetas) as postMeta, index}
-				<a href={Object.keys(resultMetas)[index].replace('.md', '').replace('/src/lib/data/', '')}>
+		{#if resultEntries.length > 0}
+			{#each resultEntries as [resultPath, postMeta]}
+				<a href={resultPath.replace('.md', '').replace('/src/lib/data/', '')}>
 					<div class="flex-columns linkable">
 						{#if postMeta.image}
 							<div class="thirds inlinkable">
 								<DynaImage
 									src={postMeta.image}
 									alt={postMeta.title}
+									caption={postMeta.title ?? ''}
 									scaleFactor=".33"
 									paddingCount="1"
 								/>

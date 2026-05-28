@@ -5,7 +5,13 @@
 	import dialup from '$lib/audio/dial-up-modem-01.wav';
 	import lobby from '$lib/audio/PROJECTEUR - Astra Vision.mp3';
 
-	/** @type {{resources: Object.<string, number>, transactions: any[], interestCurve: Record<string, { baseRate: number; amplitude: number; decay: number; minRate: number }>}} */
+	/** @typedef {{ baseRate: number; amplitude: number; decay: number; minRate: number }} InterestCurveSettings */
+	/** @typedef {{ id: number | string; borrower: string; resourceType: string; loanAmount: number; yearsForRepayment: number; totalRepayment: number; interestRate: number }} LoanTransaction */
+	/** @typedef {'ray' | 'chevron' | 'arc' | 'diamond' | 'hexagon' | 'fan'} ArtElementType */
+	/** @typedef {{ type: ArtElementType; x: number; y: number; angle: number; size: number; age: number; drawDuration: number; fadeDuration: number; baseAlpha: number; lineWidth: number }} ArtElement */
+	/** @typedef {{ resources: Record<string, number>; transactions: LoanTransaction[]; interestCurve: Record<string, InterestCurveSettings>; marketsClosed?: boolean; phoneBossEnabled?: boolean }} MafiaPageData */
+
+	/** @type {MafiaPageData} */
 	export let data;
 	export let form;
 
@@ -20,23 +26,31 @@
 	let adviseFetching = false;
 
 	let loanSubmitted = false;
-	/** @type {any} */
+	/** @type {LoanTransaction | null} */
 	let loanResult = null;
 
 	let vaultPulsing = false;
+	/** @type {HTMLCanvasElement | undefined} */
 	let bgCanvas;
-	let canvasContext;
-	let animationFrame;
+	/** @type {CanvasRenderingContext2D | null} */
+	let canvasContext = null;
+	/** @type {number | null} */
+	let animationFrame = null;
+	/** @type {ArtElement[]} */
 	let artElements = [];
 	const GRID_SIZE = 120;
 	const MAX_ELEMENTS = 80;
 	const SPAWN_INTERVAL = 600; // ms between spawns
 	let lastSpawnTime = 0;
+	/** @type {() => void} */
+	let resizeCanvas = () => {};
 
 	// Live data state (keeps form inputs intact)
-	let resources = structuredClone(data.resources);
+	/** @type {Record<string, number>} */
+	let resources = structuredClone(data.resources ?? {});
 	let transactions = data.transactions ?? [];
-	let interestCurve = structuredClone(data.interestCurve);
+	/** @type {Record<string, InterestCurveSettings>} */
+	let interestCurve = structuredClone(data.interestCurve ?? {});
 	let marketsClosed = data.marketsClosed ?? false;
 	$: selectedCurve = interestCurve?.[selectedResource] ?? interestCurve?.default ?? interestCurve;
 
@@ -52,9 +66,15 @@
 	 * Calculate repayment amount
 	 * @param {number} principal
 	 * @param {number} years
+	 * @param {string} resourceType
+	 * @returns {{ rate: string; interest: number; total: number } | null}
 	 */
 	function calculateRepayment(principal, years, resourceType) {
 		const curve = interestCurve?.[resourceType] ?? interestCurve?.default ?? interestCurve;
+
+		if (!curve) {
+			return null;
+		}
 		const { baseRate, amplitude, decay, minRate } = curve;
 
 		if (years < 0 || years > 30) return null;
@@ -74,7 +94,7 @@
 	function handleLoanSubmit() {
 		loanSubmitted = true;
 		if (form?.success) {
-			loanResult = form.transaction;
+			loanResult = /** @type {LoanTransaction} */ (form.transaction);
 			borrowerName = '';
 			loanAmount = '';
 			repaymentYears = 2;
@@ -86,7 +106,7 @@
 
 	// When the server responds, clear the processing state and sync latest transaction
 	$: if (form?.transaction && loanSubmitted) {
-		loanResult = form.transaction;
+		loanResult = /** @type {LoanTransaction} */ (form.transaction);
 		borrowerName = '';
 		loanAmount = '';
 		repaymentYears = 2;
@@ -111,15 +131,19 @@
 	onMount(() => {
 		// Initialize canvas background
 		if (bgCanvas) {
-			const resize = () => {
-				bgCanvas.width = window.innerWidth;
-				bgCanvas.height = window.innerHeight;
-			};
-			resize();
-			window.addEventListener('resize', resize);
+			const canvas = bgCanvas;
 
-			canvasContext = bgCanvas.getContext('2d');
-			startArtDecoAnimation();
+			resizeCanvas = () => {
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+			};
+			resizeCanvas();
+			window.addEventListener('resize', resizeCanvas);
+
+			canvasContext = canvas.getContext('2d');
+			if (canvasContext) {
+				startArtDecoAnimation();
+			}
 		}
 
 		const refreshInterval = setInterval(async () => {
@@ -145,20 +169,26 @@
 		return () => {
 			clearInterval(refreshInterval);
 			if (animationFrame) cancelAnimationFrame(animationFrame);
-			window.removeEventListener('resize', resize);
+			window.removeEventListener('resize', resizeCanvas);
 		};
 	});
 
 	function startArtDecoAnimation() {
+		if (!canvasContext || !bgCanvas) {
+			return;
+		}
+
+		const canvas = bgCanvas;
 		const ctx = canvasContext;
 		let lastTime = performance.now();
 
+		/** @param {number} currentTime */
 		function animate(currentTime) {
 			const deltaTime = currentTime - lastTime;
 			lastTime = currentTime;
 
 			// Clear canvas
-			ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 			// Spawn new elements periodically
 			if (currentTime - lastSpawnTime > SPAWN_INTERVAL && artElements.length < MAX_ELEMENTS) {
@@ -196,6 +226,10 @@
 	}
 
 	function spawnArtElement() {
+		if (!bgCanvas) {
+			return;
+		}
+
 		const cols = Math.ceil(bgCanvas.width / GRID_SIZE);
 		const rows = Math.ceil(bgCanvas.height / GRID_SIZE);
 		const gridX = Math.floor(Math.random() * cols);
@@ -203,6 +237,7 @@
 		const x = gridX * GRID_SIZE + GRID_SIZE / 2;
 		const y = gridY * GRID_SIZE + GRID_SIZE / 2;
 
+		/** @type {ArtElementType[]} */
 		const types = ['ray', 'chevron', 'arc', 'diamond', 'hexagon', 'fan'];
 		const type = types[Math.floor(Math.random() * types.length)];
 
@@ -220,7 +255,16 @@
 		});
 	}
 
+	/**
+	 * @param {ArtElement} el
+	 * @param {number} progress
+	 * @param {number} alpha
+	 */
 	function drawElement(el, progress, alpha) {
+		if (!canvasContext) {
+			return;
+		}
+
 		const ctx = canvasContext;
 		ctx.save();
 		ctx.translate(el.x, el.y);
@@ -353,26 +397,37 @@
 	}
 
 	// --- Phone the Boss Section State ---
-	let phoneBossActive = structuredClone(data.phoneBossEnabled); // TODO: Replace with real toggle from management page
+	let phoneBossActive = Boolean(data.phoneBossEnabled); // TODO: Replace with real toggle from management page
 	let callInProgress = false;
-	let dialupAudio;
-	let elevatorAudio;
+	/** @type {HTMLAudioElement | null} */
+	let dialupAudio = null;
+	/** @type {HTMLAudioElement | null} */
+	let elevatorAudio = null;
 	let callStep = 0; // 0 = idle, 1 = dialing, 2 = waiting
+	/** @type {ReturnType<typeof setTimeout> | undefined} */
 	let callTimeout;
+	/** @type {ReturnType<typeof setTimeout> | undefined} */
 	let extraDelay;
 
 	const phoneBossSaying = 'Sometimes, the best advice comes with a dial tone.';
 
 	function startPhoneBoss() {
+		if (!dialupAudio || !elevatorAudio) {
+			return;
+		}
+
+		const activeDialupAudio = dialupAudio;
+		const activeElevatorAudio = elevatorAudio;
+
 		callInProgress = true;
 		callStep = 1;
-		dialupAudio.currentTime = 0;
-		dialupAudio.play();
+		activeDialupAudio.currentTime = 0;
+		activeDialupAudio.play();
 		callTimeout = setTimeout(() => {
 			callStep = 2;
-			dialupAudio.pause();
-			elevatorAudio.currentTime = 0;
-			elevatorAudio.play();
+			activeDialupAudio.pause();
+			activeElevatorAudio.currentTime = 0;
+			activeElevatorAudio.play();
 			extraDelay = setTimeout(() => {
 				startHoldMessages();
 			}, 3000);
@@ -382,10 +437,14 @@
 	function hangupPhoneBoss() {
 		callInProgress = false;
 		callStep = 0;
-		dialupAudio.pause();
-		elevatorAudio.pause();
-		clearTimeout(callTimeout);
-		clearTimeout(extraDelay);
+		dialupAudio?.pause();
+		elevatorAudio?.pause();
+		if (callTimeout) {
+			clearTimeout(callTimeout);
+		}
+		if (extraDelay) {
+			clearTimeout(extraDelay);
+		}
 		stopHoldMessages(); // <--- add this
 	}
 
@@ -407,6 +466,7 @@
 		'Customers with entomophobia may experience longer wait times.'
 	];
 	let currentHoldMsg = '';
+	/** @type {ReturnType<typeof setInterval> | undefined} */
 	let holdMsgInterval;
 
 	function startHoldMessages() {
@@ -434,7 +494,9 @@
 	}
 
 	function stopHoldMessages() {
-		clearInterval(holdMsgInterval);
+		if (holdMsgInterval) {
+			clearInterval(holdMsgInterval);
+		}
 		currentHoldMsg = '';
 	}
 </script>
@@ -684,12 +746,6 @@
 		display: block;
 	}
 
-	body {
-		min-height: 100vh;
-		margin: 0;
-		background: transparent;
-	}
-
 	.mafia-container {
 		max-width: 1400px;
 		margin: 0 auto;
@@ -928,10 +984,6 @@
 		font-size: 1.1em;
 	}
 
-	.calc-row.interest-row {
-		color: #ff8c00;
-	}
-
 	.monthly-pill {
 		margin-top: 10px;
 		padding: 10px 12px;
@@ -1024,25 +1076,6 @@
 	.error-message p {
 		margin: 0;
 		color: #f5f5f5;
-	}
-
-	.transaction-details {
-		margin-top: 10px;
-	}
-
-	.transaction-details summary {
-		cursor: pointer;
-		color: var(--art-deco-gold);
-		font-size: 0.9em;
-	}
-
-	.transaction-details pre {
-		background: #0d0d1a;
-		padding: 10px;
-		overflow-x: auto;
-		font-size: 0.8em;
-		color: #a0a080;
-		margin: 10px 0 0 0;
 	}
 
 	@keyframes slideIn {

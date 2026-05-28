@@ -12,4 +12,6 @@
 <h1>All File Downloads</h1>
 <p>Naviagte into each group to view all files.</p>
 
-<DownloadsDisplay downloadsGroup={data.props.groupedDownloads} />
+{#if data.props?.groupedDownloads}
+	<DownloadsDisplay downloadsGroup={data.props.groupedDownloads} />
+{/if}

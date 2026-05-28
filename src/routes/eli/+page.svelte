@@ -15,9 +15,15 @@
 
 <div class="flex-columns">
 	<div class="thirds">
-		<DynaImage src="headshot/eli.webp" alt="Eli Bukoski" scaleFactor=".33" paddingCount="1" />
+		<DynaImage
+			src="headshot/eli.webp"
+			alt="Eli Bukoski"
+			caption=""
+			scaleFactor=".33"
+			paddingCount="1"
+		/>
 		<h2>Eli Bukoski</h2>
-		<div class="bar" />
+		<div class="bar"></div>
 		<p>Electrical Engineer</p>
 		<div class="spacer" style="height: 1em;"></div>
 		{#if bioData.employed}
@@ -32,9 +38,9 @@
 
 	<div class="two-thirds">
 		<div id="bio">
-			<div class="spacer" style="height: 15vh" />
+			<div class="spacer" style="height: 15vh"></div>
 			<div class="flex-container" style="display:flex; flex-wrap: wrap;">
-				<div class="vertical-bar" />
+				<div class="vertical-bar"></div>
 				<div class="column">
 					<p>
 						<span style="font-size:3em"><b>With</b></span> a keen eye for elegant engineering designs,
@@ -43,12 +49,12 @@
 					</p>
 				</div>
 			</div>
-			<div class="spacer" style="height: 15vh" />
+			<div class="spacer" style="height: 15vh"></div>
 		</div>
 	</div>
 </div>
 
-<span class="spacer" style="height: 20vh;" />
+<span class="spacer" style="height: 20vh;"></span>
 
 <div id="work">
 	<h1>Work Experience</h1>
@@ -71,12 +77,12 @@
 		{/if}
 	</div>
 </div>
-<span class="spacer" style="height: 20vh;" />
+<span class="spacer" style="height: 20vh;"></span>
 
 {#if bioData.skills}
 	<h1>Skills</h1>
 	<div class="flex-container" id="skills" style="display:flex; flex-wrap: wrap;">
-		<div class="vertical-bar" />
+		<div class="vertical-bar"></div>
 		{#each bioData.skills as skill}
 			<div class="column">
 				<h3 style="justify-self:center;">{skill.category}</h3>
@@ -84,10 +90,10 @@
 					<p style="justify-self:center;">{skillText}</p>
 				{/each}
 			</div>
-			<div class="vertical-bar" />
+			<div class="vertical-bar"></div>
 		{/each}
 	</div>
-	<span class="spacer" style="height: 20vh;" />
+	<span class="spacer" style="height: 20vh;"></span>
 {/if}
 
 {#if bioData.education}
@@ -104,7 +110,7 @@
 			</div>
 		{/each}
 	</div>
-	<span class="spacer" style="height: 20vh;" />
+	<span class="spacer" style="height: 20vh;"></span>
 {/if}
 
 <style>

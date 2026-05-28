@@ -27,7 +27,7 @@
 	<div class="thirds">
 		<h1 style="color:var(--theme-highlight);">K400 Laser Cutter</h1>
 
-		<div style="height: 1rem;" />
+		<div style="height: 1rem;"></div>
 
 		<p>
 			The K400 is my homemade large laser cutter based on the hobbyist generic CO2 laser, the K40.
@@ -49,7 +49,7 @@
 	</div>
 </div>
 
-<div style="height: 3rem;" />
+<div style="height: 3rem;"></div>
 
 <h2>Updates</h2>
 <div class="post-container">
@@ -62,6 +62,7 @@
 							<DynaImage
 								src={postMeta.image}
 								alt={postMeta.title}
+								caption={postMeta.title ?? ''}
 								scaleFactor=".33"
 								paddingCount="1"
 							/>

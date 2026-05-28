@@ -2,12 +2,13 @@
 	import DynaImage from './Dynamics/DynaImage.svelte';
 
 	interface DownloadEntry {
-		dateAdded: string;
-		dateModified: string | null;
-		thumbnail: string | null;
-		description: string | null;
+		title?: string;
+		dateAdded?: string | null;
+		dateModified?: string | null;
+		thumbnail?: string | null;
+		description?: string | null;
 		src: string;
-		promise: Promise<string>;
+		promise?: Promise<string>;
 		isLink: boolean;
 	}
 
@@ -18,7 +19,8 @@
 			query: '?url'
 		}) ?? {};
 
-	const { downloadsGroup } = $props<{ downloadsGroup: Record<string, DownloadEntry> }>();
+	const { downloadsGroup } = $props<{ downloadsGroup: object }>();
+	let typedDownloadsGroup = $derived(downloadsGroup as Record<string, DownloadEntry>);
 
 	let expandedFileName: string | null = $state(null);
 	let resolvedUrls: Record<string, string> = $state({});
@@ -29,11 +31,13 @@
 
 	// Resolve URLs for all files in downloadsGroup
 	$effect(() => {
-		if (downloadsGroup) {
-			Object.entries(downloadsGroup).forEach(async ([fileName, fileData]) => {
+		if (typedDownloadsGroup) {
+			const downloadEntries = Object.entries(typedDownloadsGroup) as Array<[string, DownloadEntry]>;
+
+			downloadEntries.forEach(async ([fileName, fileData]) => {
 				if (fileData.src && downloads[fileData.src] && !resolvedUrls[fileData.src]) {
 					try {
-						const url = await downloads[fileData.src]();
+						const url = (await downloads[fileData.src]()) as string;
 						resolvedUrls[fileData.src] = url;
 					} catch (e) {
 						console.error(`Failed to resolve URL for ${fileData.src}:`, e);
@@ -46,9 +50,9 @@
 </script>
 
 <div class="downloads-group">
-	{#if downloadsGroup}
+	{#if typedDownloadsGroup}
 		<ul>
-			{#each Object.keys(downloadsGroup) as fileName}
+			{#each Object.keys(typedDownloadsGroup) as fileName}
 				<li
 					class:expanded={expandedFileName === fileName}
 					style="display: flex; flex-direction: column;"
@@ -63,42 +67,44 @@
 						onkeydown={(e) => e.key === 'Enter' && toggleExpanded(fileName)}
 					>
 						<div class="title-group">
-							{#if downloadsGroup[fileName].isLink}
+							{#if typedDownloadsGroup[fileName].isLink}
 								<a
-									href={resolvedUrls[downloadsGroup[fileName].src] ?? downloadsGroup[fileName].src}
+									href={resolvedUrls[typedDownloadsGroup[fileName].src] ??
+										typedDownloadsGroup[fileName].src}
 									onclick={(e) => e.stopPropagation()}
 								>
 									<span class="download-title download-pill">
 										<icon class="fa-solid fa-angle-right" aria-hidden="true"></icon>
-										<h3>{downloadsGroup[fileName].title}</h3></span
+										<h3>{typedDownloadsGroup[fileName].title}</h3></span
 									></a
 								>
 							{:else}
 								<a
-									href={resolvedUrls[downloadsGroup[fileName].src] ?? downloadsGroup[fileName].src}
+									href={resolvedUrls[typedDownloadsGroup[fileName].src] ??
+										typedDownloadsGroup[fileName].src}
 									onclick={(e) => e.stopPropagation()}
 									download={fileName}
 								>
 									<span class="download-title download-pill">
 										<icon class="fa-solid fa-angle-down" aria-hidden="true"></icon>
-										<h3>{downloadsGroup[fileName].title}</h3></span
+										<h3>{typedDownloadsGroup[fileName].title}</h3></span
 									></a
 								>
 							{/if}
 
 							<p>
-								{downloadsGroup[fileName].dateModified
-									? downloadsGroup[fileName].dateModified
-									: downloadsGroup[fileName].dateAdded}
+								{typedDownloadsGroup[fileName].dateModified
+									? typedDownloadsGroup[fileName].dateModified
+									: typedDownloadsGroup[fileName].dateAdded}
 							</p>
 						</div>
 					</div>
 					{#if expandedFileName === fileName}
 						<div class="download-details" id={`download-details-${fileName}`}>
-							{#if downloadsGroup[fileName].thumbnail}
+							{#if typedDownloadsGroup[fileName].thumbnail}
 								<DynaImage
-									src={downloadsGroup[fileName].thumbnail}
-									alt={downloadsGroup[fileName].description ?? fileName}
+									src={typedDownloadsGroup[fileName].thumbnail}
+									alt={typedDownloadsGroup[fileName].description ?? fileName}
 									caption={null}
 									paddingCount={1}
 									scaleFactor={0.4}
@@ -106,10 +112,10 @@
 							{/if}
 
 							<div class="download-desc">
-								{#if downloadsGroup[fileName].description}
-									<p class="download-description">{downloadsGroup[fileName].description}</p>
+								{#if typedDownloadsGroup[fileName].description}
+									<p class="download-description">{typedDownloadsGroup[fileName].description}</p>
 								{/if}
-								<p class="download-description">Added: {downloadsGroup[fileName].dateAdded}</p>
+								<p class="download-description">Added: {typedDownloadsGroup[fileName].dateAdded}</p>
 							</div>
 						</div>
 					{/if}
@@ -159,11 +165,6 @@
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
-	}
-
-	.download-link {
-		text-decoration: none;
-		color: inherit;
 	}
 
 	.download-pill {

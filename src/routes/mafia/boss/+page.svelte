@@ -1,19 +1,48 @@
-<script>
+<script lang="ts">
 	import { enhance } from '$app/forms';
 	import { onMount } from 'svelte';
+	import type { ActionData, PageData } from './$types';
 
-	export let data;
-	export let form;
+	type Trade = {
+		id: number | string;
+		borrower: string;
+		loanAmount: number;
+		resourceType: string;
+		yearsForRepayment: number;
+		totalRepayment: number;
+		interestRate: number;
+	};
+
+	type InterestCurve = {
+		baseRate: number;
+		amplitude: number;
+		decay: number;
+		minRate: number;
+	};
+
+	type BossState = {
+		resources: Record<string, number>;
+		resourceLimits: Record<string, number>;
+		interestCurve: Record<string, InterestCurve>;
+		transactions: Trade[];
+		llmApiUrl: string;
+		marketsClosed: boolean;
+	};
+
+	type BossPayload = Partial<BossState>;
+
+	export let data: PageData;
+	export let form: ActionData | null | undefined = null;
 
 	const authed = data.authenticated || form?.authenticated || false;
 
-	let state = authed
+	let state: BossState = authed
 		? {
-				resources: structuredClone(data.resources),
-				resourceLimits: structuredClone(data.resourceLimits),
-				interestCurve: structuredClone(data.interestCurve),
+				resources: structuredClone(data.resources ?? {}),
+				resourceLimits: structuredClone(data.resourceLimits ?? {}),
+				interestCurve: structuredClone(data.interestCurve ?? {}),
 				transactions: data.transactions ?? [],
-				llmApiUrl: data.llmApiUrl,
+				llmApiUrl: data.llmApiUrl ?? '',
 				marketsClosed: data.marketsClosed ?? false
 			}
 		: {
@@ -25,9 +54,9 @@
 				marketsClosed: false
 			};
 
-	let lastSeenIds = new Set(state.transactions.map((t) => t.id));
+	let lastSeenIds = new Set(state.transactions.map((transaction) => transaction.id));
 	let notificationsReady = false;
-	let pendingAlerts = [];
+	let pendingAlerts: string[] = [];
 
 	onMount(() => {
 		if (!authed) return;
@@ -47,13 +76,13 @@
 		try {
 			const res = await fetch('/mafia/api');
 			if (!res.ok) return;
-			const payload = await res.json();
+			const payload = (await res.json()) as BossPayload;
 
 			const newTransactions = payload.transactions ?? [];
-			const newOnes = newTransactions.filter((t) => !lastSeenIds.has(t.id));
+			const newOnes = newTransactions.filter((transaction) => !lastSeenIds.has(transaction.id));
 			if (newOnes.length) {
 				newOnes.forEach(showTradeNotification);
-				lastSeenIds = new Set(newTransactions.map((t) => t.id));
+				lastSeenIds = new Set(newTransactions.map((transaction) => transaction.id));
 			}
 
 			state = {
@@ -75,13 +104,21 @@
 		notificationsReady = permission === 'granted';
 	}
 
-	function showTradeNotification(trade) {
+	function showTradeNotification(trade: Trade) {
 		const message = `${trade.borrower} borrowed ${trade.loanAmount} ${trade.resourceType.replace(/_/g, ' ')} for ${trade.yearsForRepayment}y`;
 		pendingAlerts = [message, ...pendingAlerts].slice(0, 5);
 
 		if (typeof Notification === 'undefined') return;
 		if (!notificationsReady) return;
 		new Notification('New trade received', { body: message });
+	}
+
+	function submitPhoneBossToggle(event: Event) {
+		const input = event.currentTarget;
+
+		if (input instanceof HTMLInputElement) {
+			input.form?.requestSubmit();
+		}
 	}
 </script>
 
@@ -232,14 +269,14 @@
 						type="checkbox"
 						name="enabled"
 						value="true"
-						checked={data.phoneBossEnabled}
-						on:change={(e) => e.target.form.requestSubmit()}
+						checked={data.phoneBossEnabled ?? false}
+						on:change={submitPhoneBossToggle}
 					/>
 					Enable "Phone the Boss" (replaces LLM advice with phone simulation)
 				</label>
 			</form>
 			<p class="note">
-				{data.phoneBossEnabled
+				{(data.phoneBossEnabled ?? false)
 					? '"Phone the Boss" is currently <b>ENABLED</b>.'
 					: '"Phone the Boss" is currently <b>DISABLED</b>.'}
 			</p>
@@ -317,13 +354,11 @@
 	}
 
 	input,
-	button,
-	select {
+	button {
 		font: inherit;
 	}
 
-	input,
-	select {
+	input {
 		padding: 8px 10px;
 		border: 1px solid #28324a;
 		border-radius: 6px;
