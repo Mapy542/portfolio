@@ -2141,8 +2141,8 @@
         {
           "id": "D13",
           "label": "D13",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PD8",
@@ -2156,8 +2156,8 @@
         {
           "id": "D14",
           "label": "D14",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PD9",

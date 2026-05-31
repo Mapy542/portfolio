@@ -4,7 +4,7 @@
   "family": "CH32V203",
   "name": "CH32V203G6U6",
   "version": "0.2.0",
-  "description": "Generated from the WCH CH32V203 parser pipeline for CH32V203G6U6 QFN28. Includes synthesized routing extracted from Table 3-1-3 TSSOP20(F6)/QFN28(G6) pin definitions. CH32V203G6U6 is a CH32V203 MCU in a 28-pin QFN28 package. This generated definition includes 12 peripheral blocks covering ADC with 10 input channels, CAN, 1 I2C bus, 2 op-amps, 1 SPI bus, and 2 serial ports.",
+  "description": "Generated from the WCH CH32V203 parser pipeline for CH32V203G6U6 QFN28. Includes synthesized routing extracted from Table 3-1-3 TSSOP20(F6)/QFN28(G6) pin definitions. CH32V203G6U6 is a CH32V203 MCU in a 28-pin QFN28 package. This generated definition includes 13 peripheral blocks covering ADC with 10 input channels, CAN, 1 I2C bus, 2 op-amps, USB full-speed, 1 SPI bus, and 2 serial ports.",
   "package": {
     "name": "QFN28",
     "kind": "quad",
@@ -730,6 +730,51 @@
             {
               "pinId": "PA4",
               "af": "OPA2_OUT1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OTG_FS",
+      "family": "USB",
+      "label": "OTG_FS",
+      "description": "USB interface with DM and DP signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "DM",
+          "label": "DM",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA10",
+              "af": "USBFS_DM",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "DP",
+          "label": "DP",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA12",
+              "af": "USBFS_DP",
               "routingOptionIds": [
                 "remap-1"
               ]

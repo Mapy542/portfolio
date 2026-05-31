@@ -30,8 +30,11 @@ import type {
 export interface DefinitionOption {
 	id: string;
 	label: string;
+	name: string;
 	vendor: string;
 	family: string;
+	packageName: string;
+	packagePinCount: number;
 	builtIn: boolean;
 }
 
@@ -86,6 +89,10 @@ export type PinmuxSolveState = 'idle' | 'solving' | 'ready' | 'error';
 
 type ProjectMutationSource = 'pin-override' | 'other';
 
+const SOLVE_TIMEOUT_MS = 30_000;
+const SOLVE_TIMEOUT_MESSAGE =
+	'The pinmux solver timed out after 30 seconds while solving remap and availability.';
+
 function getDisplayedSolveResponse(
 	solveResult: PinmuxSolveResponse | null,
 	lastSuccessfulSolveResult: PinmuxSolveSuccess | null
@@ -101,7 +108,10 @@ function resolveActiveDefinition(
 	definitionCatalog: McuDefinitionDocument[],
 	project: PinmuxProjectDocument
 ): McuDefinitionDocument | null {
-	if (project.embeddedDefinition && project.embeddedDefinition.id === project.selectedDefinitionId) {
+	if (
+		project.embeddedDefinition &&
+		project.embeddedDefinition.id === project.selectedDefinitionId
+	) {
 		return project.embeddedDefinition;
 	}
 
@@ -177,10 +187,10 @@ function upsertPinState(
 	const existing =
 		existingIndex === -1
 			? {
-				pinId,
-				overrideMode: 'auto' as PinOverrideMode,
-				label: ''
-			}
+					pinId,
+					overrideMode: 'auto' as PinOverrideMode,
+					label: ''
+				}
 			: project.pinStates[existingIndex];
 	const pinStates = [...project.pinStates];
 	const candidate = {
@@ -311,7 +321,21 @@ export function createPinmuxStore() {
 	let activeRequestId: string | null = null;
 	let requestCounter = 0;
 	let pendingSolveSource: ProjectMutationSource = 'other';
+	let solveTimeoutId: ReturnType<typeof setTimeout> | null = null;
 	const requestSourceById = new Map<string, ProjectMutationSource>();
+
+	function clearSolveTimeout() {
+		if (solveTimeoutId !== null) {
+			clearTimeout(solveTimeoutId);
+			solveTimeoutId = null;
+		}
+	}
+
+	function disposeWorker() {
+		clearSolveTimeout();
+		solveWorker?.terminate();
+		solveWorker = null;
+	}
 
 	function replaceProject(
 		nextProject: PinmuxProjectDocument,
@@ -345,8 +369,10 @@ export function createPinmuxStore() {
 					return;
 				}
 
+				clearSolveTimeout();
 				const requestSource = requestSourceById.get(event.data.requestId) ?? 'other';
 				requestSourceById.delete(event.data.requestId);
+				activeRequestId = null;
 
 				if (event.data.ok) {
 					solveResult.set(event.data);
@@ -375,10 +401,7 @@ export function createPinmuxStore() {
 							};
 						}
 
-						if (
-							!resolved ||
-							!nextState.enabled
-						) {
+						if (!resolved || !nextState.enabled) {
 							return nextState;
 						}
 
@@ -416,6 +439,11 @@ export function createPinmuxStore() {
 			});
 
 			solveWorker.addEventListener('error', (event) => {
+				clearSolveTimeout();
+				if (activeRequestId) {
+					requestSourceById.delete(activeRequestId);
+					activeRequestId = null;
+				}
 				solveDiagnostics.set([
 					{
 						id: 'pinmux-worker-crash',
@@ -430,6 +458,7 @@ export function createPinmuxStore() {
 						'The pinmux solver worker crashed while evaluating the current selection.'
 				);
 				solveState.set('error');
+				disposeWorker();
 			});
 		}
 
@@ -444,13 +473,19 @@ export function createPinmuxStore() {
 		$definitionCatalog.map((definition) => ({
 			id: definition.id,
 			label: `${definition.vendor} ${definition.name}`,
+			name: definition.name,
 			vendor: definition.vendor,
 			family: definition.family,
+			packageName: definition.package.name,
+			packagePinCount: definition.package.pinCount,
 			builtIn: isBuiltInDefinitionId(definition.id)
 		}))
 	);
 
-	const activePackage = derived(activeDefinition, ($activeDefinition) => $activeDefinition?.package ?? null);
+	const activePackage = derived(
+		activeDefinition,
+		($activeDefinition) => $activeDefinition?.package ?? null
+	);
 
 	const projectName = derived(project, ($project) => $project.meta.name);
 	const displayedSolveResult = derived(
@@ -531,7 +566,7 @@ export function createPinmuxStore() {
 					activeRoutingOptionId:
 						projectState.routingChoiceKind === 'explicit'
 							? projectState.selectedRoutingOptionId
-							: resolved?.activeRoutingOptionId ?? null,
+							: (resolved?.activeRoutingOptionId ?? null),
 					availableRoutingOptionIds:
 						resolved?.availableRoutingOptionIds ??
 						peripheral.routingOptions.map((option) => option.id),
@@ -558,7 +593,10 @@ export function createPinmuxStore() {
 
 			const projectPinStateMap = new Map($project.pinStates.map((state) => [state.pinId, state]));
 			const assignmentByPin = new Map(
-				($displayedSolveResult?.solution.assignments ?? []).map((assignment) => [assignment.pinId, assignment])
+				($displayedSolveResult?.solution.assignments ?? []).map((assignment) => [
+					assignment.pinId,
+					assignment
+				])
 			);
 			return [...$activeDefinition.pins]
 				.sort((left, right) => comparePackageNumbers(left.packageNumber, right.packageNumber))
@@ -582,9 +620,9 @@ export function createPinmuxStore() {
 							? `${assignment.peripheralId} ${assignment.signalId}`
 							: staticPin
 								? 'Static'
-							: pinState.overrideMode !== 'auto'
-								? formatOverrideMode(pinState.overrideMode)
-								: 'Available',
+								: pinState.overrideMode !== 'auto'
+									? formatOverrideMode(pinState.overrideMode)
+									: 'Available',
 						assignedPeripheralId: assignment?.peripheralId ?? null,
 						assignedSignalId: assignment?.signalId ?? null,
 						activeRoutingOptionId: assignment?.routingOptionId ?? null,
@@ -593,9 +631,9 @@ export function createPinmuxStore() {
 							? colorFromId(assignment.peripheralId)
 							: staticPin
 								? 'hsl(36 9% 60%)'
-							: pinState.overrideMode !== 'auto'
-								? 'hsl(202 24% 54%)'
-								: null,
+								: pinState.overrideMode !== 'auto'
+									? 'hsl(202 24% 54%)'
+									: null,
 						supportedModes: pin.supportedModes,
 						isFocused: $focusedPinId === pin.id
 					};
@@ -603,11 +641,19 @@ export function createPinmuxStore() {
 		}
 	);
 
-	const solveSubscription = derived([project, activeDefinition], ([$project, $activeDefinition]) => ({
-		project: $project,
-		definition: $activeDefinition
-	})).subscribe(({ project: activeProject, definition }) => {
+	const solveSubscription = derived(
+		[project, activeDefinition],
+		([$project, $activeDefinition]) => ({
+			project: $project,
+			definition: $activeDefinition
+		})
+	).subscribe(({ project: activeProject, definition }) => {
 		if (!definition) {
+			if (activeRequestId) {
+				requestSourceById.delete(activeRequestId);
+				activeRequestId = null;
+			}
+			disposeWorker();
 			solveState.set('idle');
 			solveDiagnostics.set([
 				{
@@ -622,6 +668,12 @@ export function createPinmuxStore() {
 			return;
 		}
 
+		if (activeRequestId) {
+			requestSourceById.delete(activeRequestId);
+			activeRequestId = null;
+			disposeWorker();
+		}
+
 		const worker = ensureWorker();
 
 		if (!worker) {
@@ -632,6 +684,43 @@ export function createPinmuxStore() {
 		requestSourceById.set(activeRequestId, pendingSolveSource);
 		pendingSolveSource = 'other';
 		solveState.set('solving');
+		clearSolveTimeout();
+		solveTimeoutId = setTimeout(() => {
+			if (!activeRequestId) {
+				return;
+			}
+
+			const timedOutRequestId = activeRequestId;
+			requestSourceById.delete(timedOutRequestId);
+			activeRequestId = null;
+			solveResult.set({
+				requestId: timedOutRequestId,
+				ok: false,
+				diagnostics: [
+					{
+						id: 'pinmux-solve-timeout',
+						level: 'error',
+						message: SOLVE_TIMEOUT_MESSAGE
+					}
+				],
+				message: SOLVE_TIMEOUT_MESSAGE,
+				solution: {
+					assignments: [],
+					pinStates: [],
+					peripheralStates: []
+				}
+			});
+			solveDiagnostics.set([
+				{
+					id: 'pinmux-solve-timeout',
+					level: 'error',
+					message: SOLVE_TIMEOUT_MESSAGE
+				}
+			]);
+			solveErrorMessage.set(SOLVE_TIMEOUT_MESSAGE);
+			solveState.set('error');
+			disposeWorker();
+		}, SOLVE_TIMEOUT_MS);
 		worker.postMessage({
 			requestId: activeRequestId,
 			definition,
@@ -640,7 +729,8 @@ export function createPinmuxStore() {
 	});
 
 	function selectDefinition(definitionId: string) {
-		const definition = get(definitionCatalog).find((candidate) => candidate.id === definitionId) ?? null;
+		const definition =
+			get(definitionCatalog).find((candidate) => candidate.id === definitionId) ?? null;
 		const nextProject = createEmptyPinmuxProjectDocument(definitionId || null);
 
 		if (definition && !isBuiltInDefinitionId(definition.id)) {
@@ -720,7 +810,12 @@ export function createPinmuxStore() {
 		const row = get(peripheralRows).find((candidate) => candidate.id === peripheralId);
 		const rowSignal = row?.signals.find((candidate) => candidate.id === signalId);
 
-		if (!peripheral || !signal || signal.required || (enabled && rowSignal && !rowSignal.canEnable)) {
+		if (
+			!peripheral ||
+			!signal ||
+			signal.required ||
+			(enabled && rowSignal && !rowSignal.canEnable)
+		) {
 			return;
 		}
 
@@ -729,10 +824,14 @@ export function createPinmuxStore() {
 				(state) => state.peripheralId === peripheralId
 			);
 			const nextEnabledSignalIds = new Set(
-				Array.from(getEffectiveEnabledSignalIds(peripheral, existingState)).filter((candidateId) => {
-					const candidateSignal = peripheral.signals.find((candidate) => candidate.id === candidateId);
-					return !!candidateSignal && !candidateSignal.required;
-				})
+				Array.from(getEffectiveEnabledSignalIds(peripheral, existingState)).filter(
+					(candidateId) => {
+						const candidateSignal = peripheral.signals.find(
+							(candidate) => candidate.id === candidateId
+						);
+						return !!candidateSignal && !candidateSignal.required;
+					}
+				)
 			);
 
 			if (enabled) {
@@ -883,12 +982,21 @@ export function createPinmuxStore() {
 	}
 
 	function exportProjectJson(): string {
-		return serializePinmuxProjectDocument(buildExportableProject(get(project), get(activeDefinition)));
+		return serializePinmuxProjectDocument(
+			buildExportableProject(get(project), get(activeDefinition))
+		);
 	}
 
 	function exportCsv(): string {
 		const rows = get(pinRows);
-		const header = ['Package Pin', 'GPIO', 'Resolved Assignment', 'AF / Route', 'Override', 'Label'];
+		const header = [
+			'Package Pin',
+			'GPIO',
+			'Resolved Assignment',
+			'AF / Route',
+			'Override',
+			'Label'
+		];
 		const body = rows.map((row) => [
 			row.packageNumber,
 			row.name,
@@ -905,7 +1013,11 @@ export function createPinmuxStore() {
 
 	function destroy() {
 		solveSubscription();
-		solveWorker?.terminate();
+		if (activeRequestId) {
+			requestSourceById.delete(activeRequestId);
+			activeRequestId = null;
+		}
+		disposeWorker();
 	}
 
 	return {

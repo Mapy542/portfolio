@@ -4,7 +4,7 @@
   "family": "CH32M030",
   "name": "CH32M030C8U3",
   "version": "0.2.0",
-  "description": "Generated from the WCH CH32M030 parser pipeline for CH32M030C8U3 QFN48X7_A. Includes synthesized routing extracted from Table 2-1 Pin definitions. CH32M030C8U3 is a CH32M030 MCU in a 48-pin QFN48X7_A package. This generated definition includes 18 peripheral blocks covering ADC with 20 input channels, 1 I2C bus, 2 QII decoder paths, 2 ISP current-sense front ends, a voltage monitor output, 2 source current modules and 2 current sinks, 1 SPI bus, and 1 serial port. It also models the CH32M030 motor-control analog stack, including 4 op-amps and 3 comparators arranged into QII and ISP front ends. Package-specific high-voltage, MV-domain, and gate-driver pins are exposed directly where they are bonded out.",
+  "description": "Generated from the WCH CH32M030 parser pipeline for CH32M030C8U3 QFN48X7_A. Includes synthesized routing extracted from Table 2-1 Pin definitions. CH32M030C8U3 is a CH32M030 MCU in a 48-pin QFN48X7_A package. This generated definition includes 19 peripheral blocks covering ADC with 20 input channels, 1 I2C bus, 2 QII decoder paths, 2 ISP current-sense front ends, a voltage monitor output, 2 source current modules and 2 current sinks, 1 SPI bus, and 1 serial port. It also models the CH32M030 motor-control analog stack, including 4 op-amps and 3 comparators arranged into QII and ISP front ends. Package-specific high-voltage, MV-domain, and gate-driver pins are exposed directly where they are bonded out.",
   "package": {
     "name": "QFN48X7_A",
     "kind": "quad",
@@ -2777,6 +2777,51 @@
       ]
     },
     {
+      "id": "USBPD1",
+      "family": "USBPD",
+      "label": "USBPD1",
+      "description": "USBPD1 peripheral with 2 configurable signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CC1",
+          "label": "CC1",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "USBPD1_CC1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CC2",
+          "label": "CC2",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA1",
+              "af": "USBPD1_CC2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "VDET",
       "family": "VoltageMonitor",
       "label": "VDET",
@@ -2792,8 +2837,8 @@
         {
           "id": "OUT",
           "label": "OUT",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PB4",

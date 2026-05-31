@@ -2520,8 +2520,8 @@
         {
           "id": "A16",
           "label": "A16",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PD11",
@@ -2535,8 +2535,8 @@
         {
           "id": "A17",
           "label": "A17",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PD12",
@@ -2550,8 +2550,8 @@
         {
           "id": "A18",
           "label": "A18",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PD13",
@@ -2565,8 +2565,8 @@
         {
           "id": "A19",
           "label": "A19",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PE3",
@@ -2580,8 +2580,8 @@
         {
           "id": "A20",
           "label": "A20",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PE4",
@@ -2595,8 +2595,8 @@
         {
           "id": "A21",
           "label": "A21",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PE5",
@@ -2610,8 +2610,8 @@
         {
           "id": "A22",
           "label": "A22",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PE6",
@@ -2625,8 +2625,8 @@
         {
           "id": "A23",
           "label": "A23",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PE2",
@@ -2655,8 +2655,8 @@
         {
           "id": "D0",
           "label": "D0",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PD14",
@@ -2670,8 +2670,8 @@
         {
           "id": "D1",
           "label": "D1",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PD15",
@@ -2685,8 +2685,8 @@
         {
           "id": "D10",
           "label": "D10",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PE13",
@@ -2700,8 +2700,8 @@
         {
           "id": "D11",
           "label": "D11",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PE14",
@@ -2715,8 +2715,8 @@
         {
           "id": "D12",
           "label": "D12",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PE15",
@@ -2730,8 +2730,8 @@
         {
           "id": "D13",
           "label": "D13",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PD8",
@@ -2745,8 +2745,8 @@
         {
           "id": "D14",
           "label": "D14",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PD9",
@@ -2760,8 +2760,8 @@
         {
           "id": "D15",
           "label": "D15",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PD10",
@@ -2775,8 +2775,8 @@
         {
           "id": "D2",
           "label": "D2",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PD0",
@@ -2790,8 +2790,8 @@
         {
           "id": "D3",
           "label": "D3",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PD1",
@@ -2805,8 +2805,8 @@
         {
           "id": "D4",
           "label": "D4",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PE7",
@@ -2820,8 +2820,8 @@
         {
           "id": "D5",
           "label": "D5",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PE8",
@@ -2835,8 +2835,8 @@
         {
           "id": "D6",
           "label": "D6",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PE9",
@@ -2850,8 +2850,8 @@
         {
           "id": "D7",
           "label": "D7",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PE10",
@@ -2865,8 +2865,8 @@
         {
           "id": "D8",
           "label": "D8",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PE11",
@@ -2880,8 +2880,8 @@
         {
           "id": "D9",
           "label": "D9",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PE12",
@@ -2962,8 +2962,8 @@
         {
           "id": "NE1",
           "label": "NE1",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PD7",
@@ -2977,8 +2977,8 @@
         {
           "id": "NOE",
           "label": "NOE",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PD4",
@@ -3007,8 +3007,8 @@
         {
           "id": "NWE",
           "label": "NWE",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PD5",

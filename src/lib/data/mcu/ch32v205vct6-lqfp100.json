@@ -1,0 +1,5378 @@
+{
+  "id": "wch-ch32v205vct6-lqfp100",
+  "vendor": "WCH",
+  "family": "CH32V205",
+  "name": "CH32V205VCT6",
+  "version": "0.2.0",
+  "description": "Generated from the WCH CH32V205 parser pipeline for CH32V205VCT6 LQFP100. Includes synthesized routing extracted from Table 2-1-1 CH32V205 pin definitions. CH32V205VCT6 is a CH32V205 MCU in a 100-pin LQFP100 package. This generated definition includes 31 peripheral blocks covering ADC with 16 input channels, CAN, 10M Ethernet, 2 I2C buses, 2 op-amps, USB full-speed, 2 SPI buses, and 8 serial ports.",
+  "package": {
+    "name": "LQFP100",
+    "kind": "quad",
+    "pinCount": 100,
+    "numbering": "ccw",
+    "orientationMark": "top-left",
+    "pinsPerSide": 25,
+    "rowPinCount": null,
+    "bodyLabel": "CH32V205VCT6"
+  },
+  "pins": [
+    {
+      "id": "PE2",
+      "packageNumber": "1",
+      "name": "PE2",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PE3",
+      "packageNumber": "2",
+      "name": "PE3",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PE4",
+      "packageNumber": "3",
+      "name": "PE4",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PE5",
+      "packageNumber": "4",
+      "name": "PE5",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PE6",
+      "packageNumber": "5",
+      "name": "PE6",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "VBAT",
+      "packageNumber": "6",
+      "name": "VBAT",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "PC13",
+      "packageNumber": "7",
+      "name": "PC13",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PC14",
+      "packageNumber": "8",
+      "name": "PC14",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PC15",
+      "packageNumber": "9",
+      "name": "PC15",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "VSS_5",
+      "packageNumber": "10",
+      "name": "VSS_5",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "VDD_5",
+      "packageNumber": "11",
+      "name": "VDD_5",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "OSC_IN",
+      "packageNumber": "12",
+      "name": "OSC_IN",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "analog"
+      ]
+    },
+    {
+      "id": "OSC_OUT",
+      "packageNumber": "13",
+      "name": "OSC_OUT",
+      "supportedModes": [
+        "auto",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "NRST",
+      "packageNumber": "14",
+      "name": "NRST",
+      "supportedModes": [
+        "auto",
+        "gpio-input"
+      ]
+    },
+    {
+      "id": "PC0",
+      "packageNumber": "15",
+      "name": "PC0",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PC1",
+      "packageNumber": "16",
+      "name": "PC1",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PC2",
+      "packageNumber": "17",
+      "name": "PC2",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PC3",
+      "packageNumber": "18",
+      "name": "PC3",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "VSSA",
+      "packageNumber": "19",
+      "name": "VSSA",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "VREF_MINUS",
+      "packageNumber": "20",
+      "name": "VREF-",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "VREF_PLUS",
+      "packageNumber": "21",
+      "name": "VREF+",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "VDDA",
+      "packageNumber": "22",
+      "name": "VDDA",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "PA0",
+      "packageNumber": "23",
+      "name": "PA0",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA1",
+      "packageNumber": "24",
+      "name": "PA1",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA2",
+      "packageNumber": "25",
+      "name": "PA2",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA3",
+      "packageNumber": "26",
+      "name": "PA3",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "VSS_4",
+      "packageNumber": "27",
+      "name": "VSS_4",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "VDD_4",
+      "packageNumber": "28",
+      "name": "VDD_4",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "PA4",
+      "packageNumber": "29",
+      "name": "PA4",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA5",
+      "packageNumber": "30",
+      "name": "PA5",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA6",
+      "packageNumber": "31",
+      "name": "PA6",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA7",
+      "packageNumber": "32",
+      "name": "PA7",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PC4",
+      "packageNumber": "33",
+      "name": "PC4",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PC5",
+      "packageNumber": "34",
+      "name": "PC5",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB0",
+      "packageNumber": "35",
+      "name": "PB0",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB1",
+      "packageNumber": "36",
+      "name": "PB1",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "BOOT1",
+      "packageNumber": "37",
+      "name": "BOOT1",
+      "supportedModes": [
+        "auto",
+        "gpio-input"
+      ]
+    },
+    {
+      "id": "PE7",
+      "packageNumber": "38",
+      "name": "PE7",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PE8",
+      "packageNumber": "39",
+      "name": "PE8",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PE9",
+      "packageNumber": "40",
+      "name": "PE9",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PE10",
+      "packageNumber": "41",
+      "name": "PE10",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PE11",
+      "packageNumber": "42",
+      "name": "PE11",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PE12",
+      "packageNumber": "43",
+      "name": "PE12",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PE13",
+      "packageNumber": "44",
+      "name": "PE13",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PE14",
+      "packageNumber": "45",
+      "name": "PE14",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PE15",
+      "packageNumber": "46",
+      "name": "PE15",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PB10",
+      "packageNumber": "47",
+      "name": "PB10",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB11",
+      "packageNumber": "48",
+      "name": "PB11",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "VSS_1",
+      "packageNumber": "49",
+      "name": "VSS_1",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "VIO_1",
+      "packageNumber": "50",
+      "name": "VIO_1",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "PB12",
+      "packageNumber": "51",
+      "name": "PB12",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB13",
+      "packageNumber": "52",
+      "name": "PB13",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB14",
+      "packageNumber": "53",
+      "name": "PB14",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB15",
+      "packageNumber": "54",
+      "name": "PB15",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PD8",
+      "packageNumber": "55",
+      "name": "PD8",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PD9",
+      "packageNumber": "56",
+      "name": "PD9",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PD10",
+      "packageNumber": "57",
+      "name": "PD10",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PD11",
+      "packageNumber": "58",
+      "name": "PD11",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PD12",
+      "packageNumber": "59",
+      "name": "PD12",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PD13",
+      "packageNumber": "60",
+      "name": "PD13",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PD14",
+      "packageNumber": "61",
+      "name": "PD14",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PD15",
+      "packageNumber": "62",
+      "name": "PD15",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PC6",
+      "packageNumber": "63",
+      "name": "PC6",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PC7",
+      "packageNumber": "64",
+      "name": "PC7",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PC8",
+      "packageNumber": "65",
+      "name": "PC8",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PC9",
+      "packageNumber": "66",
+      "name": "PC9",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PA8",
+      "packageNumber": "67",
+      "name": "PA8",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA9",
+      "packageNumber": "68",
+      "name": "PA9",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PA10",
+      "packageNumber": "69",
+      "name": "PA10",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PA11",
+      "packageNumber": "70",
+      "name": "PA11",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PA12",
+      "packageNumber": "71",
+      "name": "PA12",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PA13",
+      "packageNumber": "72",
+      "name": "PA13",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "NC",
+      "packageNumber": "73",
+      "name": "NC",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "VSS_2",
+      "packageNumber": "74",
+      "name": "VSS_2",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "VDD_2",
+      "packageNumber": "75",
+      "name": "VDD_2",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "PA14",
+      "packageNumber": "76",
+      "name": "PA14",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PA15",
+      "packageNumber": "77",
+      "name": "PA15",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PC10",
+      "packageNumber": "78",
+      "name": "PC10",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PC11",
+      "packageNumber": "79",
+      "name": "PC11",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PC12",
+      "packageNumber": "80",
+      "name": "PC12",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PD0",
+      "packageNumber": "81",
+      "name": "PD0",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PD1",
+      "packageNumber": "82",
+      "name": "PD1",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PD2",
+      "packageNumber": "83",
+      "name": "PD2",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PD3",
+      "packageNumber": "84",
+      "name": "PD3",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PD4",
+      "packageNumber": "85",
+      "name": "PD4",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PD5",
+      "packageNumber": "86",
+      "name": "PD5",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PD6",
+      "packageNumber": "87",
+      "name": "PD6",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PD7",
+      "packageNumber": "88",
+      "name": "PD7",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PB3",
+      "packageNumber": "89",
+      "name": "PB3",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB4",
+      "packageNumber": "90",
+      "name": "PB4",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PB5",
+      "packageNumber": "91",
+      "name": "PB5",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB7",
+      "packageNumber": "92",
+      "name": "PB7",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PB6",
+      "packageNumber": "93",
+      "name": "PB6",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "BOOT0",
+      "packageNumber": "94",
+      "name": "BOOT0",
+      "supportedModes": [
+        "auto",
+        "gpio-input"
+      ]
+    },
+    {
+      "id": "PB8",
+      "packageNumber": "95",
+      "name": "PB8",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output",
+        "analog"
+      ]
+    },
+    {
+      "id": "PB9",
+      "packageNumber": "96",
+      "name": "PB9",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PE0",
+      "packageNumber": "97",
+      "name": "PE0",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "PE1",
+      "packageNumber": "98",
+      "name": "PE1",
+      "supportedModes": [
+        "auto",
+        "gpio-input",
+        "gpio-output"
+      ]
+    },
+    {
+      "id": "VSS_3",
+      "packageNumber": "99",
+      "name": "VSS_3",
+      "supportedModes": [
+        "auto"
+      ]
+    },
+    {
+      "id": "VIO_3",
+      "packageNumber": "100",
+      "name": "VIO_3",
+      "supportedModes": [
+        "auto"
+      ]
+    }
+  ],
+  "peripherals": [
+    {
+      "id": "ADC",
+      "family": "ADC",
+      "label": "ADC",
+      "description": "Analog-to-digital converter with 16 analog input channels.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "IN0",
+          "label": "IN0",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "ADC_IN0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN1",
+          "label": "IN1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA1",
+              "af": "ADC_IN1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN2",
+          "label": "IN2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA2",
+              "af": "ADC_IN2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN3",
+          "label": "IN3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA3",
+              "af": "ADC_IN3",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN4",
+          "label": "IN4",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA4",
+              "af": "ADC_IN4",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN5",
+          "label": "IN5",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA5",
+              "af": "ADC_IN5",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN6",
+          "label": "IN6",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA6",
+              "af": "ADC_IN6",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN7",
+          "label": "IN7",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA7",
+              "af": "ADC_IN7",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN8",
+          "label": "IN8",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB0",
+              "af": "ADC_IN8",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN9",
+          "label": "IN9",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB1",
+              "af": "ADC_IN9",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN10",
+          "label": "IN10",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PC0",
+              "af": "ADC_IN10",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN11",
+          "label": "IN11",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PC1",
+              "af": "ADC_IN11",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN12",
+          "label": "IN12",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PC2",
+              "af": "ADC_IN12",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN13",
+          "label": "IN13",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PC3",
+              "af": "ADC_IN13",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN14",
+          "label": "IN14",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PC4",
+              "af": "ADC_IN14",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IN15",
+          "label": "IN15",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PC5",
+              "af": "ADC_IN15",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CAN1",
+      "family": "CAN",
+      "label": "CAN1",
+      "description": "Controller Area Network interface with TX and RX signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA12",
+              "af": "CAN1_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB9",
+              "af": "CAN1_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD1",
+              "af": "CAN1_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA11",
+              "af": "CAN1_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB8",
+              "af": "CAN1_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD0",
+              "af": "CAN1_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CMP1",
+      "family": "CMP",
+      "label": "CMP1",
+      "description": "On-chip analog comparator with a positive input, a negative input, and a comparator output. Supports 2 pin-routing options.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "INP",
+          "label": "INP",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA2",
+              "af": "CMP1_P0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "INN",
+          "label": "INN",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB1",
+              "af": "CMP1_N0",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB3",
+              "af": "CMP1_N1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "OUT",
+          "label": "OUT",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "CMP1_OUT",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CMP2",
+      "family": "CMP",
+      "label": "CMP2",
+      "description": "On-chip analog comparator with a positive input, a negative input, and a comparator output. Supports 2 pin-routing options.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "INP",
+          "label": "INP",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB8",
+              "af": "CMP2_P0",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA8",
+              "af": "CMP2_P1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "INN",
+          "label": "INN",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA9",
+              "af": "CMP2_N0",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB11",
+              "af": "CMP2_N1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "OUT",
+          "label": "OUT",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA12",
+              "af": "CMP2_OUT",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ETH",
+      "family": "ETH",
+      "label": "ETH",
+      "description": "Ethernet interface with data, management, and clock signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "MII_RXD0",
+          "label": "MII_RXD0",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD9",
+              "af": "ETH_MII_RXD0_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_RXD1",
+          "label": "MII_RXD1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD10",
+              "af": "ETH_MII_RXD1_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_RXD2",
+          "label": "MII_RXD2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD11",
+              "af": "ETH_MII_RXD2_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_RXD3",
+          "label": "MII_RXD3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD12",
+              "af": "ETH_MII_RXD3_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MII_RX_DV",
+          "label": "MII_RX_DV",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD8",
+              "af": "ETH_MII_RX_DV_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RMII_CRS_DV",
+          "label": "RMII_CRS_DV",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD8",
+              "af": "ETH_RMII_CRS_DV_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RMII_RXD0",
+          "label": "RMII_RXD0",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD9",
+              "af": "ETH_RMII_RXD0_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RMII_RXD1",
+          "label": "RMII_RXD1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD10",
+              "af": "ETH_RMII_RXD1_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FSMC",
+      "family": "FSMC",
+      "label": "FSMC",
+      "description": "Flexible memory controller interface for SRAM, PSRAM, NOR, NAND, and LCD-style external buses.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "A16",
+          "label": "A16",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PD11",
+              "af": "FSMC_A16",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "A17",
+          "label": "A17",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PD12",
+              "af": "FSMC_A17",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ADDR18",
+          "label": "ADDR18",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD13",
+              "af": "FSMC_ADDR18",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ADDR19",
+          "label": "ADDR19",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PE3",
+              "af": "FSMC_ADDR19",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ADDR20",
+          "label": "ADDR20",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PE4",
+              "af": "FSMC_ADDR20",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ADDR21",
+          "label": "ADDR21",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PE5",
+              "af": "FSMC_ADDR21",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ADDR22",
+          "label": "ADDR22",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PE6",
+              "af": "FSMC_ADDR22",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ADDR23",
+          "label": "ADDR23",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PE2",
+              "af": "FSMC_ADDR23",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CLK",
+          "label": "CLK",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD3",
+              "af": "FSMC_CLK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D0",
+          "label": "D0",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PD14",
+              "af": "FSMC_D0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D1",
+          "label": "D1",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PD15",
+              "af": "FSMC_D1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D10",
+          "label": "D10",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PE13",
+              "af": "FSMC_D10",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D11",
+          "label": "D11",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PE14",
+              "af": "FSMC_D11",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D12",
+          "label": "D12",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PE15",
+              "af": "FSMC_D12",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D13",
+          "label": "D13",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PD8",
+              "af": "FSMC_D13",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D14",
+          "label": "D14",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PD9",
+              "af": "FSMC_D14",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D15",
+          "label": "D15",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PD10",
+              "af": "FSMC_D15",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D2",
+          "label": "D2",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PD0",
+              "af": "FSMC_D2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D3",
+          "label": "D3",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PD1",
+              "af": "FSMC_D3",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D4",
+          "label": "D4",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PE7",
+              "af": "FSMC_D4",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D5",
+          "label": "D5",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PE8",
+              "af": "FSMC_D5",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D6",
+          "label": "D6",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PE9",
+              "af": "FSMC_D6",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D7",
+          "label": "D7",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PE10",
+              "af": "FSMC_D7",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D8",
+          "label": "D8",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PE11",
+              "af": "FSMC_D8",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "D9",
+          "label": "D9",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PE12",
+              "af": "FSMC_D9",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "NADV",
+          "label": "NADV",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB7",
+              "af": "FSMC_NADV",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD2",
+              "af": "FSMC_NADV",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "NBL0",
+          "label": "NBL0",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PE0",
+              "af": "FSMC_NBL0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "NBL1",
+          "label": "NBL1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PE1",
+              "af": "FSMC_NBL1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "NE1_NCE2",
+          "label": "NE1_NCE2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD7",
+              "af": "FSMC_NE1_NCE2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "NOE",
+          "label": "NOE",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PD4",
+              "af": "FSMC_NOE",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "NWAIT",
+          "label": "NWAIT",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD6",
+              "af": "FSMC_NWAIT",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "NWE",
+          "label": "NWE",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PD5",
+              "af": "FSMC_NWE",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "I2C1",
+      "family": "I2C",
+      "label": "I2C1",
+      "description": "I2C bus controller with SCL, SDA, and SMBA signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "SCL",
+          "label": "SCL",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA14",
+              "af": "I2C1_SCL",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB6",
+              "af": "I2C1_SCL",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB8",
+              "af": "I2C1_SCL",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SDA",
+          "label": "SDA",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA13",
+              "af": "I2C1_SDA",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB7",
+              "af": "I2C1_SDA",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB9",
+              "af": "I2C1_SDA",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SMBA",
+          "label": "SMBA",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB5",
+              "af": "I2C1_SMBA",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "I2C2",
+      "family": "I2C",
+      "label": "I2C2",
+      "description": "I2C bus controller with SCL, SDA, and SMBA signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "SCL",
+          "label": "SCL",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB10",
+              "af": "I2C2_SCL",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC13",
+              "af": "I2C2_SCL",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SDA",
+          "label": "SDA",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB11",
+              "af": "I2C2_SDA",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC14",
+              "af": "I2C2_SDA",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SMBA",
+          "label": "SMBA",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "I2C2_SMBA",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC15",
+              "af": "I2C2_SMBA",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OPA1",
+      "family": "OPA",
+      "label": "OPA1",
+      "description": "On-chip operational amplifier with an analog output. Supports 3 pin-routing options.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        },
+        {
+          "id": "remap-2",
+          "label": "Remap 2"
+        }
+      ],
+      "signals": [
+        {
+          "id": "OUT",
+          "label": "OUT",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB1",
+              "af": "OPA1_OUT1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            },
+            {
+              "pinId": "PA3",
+              "af": "OPA1_OUT2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CHN0",
+          "label": "CHN0",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB11",
+              "af": "OPA1_CHN0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CHN1",
+          "label": "CHN1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA6",
+              "af": "OPA1_CHN1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CHNVB",
+          "label": "CHNVB",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB13",
+              "af": "OPA1_CHNVB",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CHP0",
+          "label": "CHP0",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB5",
+              "af": "OPA1_CHP0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CHP1",
+          "label": "CHP1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB0",
+              "af": "OPA1_CHP1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CHP2",
+          "label": "CHP2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "OPA1_CHP2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OPA2",
+      "family": "OPA",
+      "label": "OPA2",
+      "description": "On-chip operational amplifier with an analog output. Supports 3 pin-routing options.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        },
+        {
+          "id": "remap-2",
+          "label": "Remap 2"
+        }
+      ],
+      "signals": [
+        {
+          "id": "OUT",
+          "label": "OUT",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA4",
+              "af": "OPA2_OUT1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            },
+            {
+              "pinId": "PA2",
+              "af": "OPA2_OUT2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CHN0",
+          "label": "CHN0",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB10",
+              "af": "OPA2_CHN0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CHN1",
+          "label": "CHN1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA5",
+              "af": "OPA2_CHN1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CHNVB",
+          "label": "CHNVB",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB15",
+              "af": "OPA2_CHNVB",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CHP0",
+          "label": "CHP0",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB14",
+              "af": "OPA2_CHP0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CHP1",
+          "label": "CHP1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA7",
+              "af": "OPA2_CHP1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OSC32",
+      "family": "Clock",
+      "label": "OSC32",
+      "description": "OSC32 peripheral with 2 configurable signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "IN",
+          "label": "IN",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PC14",
+              "af": "OSC32_IN",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "OUT",
+          "label": "OUT",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PC15",
+              "af": "OSC32_OUT",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OTG_FS",
+      "family": "USB",
+      "label": "OTG_FS",
+      "description": "USB interface with DM and DP signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "DM",
+          "label": "DM",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA11",
+              "af": "USBFS_DM",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "DP",
+          "label": "DP",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA12",
+              "af": "USBFS_DP",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PIOC",
+      "family": "PIOC",
+      "label": "PIOC",
+      "description": "PIOC peripheral with 2 configurable signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "IO0",
+          "label": "IO0",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA11",
+              "af": "PIOC_IO0",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB10",
+              "af": "PIOC_IO0",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD3",
+              "af": "PIOC_IO0",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE3",
+              "af": "PIOC_IO0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "IO1",
+          "label": "IO1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA12",
+              "af": "PIOC_IO1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB11",
+              "af": "PIOC_IO1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD4",
+              "af": "PIOC_IO1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE4",
+              "af": "PIOC_IO1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "QUADSPI1",
+      "family": "QUADSPI",
+      "label": "QUADSPI1",
+      "description": "Quad-SPI memory interface with clock, chip-select, and bank I/O signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "SCK",
+          "label": "SCK",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA12",
+              "af": "QUADSPI1_SCK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SCSN",
+          "label": "SCSN",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB0",
+              "af": "QUADSPI1_SCSN",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB6",
+              "af": "QUADSPI1_SCSN",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SCSXN",
+          "label": "SCSXN",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB1",
+              "af": "QUADSPI1_SCSXN",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC11",
+              "af": "QUADSPI1_SCSXN",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SIO0",
+          "label": "SIO0",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA2",
+              "af": "QUADSPI1_SIO0",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC9",
+              "af": "QUADSPI1_SIO0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SIO1",
+          "label": "SIO1",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA3",
+              "af": "QUADSPI1_SIO1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC10",
+              "af": "QUADSPI1_SIO1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SIO2",
+          "label": "SIO2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "QUADSPI1_SIO2",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE6",
+              "af": "QUADSPI1_SIO2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SIO3",
+          "label": "SIO3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA1",
+              "af": "QUADSPI1_SIO3",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD13",
+              "af": "QUADSPI1_SIO3",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SIOX0",
+          "label": "SIOX0",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB8",
+              "af": "QUADSPI1_SIOX0",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE7",
+              "af": "QUADSPI1_SIOX0",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SIOX1",
+          "label": "SIOX1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB9",
+              "af": "QUADSPI1_SIOX1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE8",
+              "af": "QUADSPI1_SIOX1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SIOX2",
+          "label": "SIOX2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB10",
+              "af": "QUADSPI1_SIOX2",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE9",
+              "af": "QUADSPI1_SIOX2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SIOX3",
+          "label": "SIOX3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB11",
+              "af": "QUADSPI1_SIOX3",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE10",
+              "af": "QUADSPI1_SIOX3",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SPI1",
+      "family": "SPI",
+      "label": "SPI1",
+      "description": "SPI controller with NSS, SCK, MISO, and MOSI signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "NSS",
+          "label": "NSS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA15",
+              "af": "SPI1_NSS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA4",
+              "af": "SPI1_NSS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SCK",
+          "label": "SCK",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA5",
+              "af": "SPI1_SCK",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB3",
+              "af": "SPI1_SCK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MISO",
+          "label": "MISO",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA6",
+              "af": "SPI1_MISO",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB4",
+              "af": "SPI1_MISO",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MOSI",
+          "label": "MOSI",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA7",
+              "af": "SPI1_MOSI",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB5",
+              "af": "SPI1_MOSI",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SPI2",
+      "family": "SPI",
+      "label": "SPI2",
+      "description": "SPI controller with NSS, SCK, MISO, and MOSI signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "NSS",
+          "label": "NSS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "SPI2_NSS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "SCK",
+          "label": "SCK",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB13",
+              "af": "SPI2_SCK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MISO",
+          "label": "MISO",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB14",
+              "af": "SPI2_MISO",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "MOSI",
+          "label": "MOSI",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB15",
+              "af": "SPI2_MOSI",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TIM1",
+      "family": "Timer",
+      "label": "TIM1",
+      "description": "TIM1 peripheral with 9 configurable signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CH1",
+          "label": "CH1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA8",
+              "af": "TIM1_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB6",
+              "af": "TIM1_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC10",
+              "af": "TIM1_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC6",
+              "af": "TIM1_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE9",
+              "af": "TIM1_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH1N",
+          "label": "CH1N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA13",
+              "af": "TIM1_CH1N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA7",
+              "af": "TIM1_CH1N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB13",
+              "af": "TIM1_CH1N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC3",
+              "af": "TIM1_CH1N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE8",
+              "af": "TIM1_CH1N",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2",
+          "label": "CH2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA9",
+              "af": "TIM1_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB7",
+              "af": "TIM1_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC11",
+              "af": "TIM1_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC7",
+              "af": "TIM1_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE11",
+              "af": "TIM1_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2N",
+          "label": "CH2N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA14",
+              "af": "TIM1_CH2N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB0",
+              "af": "TIM1_CH2N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB14",
+              "af": "TIM1_CH2N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC4",
+              "af": "TIM1_CH2N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE10",
+              "af": "TIM1_CH2N",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3",
+          "label": "CH3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA10",
+              "af": "TIM1_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB8",
+              "af": "TIM1_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC12",
+              "af": "TIM1_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC8",
+              "af": "TIM1_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE13",
+              "af": "TIM1_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3N",
+          "label": "CH3N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA15",
+              "af": "TIM1_CH3N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB1",
+              "af": "TIM1_CH3N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB15",
+              "af": "TIM1_CH3N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC5",
+              "af": "TIM1_CH3N",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE12",
+              "af": "TIM1_CH3N",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH4",
+          "label": "CH4",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA11",
+              "af": "TIM1_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC13",
+              "af": "TIM1_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC9",
+              "af": "TIM1_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE14",
+              "af": "TIM1_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "BKIN",
+          "label": "BKIN",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA6",
+              "af": "TIM1_BKIN",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB12",
+              "af": "TIM1_BKIN",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB9",
+              "af": "TIM1_BKIN",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE15",
+              "af": "TIM1_BKIN",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ETR",
+          "label": "ETR",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "TIM1_ETR",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA12",
+              "af": "TIM1_ETR",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE7",
+              "af": "TIM1_ETR",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TIM2",
+      "family": "Timer",
+      "label": "TIM2",
+      "description": "TIM2 peripheral with 5 configurable signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CH1",
+          "label": "CH1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "TIM2_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA15",
+              "af": "TIM2_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2",
+          "label": "CH2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA1",
+              "af": "TIM2_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB3",
+              "af": "TIM2_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3",
+          "label": "CH3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA13",
+              "af": "TIM2_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA2",
+              "af": "TIM2_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB10",
+              "af": "TIM2_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH4",
+          "label": "CH4",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA14",
+              "af": "TIM2_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA3",
+              "af": "TIM2_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB11",
+              "af": "TIM2_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ETR",
+          "label": "ETR",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "TIM2_ETR",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA15",
+              "af": "TIM2_ETR",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TIM3",
+      "family": "Timer",
+      "label": "TIM3",
+      "description": "TIM3 peripheral with 5 configurable signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CH1",
+          "label": "CH1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA6",
+              "af": "TIM3_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB4",
+              "af": "TIM3_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC6",
+              "af": "TIM3_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2",
+          "label": "CH2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA7",
+              "af": "TIM3_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB5",
+              "af": "TIM3_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC7",
+              "af": "TIM3_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3",
+          "label": "CH3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB0",
+              "af": "TIM3_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC8",
+              "af": "TIM3_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH4",
+          "label": "CH4",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB1",
+              "af": "TIM3_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC9",
+              "af": "TIM3_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ETR",
+          "label": "ETR",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD2",
+              "af": "TIM3_ETR",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TIM4",
+      "family": "Timer",
+      "label": "TIM4",
+      "description": "TIM4 peripheral with 5 configurable signals. Supports 2 pin-routing options.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-1",
+          "label": "Remap 1"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CH1",
+          "label": "CH1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB6",
+              "af": "TIM4_CH1",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD12",
+              "af": "TIM4_CH1_1",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2",
+          "label": "CH2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB7",
+              "af": "TIM4_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD13",
+              "af": "TIM4_CH2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3",
+          "label": "CH3",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB8",
+              "af": "TIM4_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD14",
+              "af": "TIM4_CH3",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH4",
+          "label": "CH4",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB9",
+              "af": "TIM4_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD15",
+              "af": "TIM4_CH4",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ETR",
+          "label": "ETR",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PE0",
+              "af": "TIM4_ETR",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TIM9",
+      "family": "Timer",
+      "label": "TIM9",
+      "description": "TIM9 peripheral with 6 configurable signals. Supports 2 pin-routing options.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "remap-2",
+          "label": "Remap 2"
+        },
+        {
+          "id": "remap-3",
+          "label": "Remap 3"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CH1",
+          "label": "CH1",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD9",
+              "af": "TIM9_CH1_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH1N",
+          "label": "CH1N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD8",
+              "af": "TIM9_CH1N_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PD8",
+              "af": "TIM9_CH1N_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2",
+          "label": "CH2",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD11",
+              "af": "TIM9_CH2_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PD11",
+              "af": "TIM9_CH2_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH2N",
+          "label": "CH2N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD10",
+              "af": "TIM9_CH2N_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PD10",
+              "af": "TIM9_CH2N_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CH3N",
+          "label": "CH3N",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD12",
+              "af": "TIM9_CH3N_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PD12",
+              "af": "TIM9_CH3N_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ETR",
+          "label": "ETR",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD9",
+              "af": "TIM9_ETR_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PD9",
+              "af": "TIM9_ETR_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "USART1",
+      "family": "USART",
+      "label": "USART1",
+      "description": "USART serial interface with synchronous clock support with TX, RX, CTS, RTS, and CK signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA11",
+              "af": "USART1_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA6",
+              "af": "USART1_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA9",
+              "af": "USART1_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB15",
+              "af": "USART1_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB6",
+              "af": "USART1_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA10",
+              "af": "USART1_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA7",
+              "af": "USART1_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA8",
+              "af": "USART1_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB7",
+              "af": "USART1_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CTS",
+          "label": "CTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA11",
+              "af": "USART1_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA5",
+              "af": "USART1_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB5",
+              "af": "USART1_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC4",
+              "af": "USART1_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RTS",
+          "label": "RTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA12",
+              "af": "USART1_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA9",
+              "af": "USART1_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB4",
+              "af": "USART1_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC5",
+              "af": "USART1_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CK",
+          "label": "CK",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA10",
+              "af": "USART1_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA5",
+              "af": "USART1_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PA8",
+              "af": "USART1_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "USART2",
+      "family": "USART",
+      "label": "USART2",
+      "description": "USART serial interface with synchronous clock support with TX, RX, CTS, RTS, and CK signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA2",
+              "af": "USART2_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD5",
+              "af": "USART2_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA3",
+              "af": "USART2_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD6",
+              "af": "USART2_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CTS",
+          "label": "CTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "USART2_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD3",
+              "af": "USART2_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RTS",
+          "label": "RTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA1",
+              "af": "USART2_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD4",
+              "af": "USART2_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CK",
+          "label": "CK",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA4",
+              "af": "USART2_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD7",
+              "af": "USART2_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "USART3",
+      "family": "USART",
+      "label": "USART3",
+      "description": "USART serial interface with synchronous clock support with TX, RX, CTS, RTS, and CK signals. Supports 3 pin-routing options.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        },
+        {
+          "id": "remap-2",
+          "label": "Remap 2"
+        },
+        {
+          "id": "remap-3",
+          "label": "Remap 3"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA13",
+              "af": "USART3_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB10",
+              "af": "USART3_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC10",
+              "af": "USART3_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD8",
+              "af": "USART3_TX_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA14",
+              "af": "USART3_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB11",
+              "af": "USART3_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC11",
+              "af": "USART3_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD9",
+              "af": "USART3_RX_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CTS",
+          "label": "CTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB13",
+              "af": "USART3_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD11",
+              "af": "USART3_CTS_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PD11",
+              "af": "USART3_CTS_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RTS",
+          "label": "RTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB14",
+              "af": "USART3_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD12",
+              "af": "USART3_RTS_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PD12",
+              "af": "USART3_RTS_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CK",
+          "label": "CK",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "USART3_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC12",
+              "af": "USART3_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD10",
+              "af": "USART3_CK_2",
+              "routingOptionIds": [
+                "remap-2"
+              ]
+            },
+            {
+              "pinId": "PD10",
+              "af": "USART3_CK_3",
+              "routingOptionIds": [
+                "remap-3"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "USART4",
+      "family": "USART",
+      "label": "USART4",
+      "description": "USART serial interface with synchronous clock support with TX, RX, CTS, RTS, and CK signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA14",
+              "af": "USART4_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB0",
+              "af": "USART4_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC10",
+              "af": "USART4_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE0",
+              "af": "USART4_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA15",
+              "af": "USART4_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB1",
+              "af": "USART4_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC11",
+              "af": "USART4_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE1",
+              "af": "USART4_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CTS",
+          "label": "CTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB12",
+              "af": "USART4_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB9",
+              "af": "USART4_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RTS",
+          "label": "RTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB15",
+              "af": "USART4_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB8",
+              "af": "USART4_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CK",
+          "label": "CK",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PD0",
+              "af": "USART4_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD2",
+              "af": "USART4_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "USART5",
+      "family": "USART",
+      "label": "USART5",
+      "description": "USART serial interface with synchronous clock support with TX, RX, CTS, RTS, and CK signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB4",
+              "af": "USART5_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC12",
+              "af": "USART5_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE8",
+              "af": "USART5_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB3",
+              "af": "USART5_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB5",
+              "af": "USART5_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD2",
+              "af": "USART5_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE9",
+              "af": "USART5_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CTS",
+          "label": "CTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB4",
+              "af": "USART5_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RTS",
+          "label": "RTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB5",
+              "af": "USART5_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CK",
+          "label": "CK",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PC8",
+              "af": "USART5_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE0",
+              "af": "USART5_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "USART6",
+      "family": "USART",
+      "label": "USART6",
+      "description": "USART serial interface with synchronous clock support with TX, RX, CTS, RTS, and CK signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA12",
+              "af": "USART6_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PB8",
+              "af": "USART6_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC0",
+              "af": "USART6_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE10",
+              "af": "USART6_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB9",
+              "af": "USART6_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC1",
+              "af": "USART6_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE11",
+              "af": "USART6_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CTS",
+          "label": "CTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB9",
+              "af": "USART6_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC2",
+              "af": "USART6_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RTS",
+          "label": "RTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB8",
+              "af": "USART6_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC3",
+              "af": "USART6_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CK",
+          "label": "CK",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB15",
+              "af": "USART6_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD3",
+              "af": "USART6_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "USART7",
+      "family": "USART",
+      "label": "USART7",
+      "description": "USART serial interface with synchronous clock support with TX, RX, CTS, RTS, and CK signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA6",
+              "af": "USART7_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC2",
+              "af": "USART7_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC6",
+              "af": "USART7_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE12",
+              "af": "USART7_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA7",
+              "af": "USART7_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC3",
+              "af": "USART7_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC7",
+              "af": "USART7_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE13",
+              "af": "USART7_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CTS",
+          "label": "CTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA6",
+              "af": "USART7_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RTS",
+          "label": "RTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA7",
+              "af": "USART7_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CK",
+          "label": "CK",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA5",
+              "af": "USART7_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD4",
+              "af": "USART7_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "USART8",
+      "family": "USART",
+      "label": "USART8",
+      "description": "USART serial interface with synchronous clock support with TX, RX, CTS, RTS, and CK signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "TX",
+          "label": "TX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA14",
+              "af": "USART8_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC4",
+              "af": "USART8_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC9",
+              "af": "USART8_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE14",
+              "af": "USART8_TX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RX",
+          "label": "RX",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA15",
+              "af": "USART8_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC12",
+              "af": "USART8_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PC5",
+              "af": "USART8_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PE15",
+              "af": "USART8_RX",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CTS",
+          "label": "CTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB0",
+              "af": "USART8_CTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "RTS",
+          "label": "RTS",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PB1",
+              "af": "USART8_RTS",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CK",
+          "label": "CK",
+          "required": false,
+          "defaultEnabled": false,
+          "candidates": [
+            {
+              "pinId": "PA15",
+              "af": "USART8_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            },
+            {
+              "pinId": "PD1",
+              "af": "USART8_CK",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "USBHS",
+      "family": "USB",
+      "label": "USBHS",
+      "description": "USB interface with DM and DP signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "DM",
+          "label": "DM",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB7",
+              "af": "USBHS_DM",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "DP",
+          "label": "DP",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PB6",
+              "af": "USBHS_DP",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "USBPD1",
+      "family": "USBPD",
+      "label": "USBPD1",
+      "description": "USBPD1 peripheral with 2 configurable signals.",
+      "colorHint": null,
+      "routingOptions": [
+        {
+          "id": "default",
+          "label": "Default"
+        }
+      ],
+      "signals": [
+        {
+          "id": "CC1",
+          "label": "CC1",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA0",
+              "af": "USBPD1_CC1",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "CC2",
+          "label": "CC2",
+          "required": true,
+          "defaultEnabled": true,
+          "candidates": [
+            {
+              "pinId": "PA1",
+              "af": "USBPD1_CC2",
+              "routingOptionIds": [
+                "default"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

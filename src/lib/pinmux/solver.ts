@@ -31,10 +31,14 @@ function getEffectiveEnabledState(
 	peripheralStateMap: Map<string, PeripheralProjectState>,
 	enabledOverrides: Map<string, boolean>
 ): boolean {
-	return enabledOverrides.get(peripheralId) ?? peripheralStateMap.get(peripheralId)?.enabled ?? false;
+	return (
+		enabledOverrides.get(peripheralId) ?? peripheralStateMap.get(peripheralId)?.enabled ?? false
+	);
 }
 
-function getPeripheralStateMap(project: PinmuxProjectDocument): Map<string, PeripheralProjectState> {
+function getPeripheralStateMap(
+	project: PinmuxProjectDocument
+): Map<string, PeripheralProjectState> {
 	return new Map(project.peripheralStates.map((state) => [state.peripheralId, state]));
 }
 
@@ -61,9 +65,9 @@ function clearPinOverrides(project: PinmuxProjectDocument): PinmuxProjectDocumen
 			pinState.overrideMode === 'auto'
 				? pinState
 				: {
-					...pinState,
-					overrideMode: 'auto'
-				}
+						...pinState,
+						overrideMode: 'auto'
+					}
 		)
 	};
 }
@@ -267,7 +271,11 @@ function chooseNextPeripheral(
 ): PeripheralInstance {
 	const ranked = remaining.map((peripheral) => {
 		const activeSignals = getActiveSignals(peripheral, peripheralStateMap);
-		const optionScore = getOrderedRoutingOptionIds(peripheral, peripheralStateMap, hardRoutingOptionIds)
+		const optionScore = getOrderedRoutingOptionIds(
+			peripheral,
+			peripheralStateMap,
+			hardRoutingOptionIds
+		)
 			.map((optionId) =>
 				activeSignals.reduce((score, signal) => {
 					const available = getSignalCandidates(
@@ -279,9 +287,7 @@ function chooseNextPeripheral(
 							peripheralStateMap,
 							hardSignalRoutingOptionIds
 						)
-					).filter(
-						(candidate) => !usedPins.has(candidate.pinId)
-					).length;
+					).filter((candidate) => !usedPins.has(candidate.pinId)).length;
 					return score + available;
 				}, 0)
 			)
@@ -306,7 +312,8 @@ function findSolution(
 	const pinStateMap = getPinStateMap(project);
 	const enabledOverrides = overrides.enabled ?? new Map<string, boolean>();
 	const hardRoutingOptionIds = overrides.hardRoutingOptionIds ?? new Map<string, string | null>();
-	const hardSignalRoutingOptionIds = overrides.hardSignalRoutingOptionIds ?? new Map<string, string>();
+	const hardSignalRoutingOptionIds =
+		overrides.hardSignalRoutingOptionIds ?? new Map<string, string>();
 	const reservedPins = new Set(
 		Array.from(pinStateMap.values())
 			.filter((pinState) => pinState.overrideMode !== 'auto')
@@ -342,38 +349,36 @@ function findSolution(
 			peripheralStateMap,
 			hardRoutingOptionIds
 		);
-		const nextPeripherals = remainingPeripherals.filter((candidate) => candidate.id !== peripheral.id);
+		const nextPeripherals = remainingPeripherals.filter(
+			(candidate) => candidate.id !== peripheral.id
+		);
 
 		for (const optionId of optionIds) {
 			const orderedSignals = [...getActiveSignals(peripheral, peripheralStateMap)].sort(
 				(left, right) => {
-				const leftCount = getSignalCandidates(
-					left,
-					optionId,
-					getSelectedSignalRoutingOptionId(
-						peripheral.id,
-						left.id,
-						peripheralStateMap,
-						hardSignalRoutingOptionIds
-					)
-				).filter(
-					(candidate) => !usedPins.has(candidate.pinId)
-				).length;
-				const rightCount = getSignalCandidates(
-					right,
-					optionId,
-					getSelectedSignalRoutingOptionId(
-						peripheral.id,
-						right.id,
-						peripheralStateMap,
-						hardSignalRoutingOptionIds
-					)
-				).filter(
-					(candidate) => !usedPins.has(candidate.pinId)
-				).length;
+					const leftCount = getSignalCandidates(
+						left,
+						optionId,
+						getSelectedSignalRoutingOptionId(
+							peripheral.id,
+							left.id,
+							peripheralStateMap,
+							hardSignalRoutingOptionIds
+						)
+					).filter((candidate) => !usedPins.has(candidate.pinId)).length;
+					const rightCount = getSignalCandidates(
+						right,
+						optionId,
+						getSelectedSignalRoutingOptionId(
+							peripheral.id,
+							right.id,
+							peripheralStateMap,
+							hardSignalRoutingOptionIds
+						)
+					).filter((candidate) => !usedPins.has(candidate.pinId)).length;
 
-				return leftCount - rightCount;
-			}
+					return leftCount - rightCount;
+				}
 			);
 
 			const assignSignals = (
@@ -404,9 +409,7 @@ function findSolution(
 					signal,
 					optionId,
 					selectedSignalRoutingOptionId
-				).filter(
-					(candidate) => !localUsedPins.has(candidate.pinId)
-				);
+				).filter((candidate) => !localUsedPins.has(candidate.pinId));
 
 				if (candidates.length === 0) {
 					return null;
@@ -467,11 +470,7 @@ function buildResolvedPinStates(
 
 		return {
 			pinId: pin.id,
-			ownerKind: assignment
-				? 'signal'
-				: pinState.overrideMode !== 'auto'
-					? 'override'
-					: 'free',
+			ownerKind: assignment ? 'signal' : pinState.overrideMode !== 'auto' ? 'override' : 'free',
 			peripheralId: assignment?.peripheralId ?? null,
 			signalId: assignment?.signalId ?? null,
 			overrideMode: pinState.overrideMode,
@@ -481,7 +480,10 @@ function buildResolvedPinStates(
 	});
 }
 
-export function analyzePinmuxProject(definition: McuDefinitionDocument, project: PinmuxProjectDocument) {
+export function analyzePinmuxProject(
+	definition: McuDefinitionDocument,
+	project: PinmuxProjectDocument
+) {
 	const diagnostics: PinmuxDiagnostic[] = [];
 	const peripheralStateMap = getPeripheralStateMap(project);
 	const pinOverridesPresent = hasPinOverrides(project);
@@ -503,25 +505,20 @@ export function analyzePinmuxProject(definition: McuDefinitionDocument, project:
 		scenarioProject: PinmuxProjectDocument,
 		overrides: SearchOverrides = {}
 	): boolean => getScenarioSolution(scenarioProject, overrides) !== null;
+	const currentProjectSolution = getScenarioSolution(project);
 	const overrideBlockedPeripheralIds = new Set(
-		(pinOverridesPresent
+		pinOverridesPresent && currentProjectSolution === null
 			? definition.peripherals
 					.filter((peripheral) =>
 						getEffectiveEnabledState(peripheral.id, peripheralStateMap, new Map())
 					)
 					.filter((peripheral) => {
-						const enabledOverrides = new Map<string, boolean>([[peripheral.id, true]]);
-
-						if (canSolveScenario(project, { enabled: enabledOverrides })) {
-							return false;
-						}
-
 						return canSolveScenario(projectWithoutPinOverrides, {
-							enabled: enabledOverrides
+							enabled: new Map<string, boolean>([[peripheral.id, true]])
 						});
 					})
 					.map((peripheral) => peripheral.id)
-			: [])
+			: []
 	);
 	const effectiveEnabledOverrides = new Map<string, boolean>();
 
@@ -529,9 +526,12 @@ export function analyzePinmuxProject(definition: McuDefinitionDocument, project:
 		effectiveEnabledOverrides.set(peripheralId, false);
 	}
 
-	const currentSolution = getScenarioSolution(project, {
-		enabled: effectiveEnabledOverrides
-	});
+	const currentSolution =
+		overrideBlockedPeripheralIds.size === 0
+			? currentProjectSolution
+			: getScenarioSolution(project, {
+					enabled: effectiveEnabledOverrides
+				});
 	const assignmentByPeripheralSignalKey = new Map(
 		(currentSolution?.assignments ?? []).map((assignment) => [
 			getSignalRouteKey(assignment.peripheralId, assignment.signalId),
@@ -579,7 +579,8 @@ export function analyzePinmuxProject(definition: McuDefinitionDocument, project:
 		diagnostics.push({
 			id: 'no-valid-solution',
 			level: 'error',
-			message: 'No non-conflicting routing exists for the currently enabled peripherals and pin overrides.'
+			message:
+				'No non-conflicting routing exists for the currently enabled peripherals and pin overrides.'
 		});
 	}
 
@@ -590,46 +591,58 @@ export function analyzePinmuxProject(definition: McuDefinitionDocument, project:
 			selectedRoutingOptionId: null,
 			routingChoiceKind: 'auto'
 		};
-		const effectiveEnabled = currentState.enabled && !overrideBlockedPeripheralIds.has(peripheral.id);
+		const effectiveEnabled =
+			currentState.enabled && !overrideBlockedPeripheralIds.has(peripheral.id);
 		const scenarioEnabledOverrides = new Map(effectiveEnabledOverrides);
 		scenarioEnabledOverrides.set(peripheral.id, true);
 		const optionIds = getRoutingOptionIds(peripheral);
-		const availableRoutingOptionIds = peripheral.routingOptions.length
-			? optionIds
-					.filter((optionId): optionId is string => optionId !== null)
-					.filter((optionId) => {
-						const solution = getScenarioSolution(project, {
-							enabled: scenarioEnabledOverrides,
-							hardRoutingOptionIds: new Map([[peripheral.id, optionId]])
-						});
-
-						return solution !== null;
-					})
-			: [];
-		const canEnable = canSolveScenario(project, {
-			enabled: scenarioEnabledOverrides
-		});
-		const activeSignalIds = getEffectiveEnabledSignalIds(peripheral, currentState);
-		const availableSignalIds = peripheral.signals
-			.filter((signal) => {
-				if (signal.required || activeSignalIds.has(signal.id)) {
-					return true;
-				}
-
-				if (!effectiveEnabled) {
-					return false;
-				}
-
-				return canSolveScenario(withPeripheralSignalEnabled(project, peripheral, signal.id, true), {
+		const enabledScenarioCanSolve = effectiveEnabled
+			? currentSolution !== null
+			: canSolveScenario(project, {
 					enabled: scenarioEnabledOverrides
 				});
-			})
-			.map((signal) => signal.id);
+		const availableRoutingOptionIds =
+			effectiveEnabled && peripheral.routingOptions.length
+				? optionIds
+						.filter((optionId): optionId is string => optionId !== null)
+						.filter((optionId) => {
+							const solution = getScenarioSolution(project, {
+								enabled: scenarioEnabledOverrides,
+								hardRoutingOptionIds: new Map([[peripheral.id, optionId]])
+							});
+
+							return solution !== null;
+						})
+				: peripheral.routingOptions.map((option) => option.id);
+		const activeSignalIds = getEffectiveEnabledSignalIds(peripheral, currentState);
+		const availableSignalIds = effectiveEnabled
+			? peripheral.signals
+					.filter((signal) => {
+						if (signal.required || activeSignalIds.has(signal.id)) {
+							return enabledScenarioCanSolve;
+						}
+
+						return canSolveScenario(
+							withPeripheralSignalEnabled(project, peripheral, signal.id, true),
+							{
+								enabled: scenarioEnabledOverrides
+							}
+						);
+					})
+					.map((signal) => signal.id)
+			: enabledScenarioCanSolve
+				? peripheral.signals.map((signal) => signal.id)
+				: [];
+		const hasRoutableSignals = availableSignalIds.length > 0;
+		const canEnable = hasRoutableSignals;
+		const noRoutableSignals = peripheral.signals.length > 0 && !hasRoutableSignals;
 		const signalRoutingStates = peripheral.signals.map((signal) => {
 			const optionIds = getSignalRoutingOptionIds(signal);
 			const activeRoutingOptionId =
 				assignmentByPeripheralSignalKey.get(getSignalRouteKey(peripheral.id, signal.id))
-					?.routingOptionId ?? currentState.selectedSignalRoutingOptionIds?.[signal.id] ?? null;
+					?.routingOptionId ??
+				currentState.selectedSignalRoutingOptionIds?.[signal.id] ??
+				null;
 
 			if (optionIds.length === 0) {
 				return {
@@ -678,16 +691,20 @@ export function analyzePinmuxProject(definition: McuDefinitionDocument, project:
 			enabled: effectiveEnabled,
 			canEnable,
 			disabledReason: effectiveEnabled
-				? currentSolution
-					? null
-					: 'Current selections cannot be solved together.'
+				? noRoutableSignals
+					? 'No signals can be routed conflict-free with the current selections.'
+					: currentSolution
+						? null
+						: 'Current selections cannot be solved together.'
 				: currentState.enabled && overrideBlockedPeripheralIds.has(peripheral.id)
 					? 'GPIO overrides reserve every valid route for this peripheral.'
-				: canEnable
-					? null
-					: 'Required and active signals cannot be routed conflict-free with the current selections.',
+					: noRoutableSignals
+						? 'No signals can be routed conflict-free with the current selections.'
+						: canEnable
+							? null
+							: 'This peripheral definition does not expose any routable signals.',
 			activeRoutingOptionId: effectiveEnabled
-				? currentSolution?.activeRoutingOptionIds.get(peripheral.id) ?? null
+				? (currentSolution?.activeRoutingOptionIds.get(peripheral.id) ?? null)
 				: null,
 			availableRoutingOptionIds,
 			impossibleRoutingOptionIds: peripheral.routingOptions

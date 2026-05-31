@@ -1429,6 +1429,13 @@
           "defaultEnabled": true,
           "candidates": [
             {
+              "pinId": "PA11",
+              "af": "USBFS_DM",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            },
+            {
               "pinId": "PB6",
               "af": "USBFS_DM",
               "routingOptionIds": [
@@ -1443,6 +1450,13 @@
           "required": true,
           "defaultEnabled": true,
           "candidates": [
+            {
+              "pinId": "PA12",
+              "af": "USBFS_DP",
+              "routingOptionIds": [
+                "remap-1"
+              ]
+            },
             {
               "pinId": "PB7",
               "af": "USBFS_DP",

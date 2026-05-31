@@ -1606,8 +1606,8 @@
         {
           "id": "OUT",
           "label": "OUT",
-          "required": false,
-          "defaultEnabled": false,
+          "required": true,
+          "defaultEnabled": true,
           "candidates": [
             {
               "pinId": "PB4",

@@ -29,6 +29,7 @@
 		peripheralRows,
 		pinRows,
 		focusedPinId,
+		solveState,
 		solveDiagnostics,
 		selectDefinition,
 		setProjectName,
@@ -90,12 +91,208 @@
 		URL.revokeObjectURL(url);
 	}
 
+	const customDefinitionSourceKey = 'custom';
+
+	interface SelectorChoice {
+		value: string;
+		label: string;
+	}
+
+	interface SelectorDefinitionOption {
+		id: string;
+		name: string;
+		vendor: string;
+		family: string;
+		packageName: string;
+		packagePinCount: number;
+		builtIn: boolean;
+		sourceKey: string;
+		sourceLabel: string;
+		seriesKey: string;
+		seriesLabel: string;
+	}
+
+	function buildSelectorDefinitionOptions(
+		options: Array<{
+			id: string;
+			name: string;
+			vendor: string;
+			family: string;
+			packageName: string;
+			packagePinCount: number;
+			builtIn: boolean;
+		}>
+	): SelectorDefinitionOption[] {
+		return options.map((option) => {
+			const sourceKey = option.builtIn ? option.vendor : customDefinitionSourceKey;
+			const sourceLabel = option.builtIn ? option.vendor : 'Custom';
+			const seriesKey = option.builtIn ? option.family : `${option.vendor}::${option.family}`;
+			const seriesLabel = option.builtIn ? option.family : `${option.vendor} ${option.family}`;
+
+			return {
+				...option,
+				sourceKey,
+				sourceLabel,
+				seriesKey,
+				seriesLabel
+			};
+		});
+	}
+
+	function buildSourceChoices(options: SelectorDefinitionOption[]): SelectorChoice[] {
+		const choiceMap = new Map<string, string>();
+
+		for (const option of options) {
+			if (!choiceMap.has(option.sourceKey)) {
+				choiceMap.set(option.sourceKey, option.sourceLabel);
+			}
+		}
+
+		return Array.from(choiceMap.entries())
+			.sort(([leftValue, leftLabel], [rightValue, rightLabel]) => {
+				if (leftValue === customDefinitionSourceKey) {
+					return 1;
+				}
+
+				if (rightValue === customDefinitionSourceKey) {
+					return -1;
+				}
+
+				return leftLabel.localeCompare(rightLabel);
+			})
+			.map(([value, label]) => ({ value, label }));
+	}
+
+	function buildSeriesChoices(
+		options: SelectorDefinitionOption[],
+		sourceKey: string
+	): SelectorChoice[] {
+		const choiceMap = new Map<string, string>();
+
+		for (const option of options) {
+			if (option.sourceKey !== sourceKey || choiceMap.has(option.seriesKey)) {
+				continue;
+			}
+
+			choiceMap.set(option.seriesKey, option.seriesLabel);
+		}
+
+		return Array.from(choiceMap.entries())
+			.sort(([, leftLabel], [, rightLabel]) => leftLabel.localeCompare(rightLabel))
+			.map(([value, label]) => ({ value, label }));
+	}
+
+	function buildPackageChoices(
+		options: SelectorDefinitionOption[],
+		sourceKey: string,
+		seriesKey: string
+	): SelectorChoice[] {
+		const matchingOptions = options
+			.filter((option) => option.sourceKey === sourceKey && option.seriesKey === seriesKey)
+			.sort(
+				(left, right) =>
+					left.packagePinCount - right.packagePinCount ||
+					left.packageName.localeCompare(right.packageName, undefined, { numeric: true }) ||
+					left.name.localeCompare(right.name, undefined, { numeric: true })
+			);
+
+		const packageNameCounts = new Map<string, number>();
+		for (const option of matchingOptions) {
+			packageNameCounts.set(
+				option.packageName,
+				(packageNameCounts.get(option.packageName) ?? 0) + 1
+			);
+		}
+
+		return matchingOptions.map((option) => ({
+			value: option.id,
+			label:
+				(packageNameCounts.get(option.packageName) ?? 0) > 1
+					? `${option.packageName} - ${option.name}`
+					: option.packageName
+		}));
+	}
+
+	function selectFirstMatchingDefinition(
+		options: SelectorDefinitionOption[],
+		sourceKey: string,
+		seriesKey?: string
+	) {
+		const nextChoice = buildPackageChoices(options, sourceKey, seriesKey ?? '').at(0);
+
+		if (nextChoice) {
+			selectDefinition(nextChoice.value);
+		}
+	}
+
+	let selectorDefinitionOptions: SelectorDefinitionOption[] = [];
+	let sourceChoices: SelectorChoice[] = [];
+	let seriesChoices: SelectorChoice[] = [];
+	let packageChoices: SelectorChoice[] = [];
+	let activeSelectorDefinition: SelectorDefinitionOption | null = null;
+	let selectedSourceKey = '';
+	let selectedSeriesKey = '';
+	let selectedPackageId = '';
+	let hasCustomDefinitionOptions = false;
+
+	$: selectorDefinitionOptions = buildSelectorDefinitionOptions($definitionOptions);
+	$: activeSelectorDefinition =
+		selectorDefinitionOptions.find((option) => option.id === ($activeDefinition?.id ?? '')) ??
+		selectorDefinitionOptions[0] ??
+		null;
+	$: sourceChoices = buildSourceChoices(selectorDefinitionOptions);
+	$: selectedSourceKey = activeSelectorDefinition?.sourceKey ?? sourceChoices[0]?.value ?? '';
+	$: seriesChoices = buildSeriesChoices(selectorDefinitionOptions, selectedSourceKey);
+	$: selectedSeriesKey =
+		activeSelectorDefinition && activeSelectorDefinition.sourceKey === selectedSourceKey
+			? activeSelectorDefinition.seriesKey
+			: (seriesChoices[0]?.value ?? '');
+	$: packageChoices = buildPackageChoices(
+		selectorDefinitionOptions,
+		selectedSourceKey,
+		selectedSeriesKey
+	);
+	$: selectedPackageId =
+		activeSelectorDefinition &&
+		activeSelectorDefinition.sourceKey === selectedSourceKey &&
+		activeSelectorDefinition.seriesKey === selectedSeriesKey
+			? activeSelectorDefinition.id
+			: (packageChoices[0]?.value ?? '');
+	$: hasCustomDefinitionOptions = selectorDefinitionOptions.some(
+		(option) => option.sourceKey === customDefinitionSourceKey
+	);
+
 	function triggerProjectImport() {
 		projectFileInput?.click();
 	}
 
 	function triggerDefinitionImport() {
 		definitionFileInput?.click();
+	}
+
+	function handleDefinitionSourceChange(event: Event) {
+		const sourceKey = (event.currentTarget as HTMLSelectElement).value;
+		const nextSeriesKey = buildSeriesChoices(selectorDefinitionOptions, sourceKey)[0]?.value;
+
+		if (!nextSeriesKey) {
+			return;
+		}
+
+		selectFirstMatchingDefinition(selectorDefinitionOptions, sourceKey, nextSeriesKey);
+	}
+
+	function handleDefinitionSeriesChange(event: Event) {
+		const seriesKey = (event.currentTarget as HTMLSelectElement).value;
+
+		if (!seriesKey) {
+			return;
+		}
+
+		selectFirstMatchingDefinition(selectorDefinitionOptions, selectedSourceKey, seriesKey);
+	}
+
+	function handleDefinitionPackageChange(event: Event) {
+		selectDefinition((event.currentTarget as HTMLSelectElement).value);
 	}
 
 	function describeError(error: unknown, fallback: string): string {
@@ -372,18 +569,37 @@
 		</div>
 
 		<div class="hero-controls">
-			<label class="field">
+			<div class="field">
 				<span>MCU Definition</span>
-				<div class="field-inline-row">
-					<select
-						value={$project.selectedDefinitionId ?? ''}
-						on:change={(event) =>
-							selectDefinition((event.currentTarget as HTMLSelectElement).value)}
-					>
-						{#each $definitionOptions as option}
-							<option value={option.id}>{option.label}</option>
-						{/each}
-					</select>
+				<div class="mcu-selector-row">
+					<div class="mcu-selector-grid">
+						<label class="field field--compact">
+							<span>Brand / Source</span>
+							<select value={selectedSourceKey} on:change={handleDefinitionSourceChange}>
+								{#each sourceChoices as choice}
+									<option value={choice.value}>{choice.label}</option>
+								{/each}
+							</select>
+						</label>
+
+						<label class="field field--compact">
+							<span>Series</span>
+							<select value={selectedSeriesKey} on:change={handleDefinitionSeriesChange}>
+								{#each seriesChoices as choice}
+									<option value={choice.value}>{choice.label}</option>
+								{/each}
+							</select>
+						</label>
+
+						<label class="field field--compact">
+							<span>Package</span>
+							<select value={selectedPackageId} on:change={handleDefinitionPackageChange}>
+								{#each packageChoices as choice}
+									<option value={choice.value}>{choice.label}</option>
+								{/each}
+							</select>
+						</label>
+					</div>
 
 					<TransferActionPill
 						groupLabel="MCU JSON actions"
@@ -394,7 +610,11 @@
 						onExport={handleExportDefinition}
 					/>
 				</div>
-			</label>
+
+				{#if hasCustomDefinitionOptions}
+					<p class="hint">Imported MCU JSON definitions appear under Custom.</p>
+				{/if}
+			</div>
 
 			<div class="hero-divider" aria-hidden="true"></div>
 
@@ -692,7 +912,11 @@
 
 			<div class="diagnostics">
 				<h3>Diagnostics</h3>
-				{#if $solveDiagnostics.length === 0}
+				{#if $solveState === 'solving'}
+					<p class="diagnostic diagnostic--info">solving remap and availablility</p>
+				{/if}
+
+				{#if $solveDiagnostics.length === 0 && $solveState !== 'solving'}
 					<p class="empty-state">No diagnostics yet.</p>
 				{/if}
 
@@ -851,15 +1075,26 @@
 		gap: 0.35rem;
 	}
 
-	.field-inline-row {
+	.field--compact {
+		min-width: 0;
+	}
+
+	.mcu-selector-row {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.65rem;
-		align-items: stretch;
+		align-items: end;
 	}
 
-	.field-inline-row select {
-		flex: 1 1 12rem;
+	.mcu-selector-grid {
+		flex: 1 1 32rem;
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.65rem;
+	}
+
+	.mcu-selector-grid select {
+		width: 100%;
 		min-width: 0;
 	}
 
@@ -1275,6 +1510,12 @@
 
 		.panel-column {
 			min-height: auto;
+		}
+	}
+
+	@media (max-width: 780px) {
+		.mcu-selector-grid {
+			grid-template-columns: 1fr;
 		}
 	}
 
