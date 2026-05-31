@@ -31,6 +31,7 @@ export interface DefinitionOption {
 	id: string;
 	label: string;
 	name: string;
+	description: string;
 	vendor: string;
 	family: string;
 	packageName: string;
@@ -474,6 +475,7 @@ export function createPinmuxStore() {
 			id: definition.id,
 			label: `${definition.vendor} ${definition.name}`,
 			name: definition.name,
+			description: definition.description,
 			vendor: definition.vendor,
 			family: definition.family,
 			packageName: definition.package.name,

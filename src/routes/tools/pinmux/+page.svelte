@@ -101,6 +101,7 @@
 	interface SelectorDefinitionOption {
 		id: string;
 		name: string;
+		description: string;
 		vendor: string;
 		family: string;
 		packageName: string;
@@ -116,6 +117,7 @@
 		options: Array<{
 			id: string;
 			name: string;
+			description: string;
 			vendor: string;
 			family: string;
 			packageName: string;
@@ -182,6 +184,83 @@
 			.map(([value, label]) => ({ value, label }));
 	}
 
+	function stripCaseInsensitivePrefix(value: string, prefix: string): string | null {
+		return value.toLowerCase().startsWith(prefix.toLowerCase()) ? value.slice(prefix.length) : null;
+	}
+
+	function stripCaseInsensitiveSuffix(value: string, suffix: string): string {
+		return value.toLowerCase().endsWith(suffix.toLowerCase())
+			? value.slice(0, value.length - suffix.length)
+			: value;
+	}
+
+	function trimChoiceToken(value: string): string {
+		return value.replace(/^[\s/_-]+|[\s/_-]+$/g, '');
+	}
+
+	function extractDatasheetPartNumber(description: string): string {
+		const datasheetMatch = description.match(/\band\s+(\S+)\s+datasheet\b/i);
+		return datasheetMatch?.[1]?.trim() ?? '';
+	}
+
+	function buildProductStubFromPartNumber(
+		partNumber: string,
+		family: string,
+		packageName?: string
+	): string {
+		const partNumberRemainder = stripCaseInsensitivePrefix(partNumber.trim(), family.trim());
+
+		if (partNumberRemainder === null) {
+			return '';
+		}
+
+		const withoutFamily = trimChoiceToken(partNumberRemainder);
+		if (!withoutFamily) {
+			return '';
+		}
+
+		if (!packageName) {
+			return withoutFamily;
+		}
+
+		return trimChoiceToken(stripCaseInsensitiveSuffix(withoutFamily, packageName.trim()));
+	}
+
+	function buildPackageProductStub(option: SelectorDefinitionOption): string {
+		const stubFromName = buildProductStubFromPartNumber(
+			option.name,
+			option.family,
+			option.packageName
+		);
+
+		if (stubFromName) {
+			return stubFromName;
+		}
+
+		return buildProductStubFromPartNumber(
+			extractDatasheetPartNumber(option.description),
+			option.family
+		);
+	}
+
+	function formatPackageChoiceLabel(
+		option: SelectorDefinitionOption,
+		packageNameCounts: Map<string, number>
+	): string {
+		const packageLabel = option.packageName.trim().toUpperCase();
+		const productStub = buildPackageProductStub(option).toUpperCase();
+
+		if (productStub) {
+			return `${productStub} - ${packageLabel}`;
+		}
+
+		if ((packageNameCounts.get(option.packageName) ?? 0) > 1) {
+			return `${option.name.trim().toUpperCase()} - ${packageLabel}`;
+		}
+
+		return packageLabel;
+	}
+
 	function buildPackageChoices(
 		options: SelectorDefinitionOption[],
 		sourceKey: string,
@@ -206,10 +285,7 @@
 
 		return matchingOptions.map((option) => ({
 			value: option.id,
-			label:
-				(packageNameCounts.get(option.packageName) ?? 0) > 1
-					? `${option.packageName} - ${option.name}`
-					: option.packageName
+			label: formatPackageChoiceLabel(option, packageNameCounts)
 		}));
 	}
 
