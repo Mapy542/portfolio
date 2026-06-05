@@ -1,4 +1,4 @@
-import { isBuiltInDefinitionId } from '$lib/pinmux/registry';
+import { isBuiltInDefinitionId } from '$lib/pinmux/built-in-definition-ids';
 import { parsePinmuxProjectDocumentJson, serializePinmuxProjectDocument } from '$lib/pinmux/model';
 import { parseProjectDocumentJson, serializeProjectDocument } from '$lib/signal-sim/model';
 import { getShortShareUnavailableReason, type ShareToolId } from '$lib/share/tools';
