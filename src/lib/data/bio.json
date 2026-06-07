@@ -1,6 +1,19 @@
 {
-	"employed": "Bison, an Ametek Buisness",
+	"employed": "Rockwell Automation",
 	"work": [
+		{
+			"name": "Bison, AMETEK",
+			"location": "Kent, OH",
+			"position": "Electrical Engineer Co-op",
+			"dates": "January 2025 - May 2025",
+			"responsibilities": [
+				"Designed and built an automated functional test fixture for many product lines.",
+				"Designed and built a custom PCB for the test fixture.",
+				"Simulated and built input protection and validation circuits for products.",
+				"Designed a replacement control board for a product line.",
+				"Assisted with the testing and bring-up of products."
+			]
+		},
 		{
 			"name": "Port Erie Plastics",
 			"location": "Erie, PA",
