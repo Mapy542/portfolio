@@ -88,6 +88,8 @@
 		// Reset state when src changes
 		isLoaded = false;
 		computedAspect = aspectRatio;
+		videoUrl = null;
+		error = null;
 
 		if (src) {
 			const slashCleaned = /^\//.test(src) ? src.slice(1) : src;
@@ -134,12 +136,26 @@
 		}
 		isLoaded = true;
 	}
+
+	function handleVideoError() {
+		const mediaError = videoEl?.error;
+		if (mediaError) {
+			error = new Error(
+				mediaError.message || `Unable to load video source (media error ${mediaError.code})`
+			);
+			return;
+		}
+
+		error = new Error('Unable to load video source');
+	}
 </script>
 
 <svelte:window bind:innerWidth />
 
 <div class="dyna-video">
-	{#if videoUrl}
+	{#if error}
+		<p>{error.message}</p>
+	{:else if videoUrl}
 		{#if !isLoaded}
 			<div
 				class="temp-pad"
@@ -163,9 +179,8 @@
 				? 'visible'
 				: 'hidden'};"
 			on:loadedmetadata={handleLoadedMetadata}
+			on:error={handleVideoError}
 		></video>
-	{:else if error}
-		<p>{error.message}</p>
 	{:else}
 		<div
 			class="temp-pad"
