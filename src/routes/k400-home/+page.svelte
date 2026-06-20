@@ -62,7 +62,7 @@
 							<DynaImage
 								src={postMeta.image}
 								alt={postMeta.title}
-								caption={postMeta.title ?? ''}
+								caption={''}
 								scaleFactor=".33"
 								paddingCount="1"
 							/>
