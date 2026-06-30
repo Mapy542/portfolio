@@ -62,5 +62,14 @@
 		"url": "/downloads",
 		"showHeader": false,
 		"showFooter": true
+	},
+	"Policy": {
+		"date": "",
+		"image": "logo.webp",
+		"description": "Privacy expectations, licensing, copyright, and ownership notes for using the hosted website and tools.",
+		"title": "Privacy, License & Copyright",
+		"url": "/policy",
+		"showHeader": false,
+		"showFooter": true
 	}
 }

@@ -31,6 +31,7 @@ Example link to a post from metadata: the loader builds links like `/Akron/Brand
 - `/all-projects` — All posts across all categories.
 - `/search` — Search UI and server endpoints under `routes/search/` and `routes/api/search/`.
 - `/sitemap.xml` — Static sitemap endpoint.
+- `/policy` — Combined privacy, licensing, copyright, and tool-input ownership page.
 
 Components under `src/lib/components` include Markdown parsing helpers (`MarkdownParser.svelte`, `mdBasicParser.svelte`, `mdCodeParser.svelte`, etc.), media helpers (`DynaImage.svelte`, `DynaVideo.svelte`, `DynaGallery.svelte`), and layout (`Header.svelte`, `Footer.svelte`).
 
@@ -118,5 +119,12 @@ Utility scripts help prepare media assets.
   - `src/lib/data/**` (Markdown posts and textual content)
   - `src/lib/img/**` (images, graphics, diagrams)
   - `src/lib/vid/**` (videos and motion content)
+
+## Privacy and hosted tool usage
+
+- The hosted website should be treated as a public environment, not a private workspace.
+- Do not enter secrets, credentials, personal information, trade secrets, or other confidential material into hosted tools.
+- User-entered tool data remains the user's work product; using the site does not transfer ownership of that input to the site owner.
+- Ownership is separate from privacy: if confidentiality matters, run the tools locally instead of using the hosted site.
 
 See `CONTENT-LICENSE` for details. Do not copy, redistribute, or reuse the content assets without explicit permission.
