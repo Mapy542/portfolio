@@ -13,6 +13,7 @@
 		browser ? getComputedStyle(document.documentElement).getPropertyValue(name).trim() : '';
 
 	let isMermaid = false;
+	let isGanttForceMaXWidth = false;
 	let mermaidString = '';
 	$: mermaidConfig = {
 		theme: $theme === Themes.Dark ? 'dark' : 'default',
@@ -38,7 +39,8 @@
 			useMaxWidth: true
 		},
 		gantt: {
-			useMaxWidth: true
+			useMaxWidth: true,
+			htmlLabels: true
 		}
 	};
 
@@ -46,6 +48,7 @@
 		const lines = markdownString.split('\n');
 		const lang = lines[0]?.trim() || '';
 		isMermaid = lang === 'mermaid';
+		isGanttForceMaXWidth = lines[1]?.includes('gantt') || false;
 		const code = (
 			lang && (lang === 'mermaid' || hljs.getLanguage(lang)) ? lines.slice(1) : lines
 		).join('\n');
@@ -62,7 +65,11 @@
 {#if !isMermaid}
 	<pre><code class="hljs">{@html highlightedHtml}</code></pre>
 {:else if $theme === Themes.Dark}
-	<Mermaid string={mermaidString} config={mermaidConfig} class="mermaid" />
+	<Mermaid
+		string={mermaidString}
+		config={mermaidConfig}
+		class={isGanttForceMaXWidth ? 'mermaid gantt-force-max-width' : 'mermaid'}
+	/>
 {:else}
 	<Mermaid string={mermaidString} config={mermaidConfig} class="mermaid" />
 {/if}
@@ -77,5 +84,9 @@
 		border-radius: var(--theme-img-border-radius);
 		background-color: var(--theme-bg-secondary);
 		width: fit-content;
+	}
+
+	:global(.mermaid.gantt-force-max-width) {
+		width: 100%;
 	}
 </style>

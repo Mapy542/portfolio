@@ -122,6 +122,8 @@ The very last aspect of the gantry that needed to be assembled was actually the 
 I originally planned to reuse the 40W tube from my old laser, but during December of 2023, while I was building this section of the laser, that tube gave up the ghost. It reached the end of its working life, and output power dropped to a small percentage of its original power. While finding replacement options, I wondered if an 80W laser tube would be compatible. I had originally designed the laser such that it _should_ fit an 80-watt laser, but hadn’t really verified this. Luckily, I found an 80W laser fit with a 1/16th” to spare. I decided to upgrade, and have been incredibly happy with this choice since it has saved hours of cut-time.  
 The tube mounts were printed and attached to the back of the gantry frame. Then the tube was affixed, and power and coolant lines were run to it. Note there is a flow sensor on the return of the coolant so that the laser can detect any issues with the cooling system. This is critical because running the tube without a flow for even just seconds will degrade it; potentially even permanently destroying it due to thermal cracking.
 
+![80W compared to 40W](/laser10/80w-upgrade.webp){80W tube compared to 40W}
+
 ## Integration Test & Issues
 
 At this point, the bed-lift and enclosure frames had also been assembled, and it was time for sub-system integration. Here, I found a variety of frustrating clearance issues. The biggest offenders were the x-axis drag chain and the lead screws of the bedlift against the laser head.  
