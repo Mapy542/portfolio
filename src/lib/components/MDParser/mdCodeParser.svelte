@@ -15,6 +15,9 @@
 	let isMermaid = false;
 	let isGanttForceMaXWidth = false;
 	let mermaidString = '';
+
+	let code = '';
+
 	$: mermaidConfig = {
 		theme: $theme === Themes.Dark ? 'dark' : 'default',
 		themeVariables: {
@@ -49,9 +52,9 @@
 		const lang = lines[0]?.trim() || '';
 		isMermaid = lang === 'mermaid';
 		isGanttForceMaXWidth = lines[1]?.includes('gantt') || false;
-		const code = (
-			lang && (lang === 'mermaid' || hljs.getLanguage(lang)) ? lines.slice(1) : lines
-		).join('\n');
+		code = (lang && (lang === 'mermaid' || hljs.getLanguage(lang)) ? lines.slice(1) : lines).join(
+			'\n'
+		);
 		if (isMermaid) {
 			mermaidString = code;
 		} else if (lang && hljs.getLanguage(lang)) {
@@ -63,7 +66,18 @@
 </script>
 
 {#if !isMermaid}
-	<pre><code class="hljs">{@html highlightedHtml}</code></pre>
+	<div class="code-block">
+		<pre><code class="hljs">{@html highlightedHtml}</code></pre>
+		<button
+			class="copy-button"
+			on:click={() => {
+				navigator.clipboard.writeText(markdownString);
+			}}
+			aria-label="Copy code to clipboard"
+		>
+			⎘
+		</button>
+	</div>
 {:else if $theme === Themes.Dark}
 	<Mermaid
 		string={mermaidString}
@@ -71,12 +85,39 @@
 		class={isGanttForceMaXWidth ? 'mermaid gantt-force-max-width' : 'mermaid'}
 	/>
 {:else}
-	<Mermaid string={mermaidString} config={mermaidConfig} class="mermaid" />
+	<Mermaid
+		string={mermaidString}
+		config={mermaidConfig}
+		class={isGanttForceMaXWidth ? 'mermaid gantt-force-max-width' : 'mermaid'}
+	/>
 {/if}
 
 <style>
+	.code-block {
+		width: 100%;
+		background-color: var(--theme-bg-primary);
+		position: relative;
+	}
+
 	pre code {
 		border-radius: var(--theme-img-border-radius);
+	}
+
+	.copy-button {
+		position: absolute;
+		top: 0.5em;
+		right: 0.5em;
+		background-color: var(--theme-bg-secondary);
+		color: var(--theme-text-primary);
+		border: none;
+		border-radius: 4px;
+		padding: 0.2em 0.5em;
+		cursor: pointer;
+	}
+
+	.copy-button:hover {
+		background-color: var(--theme-accent);
+		color: var(--theme-bg-primary);
 	}
 
 	:global(.mermaid) {
