@@ -60,7 +60,11 @@
 	<div class="header-container">
 		<div class="header-logo">
 			<a href="/" aria-label="Home">
-				<img src={$theme === Themes.Dark ? logoInverted : logo} alt="Site logo" class="logo" />
+				{#if $theme === Themes.Dark}
+					<img src={logoInverted} alt="Site logo" class="logo" />
+				{:else}
+					<img src={logo} alt="Site logo" class="logo" />
+				{/if}
 			</a>
 		</div>
 
