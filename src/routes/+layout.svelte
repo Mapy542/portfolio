@@ -14,7 +14,8 @@
 
 	<main
 		class:main--full-width={$page.url.pathname.startsWith('/tools/signal-sim') ||
-			$page.url.pathname.startsWith('/tools/pinmux')}
+			$page.url.pathname.startsWith('/tools/pinmux') ||
+			$page.url.pathname.startsWith('/tools/mcu-select')}
 	>
 		<slot />
 	</main>
