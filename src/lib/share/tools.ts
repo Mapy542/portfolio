@@ -1,4 +1,4 @@
-export const shareToolIds = ['pinmux', 'signal-sim'] as const;
+export const shareToolIds = ['pinmux', 'mcu-select', 'signal-sim'] as const;
 
 export type ShareToolId = (typeof shareToolIds)[number];
 
@@ -11,6 +11,12 @@ const shareToolDefinitions = {
 		routePath: '/tools/pinmux',
 		shortShareUnavailableReason:
 			'Temporary short URLs currently support Pinmux projects that use built-in MCU definitions only.'
+	},
+	'mcu-select': {
+		displayName: 'MCU Select',
+		routePath: '/tools/mcu-select',
+		shortShareUnavailableReason:
+			'Temporary short URLs currently support MCU Select searches that use built-in MCU definitions only.'
 	},
 	'signal-sim': {
 		displayName: 'Signal Sim',

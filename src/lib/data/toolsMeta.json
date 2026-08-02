@@ -12,5 +12,12 @@
 		"description": "A tool to visualize and manage the pin multiplexing of microcontroller peripherals. Primarily designed for WCH and STM microcontrollers.",
 		"image": "pinmux/pinmux-overview.webp",
 		"date": "5/23/2026"
+	},
+	"MCU Select": {
+		"url": "/mcu-select",
+		"title": "MCU Select Tool",
+		"description": "A parametric MCU capability search that filters package-specific microcontrollers by normalized peripheral counts before Pinmux routing.",
+		"image": "pinmux/pinmux-overview.webp",
+		"date": "8/1/2026"
 	}
 }

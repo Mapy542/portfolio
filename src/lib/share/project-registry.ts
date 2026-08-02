@@ -1,4 +1,8 @@
 import { isBuiltInDefinitionId } from '$lib/pinmux/built-in-definition-ids';
+import {
+	parseMcuSelectProjectDocumentJson,
+	serializeMcuSelectProjectDocument
+} from '$lib/mcu-select/model';
 import { parsePinmuxProjectDocumentJson, serializePinmuxProjectDocument } from '$lib/pinmux/model';
 import { parseProjectDocumentJson, serializeProjectDocument } from '$lib/signal-sim/model';
 import { getShortShareUnavailableReason, type ShareToolId } from '$lib/share/tools';
@@ -26,6 +30,13 @@ export function validateSharedProjectJson(
 			return {
 				normalizedProjectJson: serializeProjectDocument(project),
 				shortShareEligible: true
+			};
+		}
+		case 'mcu-select': {
+			const project = parseMcuSelectProjectDocumentJson(projectJson);
+			return {
+				normalizedProjectJson: serializeMcuSelectProjectDocument(project),
+				shortShareEligible: project.customDefinitions.length === 0
 			};
 		}
 	}
