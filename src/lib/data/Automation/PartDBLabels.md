@@ -3,7 +3,7 @@
 #! tags: automation, controls, process, industrial, hot runner, molding, imm, plastics
 #! description: A Twig script to generate labels for SMD reels in a PartDB system.
 #! author: Eli Bukoski
-#! image: partdb-labels/foldover-label.webp
+#! image: partdb-label/foldover-lable.webp
 
 # PartDB Labels for SMD Reels
 
