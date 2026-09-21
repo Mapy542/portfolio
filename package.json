@@ -40,6 +40,6 @@
 		"highlight.js": "^11.12.0",
 		"lz-string": "^1.5.0",
 		"plotly.js-dist-min": "^4.1.1",
-		"zod": "^4.6.2"
+		"zod": "^4.6.5"
 	}
 }
