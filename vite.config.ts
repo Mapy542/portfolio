@@ -7,13 +7,13 @@ export default {
 		sveltekit({
 			preprocess: vitePreprocess(),
 			adapter: adapter(),
+			alias: {
+				$lib: 'src/lib'
+			},
 			prerender: {
 				handleHttpError: 'ignore',
 				handleMissingId: 'ignore',
 				handleEntryGeneratorMismatch: 'ignore'
-			},
-			output: {
-				preloadStrategy: 'preload-mjs'
 			},
 			inlineStyleThreshold: 10240
 		})
