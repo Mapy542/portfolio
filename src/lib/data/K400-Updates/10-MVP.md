@@ -5,7 +5,6 @@
 #! author: Eli Bukoski
 #! image: laser10/whole-laser.webp
 
-
 # Minimum Viable Product
 
 The term minimum viable product was coined in 2001 by Frank Robinson (according to Wikipedia), for a development style which releases the first functional version of the product to users, omitting quality of life features which may be added later. I personally dislike this strategy in its theoretical form. While mostly harmless in consumer software, the expansion of this ideology into other technology markets carries too significant a risk for me. If a phone app crashes or is buggy, no harm is done, but the same cannot be said in technology which has the capacity to injure, ie spaceflight, aviation, or a host of industrial machinery. However, it’s difficult to reconcile this stance with the fact that startups have limited resources. They may simply be unable to sustain the development cycle for a “more rigorous” design process. A buggy product will outperform one never released.
@@ -15,20 +14,20 @@ Regardless of these moral quandaries, the laser project needs to be designated a
 ## Final Functionality
 
 As mentioned, the laser does not perform all functions as initially desired. The bed lift, or z axis, falls farthest from desired performance out of all the subsystems, but none are perfect. I’ve listed below some of the main performance goals I hoped for going into this project versus the current state.  
-#% 1,2 
+#% 1,2
 
 ### Intended Functionality
 
-- 24x48” cut volume  
-- 600 mm/s raster  
-- 40,000 mm/s^2 acceleration  
-- 1000 dpi raster  
-- Contactless auto-focus  
-- Continuous focus compensation during operation  
-- 12” Z depth  
-- Direct K40 Whisperer & SVG dither support  
-- Automatic peripheral control (air, exhaust)  
-- 100% duty cycle operation (continuous runtime)  
+- 24x48” cut volume
+- 600 mm/s raster
+- 40,000 mm/s^2 acceleration
+- 1000 dpi raster
+- Contactless auto-focus
+- Continuous focus compensation during operation
+- 12” Z depth
+- Direct K40 Whisperer & SVG dither support
+- Automatic peripheral control (air, exhaust)
+- 100% duty cycle operation (continuous runtime)
 - Safety interlock & E stop ability
 
 ![Laser Cutter CAD Assembly](laser10/whole-laser-design.webp)
@@ -37,15 +36,15 @@ As mentioned, the laser does not perform all functions as initially desired. The
 
 ### Actual Functionality
 
-- 22x45” cut volume  
-- 400 mm/s raster  
-- 2000 & 30,000 mm/s^2 acceleration (Y & X)  
-- 1000 dpi raster  
-- No Auto focus  
-- 8” Z depth  
-- No direct K40 Whisperer & SVG dither support  
-- Automatic peripheral control (air, exhaust)  
-- 100% duty cycle operation (continuous runtime)  
+- 22x45” cut volume
+- 400 mm/s raster
+- 2000 & 30,000 mm/s^2 acceleration (Y & X)
+- 1000 dpi raster
+- No Auto focus
+- 8” Z depth
+- No direct K40 Whisperer & SVG dither support
+- Automatic peripheral control (air, exhaust)
+- 100% duty cycle operation (continuous runtime)
 - Safety interlock & E stop ability
 
 ![Laser Cutter Build](laser10/whole-laser.webp)
@@ -75,6 +74,7 @@ gantt
     section Testing & Iteration
     Initial Testing: 2024-01-07, 2024-06-02
 ```
+
 Note I never cover the first CAD design, it was based on the motif of 3D printing monolithic multiple-function brackets, which I quickly realized was a poor design choice.
 
 Also, the dates of article are publication dates, not the project timeline dates.

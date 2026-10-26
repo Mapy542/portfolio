@@ -1,6 +1,6 @@
 import { randomBytes } from 'node:crypto';
 
-import type { ShareToolId } from '$lib/share/tools';
+import type { ShareToolId } from '#lib/share/tools.js';
 
 export interface TemporaryProjectShareEntry {
 	id: string;

@@ -1,4 +1,4 @@
-import { mcuDefinitionSchema, type McuDefinitionDocument } from '$lib/pinmux/model';
+import { mcuDefinitionSchema, type McuDefinitionDocument } from '#lib/pinmux/model.js';
 
 export { isBuiltInDefinitionId } from './built-in-definition-ids';
 

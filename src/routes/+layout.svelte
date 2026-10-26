@@ -1,5 +1,5 @@
 <script>
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import Header from '../lib/components/Header.svelte';
 	import './styles.css';
 	import './columns.css';
@@ -9,6 +9,8 @@
 	export let data;
 </script>
 
+<!-- @migration-task could not auto-migrate `$app/stores` to `$app/state`: legacy `export let` props; migrate manually -->
+
 <div class="app">
 	<Header categories={data.props.categories} staticPages={data.props.staticPages} />
 
@@ -17,7 +19,7 @@
 			$page.url.pathname.startsWith('/tools/pinmux') ||
 			$page.url.pathname.startsWith('/tools/mcu-select')}
 	>
-		<slot />
+		<slot></slot>
 	</main>
 
 	<Footer />

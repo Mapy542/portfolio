@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 
 	export let data;
 
@@ -15,6 +15,8 @@
 		});
 	}
 </script>
+
+<!-- @migration-task could not auto-migrate `$app/stores` to `$app/state`: legacy `export let` props; migrate manually -->
 
 <svelte:head>
 	<title>Error {statusCode} - Page Not Found</title>

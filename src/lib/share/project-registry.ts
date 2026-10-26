@@ -1,11 +1,14 @@
-import { isBuiltInDefinitionId } from '$lib/pinmux/built-in-definition-ids';
+import { isBuiltInDefinitionId } from '#lib/pinmux/built-in-definition-ids.js';
 import {
 	parseMcuSelectProjectDocumentJson,
 	serializeMcuSelectProjectDocument
-} from '$lib/mcu-select/model';
-import { parsePinmuxProjectDocumentJson, serializePinmuxProjectDocument } from '$lib/pinmux/model';
-import { parseProjectDocumentJson, serializeProjectDocument } from '$lib/signal-sim/model';
-import { getShortShareUnavailableReason, type ShareToolId } from '$lib/share/tools';
+} from '#lib/mcu-select/model.js';
+import {
+	parsePinmuxProjectDocumentJson,
+	serializePinmuxProjectDocument
+} from '#lib/pinmux/model.js';
+import { parseProjectDocumentJson, serializeProjectDocument } from '#lib/signal-sim/model.js';
+import { getShortShareUnavailableReason, type ShareToolId } from '#lib/share/tools.js';
 
 export interface ValidatedSharedProject {
 	normalizedProjectJson: string;

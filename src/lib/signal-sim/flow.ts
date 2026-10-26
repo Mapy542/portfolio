@@ -7,14 +7,14 @@ import {
 	type XYPosition
 } from '@xyflow/svelte';
 
-import { getBlockDefinition } from '$lib/signal-sim/registry';
+import { getBlockDefinition } from '#lib/signal-sim/registry.js';
 import type {
 	BlockPortDefinition,
 	ProjectDocument,
 	SimulatorEdgeDocument,
 	SimulatorNodeDocument,
 	TimingMode
-} from '$lib/signal-sim/model';
+} from '#lib/signal-sim/model.js';
 
 export type SignalFlowNodeData = Record<string, unknown> & {
 	blockType: string;
@@ -59,8 +59,8 @@ function formatParameterSummary(node: SimulatorNodeDocument): string[] {
 			const rowCount =
 				typeof value === 'string'
 					? value
-						.split(/\r?\n/)
-						.filter((line) => line.trim().length > 0 && !line.trim().startsWith('#')).length
+							.split(/\r?\n/)
+							.filter((line) => line.trim().length > 0 && !line.trim().startsWith('#')).length
 					: 0;
 			return `${parameter.label}: ${rowCount} row${rowCount === 1 ? '' : 's'}`;
 		}
@@ -115,8 +115,7 @@ function toFlowNode(node: SimulatorNodeDocument, selectedNodeId: string | null):
 			title: definition.title,
 			shortLabel: definition.shortLabel,
 			compactGlyph: formatCompactGlyph(node),
-			noteContent:
-				typeof node.parameters.content === 'string' ? node.parameters.content : '',
+			noteContent: typeof node.parameters.content === 'string' ? node.parameters.content : '',
 			category: definition.category,
 			description: definition.description,
 			label: node.label,
@@ -239,8 +238,15 @@ export function addConnectionToFlowEdges(
 	);
 }
 
-export function createDocumentEdgeFromConnection(connection: Connection): SimulatorEdgeDocument | null {
-	if (!connection.source || !connection.target || !connection.sourceHandle || !connection.targetHandle) {
+export function createDocumentEdgeFromConnection(
+	connection: Connection
+): SimulatorEdgeDocument | null {
+	if (
+		!connection.source ||
+		!connection.target ||
+		!connection.sourceHandle ||
+		!connection.targetHandle
+	) {
 		return null;
 	}
 

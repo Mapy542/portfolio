@@ -7,7 +7,7 @@ import {
 	type OutputDefinition,
 	type ProjectDocument,
 	type SimulatorNodeDocument
-} from '$lib/signal-sim/model';
+} from '#lib/signal-sim/model.js';
 
 function createSummingJunctionDefinition(
 	type: string,
@@ -46,10 +46,7 @@ function createSummingJunctionDefinition(
 		],
 		parameters: inputIds.slice(1).map((inputId, index) => ({
 			key: inputCount === 2 && inputId === 'b' ? 'operation' : `operation${inputId.toUpperCase()}`,
-			label:
-				inputCount === 2 && inputId === 'b'
-					? 'Second Leg'
-					: `${inputId.toUpperCase()} Leg`,
+			label: inputCount === 2 && inputId === 'b' ? 'Second Leg' : `${inputId.toUpperCase()} Leg`,
 			kind: 'select',
 			defaultValue: index === 0 ? 'subtract' : 'add',
 			options: [
@@ -441,7 +438,8 @@ const blockRegistry: BlockDefinition[] = [
 		title: 'Inverse Park',
 		shortLabel: 'InvPark',
 		category: 'Motor Control',
-		description: 'Transforms d/q effort commands into alpha/beta components using electrical angle.',
+		description:
+			'Transforms d/q effort commands into alpha/beta components using electrical angle.',
 		tags: ['foc', 'park', 'transform'],
 		supportsState: false,
 		inputs: [
@@ -539,7 +537,8 @@ const blockRegistry: BlockDefinition[] = [
 		title: 'Integrator',
 		shortLabel: 'INT',
 		category: 'Dynamics',
-		description: 'Continuous state accumulator, ready for fixed-step integration in the next slice.',
+		description:
+			'Continuous state accumulator, ready for fixed-step integration in the next slice.',
 		tags: ['state', 'continuous', 'plant'],
 		supportsState: true,
 		inputs: [
@@ -1065,7 +1064,10 @@ export function getBlockDefinition(blockType: string): BlockDefinition | undefin
 	return registryMap.get(blockType);
 }
 
-export function createNodeFromBlock(blockType: string, position: XYPosition): SimulatorNodeDocument | null {
+export function createNodeFromBlock(
+	blockType: string,
+	position: XYPosition
+): SimulatorNodeDocument | null {
 	const definition = getBlockDefinition(blockType);
 
 	if (!definition) {

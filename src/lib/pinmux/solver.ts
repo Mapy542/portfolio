@@ -1,4 +1,4 @@
-import { getEffectiveEnabledSignalIds, getSignalRoutingOptionIds } from '$lib/pinmux/model';
+import { getEffectiveEnabledSignalIds, getSignalRoutingOptionIds } from '#lib/pinmux/model.js';
 import type {
 	McuDefinitionDocument,
 	PeripheralInstance,
@@ -6,14 +6,14 @@ import type {
 	PeripheralSignal,
 	PinProjectState,
 	PinmuxProjectDocument
-} from '$lib/pinmux/model';
+} from '#lib/pinmux/model.js';
 import type {
 	PinmuxDiagnostic,
 	PinmuxSolution,
 	ResolvedPeripheralState,
 	ResolvedPinState,
 	ResolvedSignalAssignment
-} from '$lib/pinmux/worker-types';
+} from '#lib/pinmux/worker-types.js';
 
 interface SearchOverrides {
 	enabled?: Map<string, boolean>;

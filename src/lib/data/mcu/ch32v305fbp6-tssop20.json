@@ -1,2068 +1,1790 @@
 {
-  "id": "wch-ch32v305fbp6-tssop20",
-  "vendor": "WCH",
-  "family": "CH32V305",
-  "name": "CH32V305FBP6",
-  "version": "0.2.0",
-  "description": "Generated from the WCH CH32V305 parser pipeline for CH32V305FBP6 TSSOP20. Includes synthesized routing extracted from Table 3-1 CH32V303/305/307 pin definitions. CH32V305FBP6 is a CH32V305 MCU in a 20-pin TSSOP20 package. This generated definition includes 30 peripheral blocks covering ADC with 2 input channels, CAN, 2 I2C buses, 4 op-amps, USB full-speed, 2 SPI buses, and 4 serial ports.",
-  "package": {
-    "name": "TSSOP20",
-    "kind": "dual-row",
-    "pinCount": 20,
-    "numbering": "ccw",
-    "orientationMark": "top-center",
-    "pinsPerSide": null,
-    "rowPinCount": 10,
-    "bodyLabel": "CH32V305FBP6"
-  },
-  "pins": [
-    {
-      "id": "NRST",
-      "packageNumber": "1",
-      "name": "NRST",
-      "supportedModes": [
-        "auto",
-        "gpio-input"
-      ]
-    },
-    {
-      "id": "PA1",
-      "packageNumber": "2",
-      "name": "PA1/PA5",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output",
-        "analog"
-      ]
-    },
-    {
-      "id": "PB10",
-      "packageNumber": "3",
-      "name": "PB10",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output",
-        "analog"
-      ]
-    },
-    {
-      "id": "PB11",
-      "packageNumber": "4",
-      "name": "PB11",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output",
-        "analog"
-      ]
-    },
-    {
-      "id": "PB12",
-      "packageNumber": "5",
-      "name": "PB12",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output",
-        "analog"
-      ]
-    },
-    {
-      "id": "PB13",
-      "packageNumber": "6",
-      "name": "PB13",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output",
-        "analog"
-      ]
-    },
-    {
-      "id": "PB14",
-      "packageNumber": "7",
-      "name": "PB14",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output",
-        "analog"
-      ]
-    },
-    {
-      "id": "PB15",
-      "packageNumber": "8",
-      "name": "PB15",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output",
-        "analog"
-      ]
-    },
-    {
-      "id": "PC6",
-      "packageNumber": "9",
-      "name": "PC6",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output"
-      ]
-    },
-    {
-      "id": "PC7",
-      "packageNumber": "10",
-      "name": "PC7",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output"
-      ]
-    },
-    {
-      "id": "PC8",
-      "packageNumber": "11",
-      "name": "PC8",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output"
-      ]
-    },
-    {
-      "id": "PC9",
-      "packageNumber": "12",
-      "name": "PC9",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output"
-      ]
-    },
-    {
-      "id": "PA9",
-      "packageNumber": "13",
-      "name": "PA9/PA13",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output"
-      ]
-    },
-    {
-      "id": "VDD",
-      "packageNumber": "14",
-      "name": "VDD",
-      "supportedModes": [
-        "auto"
-      ]
-    },
-    {
-      "id": "PA14",
-      "packageNumber": "15",
-      "name": "PA14",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output"
-      ]
-    },
-    {
-      "id": "PB6",
-      "packageNumber": "16",
-      "name": "PB6",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output"
-      ]
-    },
-    {
-      "id": "PB7",
-      "packageNumber": "17",
-      "name": "PB7",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "gpio-output"
-      ]
-    },
-    {
-      "id": "VSS",
-      "packageNumber": "18",
-      "name": "VSS",
-      "supportedModes": [
-        "auto"
-      ]
-    },
-    {
-      "id": "OSC_IN",
-      "packageNumber": "19",
-      "name": "OSC_IN",
-      "supportedModes": [
-        "auto",
-        "gpio-input",
-        "analog"
-      ]
-    },
-    {
-      "id": "OSC_OUT",
-      "packageNumber": "20",
-      "name": "OSC_OUT",
-      "supportedModes": [
-        "auto",
-        "gpio-output",
-        "analog"
-      ]
-    }
-  ],
-  "peripherals": [
-    {
-      "id": "ADC",
-      "family": "ADC",
-      "label": "ADC",
-      "description": "Analog-to-digital converter with 2 analog input channels.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "IN1",
-          "label": "IN1",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA1",
-              "af": "ADC_IN1",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "IN5",
-          "label": "IN5",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA1",
-              "af": "ADC_IN5",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "CAN2",
-      "family": "CAN",
-      "label": "CAN2",
-      "description": "Controller Area Network interface with TX and RX signals. Supports 2 pin-routing options.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        },
-        {
-          "id": "remap-1",
-          "label": "Remap 1"
-        }
-      ],
-      "signals": [
-        {
-          "id": "TX",
-          "label": "TX",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB13",
-              "af": "CAN2_TX",
-              "routingOptionIds": [
-                "default"
-              ]
-            },
-            {
-              "pinId": "PB6",
-              "af": "CAN2_TX_1",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "RX",
-          "label": "RX",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB12",
-              "af": "CAN2_RX",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "DAC2",
-      "family": "DAC",
-      "label": "DAC2",
-      "description": "Digital-to-analog converter with 1 analog output channel.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "OUT2",
-          "label": "OUT2",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PA1",
-              "af": "DAC2_OUT2",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "DVP",
-      "family": "DVP",
-      "label": "DVP",
-      "description": "Digital video port interface with pixel, sync, and control signals.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "D0",
-          "label": "D0",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA9",
-              "af": "DVP_D0",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "D2",
-          "label": "D2",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PC8",
-              "af": "DVP_D2",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "D3",
-          "label": "D3",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PC9",
-              "af": "DVP_D3",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "D5",
-          "label": "D5",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB6",
-              "af": "DVP_D5",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "VSYNC",
-          "label": "VSYNC",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PA1",
-              "af": "DVP_VSYNC",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "FSMC",
-      "family": "FSMC",
-      "label": "FSMC",
-      "description": "Flexible memory controller interface for SRAM, PSRAM, NOR, NAND, and LCD-style external buses.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "NADV",
-          "label": "NADV",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB7",
-              "af": "FSMC_NADV",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "I2C1",
-      "family": "I2C",
-      "label": "I2C1",
-      "description": "I2C bus controller with SCL and SDA signals.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "SCL",
-          "label": "SCL",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB6",
-              "af": "I2C1_SCL",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "SDA",
-          "label": "SDA",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB7",
-              "af": "I2C1_SDA",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "I2C2",
-      "family": "I2C",
-      "label": "I2C2",
-      "description": "I2C bus controller with SCL, SDA, and SMBA signals.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "SCL",
-          "label": "SCL",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB10",
-              "af": "I2C2_SCL",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "SDA",
-          "label": "SDA",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB11",
-              "af": "I2C2_SDA",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "SMBA",
-          "label": "SMBA",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB12",
-              "af": "I2C2_SMBA",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "I2S2",
-      "family": "I2S",
-      "label": "I2S2",
-      "description": "I2S digital audio interface with MCK, CK, WS, and SD signals.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "MCK",
-          "label": "MCK",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PC6",
-              "af": "I2S2_MCK",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CK",
-          "label": "CK",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB13",
-              "af": "I2S2_CK",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "WS",
-          "label": "WS",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB12",
-              "af": "I2S2_WS",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "SD",
-          "label": "SD",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB15",
-              "af": "I2S2_SD",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "I2S3",
-      "family": "I2S",
-      "label": "I2S3",
-      "description": "I2S digital audio interface with MCK and SD signals.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "MCK",
-          "label": "MCK",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PC7",
-              "af": "I2S3_MCK",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "SD",
-          "label": "SD",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PA9",
-              "af": "I2S3_SD",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "OPA1",
-      "family": "OPA",
-      "label": "OPA1",
-      "description": "On-chip operational amplifier with a positive input and a negative input.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "INP",
-          "label": "INP",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB15",
-              "af": "OPA1_CH0P",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "INN",
-          "label": "INN",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB11",
-              "af": "OPA1_CH0N",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "OPA2",
-      "family": "OPA",
-      "label": "OPA2",
-      "description": "On-chip operational amplifier with a positive input and a negative input. Supports 2 pin-routing options.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        },
-        {
-          "id": "remap-1",
-          "label": "Remap 1"
-        }
-      ],
-      "signals": [
-        {
-          "id": "INP",
-          "label": "INP",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB14",
-              "af": "OPA2_CH0P",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "INN",
-          "label": "INN",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB10",
-              "af": "OPA2_CH0N",
-              "routingOptionIds": [
-                "default"
-              ]
-            },
-            {
-              "pinId": "PA1",
-              "af": "OPA2_CH1N",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "OPA3",
-      "family": "OPA",
-      "label": "OPA3",
-      "description": "On-chip operational amplifier with a positive input and an analog output.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "INP",
-          "label": "INP",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB13",
-              "af": "OPA3_CH0P",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "OUT",
-          "label": "OUT",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PA1",
-              "af": "OPA3_OUT0",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "OPA4",
-      "family": "OPA",
-      "label": "OPA4",
-      "description": "On-chip operational amplifier with a positive input.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "INP",
-          "label": "INP",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB12",
-              "af": "OPA4_CH0P",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "OTG_FS",
-      "family": "USB",
-      "label": "OTG_FS",
-      "description": "USB interface with DM and DP signals. Supports 2 pin-routing options.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        },
-        {
-          "id": "remap-1",
-          "label": "Remap 1"
-        }
-      ],
-      "signals": [
-        {
-          "id": "DM",
-          "label": "DM",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB6",
-              "af": "USBFS_DM",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "DP",
-          "label": "DP",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB7",
-              "af": "USBFS_DP",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "VBUS",
-          "label": "VBUS",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA9",
-              "af": "OTG_FS_VBUS",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "SDIO",
-      "family": "SDIO",
-      "label": "SDIO",
-      "description": "SDMMC host interface with D0, D1, D6, and D7 signals.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "D0",
-          "label": "D0",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB14",
-              "af": "SDIO_D0",
-              "routingOptionIds": [
-                "default"
-              ]
-            },
-            {
-              "pinId": "PC8",
-              "af": "SDIO_D0",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "D1",
-          "label": "D1",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB15",
-              "af": "SDIO_D1",
-              "routingOptionIds": [
-                "default"
-              ]
-            },
-            {
-              "pinId": "PC9",
-              "af": "SDIO_D1",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "D6",
-          "label": "D6",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PC6",
-              "af": "SDIO_D6",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "D7",
-          "label": "D7",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PC7",
-              "af": "SDIO_D7",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "SPI1",
-      "family": "SPI",
-      "label": "SPI1",
-      "description": "SPI controller with SCK signals.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "SCK",
-          "label": "SCK",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PA1",
-              "af": "SPI1_SCK",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "SPI2",
-      "family": "SPI",
-      "label": "SPI2",
-      "description": "SPI controller with NSS, SCK, MISO, and MOSI signals.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "NSS",
-          "label": "NSS",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB12",
-              "af": "SPI2_NSS",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "SCK",
-          "label": "SCK",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB13",
-              "af": "SPI2_SCK",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "MISO",
-          "label": "MISO",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB14",
-              "af": "SPI2_MISO",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "MOSI",
-          "label": "MOSI",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB15",
-              "af": "SPI2_MOSI",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "TIM1",
-      "family": "Timer",
-      "label": "TIM1",
-      "description": "TIM1 peripheral with 5 configurable signals. Supports 2 pin-routing options.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        },
-        {
-          "id": "remap-1",
-          "label": "Remap 1"
-        }
-      ],
-      "signals": [
-        {
-          "id": "CH1N",
-          "label": "CH1N",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB13",
-              "af": "TIM1_CH1N",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH2",
-          "label": "CH2",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA9",
-              "af": "TIM1_CH2",
-              "routingOptionIds": [
-                "default"
-              ]
-            },
-            {
-              "pinId": "PA9",
-              "af": "TIM1_CH2_1",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH2N",
-          "label": "CH2N",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB14",
-              "af": "TIM1_CH2N",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH3N",
-          "label": "CH3N",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB15",
-              "af": "TIM1_CH3N",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "BKIN",
-          "label": "BKIN",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB12",
-              "af": "TIM1_BKIN",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "TIM10",
-      "family": "Timer",
-      "label": "TIM10",
-      "description": "TIM10 peripheral with 5 configurable signals. Supports 2 pin-routing options.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        },
-        {
-          "id": "remap-1",
-          "label": "Remap 1"
-        }
-      ],
-      "signals": [
-        {
-          "id": "CH1N",
-          "label": "CH1N",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA1",
-              "af": "TIM10_CH1N_1",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH2N",
-          "label": "CH2N",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA9",
-              "af": "TIM10_CH2N",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH3N",
-          "label": "CH3N",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA14",
-              "af": "TIM10_CH3N",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "BKIN",
-          "label": "BKIN",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB10",
-              "af": "TIM10_BKIN_1",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "ETR",
-          "label": "ETR",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB11",
-              "af": "TIM10_ETR_1",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "TIM2",
-      "family": "Timer",
-      "label": "TIM2",
-      "description": "TIM2 peripheral with 3 configurable signals. Supports 3 pin-routing options.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        },
-        {
-          "id": "remap-2",
-          "label": "Remap 2"
-        },
-        {
-          "id": "remap-3",
-          "label": "Remap 3"
-        }
-      ],
-      "signals": [
-        {
-          "id": "CH2",
-          "label": "CH2",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA1",
-              "af": "TIM2_CH2",
-              "routingOptionIds": [
-                "default"
-              ]
-            },
-            {
-              "pinId": "PA1",
-              "af": "TIM2_CH2_2",
-              "routingOptionIds": [
-                "remap-2"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH3",
-          "label": "CH3",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB10",
-              "af": "TIM2_CH3_2",
-              "routingOptionIds": [
-                "remap-2"
-              ]
-            },
-            {
-              "pinId": "PB10",
-              "af": "TIM2_CH3_3",
-              "routingOptionIds": [
-                "remap-3"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH4",
-          "label": "CH4",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB11",
-              "af": "TIM2_CH4_2",
-              "routingOptionIds": [
-                "remap-2"
-              ]
-            },
-            {
-              "pinId": "PB11",
-              "af": "TIM2_CH4_3",
-              "routingOptionIds": [
-                "remap-3"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "TIM3",
-      "family": "Timer",
-      "label": "TIM3",
-      "description": "TIM3 peripheral with 4 configurable signals.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "remap-3",
-          "label": "Remap 3"
-        }
-      ],
-      "signals": [
-        {
-          "id": "CH1",
-          "label": "CH1",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PC6",
-              "af": "TIM3_CH1_3",
-              "routingOptionIds": [
-                "remap-3"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH2",
-          "label": "CH2",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PC7",
-              "af": "TIM3_CH2_3",
-              "routingOptionIds": [
-                "remap-3"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH3",
-          "label": "CH3",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PC8",
-              "af": "TIM3_CH3_3",
-              "routingOptionIds": [
-                "remap-3"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH4",
-          "label": "CH4",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PC9",
-              "af": "TIM3_CH4_3",
-              "routingOptionIds": [
-                "remap-3"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "TIM4",
-      "family": "Timer",
-      "label": "TIM4",
-      "description": "TIM4 peripheral with 2 configurable signals.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "CH1",
-          "label": "CH1",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB6",
-              "af": "TIM4_CH1",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH2",
-          "label": "CH2",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB7",
-              "af": "TIM4_CH2",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "TIM5",
-      "family": "Timer",
-      "label": "TIM5",
-      "description": "TIM5 peripheral with 1 configurable signal.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "CH2",
-          "label": "CH2",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA1",
-              "af": "TIM5_CH2",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "TIM8",
-      "family": "Timer",
-      "label": "TIM8",
-      "description": "TIM8 peripheral with 6 configurable signals. Supports 2 pin-routing options.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        },
-        {
-          "id": "remap-1",
-          "label": "Remap 1"
-        }
-      ],
-      "signals": [
-        {
-          "id": "CH1",
-          "label": "CH1",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PC6",
-              "af": "TIM8_CH1",
-              "routingOptionIds": [
-                "default"
-              ]
-            },
-            {
-              "pinId": "PB6",
-              "af": "TIM8_CH1_1",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH1N",
-          "label": "CH1N",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA9",
-              "af": "TIM8_CH1N_1",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH2",
-          "label": "CH2",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PC7",
-              "af": "TIM8_CH2",
-              "routingOptionIds": [
-                "default"
-              ]
-            },
-            {
-              "pinId": "PB7",
-              "af": "TIM8_CH2_1",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH2N",
-          "label": "CH2N",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA14",
-              "af": "TIM8_CH2N_1",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH3",
-          "label": "CH3",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PC8",
-              "af": "TIM8_CH3",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CH4",
-          "label": "CH4",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PC9",
-              "af": "TIM8_CH4",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "TIM9",
-      "family": "Timer",
-      "label": "TIM9",
-      "description": "TIM9 peripheral with 1 configurable signal.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "remap-1",
-          "label": "Remap 1"
-        }
-      ],
-      "signals": [
-        {
-          "id": "BKIN",
-          "label": "BKIN",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA1",
-              "af": "TIM9_BKIN_1",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "UART8",
-      "family": "UART",
-      "label": "UART8",
-      "description": "UART serial interface with TX signals.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "remap-1",
-          "label": "Remap 1"
-        }
-      ],
-      "signals": [
-        {
-          "id": "TX",
-          "label": "TX",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PA14",
-              "af": "UART8_TX_1",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "USART1",
-      "family": "USART",
-      "label": "USART1",
-      "description": "USART serial interface with synchronous clock support with TX, RX, CTS, RTS, and CK signals. Supports 4 pin-routing options.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        },
-        {
-          "id": "remap-1",
-          "label": "Remap 1"
-        },
-        {
-          "id": "remap-2",
-          "label": "Remap 2"
-        },
-        {
-          "id": "remap-3",
-          "label": "Remap 3"
-        }
-      ],
-      "signals": [
-        {
-          "id": "TX",
-          "label": "TX",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PA9",
-              "af": "USART1_TX",
-              "routingOptionIds": [
-                "default"
-              ]
-            },
-            {
-              "pinId": "PB6",
-              "af": "USART1_TX_1",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            },
-            {
-              "pinId": "PB15",
-              "af": "USART1_TX_2",
-              "routingOptionIds": [
-                "remap-2"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "RX",
-          "label": "RX",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB7",
-              "af": "USART1_RX_1",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CTS",
-          "label": "CTS",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA1",
-              "af": "USART1_CTS_2",
-              "routingOptionIds": [
-                "remap-2"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "RTS",
-          "label": "RTS",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA9",
-              "af": "USART1_RTS_2",
-              "routingOptionIds": [
-                "remap-2"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CK",
-          "label": "CK",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA1",
-              "af": "USART1_CK_3",
-              "routingOptionIds": [
-                "remap-3"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "USART2",
-      "family": "USART",
-      "label": "USART2",
-      "description": "USART serial interface with RTS signals.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "RTS",
-          "label": "RTS",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PA1",
-              "af": "USART2_RTS",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "USART3",
-      "family": "USART",
-      "label": "USART3",
-      "description": "USART serial interface with synchronous clock support with TX, RX, CTS, RTS, and CK signals. Supports 3 pin-routing options.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        },
-        {
-          "id": "remap-1",
-          "label": "Remap 1"
-        },
-        {
-          "id": "remap-2",
-          "label": "Remap 2"
-        }
-      ],
-      "signals": [
-        {
-          "id": "TX",
-          "label": "TX",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB10",
-              "af": "USART3_TX",
-              "routingOptionIds": [
-                "default"
-              ]
-            },
-            {
-              "pinId": "PA9",
-              "af": "USART3_TX_2",
-              "routingOptionIds": [
-                "remap-2"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "RX",
-          "label": "RX",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB11",
-              "af": "USART3_RX",
-              "routingOptionIds": [
-                "default"
-              ]
-            },
-            {
-              "pinId": "PA14",
-              "af": "USART3_RX_2",
-              "routingOptionIds": [
-                "remap-2"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CTS",
-          "label": "CTS",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB13",
-              "af": "USART3_CTS",
-              "routingOptionIds": [
-                "default"
-              ]
-            },
-            {
-              "pinId": "PB13",
-              "af": "USART3_CTS_1",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "RTS",
-          "label": "RTS",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB14",
-              "af": "USART3_RTS",
-              "routingOptionIds": [
-                "default"
-              ]
-            },
-            {
-              "pinId": "PB14",
-              "af": "USART3_RTS_1",
-              "routingOptionIds": [
-                "remap-1"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "CK",
-          "label": "CK",
-          "required": false,
-          "defaultEnabled": false,
-          "candidates": [
-            {
-              "pinId": "PB12",
-              "af": "USART3_CK",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "USBHS",
-      "family": "USB",
-      "label": "USBHS",
-      "description": "USB interface with DM and DP signals.",
-      "colorHint": null,
-      "routingOptions": [
-        {
-          "id": "default",
-          "label": "Default"
-        }
-      ],
-      "signals": [
-        {
-          "id": "DM",
-          "label": "DM",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB6",
-              "af": "USBHS_DM",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "DP",
-          "label": "DP",
-          "required": true,
-          "defaultEnabled": true,
-          "candidates": [
-            {
-              "pinId": "PB7",
-              "af": "USBHS_DP",
-              "routingOptionIds": [
-                "default"
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
+	"id": "wch-ch32v305fbp6-tssop20",
+	"vendor": "WCH",
+	"family": "CH32V305",
+	"name": "CH32V305FBP6",
+	"version": "0.2.0",
+	"description": "Generated from the WCH CH32V305 parser pipeline for CH32V305FBP6 TSSOP20. Includes synthesized routing extracted from Table 3-1 CH32V303/305/307 pin definitions. CH32V305FBP6 is a CH32V305 MCU in a 20-pin TSSOP20 package. This generated definition includes 30 peripheral blocks covering ADC with 2 input channels, CAN, 2 I2C buses, 4 op-amps, USB full-speed, 2 SPI buses, and 4 serial ports.",
+	"package": {
+		"name": "TSSOP20",
+		"kind": "dual-row",
+		"pinCount": 20,
+		"numbering": "ccw",
+		"orientationMark": "top-center",
+		"pinsPerSide": null,
+		"rowPinCount": 10,
+		"bodyLabel": "CH32V305FBP6"
+	},
+	"pins": [
+		{
+			"id": "NRST",
+			"packageNumber": "1",
+			"name": "NRST",
+			"supportedModes": ["auto", "gpio-input"]
+		},
+		{
+			"id": "PA1",
+			"packageNumber": "2",
+			"name": "PA1/PA5",
+			"supportedModes": ["auto", "gpio-input", "gpio-output", "analog"]
+		},
+		{
+			"id": "PB10",
+			"packageNumber": "3",
+			"name": "PB10",
+			"supportedModes": ["auto", "gpio-input", "gpio-output", "analog"]
+		},
+		{
+			"id": "PB11",
+			"packageNumber": "4",
+			"name": "PB11",
+			"supportedModes": ["auto", "gpio-input", "gpio-output", "analog"]
+		},
+		{
+			"id": "PB12",
+			"packageNumber": "5",
+			"name": "PB12",
+			"supportedModes": ["auto", "gpio-input", "gpio-output", "analog"]
+		},
+		{
+			"id": "PB13",
+			"packageNumber": "6",
+			"name": "PB13",
+			"supportedModes": ["auto", "gpio-input", "gpio-output", "analog"]
+		},
+		{
+			"id": "PB14",
+			"packageNumber": "7",
+			"name": "PB14",
+			"supportedModes": ["auto", "gpio-input", "gpio-output", "analog"]
+		},
+		{
+			"id": "PB15",
+			"packageNumber": "8",
+			"name": "PB15",
+			"supportedModes": ["auto", "gpio-input", "gpio-output", "analog"]
+		},
+		{
+			"id": "PC6",
+			"packageNumber": "9",
+			"name": "PC6",
+			"supportedModes": ["auto", "gpio-input", "gpio-output"]
+		},
+		{
+			"id": "PC7",
+			"packageNumber": "10",
+			"name": "PC7",
+			"supportedModes": ["auto", "gpio-input", "gpio-output"]
+		},
+		{
+			"id": "PC8",
+			"packageNumber": "11",
+			"name": "PC8",
+			"supportedModes": ["auto", "gpio-input", "gpio-output"]
+		},
+		{
+			"id": "PC9",
+			"packageNumber": "12",
+			"name": "PC9",
+			"supportedModes": ["auto", "gpio-input", "gpio-output"]
+		},
+		{
+			"id": "PA9",
+			"packageNumber": "13",
+			"name": "PA9/PA13",
+			"supportedModes": ["auto", "gpio-input", "gpio-output"]
+		},
+		{
+			"id": "VDD",
+			"packageNumber": "14",
+			"name": "VDD",
+			"supportedModes": ["auto"]
+		},
+		{
+			"id": "PA14",
+			"packageNumber": "15",
+			"name": "PA14",
+			"supportedModes": ["auto", "gpio-input", "gpio-output"]
+		},
+		{
+			"id": "PB6",
+			"packageNumber": "16",
+			"name": "PB6",
+			"supportedModes": ["auto", "gpio-input", "gpio-output"]
+		},
+		{
+			"id": "PB7",
+			"packageNumber": "17",
+			"name": "PB7",
+			"supportedModes": ["auto", "gpio-input", "gpio-output"]
+		},
+		{
+			"id": "VSS",
+			"packageNumber": "18",
+			"name": "VSS",
+			"supportedModes": ["auto"]
+		},
+		{
+			"id": "OSC_IN",
+			"packageNumber": "19",
+			"name": "OSC_IN",
+			"supportedModes": ["auto", "gpio-input", "analog"]
+		},
+		{
+			"id": "OSC_OUT",
+			"packageNumber": "20",
+			"name": "OSC_OUT",
+			"supportedModes": ["auto", "gpio-output", "analog"]
+		}
+	],
+	"peripherals": [
+		{
+			"id": "ADC",
+			"family": "ADC",
+			"label": "ADC",
+			"description": "Analog-to-digital converter with 2 analog input channels.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "IN1",
+					"label": "IN1",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA1",
+							"af": "ADC_IN1",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "IN5",
+					"label": "IN5",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA1",
+							"af": "ADC_IN5",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "CAN2",
+			"family": "CAN",
+			"label": "CAN2",
+			"description": "Controller Area Network interface with TX and RX signals. Supports 2 pin-routing options.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				},
+				{
+					"id": "remap-1",
+					"label": "Remap 1"
+				}
+			],
+			"signals": [
+				{
+					"id": "TX",
+					"label": "TX",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB13",
+							"af": "CAN2_TX",
+							"routingOptionIds": ["default"]
+						},
+						{
+							"pinId": "PB6",
+							"af": "CAN2_TX_1",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				},
+				{
+					"id": "RX",
+					"label": "RX",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB12",
+							"af": "CAN2_RX",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "DAC2",
+			"family": "DAC",
+			"label": "DAC2",
+			"description": "Digital-to-analog converter with 1 analog output channel.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "OUT2",
+					"label": "OUT2",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PA1",
+							"af": "DAC2_OUT2",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "DVP",
+			"family": "DVP",
+			"label": "DVP",
+			"description": "Digital video port interface with pixel, sync, and control signals.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "D0",
+					"label": "D0",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA9",
+							"af": "DVP_D0",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "D2",
+					"label": "D2",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PC8",
+							"af": "DVP_D2",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "D3",
+					"label": "D3",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PC9",
+							"af": "DVP_D3",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "D5",
+					"label": "D5",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB6",
+							"af": "DVP_D5",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "VSYNC",
+					"label": "VSYNC",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PA1",
+							"af": "DVP_VSYNC",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "FSMC",
+			"family": "FSMC",
+			"label": "FSMC",
+			"description": "Flexible memory controller interface for SRAM, PSRAM, NOR, NAND, and LCD-style external buses.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "NADV",
+					"label": "NADV",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB7",
+							"af": "FSMC_NADV",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "I2C1",
+			"family": "I2C",
+			"label": "I2C1",
+			"description": "I2C bus controller with SCL and SDA signals.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "SCL",
+					"label": "SCL",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB6",
+							"af": "I2C1_SCL",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "SDA",
+					"label": "SDA",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB7",
+							"af": "I2C1_SDA",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "I2C2",
+			"family": "I2C",
+			"label": "I2C2",
+			"description": "I2C bus controller with SCL, SDA, and SMBA signals.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "SCL",
+					"label": "SCL",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB10",
+							"af": "I2C2_SCL",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "SDA",
+					"label": "SDA",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB11",
+							"af": "I2C2_SDA",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "SMBA",
+					"label": "SMBA",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB12",
+							"af": "I2C2_SMBA",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "I2S2",
+			"family": "I2S",
+			"label": "I2S2",
+			"description": "I2S digital audio interface with MCK, CK, WS, and SD signals.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "MCK",
+					"label": "MCK",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PC6",
+							"af": "I2S2_MCK",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "CK",
+					"label": "CK",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB13",
+							"af": "I2S2_CK",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "WS",
+					"label": "WS",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB12",
+							"af": "I2S2_WS",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "SD",
+					"label": "SD",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB15",
+							"af": "I2S2_SD",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "I2S3",
+			"family": "I2S",
+			"label": "I2S3",
+			"description": "I2S digital audio interface with MCK and SD signals.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "MCK",
+					"label": "MCK",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PC7",
+							"af": "I2S3_MCK",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "SD",
+					"label": "SD",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PA9",
+							"af": "I2S3_SD",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "OPA1",
+			"family": "OPA",
+			"label": "OPA1",
+			"description": "On-chip operational amplifier with a positive input and a negative input.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "INP",
+					"label": "INP",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB15",
+							"af": "OPA1_CH0P",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "INN",
+					"label": "INN",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB11",
+							"af": "OPA1_CH0N",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "OPA2",
+			"family": "OPA",
+			"label": "OPA2",
+			"description": "On-chip operational amplifier with a positive input and a negative input. Supports 2 pin-routing options.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				},
+				{
+					"id": "remap-1",
+					"label": "Remap 1"
+				}
+			],
+			"signals": [
+				{
+					"id": "INP",
+					"label": "INP",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB14",
+							"af": "OPA2_CH0P",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "INN",
+					"label": "INN",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB10",
+							"af": "OPA2_CH0N",
+							"routingOptionIds": ["default"]
+						},
+						{
+							"pinId": "PA1",
+							"af": "OPA2_CH1N",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "OPA3",
+			"family": "OPA",
+			"label": "OPA3",
+			"description": "On-chip operational amplifier with a positive input and an analog output.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "INP",
+					"label": "INP",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB13",
+							"af": "OPA3_CH0P",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "OUT",
+					"label": "OUT",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PA1",
+							"af": "OPA3_OUT0",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "OPA4",
+			"family": "OPA",
+			"label": "OPA4",
+			"description": "On-chip operational amplifier with a positive input.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "INP",
+					"label": "INP",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB12",
+							"af": "OPA4_CH0P",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "OTG_FS",
+			"family": "USB",
+			"label": "OTG_FS",
+			"description": "USB interface with DM and DP signals. Supports 2 pin-routing options.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				},
+				{
+					"id": "remap-1",
+					"label": "Remap 1"
+				}
+			],
+			"signals": [
+				{
+					"id": "DM",
+					"label": "DM",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB6",
+							"af": "USBFS_DM",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				},
+				{
+					"id": "DP",
+					"label": "DP",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB7",
+							"af": "USBFS_DP",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				},
+				{
+					"id": "VBUS",
+					"label": "VBUS",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA9",
+							"af": "OTG_FS_VBUS",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "SDIO",
+			"family": "SDIO",
+			"label": "SDIO",
+			"description": "SDMMC host interface with D0, D1, D6, and D7 signals.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "D0",
+					"label": "D0",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB14",
+							"af": "SDIO_D0",
+							"routingOptionIds": ["default"]
+						},
+						{
+							"pinId": "PC8",
+							"af": "SDIO_D0",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "D1",
+					"label": "D1",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB15",
+							"af": "SDIO_D1",
+							"routingOptionIds": ["default"]
+						},
+						{
+							"pinId": "PC9",
+							"af": "SDIO_D1",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "D6",
+					"label": "D6",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PC6",
+							"af": "SDIO_D6",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "D7",
+					"label": "D7",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PC7",
+							"af": "SDIO_D7",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "SPI1",
+			"family": "SPI",
+			"label": "SPI1",
+			"description": "SPI controller with SCK signals.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "SCK",
+					"label": "SCK",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PA1",
+							"af": "SPI1_SCK",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "SPI2",
+			"family": "SPI",
+			"label": "SPI2",
+			"description": "SPI controller with NSS, SCK, MISO, and MOSI signals.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "NSS",
+					"label": "NSS",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB12",
+							"af": "SPI2_NSS",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "SCK",
+					"label": "SCK",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB13",
+							"af": "SPI2_SCK",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "MISO",
+					"label": "MISO",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB14",
+							"af": "SPI2_MISO",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "MOSI",
+					"label": "MOSI",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB15",
+							"af": "SPI2_MOSI",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "TIM1",
+			"family": "Timer",
+			"label": "TIM1",
+			"description": "TIM1 peripheral with 5 configurable signals. Supports 2 pin-routing options.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				},
+				{
+					"id": "remap-1",
+					"label": "Remap 1"
+				}
+			],
+			"signals": [
+				{
+					"id": "CH1N",
+					"label": "CH1N",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB13",
+							"af": "TIM1_CH1N",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "CH2",
+					"label": "CH2",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA9",
+							"af": "TIM1_CH2",
+							"routingOptionIds": ["default"]
+						},
+						{
+							"pinId": "PA9",
+							"af": "TIM1_CH2_1",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				},
+				{
+					"id": "CH2N",
+					"label": "CH2N",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB14",
+							"af": "TIM1_CH2N",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "CH3N",
+					"label": "CH3N",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB15",
+							"af": "TIM1_CH3N",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "BKIN",
+					"label": "BKIN",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB12",
+							"af": "TIM1_BKIN",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "TIM10",
+			"family": "Timer",
+			"label": "TIM10",
+			"description": "TIM10 peripheral with 5 configurable signals. Supports 2 pin-routing options.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				},
+				{
+					"id": "remap-1",
+					"label": "Remap 1"
+				}
+			],
+			"signals": [
+				{
+					"id": "CH1N",
+					"label": "CH1N",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA1",
+							"af": "TIM10_CH1N_1",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				},
+				{
+					"id": "CH2N",
+					"label": "CH2N",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA9",
+							"af": "TIM10_CH2N",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "CH3N",
+					"label": "CH3N",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA14",
+							"af": "TIM10_CH3N",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "BKIN",
+					"label": "BKIN",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB10",
+							"af": "TIM10_BKIN_1",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				},
+				{
+					"id": "ETR",
+					"label": "ETR",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB11",
+							"af": "TIM10_ETR_1",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "TIM2",
+			"family": "Timer",
+			"label": "TIM2",
+			"description": "TIM2 peripheral with 3 configurable signals. Supports 3 pin-routing options.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				},
+				{
+					"id": "remap-2",
+					"label": "Remap 2"
+				},
+				{
+					"id": "remap-3",
+					"label": "Remap 3"
+				}
+			],
+			"signals": [
+				{
+					"id": "CH2",
+					"label": "CH2",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA1",
+							"af": "TIM2_CH2",
+							"routingOptionIds": ["default"]
+						},
+						{
+							"pinId": "PA1",
+							"af": "TIM2_CH2_2",
+							"routingOptionIds": ["remap-2"]
+						}
+					]
+				},
+				{
+					"id": "CH3",
+					"label": "CH3",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB10",
+							"af": "TIM2_CH3_2",
+							"routingOptionIds": ["remap-2"]
+						},
+						{
+							"pinId": "PB10",
+							"af": "TIM2_CH3_3",
+							"routingOptionIds": ["remap-3"]
+						}
+					]
+				},
+				{
+					"id": "CH4",
+					"label": "CH4",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB11",
+							"af": "TIM2_CH4_2",
+							"routingOptionIds": ["remap-2"]
+						},
+						{
+							"pinId": "PB11",
+							"af": "TIM2_CH4_3",
+							"routingOptionIds": ["remap-3"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "TIM3",
+			"family": "Timer",
+			"label": "TIM3",
+			"description": "TIM3 peripheral with 4 configurable signals.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "remap-3",
+					"label": "Remap 3"
+				}
+			],
+			"signals": [
+				{
+					"id": "CH1",
+					"label": "CH1",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PC6",
+							"af": "TIM3_CH1_3",
+							"routingOptionIds": ["remap-3"]
+						}
+					]
+				},
+				{
+					"id": "CH2",
+					"label": "CH2",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PC7",
+							"af": "TIM3_CH2_3",
+							"routingOptionIds": ["remap-3"]
+						}
+					]
+				},
+				{
+					"id": "CH3",
+					"label": "CH3",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PC8",
+							"af": "TIM3_CH3_3",
+							"routingOptionIds": ["remap-3"]
+						}
+					]
+				},
+				{
+					"id": "CH4",
+					"label": "CH4",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PC9",
+							"af": "TIM3_CH4_3",
+							"routingOptionIds": ["remap-3"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "TIM4",
+			"family": "Timer",
+			"label": "TIM4",
+			"description": "TIM4 peripheral with 2 configurable signals.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "CH1",
+					"label": "CH1",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB6",
+							"af": "TIM4_CH1",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "CH2",
+					"label": "CH2",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB7",
+							"af": "TIM4_CH2",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "TIM5",
+			"family": "Timer",
+			"label": "TIM5",
+			"description": "TIM5 peripheral with 1 configurable signal.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "CH2",
+					"label": "CH2",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA1",
+							"af": "TIM5_CH2",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "TIM8",
+			"family": "Timer",
+			"label": "TIM8",
+			"description": "TIM8 peripheral with 6 configurable signals. Supports 2 pin-routing options.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				},
+				{
+					"id": "remap-1",
+					"label": "Remap 1"
+				}
+			],
+			"signals": [
+				{
+					"id": "CH1",
+					"label": "CH1",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PC6",
+							"af": "TIM8_CH1",
+							"routingOptionIds": ["default"]
+						},
+						{
+							"pinId": "PB6",
+							"af": "TIM8_CH1_1",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				},
+				{
+					"id": "CH1N",
+					"label": "CH1N",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA9",
+							"af": "TIM8_CH1N_1",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				},
+				{
+					"id": "CH2",
+					"label": "CH2",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PC7",
+							"af": "TIM8_CH2",
+							"routingOptionIds": ["default"]
+						},
+						{
+							"pinId": "PB7",
+							"af": "TIM8_CH2_1",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				},
+				{
+					"id": "CH2N",
+					"label": "CH2N",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA14",
+							"af": "TIM8_CH2N_1",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				},
+				{
+					"id": "CH3",
+					"label": "CH3",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PC8",
+							"af": "TIM8_CH3",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "CH4",
+					"label": "CH4",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PC9",
+							"af": "TIM8_CH4",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "TIM9",
+			"family": "Timer",
+			"label": "TIM9",
+			"description": "TIM9 peripheral with 1 configurable signal.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "remap-1",
+					"label": "Remap 1"
+				}
+			],
+			"signals": [
+				{
+					"id": "BKIN",
+					"label": "BKIN",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA1",
+							"af": "TIM9_BKIN_1",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "UART8",
+			"family": "UART",
+			"label": "UART8",
+			"description": "UART serial interface with TX signals.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "remap-1",
+					"label": "Remap 1"
+				}
+			],
+			"signals": [
+				{
+					"id": "TX",
+					"label": "TX",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PA14",
+							"af": "UART8_TX_1",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "USART1",
+			"family": "USART",
+			"label": "USART1",
+			"description": "USART serial interface with synchronous clock support with TX, RX, CTS, RTS, and CK signals. Supports 4 pin-routing options.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				},
+				{
+					"id": "remap-1",
+					"label": "Remap 1"
+				},
+				{
+					"id": "remap-2",
+					"label": "Remap 2"
+				},
+				{
+					"id": "remap-3",
+					"label": "Remap 3"
+				}
+			],
+			"signals": [
+				{
+					"id": "TX",
+					"label": "TX",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PA9",
+							"af": "USART1_TX",
+							"routingOptionIds": ["default"]
+						},
+						{
+							"pinId": "PB6",
+							"af": "USART1_TX_1",
+							"routingOptionIds": ["remap-1"]
+						},
+						{
+							"pinId": "PB15",
+							"af": "USART1_TX_2",
+							"routingOptionIds": ["remap-2"]
+						}
+					]
+				},
+				{
+					"id": "RX",
+					"label": "RX",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB7",
+							"af": "USART1_RX_1",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				},
+				{
+					"id": "CTS",
+					"label": "CTS",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA1",
+							"af": "USART1_CTS_2",
+							"routingOptionIds": ["remap-2"]
+						}
+					]
+				},
+				{
+					"id": "RTS",
+					"label": "RTS",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA9",
+							"af": "USART1_RTS_2",
+							"routingOptionIds": ["remap-2"]
+						}
+					]
+				},
+				{
+					"id": "CK",
+					"label": "CK",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA1",
+							"af": "USART1_CK_3",
+							"routingOptionIds": ["remap-3"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "USART2",
+			"family": "USART",
+			"label": "USART2",
+			"description": "USART serial interface with RTS signals.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "RTS",
+					"label": "RTS",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PA1",
+							"af": "USART2_RTS",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "USART3",
+			"family": "USART",
+			"label": "USART3",
+			"description": "USART serial interface with synchronous clock support with TX, RX, CTS, RTS, and CK signals. Supports 3 pin-routing options.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				},
+				{
+					"id": "remap-1",
+					"label": "Remap 1"
+				},
+				{
+					"id": "remap-2",
+					"label": "Remap 2"
+				}
+			],
+			"signals": [
+				{
+					"id": "TX",
+					"label": "TX",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB10",
+							"af": "USART3_TX",
+							"routingOptionIds": ["default"]
+						},
+						{
+							"pinId": "PA9",
+							"af": "USART3_TX_2",
+							"routingOptionIds": ["remap-2"]
+						}
+					]
+				},
+				{
+					"id": "RX",
+					"label": "RX",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB11",
+							"af": "USART3_RX",
+							"routingOptionIds": ["default"]
+						},
+						{
+							"pinId": "PA14",
+							"af": "USART3_RX_2",
+							"routingOptionIds": ["remap-2"]
+						}
+					]
+				},
+				{
+					"id": "CTS",
+					"label": "CTS",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB13",
+							"af": "USART3_CTS",
+							"routingOptionIds": ["default"]
+						},
+						{
+							"pinId": "PB13",
+							"af": "USART3_CTS_1",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				},
+				{
+					"id": "RTS",
+					"label": "RTS",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB14",
+							"af": "USART3_RTS",
+							"routingOptionIds": ["default"]
+						},
+						{
+							"pinId": "PB14",
+							"af": "USART3_RTS_1",
+							"routingOptionIds": ["remap-1"]
+						}
+					]
+				},
+				{
+					"id": "CK",
+					"label": "CK",
+					"required": false,
+					"defaultEnabled": false,
+					"candidates": [
+						{
+							"pinId": "PB12",
+							"af": "USART3_CK",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "USBHS",
+			"family": "USB",
+			"label": "USBHS",
+			"description": "USB interface with DM and DP signals.",
+			"colorHint": null,
+			"routingOptions": [
+				{
+					"id": "default",
+					"label": "Default"
+				}
+			],
+			"signals": [
+				{
+					"id": "DM",
+					"label": "DM",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB6",
+							"af": "USBHS_DM",
+							"routingOptionIds": ["default"]
+						}
+					]
+				},
+				{
+					"id": "DP",
+					"label": "DP",
+					"required": true,
+					"defaultEnabled": true,
+					"candidates": [
+						{
+							"pinId": "PB7",
+							"af": "USBHS_DP",
+							"routingOptionIds": ["default"]
+						}
+					]
+				}
+			]
+		}
+	]
 }

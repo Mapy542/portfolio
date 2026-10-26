@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Handle, Position } from '@xyflow/svelte';
 
-	import type { SignalFlowNodeData } from '$lib/signal-sim/flow';
-	import { describePort } from '$lib/signal-sim/flow';
+	import type { SignalFlowNodeData } from '#lib/signal-sim/flow.js';
+	import { describePort } from '#lib/signal-sim/flow.js';
 
 	export let data: SignalFlowNodeData;
 	export let selected = false;

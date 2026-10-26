@@ -3,7 +3,7 @@ import {
 	type CompiledProject,
 	type SimulationDiagnostic,
 	type SimulationRunPayload
-} from '$lib/signal-sim/worker-types';
+} from '#lib/signal-sim/worker-types.js';
 
 interface IntegratorState {
 	position: number;
@@ -75,7 +75,11 @@ interface RuntimeContext {
 	csvSources: Map<string, CsvSourceData>;
 }
 
-function getNumericParameter(parameters: Record<string, unknown>, key: string, fallback = 0): number {
+function getNumericParameter(
+	parameters: Record<string, unknown>,
+	key: string,
+	fallback = 0
+): number {
 	const value = parameters[key];
 	return typeof value === 'number' && Number.isFinite(value) ? value : fallback;
 }
@@ -305,43 +309,52 @@ function initializeRuntimeContext(compiled: CompiledProject): RuntimeContext {
 				});
 				break;
 			}
-				case 'inverter-bldc': {
-					const polePairs = Math.max(1, Math.round(getNumericParameter(node.parameters, 'polePairs', 4)));
-					const initialPosition = getNumericParameter(node.parameters, 'initialPosition', 0);
-					const initialVelocity = getNumericParameter(node.parameters, 'initialVelocity', 0);
-					stateMap.set(node.id, {
-						position: initialPosition,
-						velocity: initialVelocity,
-						acceleration: 0,
-						electricalAngle: wrapAngle(initialPosition * TAU * polePairs),
-						currentD: 0,
-						currentQ: 0,
-						torque: 0
-					});
-					break;
-				}
-				case 'encoder': {
-					const countsPerUnit = Math.max(
-						1,
-						Math.round(getNumericParameter(node.parameters, 'countsPerUnit', 2048))
-					);
-					const positionOffset = getNumericParameter(node.parameters, 'positionOffset', 0);
-					const polePairs = Math.max(1, Math.round(getNumericParameter(node.parameters, 'polePairs', 4)));
-					const samplePeriod = Math.max(dt, getNumericParameter(node.parameters, 'samplePeriod', dt));
-					const sampleSteps = Math.max(1, Math.round(samplePeriod / dt));
-					const quantized = quantizePosition(0, countsPerUnit, positionOffset);
-					stateMap.set(node.id, {
-						heldPosition: quantized.position,
-						heldVelocity: 0,
-						heldCounts: quantized.counts,
-						heldElectricalAngle: wrapAngle(quantized.position * TAU * polePairs),
-						previousSamplePosition: quantized.position,
-						sampleSteps
-					});
-					break;
-				}
+			case 'inverter-bldc': {
+				const polePairs = Math.max(
+					1,
+					Math.round(getNumericParameter(node.parameters, 'polePairs', 4))
+				);
+				const initialPosition = getNumericParameter(node.parameters, 'initialPosition', 0);
+				const initialVelocity = getNumericParameter(node.parameters, 'initialVelocity', 0);
+				stateMap.set(node.id, {
+					position: initialPosition,
+					velocity: initialVelocity,
+					acceleration: 0,
+					electricalAngle: wrapAngle(initialPosition * TAU * polePairs),
+					currentD: 0,
+					currentQ: 0,
+					torque: 0
+				});
+				break;
+			}
+			case 'encoder': {
+				const countsPerUnit = Math.max(
+					1,
+					Math.round(getNumericParameter(node.parameters, 'countsPerUnit', 2048))
+				);
+				const positionOffset = getNumericParameter(node.parameters, 'positionOffset', 0);
+				const polePairs = Math.max(
+					1,
+					Math.round(getNumericParameter(node.parameters, 'polePairs', 4))
+				);
+				const samplePeriod = Math.max(dt, getNumericParameter(node.parameters, 'samplePeriod', dt));
+				const sampleSteps = Math.max(1, Math.round(samplePeriod / dt));
+				const quantized = quantizePosition(0, countsPerUnit, positionOffset);
+				stateMap.set(node.id, {
+					heldPosition: quantized.position,
+					heldVelocity: 0,
+					heldCounts: quantized.counts,
+					heldElectricalAngle: wrapAngle(quantized.position * TAU * polePairs),
+					previousSamplePosition: quantized.position,
+					sampleSteps
+				});
+				break;
+			}
 			case 'delay': {
-				const rawDelaySeconds = Math.max(0, getNumericParameter(node.parameters, 'delaySeconds', 0));
+				const rawDelaySeconds = Math.max(
+					0,
+					getNumericParameter(node.parameters, 'delaySeconds', 0)
+				);
 				const delaySteps = Math.max(1, Math.ceil(rawDelaySeconds / dt));
 				stateMap.set(node.id, {
 					queue: new Array(delaySteps).fill(getNumericParameter(node.parameters, 'initialValue', 0))
@@ -349,7 +362,10 @@ function initializeRuntimeContext(compiled: CompiledProject): RuntimeContext {
 				break;
 			}
 			case 'sample-delay': {
-				const delaySteps = Math.max(1, Math.round(getNumericParameter(node.parameters, 'steps', 1)));
+				const delaySteps = Math.max(
+					1,
+					Math.round(getNumericParameter(node.parameters, 'steps', 1))
+				);
 				stateMap.set(node.id, {
 					queue: new Array(delaySteps).fill(getNumericParameter(node.parameters, 'initialValue', 0))
 				});
@@ -425,19 +441,25 @@ function evaluateSourceNode(
 			const initialValue = getNumericParameter(node.parameters, 'initialValue', 0);
 			const finalValue = getNumericParameter(node.parameters, 'finalValue', 1);
 			const stepTime = Math.max(0, getNumericParameter(node.parameters, 'stepTime', 0));
-			context.signalValues[createSignalKey(node.id, 'out')] = time >= stepTime ? finalValue : initialValue;
+			context.signalValues[createSignalKey(node.id, 'out')] =
+				time >= stepTime ? finalValue : initialValue;
 			break;
 		}
 		case 'impulse-source': {
 			const amplitude = getNumericParameter(node.parameters, 'amplitude', 1);
-			const sampleIndex = Math.max(0, Math.round(getNumericParameter(node.parameters, 'sampleIndex', 0)));
-			context.signalValues[createSignalKey(node.id, 'out')] = stepIndex === sampleIndex ? amplitude : 0;
+			const sampleIndex = Math.max(
+				0,
+				Math.round(getNumericParameter(node.parameters, 'sampleIndex', 0))
+			);
+			context.signalValues[createSignalKey(node.id, 'out')] =
+				stepIndex === sampleIndex ? amplitude : 0;
 			break;
 		}
 		case 'csv-source': {
 			const source = context.csvSources.get(node.id);
-			context.signalValues[createSignalKey(node.id, 'out')] =
-				source ? getCsvSourceValue(source, time, stepIndex) : 0;
+			context.signalValues[createSignalKey(node.id, 'out')] = source
+				? getCsvSourceValue(source, time, stepIndex)
+				: 0;
 			break;
 		}
 		case 'time-source': {
@@ -616,7 +638,10 @@ function evaluateAlgebraicNode(
 	}
 }
 
-function updatePostEvaluationState(context: RuntimeContext, node: CompiledProject['nodes'][number]) {
+function updatePostEvaluationState(
+	context: RuntimeContext,
+	node: CompiledProject['nodes'][number]
+) {
 	switch (node.blockType) {
 		case 'differentiator': {
 			const state = context.stateMap.get(node.id) as DifferentiatorState | undefined;
@@ -656,9 +681,15 @@ function updateStatefulNodes(
 			const vEffort = clampValue(getInputValue(context, node.inputConnections, 'vEffort'), -1, 1);
 			const wEffort = clampValue(getInputValue(context, node.inputConnections, 'wEffort'), -1, 1);
 			const loadTorqueInput = getInputValue(context, node.inputConnections, 'loadTorque');
-			const polePairs = Math.max(1, Math.round(getNumericParameter(node.parameters, 'polePairs', 4)));
+			const polePairs = Math.max(
+				1,
+				Math.round(getNumericParameter(node.parameters, 'polePairs', 4))
+			);
 			const kv = Math.max(1, getNumericParameter(node.parameters, 'kv', 120));
-			const currentPerUnit = Math.max(0.1, getNumericParameter(node.parameters, 'currentPerUnit', 6));
+			const currentPerUnit = Math.max(
+				0.1,
+				getNumericParameter(node.parameters, 'currentPerUnit', 6)
+			);
 			const electricalTimeConstant = Math.max(
 				dt,
 				getNumericParameter(node.parameters, 'electricalTimeConstant', 0.01)
@@ -683,10 +714,9 @@ function updateStatefulNodes(
 			const maxMechanicalSpeed = Math.max(0.001, (kv * TAU) / 60);
 			const normalizedBackEmf = clampValue(state.velocity / maxMechanicalSpeed, -1, 1);
 			const targetCurrentD = currentPerUnit * dqEffort.d;
-			const targetCurrentQ =
-				currentPerUnit * clampValue(dqEffort.q - normalizedBackEmf, -1, 1);
-			state.currentD += dt * (targetCurrentD - state.currentD) / electricalTimeConstant;
-			state.currentQ += dt * (targetCurrentQ - state.currentQ) / electricalTimeConstant;
+			const targetCurrentQ = currentPerUnit * clampValue(dqEffort.q - normalizedBackEmf, -1, 1);
+			state.currentD += (dt * (targetCurrentD - state.currentD)) / electricalTimeConstant;
+			state.currentQ += (dt * (targetCurrentQ - state.currentQ)) / electricalTimeConstant;
 			const torqueConstant = 60 / (TAU * kv);
 			const electromagneticTorque = torqueConstant * state.currentQ;
 			const viscousLoad = viscousDamping * state.velocity;
@@ -697,7 +727,12 @@ function updateStatefulNodes(
 			const coulombLoad = coulombFriction * frictionDirection;
 			const coggingLoad = coggingTorque * Math.sin(state.electricalAngle);
 			const netTorque =
-				electromagneticTorque - constantLoadTorque - loadTorqueInput - viscousLoad - coulombLoad - coggingLoad;
+				electromagneticTorque -
+				constantLoadTorque -
+				loadTorqueInput -
+				viscousLoad -
+				coulombLoad -
+				coggingLoad;
 
 			state.torque = electromagneticTorque;
 			state.acceleration = netTorque / inertia;
@@ -719,7 +754,10 @@ function updateStatefulNodes(
 					Math.round(getNumericParameter(node.parameters, 'countsPerUnit', 2048))
 				);
 				const positionOffset = getNumericParameter(node.parameters, 'positionOffset', 0);
-				const polePairs = Math.max(1, Math.round(getNumericParameter(node.parameters, 'polePairs', 4)));
+				const polePairs = Math.max(
+					1,
+					Math.round(getNumericParameter(node.parameters, 'polePairs', 4))
+				);
 				const quantized = quantizePosition(rawPosition, countsPerUnit, positionOffset);
 				const samplePeriod = state.sampleSteps * dt;
 

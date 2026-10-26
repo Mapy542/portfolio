@@ -1,11 +1,11 @@
-import { isBuiltInDefinitionId } from '$lib/pinmux/registry';
+import { isBuiltInDefinitionId } from '#lib/pinmux/registry.js';
 import {
 	createEmptyPinmuxProjectDocument,
 	serializePinmuxProjectDocument,
 	stampPinmuxProjectDocument,
 	type PinmuxProjectDocument
-} from '$lib/pinmux/model';
-import { buildCompressedProjectUrl, encodeCompressedProjectJson } from '$lib/share/url';
+} from '#lib/pinmux/model.js';
+import { buildCompressedProjectUrl, encodeCompressedProjectJson } from '#lib/share/url.js';
 
 import type { McuSelectCatalogRecord } from './catalog';
 import type { McuSelectProjectDocument } from './model';

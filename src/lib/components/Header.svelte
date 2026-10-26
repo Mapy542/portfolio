@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { theme, Themes, type Theme } from '$lib/stores/theme';
+	import { browser } from '$app/env';
+	import { theme, Themes, type Theme } from '#lib/stores/theme.js';
 
-	import logo from '$lib/img/logo.svg';
-	import logoInverted from '$lib/img/logo-invert.svg';
+	import logo from '#lib/img/logo.svg';
+	import logoInverted from '#lib/img/logo-invert.svg';
 
-	import sun from '$lib/img/sun-solid-full.svg';
-	import moon from '$lib/img/moon-solid-full.svg';
+	import sun from '#lib/img/sun-solid-full.svg';
+	import moon from '#lib/img/moon-solid-full.svg';
 
 	export let categories: string[] = [];
 	export let staticPages: any = {};

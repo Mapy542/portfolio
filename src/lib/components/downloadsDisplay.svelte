@@ -13,7 +13,7 @@
 	}
 
 	const downloads =
-		import.meta.glob('$lib/downloads/**/*', {
+		import.meta.glob('#lib/downloads/**/*', {
 			eager: false,
 			import: 'default',
 			query: '?url'

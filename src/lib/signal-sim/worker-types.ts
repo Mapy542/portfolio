@@ -5,7 +5,7 @@ import type {
 	SignalKind,
 	SimulationConfig,
 	TimingMode
-} from '$lib/signal-sim/model';
+} from '#lib/signal-sim/model.js';
 
 export type SimulationDiagnosticLevel = 'info' | 'warning' | 'error';
 export type CompiledNodePhase = 'source' | 'stateful' | 'algebraic' | 'sink';

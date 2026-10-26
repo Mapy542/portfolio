@@ -1,6 +1,6 @@
-import { resolveTemporaryShareLink } from '$lib/share/api';
-import { getShareToolDefinition, type ShareToolId } from '$lib/share/tools';
-import { getEncodedProjectFromUrl, getShortShareIdFromUrl } from '$lib/share/url';
+import { resolveTemporaryShareLink } from '#lib/share/api.js';
+import { getShareToolDefinition, type ShareToolId } from '#lib/share/tools.js';
+import { getEncodedProjectFromUrl, getShortShareIdFromUrl } from '#lib/share/url.js';
 
 export interface ResolvedSharedProject {
 	source: 'long' | 'short';

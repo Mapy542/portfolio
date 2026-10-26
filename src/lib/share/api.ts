@@ -1,4 +1,4 @@
-import type { ShareToolId } from '$lib/share/tools';
+import type { ShareToolId } from '#lib/share/tools.js';
 
 export interface TemporaryShareRecord {
 	id: string;

@@ -1,8 +1,8 @@
 <script>
 	import hljs from 'highlight.js';
 	import { Mermaid } from '@friendofsvelte/mermaid';
-	import { theme, Themes } from '$lib/stores/theme';
-	import { browser } from '$app/environment';
+	import { theme, Themes } from '#lib/stores/theme.js';
+	import { browser } from '$app/env';
 
 	export let markdownString = '';
 
