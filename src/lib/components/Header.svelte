@@ -135,7 +135,7 @@
 
 	.header-logo {
 		padding: 1rem;
-		width: 15%;
+		width: 7%;
 		max-width: 15rem;
 	}
 
