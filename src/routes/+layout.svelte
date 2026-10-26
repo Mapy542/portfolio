@@ -9,15 +9,13 @@
 	export let data;
 </script>
 
-<!-- @migration-task could not auto-migrate `$app/stores` to `$app/state`: legacy `export let` props; migrate manually -->
-
 <div class="app">
 	<Header categories={data.props.categories} staticPages={data.props.staticPages} />
 
 	<main
-		class:main--full-width={$page.url.pathname.startsWith('/tools/signal-sim') ||
-			$page.url.pathname.startsWith('/tools/pinmux') ||
-			$page.url.pathname.startsWith('/tools/mcu-select')}
+		class:main--full-width={page.url.pathname.startsWith('/tools/signal-sim') ||
+			page.url.pathname.startsWith('/tools/pinmux') ||
+			page.url.pathname.startsWith('/tools/mcu-select')}
 	>
 		<slot></slot>
 	</main>

@@ -1,5 +1,5 @@
 <script>
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { browser } from '$app/env';
 
 	export let data;
@@ -10,13 +10,11 @@
 
 	// Only access page store in browser environment
 	if (browser) {
-		page.subscribe(($page) => {
-			currentUrl = $page.url.pathname;
+		page.subscribe((page) => {
+			currentUrl = page.url.pathname;
 		});
 	}
 </script>
-
-<!-- @migration-task could not auto-migrate `$app/stores` to `$app/state`: legacy `export let` props; migrate manually -->
 
 <svelte:head>
 	<title>Error {statusCode} - Page Not Found</title>
