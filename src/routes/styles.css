@@ -49,6 +49,7 @@
 
 	--primary-font: 'Lora-Regular';
 	--title-font: 'Coolvetica';
+	--hero-font: 'Library';
 
 	font-family: var(--primary-font);
 	color: var(--color-text);
@@ -57,16 +58,24 @@
 @font-face {
 	font-family: 'Lora-Regular';
 	src:
-		url('#lib/fonts/Lora-Regular.woff2') format('woff2'),
-		url('#lib/fonts/Lora-Regular.otf') format('opentype');
+		url('./../lib/fonts/Lora-Regular.woff2') format('woff2'),
+		url('./../lib/fonts/Lora-Regular.otf') format('opentype');
 	font-display: swap;
 }
 
 @font-face {
 	font-family: 'Coolvetica';
 	src:
-		url('#lib/fonts/coolvetica rg.woff2') format('woff2'),
-		url('#lib/fonts/coolvetica rg.otf') format('opentype');
+		url('./../lib/fonts/coolvetica rg.woff2') format('woff2'),
+		url('./../lib/fonts/coolvetica rg.otf') format('opentype');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Library';
+	src:
+		url('./../lib/fonts/LIBRARY\ 3\ AM.woff2') format('woff2'),
+		url('./../lib/fonts/LIBRARY\ 3\ AM.OTF') format('opentype');
 	font-display: swap;
 }
 
@@ -80,7 +89,11 @@ body {
 	-webkit-transition: var(--transition-length);
 }
 
-h1,
+h1 {
+	font-family: var(--hero-font);
+	letter-spacing: 0.2em;
+}
+
 h2,
 h3,
 h4 {

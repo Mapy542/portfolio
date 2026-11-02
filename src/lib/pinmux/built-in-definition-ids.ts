@@ -1,4 +1,4 @@
-const definitionModules = import.meta.glob('../data/mcu/*.json');
+const definitionModulePaths = Object.keys(import.meta.glob('../data/mcu/*.json'));
 
 function getBuiltInDefinitionIdFromModulePath(modulePath: string): string | null {
 	const fileName = modulePath.split('/').at(-1);
@@ -13,7 +13,7 @@ function getBuiltInDefinitionIdFromModulePath(modulePath: string): string | null
 }
 
 export const builtInDefinitionIds = new Set(
-	Object.keys(definitionModules)
+	definitionModulePaths
 		.map((modulePath) => getBuiltInDefinitionIdFromModulePath(modulePath))
 		.filter((definitionId): definitionId is string => definitionId !== null)
 );

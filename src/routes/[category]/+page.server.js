@@ -12,6 +12,7 @@ export async function load({ params }) {
 	const category = params.category ?? '';
 
 	if (!categoryMetaData[category]) {
+		throw error(404, 'Category or page not found.');
 		return {
 			status: 404,
 			error: 'Category or page not found.'

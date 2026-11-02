@@ -1,6 +1,6 @@
 <script lang="ts">
 	import DynaImage from '#lib/components/Dynamics/DynaImage.svelte';
-	import bioData from './../../lib/data/bio.json';
+	import bioData from '#lib/data/bio.json';
 </script>
 
 <svelte:head>

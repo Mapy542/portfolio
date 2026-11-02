@@ -1,4 +1,4 @@
-import serverReader from '../../lib/components/DataImport/serverReader.js';
+import serverReader from '#lib/components/DataImport/serverReader.js';
 import categoryMetaData from '#lib/data/categoriesMeta.json' with { type: 'json' };
 
 export const prerender = true;
