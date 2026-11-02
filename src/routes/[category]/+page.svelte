@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CategoryDisplay from '$lib/components/categoryDisplay.svelte';
+	import CategoryDisplay from '#lib/components/categoryDisplay.svelte';
 
 	export let data;
 </script>

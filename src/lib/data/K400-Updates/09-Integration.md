@@ -15,7 +15,7 @@ As this period is during the integration of all separate subsystems into one fin
 
 Firstly, dynamic loading, especially of the gantry, whose sole job it is to move, were not given serious enough consideration. I did not understand how high they would be. As the gantry accelerates, it generates an equal and opposite force on its legs, then is transmitted into the base. My design motif of isolation, separating the gantry from all other subsystems, left it on 4 “spindly” 2040 legs with a high length to cross section ratio. Since they essentially had cantilevered loads at their ends, the legs were quite springy. As a result, the gantry would rock back and forth as the legs bent, especially during the high acceleration of raster engraving.
 
-Another thing working against me was my choice of linear rail. Specifically, as mentioned before,  I overspect the rails to 20mm because I was worried about long term loadability and play within the carriages. For reference, 20mm rail is _huge_ for this application, capable of sustaining loads near 1000 lbs. The gantry weighs in at <20lbs. The rails are huge and because of this, the carriages are _heavy._ This works against me in dynamics since force increases linearly with mass. F = m*a; in physics 1, higher dynamic forces. It also compounds with further effects on limiting speed with drag, wasting motor torque this needless load, and exacerbates timing belt elongation.
+Another thing working against me was my choice of linear rail. Specifically, as mentioned before, I overspect the rails to 20mm because I was worried about long term loadability and play within the carriages. For reference, 20mm rail is _huge_ for this application, capable of sustaining loads near 1000 lbs. The gantry weighs in at <20lbs. The rails are huge and because of this, the carriages are _heavy._ This works against me in dynamics since force increases linearly with mass. F = m*a; in physics 1, higher dynamic forces. It also compounds with further effects on limiting speed with drag, wasting motor torque this needless load, and exacerbates timing belt elongation.
 
 Back to the gantry, had I coupled the bed lift and the gantry in 1, then at least the bed would move with the gantry, negating the cut position drift seen particularly in raster. As a first measure I took cutoffs and bound the gantry to the bed-lift to reduce this isolation for side to side motion.
 
@@ -24,13 +24,12 @@ Back to the gantry, had I coupled the bed lift and the gantry in 1, then at leas
 ![Bonding Bar Installed](laser09/bedlift-to-gantry-bonding-bar_1.webp){Second view of the brace tying the two structures together.}
 #!g
 
-I also braced the gantry itself with gussets to make the legs stronger. This forms triangles with the legs, making geometry which converts cross-sectional load into axial tensions and compressions which the extrusion handles much better. It then transfers the force into the base more effectively.  
+I also braced the gantry itself with gussets to make the legs stronger. This forms triangles with the legs, making geometry which converts cross-sectional load into axial tensions and compressions which the extrusion handles much better. It then transfers the force into the base more effectively.
 
 #!g
 ![Gantry Gussets Installed](laser09/gantry-gussets.webp){Front gussets added to stiffen the gantry legs.}
 ![Gusset Load Path Into Base](laser09/gantry-gusset-to-base.webp){Close-up of the gusset carrying load from the gantry into the base.}
 #!g
-
 
 Along those lines, the mounting plate connecting the X Axis cross-bar to the Y axis carriages was floppy due to my poor machining. I dropped counterbores way too far into the plate making the remaining material flexible around the bolt head. As an additional measure I tapped another hole into each place and added a corner gusset bracket to stiffen the mount.
 
@@ -39,11 +38,11 @@ Along those lines, the mounting plate connecting the X Axis cross-bar to the Y a
 ![X-Axis Mount Reinforced](laser09/x-axis-mount-plate-reinforcement.webp){Added corner gusset stiffening the X-axis carriage plate.}
 #!g
 
-Funny enough, when the gantry was reinforced, transmitting load to the base, I started to see the base moving. It has the exact same structure, 4 legs with only end points constrained, and so the entire mass of the laser would ever so slightly wobble over its lower shelf and casters. I worried this could cause the bed to also start moving if the whole system was to reach a resonant point. It also falls into the same long legged pit-fall. I stabilized the base with two gussets made from extra 2x6 lumber from the original base build.  
+Funny enough, when the gantry was reinforced, transmitting load to the base, I started to see the base moving. It has the exact same structure, 4 legs with only end points constrained, and so the entire mass of the laser would ever so slightly wobble over its lower shelf and casters. I worried this could cause the bed to also start moving if the whole system was to reach a resonant point. It also falls into the same long legged pit-fall. I stabilized the base with two gussets made from extra 2x6 lumber from the original base build.
 
 ![Base Wood Gussets](laser09/base-wood-gussets.webp){2x6 gussets used to brace the long-legged base.}
 
-Another nice fix was to replace the pulleys on the Y axis transmission shaft. As it distributes the torque of the motor over a 4 ft span to each belt on either side of the y axis, a dual drive setup driven from a single motor, I specced a 1/2” shaft. I knew it needed to be thick enough to resist tangential bending from the large moment placed on it, while true calculations of the minimum requirement would have been better, I went with 1/2” as a “that’s got to be good enough” value. It was, but no one makes 40 tooth GT3 pulleys for a 1/2” shaft. I chose to bore out ones from Mcmaster Carr from 5/16” to 1/2”... on the drill press. I didn’t really have the right tools for the job, but shocker, they were incredibly eccentric when I was done. This caused the belt tension to vary on all of the Y axis belts over the rotation of the shaft, also called camming or cogging. This introduced slop in the axis when the belts were undertensioned.   
+Another nice fix was to replace the pulleys on the Y axis transmission shaft. As it distributes the torque of the motor over a 4 ft span to each belt on either side of the y axis, a dual drive setup driven from a single motor, I specced a 1/2” shaft. I knew it needed to be thick enough to resist tangential bending from the large moment placed on it, while true calculations of the minimum requirement would have been better, I went with 1/2” as a “that’s got to be good enough” value. It was, but no one makes 40 tooth GT3 pulleys for a 1/2” shaft. I chose to bore out ones from Mcmaster Carr from 5/16” to 1/2”... on the drill press. I didn’t really have the right tools for the job, but shocker, they were incredibly eccentric when I was done. This caused the belt tension to vary on all of the Y axis belts over the rotation of the shaft, also called camming or cogging. This introduced slop in the axis when the belts were undertensioned.  
 I was offered by a co-worker of my dad to remachine the parts on a lathe, fixing the concentricity issue, and the fit tolerances too. (See me hamming the pulleys into position in the gantry build)
 
 Finally, wrapping up the major mechanical fixes, I replaced the X axis belt with a new GT3 9mm wide belt, from its original 6mm width. This helped improve the stiffness of the belt against elongation due to acceleration force. While a step in the right direction, it’s definitely not enough. At the time of writing I’m looking at 20mm width belts newly offered by McMaster Carr. While Gates fiber reinforced GT belts have very low tensile elongation factors on their website, perhaps I mis-understood the metric, or bought knockoff belts, but regardless the belts I had at 8 feet in circumference/length had seriously problematic stretch (5lbs load-\> \~1/16th change in head position). Let’s just say there’s a reason commercial cutters have 20mm timing belts on spans of under 3 feet long.
@@ -59,15 +58,15 @@ Finally, wrapping up the major mechanical fixes, I replaced the X axis belt with
 
 ### TOF Sensor Comms
 
-The first electrical upgrade I attempted was installing an I2C repeater halfway down the bus lines going out the VL TOF sensor. Up until this point, the distance sensor has not returned any data to the microcontroller. Using I2c in this application in general is ill-fated regardless, Since it’s an open drain bus, there is an upper limit allowed for bus capacitance. Since a single resistor is pulling up on the line, an RC time constant   
+The first electrical upgrade I attempted was installing an I2C repeater halfway down the bus lines going out the VL TOF sensor. Up until this point, the distance sensor has not returned any data to the microcontroller. Using I2c in this application in general is ill-fated regardless, Since it’s an open drain bus, there is an upper limit allowed for bus capacitance. Since a single resistor is pulling up on the line, an RC time constant
 
-```  
-T = R * C  
+```
+T = R * C
 ```
 
-Determines the rise time of the bus voltage, effectively 3 time constants gets to 95% charge. There are multiple specifications for I2c frequency and bandwidth, but a common one is Fast Mode at 100Khz. Because the rise time has to be a small percentage of this short period, the bus capacitance is capped at 10pf, with a 10K resistor commonly used for pullup. Typical parasitic capacitance of wires can limit the bus length to be \~4”. There are other considerations such as length skew, and line impedance when considered as a transmission line, but generally I2c is limited on “on-board” (on 1 PCB) lengths. Everything is close together. 
+Determines the rise time of the bus voltage, effectively 3 time constants gets to 95% charge. There are multiple specifications for I2c frequency and bandwidth, but a common one is Fast Mode at 100Khz. Because the rise time has to be a small percentage of this short period, the bus capacitance is capped at 10pf, with a 10K resistor commonly used for pullup. Typical parasitic capacitance of wires can limit the bus length to be \~4”. There are other considerations such as length skew, and line impedance when considered as a transmission line, but generally I2c is limited on “on-board” (on 1 PCB) lengths. Everything is close together.
 
-So obviously, there are issues when I try to operate an I2C bus 6 feet long.  Especially given the environment it’s in, routed in a drag chain right next to high current motor wires, and in the same enclosure as a 20KV arc discharge in the laser; practically an EMI stress tester. My solution was to break the long bus into two smaller ones, by installing a repeater. This reduces the capacitance on each smaller bus, but still passes data. This did improve conditions to the point that some data was actually transferred, but still it was limited, many transmissions failed. The best option seemed to be going back in the future with an entirely different communication method would be better, although differential pair I2c may have been theoretically possible if I sourced and pulled twisted pair cable through the gantry.   
+So obviously, there are issues when I try to operate an I2C bus 6 feet long. Especially given the environment it’s in, routed in a drag chain right next to high current motor wires, and in the same enclosure as a 20KV arc discharge in the laser; practically an EMI stress tester. My solution was to break the long bus into two smaller ones, by installing a repeater. This reduces the capacitance on each smaller bus, but still passes data. This did improve conditions to the point that some data was actually transferred, but still it was limited, many transmissions failed. The best option seemed to be going back in the future with an entirely different communication method would be better, although differential pair I2c may have been theoretically possible if I sourced and pulled twisted pair cable through the gantry.
 
 ![Finished I2C Repeater](laser09/i2c-extender.webp){The repeater board used to split the long I2C run to the TOF sensor.}
 
@@ -91,7 +90,7 @@ So it has this heating function, and the controller it ships with uses it aggres
 
 ### Stepper Performance
 
-Finally, this gets to the most important issue. I had hoped mechanical stabilization would fix the deviations I see (below) between the raster image and the cut pass. Furthermore, there are blurry or double line artifacts within the raster image itself.  
+Finally, this gets to the most important issue. I had hoped mechanical stabilization would fix the deviations I see (below) between the raster image and the cut pass. Furthermore, there are blurry or double line artifacts within the raster image itself.
 
 #!g
 ![Large Raster Test](laser09/big-edinboro-raster.webp){A large raster job showing the engraving quality problems.}
@@ -104,8 +103,8 @@ Finally, this gets to the most important issue. I had hoped mechanical stabiliza
 
 The bigger motor replaced last time on the X axis potentially helped slightly, but the issue was clearly still present. I again wondered if the signal coming off of the nano was too weak to drive the inputs of the stepper motors. I built a new pcb with mosfets to provide the amplification needed, and included optional inverters on each line, since the circuit used N channel mosfets in an open-drain configuration. When the input signal is high, the mosfet turns on pulling the output down to ground, otherwise it leaves the output floating (A resistor pulls it back up; eventually). This is a negation or inversion operation since a high input results in a low output, the extra optional inverter can be used to counteract this if needed for direction signals.
 
-Again this pcb functioned, and improved the signal gain, but did not resolve the issue. Confident now that the issue may not lie in the control signaling, I wondered if the motors or drivers were just failing to keep up. Maybe I just needed more drive power to keep the motor from losing steps? It was weird, as the difference in raster lines was consistent. I'd assume losing steps would be somewhat random in the amount of distance lost. Plus, the deviation was much smaller than a full pole in the motor of 1.8 degrees. Had I known that I should be driving the motor coils in parallel and not series as previously discussed, I could have simply rewired the motor now. It would half the inductance and therefore back EMF (voltage generated in the motor by its velocity; how a generator works). The increased voltage difference between the supply and BEMF would double the current flowing and quadruple the power, assuming the driver could handle it.   
-But I did not know this, so I brute forced the same effect by raising the supply voltage. I purchased a high power boost converter to take my 24V supply up to 60V.  
+Again this pcb functioned, and improved the signal gain, but did not resolve the issue. Confident now that the issue may not lie in the control signaling, I wondered if the motors or drivers were just failing to keep up. Maybe I just needed more drive power to keep the motor from losing steps? It was weird, as the difference in raster lines was consistent. I'd assume losing steps would be somewhat random in the amount of distance lost. Plus, the deviation was much smaller than a full pole in the motor of 1.8 degrees. Had I known that I should be driving the motor coils in parallel and not series as previously discussed, I could have simply rewired the motor now. It would half the inductance and therefore back EMF (voltage generated in the motor by its velocity; how a generator works). The increased voltage difference between the supply and BEMF would double the current flowing and quadruple the power, assuming the driver could handle it.  
+But I did not know this, so I brute forced the same effect by raising the supply voltage. I purchased a high power boost converter to take my 24V supply up to 60V.
 
 #!g
 ![Replacement X-Axis Motor](laser09/x-motor.webp){The larger X-axis motor that helped slightly at lower raster speeds.}
@@ -117,11 +116,11 @@ This showed promise, the slop was reduced since the motor could hit much higher 
 
 Rather than stop and re-evaluate, I dove into the idea that they just needed better cooling. Say, the laser already has a refrigerated water loop for the laser… Let’s just water cool the stepper drivers!
 
-### Water Cooling Madness 
+### Water Cooling Madness
 
 Disassembling the stepper motor drivers reveals: there is a SOC driver chip doing all the hard work. In fact, it’s an allegro stepper motor driver chip just like that I wanted to replace on the M2 Nano; oh the irony. It’s not all for naught though. The external driver has some nice features like configurable microstepping, and it’s built to handle much higher drive currents and voltages.
 
-It does mean we just need to cool this one chip. I ordered small aluminum waterblocks from amazon and set about milling a pocket into the enclosure to mount the block in.  
+It does mean we just need to cool this one chip. I ordered small aluminum waterblocks from amazon and set about milling a pocket into the enclosure to mount the block in.
 
 #!g
 ![Stepper Driver PCB Back Side](laser09/back-of-external-stepper-driver-pcb.webp){Back side of the external driver before cutting into the housing.}
@@ -137,7 +136,7 @@ It does mean we just need to cool this one chip. I ordered small aluminum waterb
 
 Side note, I have no idea what I was doing when taking the photo of the heatsink in the mill. I can assure you, I was not milling a pocket directly into the vice jaws, despite how it looks.
 
-Then the drive could be reassembled, and the water block epoxied into position against the IC with thermal compound between the two. Once it had set for a day, I could mount the drives back into the laser and plumb them into the cooling loop.  
+Then the drive could be reassembled, and the water block epoxied into position against the IC with thermal compound between the two. Once it had set for a day, I could mount the drives back into the laser and plumb them into the cooling loop.
 
 #!g
 ![Mounted Water-Cooled Drivers](laser09/watercooled-drives-mounted.webp){The modified drivers back in their working position.}
@@ -151,7 +150,7 @@ This effect was something I’ve experienced before, with the k40 laser. Startin
 
 ### Trying new stepper drivers
 
-This point finally got me to rethink this whole rabbit hole. I asked for the assistance of a family friend to figure out what was really going on. He brought an oscilloscope and the DM series stepper drivers found on SteppersOnline. We found some issues which may have been contributing to the problem. One, the step pulses generated by the Nano were incredibly short, sub 2 microsecond. This is short enough that the DM stepper driver did not even acknowledge them, likely filtered out by a low-pass. This is fair, it's datasheet specifies minimum on-time to be 4 microseconds or more. This had finally diagnosed the charge buildup from the laser on the water cooled drivers, and we could see from the scope that both my original drivers and the DM series ones were missing steps output by the Nano.  
+This point finally got me to rethink this whole rabbit hole. I asked for the assistance of a family friend to figure out what was really going on. He brought an oscilloscope and the DM series stepper drivers found on SteppersOnline. We found some issues which may have been contributing to the problem. One, the step pulses generated by the Nano were incredibly short, sub 2 microsecond. This is short enough that the DM stepper driver did not even acknowledge them, likely filtered out by a low-pass. This is fair, it's datasheet specifies minimum on-time to be 4 microseconds or more. This had finally diagnosed the charge buildup from the laser on the water cooled drivers, and we could see from the scope that both my original drivers and the DM series ones were missing steps output by the Nano.
 
 #!g
 ![DM Driver Under Test](laser09/dm-series-driver.webp){The DM-series driver used during the follow-up tests.}
@@ -165,7 +164,7 @@ At this point, I designed the dual monostable multivibrator in an Arduino using 
 
 [You can read about this here.](/Personal-Projects/Arduino-MMV)
 
-It lengthened the pulses into spec, so we could finally try running the gantry with the DM series steppers.  
+It lengthened the pulses into spec, so we could finally try running the gantry with the DM series steppers.
 
 #!g
 ![Monostable Multivibrator Code](laser09/mmv-code-on-laptop.webp){Timer code for the Arduino-based pulse stretcher.}
@@ -176,7 +175,7 @@ It lengthened the pulses into spec, so we could finally try running the gantry w
 
 Again the steppers lost position during rastering, but the failure mode was drastically different. The X axis should lose steps by multiple inches each time, showing a total failure during the acceleration stage of motion. With acceleration being hardcoded into the firmware of the M2 Nano, I decided to finally hang up the “budget” towel and go all in on a Ruida DSP controller. Ultimately, while the goal of this project was to build a big laser on a budget, with so much time and money already dedicated to the laser, it _had_ to work eventually. Sunk cost fallacy in mind, I purchased the \~$500 Ruida controller and two big 8A DM series stepper drivers. These drives, while also running incredibly cool, have an active fan built into the heatsink to ensure I did not run into any thermal issues again.
 
-I’m still unsure why the original drivers masked this obvious failure. Perhaps the DM series drivers are “more BEMF aware” and attempt to recog the electrical power with the stepper rotor, or the Allegro chip inside the original drivers missed steppers during the short pulses in acceleration leading to the stepper running just on the edge of its performance envelope while losing some position in the process.  
+I’m still unsure why the original drivers masked this obvious failure. Perhaps the DM series drivers are “more BEMF aware” and attempt to recog the electrical power with the stepper rotor, or the Allegro chip inside the original drivers missed steppers during the short pulses in acceleration leading to the stepper running just on the edge of its performance envelope while losing some position in the process.
 
 #!g
 ![Ruida Controller and DM Drivers](laser09/ruida-and-DM-drivers.webp){The new controller and higher-current DM drivers that finally solved the motion problem.}
@@ -198,5 +197,3 @@ I also wrapped up a few final tuning details on the bed lift and focus setup.
 #!g
 
 It took less than two hours to wire up and configure the new controller, now with custom acceleration profiles, and it was off to the races. As of writing, 2 years and 1500 cut hours after installing the controller, I haven’t had a single issue with it, although as a personal project I’m developing my own DSP style system as a learning experiment, and to build an open source system for lasers also compatible with servos.
-
-

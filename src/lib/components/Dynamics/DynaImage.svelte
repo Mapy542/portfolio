@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, untrack } from 'svelte';
 
-	const images: any = import.meta.glob('$lib/img/**/*.{jpg,jpeg,png,gif,webp}', {
+	const images: any = import.meta.glob('#lib/img/**/*.{jpg,jpeg,png,gif,webp}', {
 		eager: false
 	});
 

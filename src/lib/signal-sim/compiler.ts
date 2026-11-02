@@ -1,5 +1,5 @@
-import type { ProjectDocument } from '$lib/signal-sim/model';
-import { getBlockDefinition } from '$lib/signal-sim/registry';
+import type { ProjectDocument } from '#lib/signal-sim/model.js';
+import { getBlockDefinition } from '#lib/signal-sim/registry.js';
 import {
 	createSignalKey,
 	type CompiledNode,
@@ -8,7 +8,7 @@ import {
 	type CompiledPortConnection,
 	type CompiledSignalDescriptor,
 	type SimulationDiagnostic
-} from '$lib/signal-sim/worker-types';
+} from '#lib/signal-sim/worker-types.js';
 
 const statefulBlockTypes = new Set([
 	'integrator',
@@ -282,10 +282,7 @@ export function compileProject(project: ProjectDocument): CompiledProject {
 			}
 
 			targets.add(compiledNode.id);
-			evaluationIndegree.set(
-				compiledNode.id,
-				(evaluationIndegree.get(compiledNode.id) ?? 0) + 1
-			);
+			evaluationIndegree.set(compiledNode.id, (evaluationIndegree.get(compiledNode.id) ?? 0) + 1);
 		}
 	}
 
@@ -296,7 +293,9 @@ export function compileProject(project: ProjectDocument): CompiledProject {
 	);
 
 	if (evaluationOrder.length !== evaluationNodeIds.size) {
-		const cyclicNodeIds = [...evaluationNodeIds].filter((nodeId) => !evaluationOrder.includes(nodeId));
+		const cyclicNodeIds = [...evaluationNodeIds].filter(
+			(nodeId) => !evaluationOrder.includes(nodeId)
+		);
 		const cyclicLabels = cyclicNodeIds
 			.map((nodeId) => compiledNodeLookup.get(nodeId)?.label ?? nodeId)
 			.join(', ');
@@ -310,7 +309,10 @@ export function compileProject(project: ProjectDocument): CompiledProject {
 		);
 	}
 
-	const sampleCount = Math.max(1, Math.floor(project.simulation.duration / project.simulation.stepSize) + 1);
+	const sampleCount = Math.max(
+		1,
+		Math.floor(project.simulation.duration / project.simulation.stepSize) + 1
+	);
 	const projectedValueCount = sampleCount * (signalDescriptors.length + 1);
 
 	if (

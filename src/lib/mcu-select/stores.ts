@@ -1,7 +1,10 @@
 import { derived, get, writable } from 'svelte/store';
 
-import { parseMcuDefinitionDocumentJson, serializeMcuDefinitionDocument } from '$lib/pinmux/model';
-import { getBuiltInDefinitions } from '$lib/pinmux/registry';
+import {
+	parseMcuDefinitionDocumentJson,
+	serializeMcuDefinitionDocument
+} from '#lib/pinmux/model.js';
+import { getBuiltInDefinitions } from '#lib/pinmux/registry.js';
 
 import { buildMcuSelectCatalog } from './catalog';
 import { buildMcuSelectMatchSections } from './matcher';

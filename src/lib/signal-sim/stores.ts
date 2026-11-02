@@ -1,4 +1,4 @@
-import { browser } from '$app/environment';
+import { browser } from '$app/env';
 import { derived, get, writable } from 'svelte/store';
 import type { Connection, XYPosition } from '@xyflow/svelte';
 
@@ -11,21 +11,21 @@ import {
 	type ProjectDocument,
 	type SimulationConfig,
 	type SimulatorNodeDocument
-} from '$lib/signal-sim/model';
-import { createDocumentEdgeFromConnection } from '$lib/signal-sim/flow';
+} from '#lib/signal-sim/model.js';
+import { createDocumentEdgeFromConnection } from '#lib/signal-sim/flow.js';
 import {
 	createExampleProjectDocument,
 	createNodeFromBlock,
 	createOutputDefinition,
 	getBlockCatalog,
 	getBlockDefinition
-} from '$lib/signal-sim/registry';
+} from '#lib/signal-sim/registry.js';
 import type {
 	CompiledProjectSummary,
 	SimulationDiagnostic,
 	SimulationRunResponse,
 	SimulationRunSuccess
-} from '$lib/signal-sim/worker-types';
+} from '#lib/signal-sim/worker-types.js';
 
 export type SelectionState = { kind: 'node'; id: string } | { kind: 'edge'; id: string } | null;
 export type ValidationLevel = 'info' | 'warning' | 'error';
@@ -36,12 +36,7 @@ export interface ValidationMessage {
 	message: string;
 }
 
-export type SimulationRunState =
-	| 'editor-foundation'
-	| 'stale'
-	| 'compiling'
-	| 'ready'
-	| 'error';
+export type SimulationRunState = 'editor-foundation' | 'stale' | 'compiling' | 'ready' | 'error';
 
 export interface SignalOption {
 	key: string;
@@ -90,7 +85,8 @@ function validateProject(project: ProjectDocument): ValidationMessage[] {
 		messages.push({
 			id: 'step-vs-duration',
 			level: 'warning',
-			message: 'Step size is greater than or equal to the simulation duration, so the run will contain a single sample.'
+			message:
+				'Step size is greater than or equal to the simulation duration, so the run will contain a single sample.'
 		});
 	}
 
@@ -139,13 +135,14 @@ function projectSignalOptions(project: ProjectDocument): SignalOption[] {
 	});
 }
 
-function pruneProjectForDeletedNodes(project: ProjectDocument, nodeIds: Set<string>): ProjectDocument {
+function pruneProjectForDeletedNodes(
+	project: ProjectDocument,
+	nodeIds: Set<string>
+): ProjectDocument {
 	return {
 		...project,
 		nodes: project.nodes.filter((node) => !nodeIds.has(node.id)),
-		edges: project.edges.filter(
-			(edge) => !nodeIds.has(edge.source) && !nodeIds.has(edge.target)
-		),
+		edges: project.edges.filter((edge) => !nodeIds.has(edge.source) && !nodeIds.has(edge.target)),
 		outputs: project.outputs.filter(
 			(output) => !output.sourceNodeId || !nodeIds.has(output.sourceNodeId)
 		)
@@ -261,10 +258,13 @@ export function createSignalSimEditorStore(initialProject = createExampleProject
 	});
 
 	const availableSignals = derived(project, ($project) => projectSignalOptions($project));
-	const validationMessages = derived([project, simulationDiagnostics], ([$project, $simulationDiagnostics]) => [
-		...validateProject($project),
-		...$simulationDiagnostics.map(mapSimulationDiagnostic)
-	]);
+	const validationMessages = derived(
+		[project, simulationDiagnostics],
+		([$project, $simulationDiagnostics]) => [
+			...validateProject($project),
+			...$simulationDiagnostics.map(mapSimulationDiagnostic)
+		]
+	);
 	const graphStats = derived(project, ($project) => ({
 		nodes: $project.nodes.length,
 		edges: $project.edges.length,
@@ -294,7 +294,10 @@ export function createSignalSimEditorStore(initialProject = createExampleProject
 		}
 	);
 
-	function finalizeProject(nextProject: ProjectDocument, clampTimeToDuration = true): ProjectDocument {
+	function finalizeProject(
+		nextProject: ProjectDocument,
+		clampTimeToDuration = true
+	): ProjectDocument {
 		const stampedProject = stampProjectDocument(nextProject);
 		const activeSelection = get(selection);
 		const hadPriorRun = get(simulationSummary) !== null;
@@ -342,7 +345,10 @@ export function createSignalSimEditorStore(initialProject = createExampleProject
 		let createdNodeId: string | null = null;
 
 		applyProjectUpdate((draft) => {
-			createdNode = createNodeFromBlock(blockType, position ?? buildDefaultPosition(draft.nodes.length));
+			createdNode = createNodeFromBlock(
+				blockType,
+				position ?? buildDefaultPosition(draft.nodes.length)
+			);
 
 			if (createdNode) {
 				draft.nodes.push(createdNode);
@@ -389,14 +395,17 @@ export function createSignalSimEditorStore(initialProject = createExampleProject
 			return;
 		}
 
-		applyProjectUpdate((draft) => {
-			const positionLookup = new Map(nodes.map((node) => [node.id, node.position]));
-			draft.nodes = draft.nodes.map((node) => ({
-				...node,
-				position: positionLookup.get(node.id) ?? node.position
-			}));
-			return draft;
-		}, { clampTimeToDuration: false });
+		applyProjectUpdate(
+			(draft) => {
+				const positionLookup = new Map(nodes.map((node) => [node.id, node.position]));
+				draft.nodes = draft.nodes.map((node) => ({
+					...node,
+					position: positionLookup.get(node.id) ?? node.position
+				}));
+				return draft;
+			},
+			{ clampTimeToDuration: false }
+		);
 	}
 
 	function removeElementsById(nodeIds: string[], edgeIds: string[]) {
@@ -443,12 +452,12 @@ export function createSignalSimEditorStore(initialProject = createExampleProject
 			draft.nodes = draft.nodes.map((node) =>
 				node.id === nodeId
 					? {
-						...node,
-						parameters: {
-							...node.parameters,
-							[key]: value
+							...node,
+							parameters: {
+								...node.parameters,
+								[key]: value
+							}
 						}
-					}
 					: node
 			);
 			return draft;
@@ -460,9 +469,9 @@ export function createSignalSimEditorStore(initialProject = createExampleProject
 			draft.edges = draft.edges.map((edge) =>
 				edge.id === edgeId
 					? {
-						...edge,
-						label: label.trim() || undefined
-					}
+							...edge,
+							label: label.trim() || undefined
+						}
 					: edge
 			);
 			return draft;

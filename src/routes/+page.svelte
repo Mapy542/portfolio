@@ -1,6 +1,6 @@
 <script>
-	import DynaImage from '$lib/components/Dynamics/DynaImage.svelte';
-	import Pcb from '$lib/components/pcb.svelte';
+	import DynaImage from '#lib/components/Dynamics/DynaImage.svelte';
+	import Pcb from '#lib/components/pcb.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;

@@ -63,4 +63,4 @@ With the design done and qualified, it’s time to start assembly of the laser c
 
 [Next: 0.3 Laser Cutter Base Build](/K400-Updates/03-Base-Build)
 [Previous: 0.1 Laser Cutter Design](/K400-Updates/01-Laser-Cutter-Design)
-[Back to Homepage](/k40-home)
+[Back to Homepage](/k400-home)
