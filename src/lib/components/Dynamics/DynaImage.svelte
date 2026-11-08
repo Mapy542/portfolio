@@ -20,7 +20,7 @@
 		return closest;
 	}
 
-	const thumbSizes = [150, 225, 320, 480, 640, 960, 1280, 1920, 2560]; //see python thumbnailer for sizes
+	const thumbSizes = [150, 480, 1280, 2560]; //see python thumbnailer for sizes
 
 	// Calculate initial width using CSS calc() - works immediately without JS
 	let scaledFactor = $derived(Number(scaleFactor));

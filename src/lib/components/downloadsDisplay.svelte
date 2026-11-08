@@ -1,6 +1,11 @@
 <script lang="ts">
 	import DynaImage from './Dynamics/DynaImage.svelte';
 
+	import NetFlag from './netFlags/netFlag.svelte';
+
+	import angle_right from '#lib/img/angle-right-solid-full.svg';
+	import angle_down from '#lib/img/angle-down-solid-full.svg';
+
 	interface DownloadEntry {
 		title?: string;
 		dateAdded?: string | null;
@@ -19,7 +24,7 @@
 			query: '?url'
 		}) ?? {};
 
-	const { downloadsGroup } = $props<{ downloadsGroup: object }>();
+	const { downloadsGroup }: { downloadsGroup: Record<string, DownloadEntry> } = $props();
 	let typedDownloadsGroup = $derived(downloadsGroup as Record<string, DownloadEntry>);
 
 	let expandedFileName: string | null = $state(null);
@@ -73,9 +78,13 @@
 										typedDownloadsGroup[fileName].src}
 									onclick={(e) => e.stopPropagation()}
 								>
-									<span class="download-title download-pill">
-										<icon class="fa-solid fa-angle-right" aria-hidden="true"></icon>
-										<h3>{typedDownloadsGroup[fileName].title}</h3></span
+									<NetFlag flagType="output">
+										<div style="display: flex; align-items: center;">
+											<img src={angle_right} alt="" aria-hidden="true" class="angle-icon" />
+											<h3 style="max-width: 50%; overflow-wrap: break-word;">
+												{typedDownloadsGroup[fileName].title}
+											</h3>
+										</div></NetFlag
 									></a
 								>
 							{:else}
@@ -85,14 +94,16 @@
 									onclick={(e) => e.stopPropagation()}
 									download={fileName}
 								>
-									<span class="download-title download-pill">
-										<icon class="fa-solid fa-angle-down" aria-hidden="true"></icon>
-										<h3>{typedDownloadsGroup[fileName].title}</h3></span
-									></a
+									<NetFlag flagType="output">
+										<div style="display: flex; align-items: center;">
+											<img src={angle_down} alt="" aria-hidden="true" class="angle-icon" />
+											<h3>{typedDownloadsGroup[fileName].title}</h3>
+										</div>
+									</NetFlag></a
 								>
 							{/if}
 
-							<p>
+							<p style="padding: 0 1em;">
 								{typedDownloadsGroup[fileName].dateModified
 									? typedDownloadsGroup[fileName].dateModified
 									: typedDownloadsGroup[fileName].dateAdded}
@@ -115,7 +126,11 @@
 								{#if typedDownloadsGroup[fileName].description}
 									<p class="download-description">{typedDownloadsGroup[fileName].description}</p>
 								{/if}
-								<p class="download-description">Added: {typedDownloadsGroup[fileName].dateAdded}</p>
+								{#if typedDownloadsGroup[fileName].dateAdded}
+									<p class="download-description">
+										Added: {typedDownloadsGroup[fileName].dateAdded}
+									</p>
+								{/if}
 							</div>
 						</div>
 					{/if}
@@ -153,37 +168,28 @@
 		font: inherit;
 		text-align: left;
 		cursor: pointer;
+		transition: all var(--transition-length);
+		background-color: var(--theme-bg-primary);
+		border-radius: var(--theme-img-border-radius);
 	}
 
-	.download-title {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
+	.download-toggle:hover {
+		background-color: var(--theme-bg-secondary);
 	}
+
 	.title-group {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
+		flex-wrap: wrap;
 	}
 
-	.download-pill {
-		background: var(--page-bg, transparent);
-		padding: 0.2rem 0.6rem;
-		border-radius: 999px;
-		transition:
-			box-shadow 0.2s ease,
-			transform 0.2s ease,
-			border-color 0.2s ease;
-		border: 1px solid transparent;
-	}
-
-	.download-pill:hover,
-	.download-pill:focus-visible {
-		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-		transform: translateY(-1px);
-		border-color: rgba(0, 0, 0, 0.1);
-		background-color: var(--theme-bg-secondary);
+	.angle-icon {
+		width: 1em;
+		height: 1em;
+		margin-right: 0.5rem;
+		color: var(--theme-text-primary);
 	}
 
 	.download-details {

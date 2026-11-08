@@ -4,9 +4,11 @@
 	export type FlagType = 'output' | 'input' | 'bidirectional' | 'short';
 
 	const { children, flagType }: { children: Snippet; flagType: FlagType } = $props();
+
+	let labelHeight = $state(0);
 </script>
 
-<div class="netFlag">
+<div class="netFlag" style:--label-height="{labelHeight}px">
 	<!-- Left cap; the wider viewBox includes the output/short pin stub. -->
 	<svg
 		viewBox={flagType === 'output' || flagType === 'short' ? '0 0 32 40' : '12 0 20 40'}
@@ -36,7 +38,7 @@
 			<rect x="0" y="2" width="100" height="36" stroke="none" />
 			<path d="M 0 2 H 100 M 0 38 H 100" fill="none" />
 		</svg>
-		<span class="netFlag-label">{@render children()}</span>
+		<span class="netFlag-label" bind:clientHeight={labelHeight}>{@render children()}</span>
 	</span>
 	<!-- Right cap; all types except output include space for a pin stub. -->
 	<svg
@@ -67,8 +69,8 @@
 <style>
 	.netFlag-svg {
 		display: block;
-		width: 1.125rem;
-		height: 100%;
+		width: calc(var(--cap-height) * 0.5);
+		height: var(--cap-height);
 		overflow: visible;
 		fill: var(--flag-fill);
 		stroke: var(--flag-stroke);
@@ -83,17 +85,19 @@
 	}
 
 	.netFlag-cap-stub {
-		width: 1.8rem;
+		width: calc(var(--cap-height) * 0.8);
 	}
 
 	.netFlag {
+		/* Body edges sit at y=2..38 of 40, so the label must fit in 90% of the cap height. */
+		--cap-height: max(2.25rem, calc(var(--label-height, 0px) / 0.9));
 		--flag-fill: var(--theme-bg-primary);
 		--flag-stroke: transparent;
 		display: inline-grid;
 		grid-template-columns: auto max-content auto;
 		align-items: center;
 		width: fit-content;
-		height: 2.25rem;
+		height: fit-content;
 		vertical-align: middle;
 	}
 
@@ -121,6 +125,7 @@
 		/* Overlap the cap fills slightly to avoid antialiasing gaps at fractional pixel widths. */
 		inset: 0 -0.5px;
 		width: calc(100% + 1px);
+		height: 100%;
 		pointer-events: none;
 	}
 
