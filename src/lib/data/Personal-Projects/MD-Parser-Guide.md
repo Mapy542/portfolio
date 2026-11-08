@@ -21,7 +21,7 @@ Note: everything after the `: ` is considered the value of the metadata. Everyth
 
 ## Galleries, Images, and Videos
 
-Images a built using the DynaImage and DynaGallery components. The DynaImage component is used to display a single image, while the DynaGallery component is used to display a collection of images. The image paths are relative to the `$lib/img/` directory. Here is an example of how to use the DynaImage and DynaGallery components:
+Images a built using the DynaImage and DynaGallery components. The DynaImage component is used to display a single image, while the DynaGallery component is used to display a collection of images. The image paths are relative to the `#lib/img/` directory. Here is an example of how to use the DynaImage and DynaGallery components:
 
 ![DynaImage Example](logo.webp){DynaImage Example with caption}
 
@@ -155,11 +155,11 @@ _Italic Text_
 Note:
 These inline styles can be used anywhere within a line unlike most other features requiring a newline. They do not currently support nesting.
 
-
 # Mermaid
 
 Mermaid diagrams are supported using the `mermaid` language tag in code blocks. Here is an example of how to create a Mermaid diagram:
 It is rendered via the help of the Mermaid Svelte library. There is a significant delay in rendering, causing reflow. Avoid having mermaid diagrams above the fold for better performance in LCP.
+
 ```mermaid
 graph TD;
     A-->B;

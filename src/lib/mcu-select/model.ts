@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { mcuDefinitionSchema, packageKindValues } from '$lib/pinmux/model';
+import { mcuDefinitionSchema, packageKindValues } from '#lib/pinmux/model.js';
 
 export const MCU_SELECT_PROJECT_VERSION = 1;
 export const mcuSelectSortModeValues = ['best-fit-smallest-package'] as const;

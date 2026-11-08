@@ -2,7 +2,7 @@ import type {
 	McuDefinitionDocument,
 	PinOverrideMode,
 	PinmuxProjectDocument
-} from '$lib/pinmux/model';
+} from '#lib/pinmux/model.js';
 
 export type PinmuxDiagnosticLevel = 'info' | 'warning' | 'error';
 

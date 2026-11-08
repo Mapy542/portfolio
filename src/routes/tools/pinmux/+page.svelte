@@ -1,24 +1,24 @@
 <script lang="ts">
 	import { onDestroy, onMount, tick } from 'svelte';
 
-	import ProjectShareDialog from '$lib/components/share/ProjectShareDialog.svelte';
-	import PackageVisualizer from '$lib/components/pinmux/PackageVisualizer.svelte';
-	import TransferActionPill from '$lib/components/pinmux/TransferActionPill.svelte';
-	import { pinOverrideModeValues, type PinOverrideMode } from '$lib/pinmux/model';
+	import ProjectShareDialog from '#lib/components/share/ProjectShareDialog.svelte';
+	import PackageVisualizer from '#lib/components/pinmux/PackageVisualizer.svelte';
+	import TransferActionPill from '#lib/components/pinmux/TransferActionPill.svelte';
+	import { pinOverrideModeValues, type PinOverrideMode } from '#lib/pinmux/model.js';
 	import {
 		getRequiredShortShareUnavailableReason,
 		isShortShareEligibleProjectJson
-	} from '$lib/share/project-registry';
-	import { createTemporaryShareLink } from '$lib/share/api';
-	import { resolveSharedProjectFromUrl } from '$lib/share/load';
-	import { TEMPORARY_SHARE_AVAILABILITY_MESSAGE } from '$lib/share/tools';
+	} from '#lib/share/project-registry.js';
+	import { createTemporaryShareLink } from '#lib/share/api.js';
+	import { resolveSharedProjectFromUrl } from '#lib/share/load.js';
+	import { TEMPORARY_SHARE_AVAILABILITY_MESSAGE } from '#lib/share/tools.js';
 	import {
 		buildCompressedProjectUrl,
 		decodeCompressedProjectJson,
 		encodeCompressedProjectJson,
 		isShareUrlLarge
-	} from '$lib/share/url';
-	import { createPinmuxStore } from '$lib/pinmux/stores';
+	} from '#lib/share/url.js';
+	import { createPinmuxStore } from '#lib/pinmux/stores.js';
 
 	const {
 		activeDefinition,

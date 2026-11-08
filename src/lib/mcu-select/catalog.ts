@@ -1,4 +1,4 @@
-import type { McuDefinitionDocument, PeripheralInstance } from '$lib/pinmux/model';
+import type { McuDefinitionDocument, PeripheralInstance } from '#lib/pinmux/model.js';
 
 import type { McuSelectEthernetMacInterface, McuSelectEthernetSpeed } from './model';
 

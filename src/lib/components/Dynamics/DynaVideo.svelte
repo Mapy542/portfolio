@@ -2,11 +2,11 @@
 	import { onMount } from 'svelte';
 
 	// Dynamic imports for videos and optional poster images
-	const videos: any = import.meta.glob('$lib/vid/**/*.{webm,mp4,mov,ogg}', { eager: false });
-	const postersImg: any = import.meta.glob('$lib/img/**/*.{jpg,jpeg,png,gif,webp}', {
+	const videos: any = import.meta.glob('#lib/vid/**/*.{webm,mp4,mov,ogg}', { eager: false });
+	const postersImg: any = import.meta.glob('#lib/img/**/*.{jpg,jpeg,png,gif,webp}', {
 		eager: false
 	});
-	const postersVid: any = import.meta.glob('$lib/vid/**/*.{jpg,jpeg,png,gif,webp}', {
+	const postersVid: any = import.meta.glob('#lib/vid/**/*.{jpg,jpeg,png,gif,webp}', {
 		eager: false
 	});
 
@@ -199,7 +199,7 @@
 Usage example:
 
 <script>
-  import DynaVideo from '$lib/components/DynaVideo.svelte';
+  import DynaVideo from '#lib/components/DynaVideo.svelte';
 </script>
 
 <DynaVideo

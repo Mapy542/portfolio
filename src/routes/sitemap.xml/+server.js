@@ -1,140 +1,145 @@
 import serverReader from '../../lib/components/DataImport/serverReader.js';
-import downloadsReader from '$lib/components/DataImport/downloadsReader.js';
-import staticMetas from '../../lib/data/staticMeta.json' with {type: "json"};
-import toolsMeta from '../../lib/data/toolsMeta.json' with {type: "json"};
+import downloadsReader from '#lib/components/DataImport/downloadsReader.js';
+import staticMetas from '../../lib/data/staticMeta.json' with { type: 'json' };
+import toolsMeta from '../../lib/data/toolsMeta.json' with { type: 'json' };
 import { DOMImplementation, XMLSerializer } from '@xmldom/xmldom';
 
-const rootUrl = "https://bukoski.dev";
+const rootUrl = 'https://bukoski.dev';
 
-export const GET=({params})=>{
-    const dom = new DOMImplementation();
-    let doc = dom.createDocument("","",null);
-    const urlset = doc.createElement("urlset");
-    urlset.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
-    urlset.setAttribute("xmlns:image", "http://www.google.com/schemas/sitemap-image/1.1");
-    urlset.setAttribute("xsi:schemaLocation", "http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd");
-    urlset.setAttribute("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9");
-    doc.appendChild(urlset);
+export const GET = ({ params }) => {
+	const dom = new DOMImplementation();
+	let doc = dom.createDocument('', '', null);
+	const urlset = doc.createElement('urlset');
+	urlset.setAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
+	urlset.setAttribute('xmlns:image', 'http://www.google.com/schemas/sitemap-image/1.1');
+	urlset.setAttribute(
+		'xsi:schemaLocation',
+		'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd'
+	);
+	urlset.setAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+	doc.appendChild(urlset);
 
-    let docSrcs = [];
-    let categoryAges = {};
-    for(const src of serverReader.getDocs()){
-        docSrcs.push(serverReader.getDocsSRCfromDoc(src));
-    }
-    let srcMeta = serverReader.cachedStripMetaReplacement(docSrcs);
+	let docSrcs = [];
+	let categoryAges = {};
+	for (const src of serverReader.getDocs()) {
+		docSrcs.push(serverReader.getDocsSRCfromDoc(src));
+	}
+	let srcMeta = serverReader.cachedStripMetaReplacement(docSrcs);
 
-    for(const src of Object.keys(srcMeta)){ //for each post
-        const url = doc.createElement("url");
-        const loc = doc.createElement("loc");
-        loc.textContent = rootUrl + src.split("/data"
-        )[1].replace(".md",""); //add the url of the page
-        url.appendChild(loc);
-        
-        if(srcMeta[src] && srcMeta[src].date !== undefined){
-        const lastmod = doc.createElement("lastmod");
-        const date = new Date(srcMeta[src].date);
-        lastmod.textContent = date.toISOString();
-        url.appendChild(lastmod);
+	for (const src of Object.keys(srcMeta)) {
+		//for each post
+		const url = doc.createElement('url');
+		const loc = doc.createElement('loc');
+		loc.textContent = rootUrl + src.split('/data')[1].replace('.md', ''); //add the url of the page
+		url.appendChild(loc);
 
-        const category = src.split("data/")[1].split("/")[0];
-        if(categoryAges[category]){
-            if(categoryAges[category] < date){
-                categoryAges[category] = date;
-            }
-        }else{
-            categoryAges[category] = date;
-        }
-    }
+		if (srcMeta[src] && srcMeta[src].date !== undefined) {
+			const lastmod = doc.createElement('lastmod');
+			const date = new Date(srcMeta[src].date);
+			lastmod.textContent = date.toISOString();
+			url.appendChild(lastmod);
 
-        urlset.appendChild(url);
-    }
+			const category = src.split('data/')[1].split('/')[0];
+			if (categoryAges[category]) {
+				if (categoryAges[category] < date) {
+					categoryAges[category] = date;
+				}
+			} else {
+				categoryAges[category] = date;
+			}
+		}
 
-    for(const category of serverReader.getCategories()){ //for each category
-        const url = doc.createElement("url");
-        const loc = doc.createElement("loc");
-        const leadingTrim = category.startsWith("/") ? "" : "/";
-        loc.textContent = rootUrl + leadingTrim + category.replace(" ", "%20"); //add the url of the page
-        url.appendChild(loc);
-        urlset.appendChild(url);
+		urlset.appendChild(url);
+	}
 
-        if(categoryAges[category]){
-            const lastmod = doc.createElement("lastmod");
-            lastmod.textContent = categoryAges[category].toISOString();
-            url.appendChild(lastmod);
-        }
+	for (const category of serverReader.getCategories()) {
+		//for each category
+		const url = doc.createElement('url');
+		const loc = doc.createElement('loc');
+		const leadingTrim = category.startsWith('/') ? '' : '/';
+		loc.textContent = rootUrl + leadingTrim + category.replace(' ', '%20'); //add the url of the page
+		url.appendChild(loc);
+		urlset.appendChild(url);
 
-    }
+		if (categoryAges[category]) {
+			const lastmod = doc.createElement('lastmod');
+			lastmod.textContent = categoryAges[category].toISOString();
+			url.appendChild(lastmod);
+		}
+	}
 
-    for(const staticPage of Object.keys(staticMetas)){ //for each static page
-        const url = doc.createElement("url");
-        const loc = doc.createElement("loc");
-        const leadingTrim = staticMetas[staticPage].url.startsWith("/") ? "" : "/";
-        loc.textContent = rootUrl + leadingTrim + staticMetas[staticPage].url.replace(" ", "%20"); //add the url of the page
-        url.appendChild(loc);
-        if(staticMetas[staticPage].date){
-            const lastmod = doc.createElement("lastmod");
-            const date = new Date(staticMetas[staticPage].date);
-            lastmod.textContent = date.toISOString();
-            url.appendChild(lastmod);
-        }
+	for (const staticPage of Object.keys(staticMetas)) {
+		//for each static page
+		const url = doc.createElement('url');
+		const loc = doc.createElement('loc');
+		const leadingTrim = staticMetas[staticPage].url.startsWith('/') ? '' : '/';
+		loc.textContent = rootUrl + leadingTrim + staticMetas[staticPage].url.replace(' ', '%20'); //add the url of the page
+		url.appendChild(loc);
+		if (staticMetas[staticPage].date) {
+			const lastmod = doc.createElement('lastmod');
+			const date = new Date(staticMetas[staticPage].date);
+			lastmod.textContent = date.toISOString();
+			url.appendChild(lastmod);
+		}
 
-        urlset.appendChild(url);
-    }
+		urlset.appendChild(url);
+	}
 
-    for(const toolPage of Object.keys(toolsMeta)){ //for each tool page
-        const url = doc.createElement("url");
-        const loc = doc.createElement("loc");
-        const leadingTrim = toolsMeta[toolPage].url.startsWith("/") ? "" : "/";
-        loc.textContent = rootUrl + "/tools"+ leadingTrim + toolsMeta[toolPage].url.replace(" ", "%20"); //add the url of the page
-        url.appendChild(loc);
-        if(toolsMeta[toolPage].date){
-            const lastmod = doc.createElement("lastmod");
-            const date = new Date(toolsMeta[toolPage].date);
-            lastmod.textContent = date.toISOString();
-            url.appendChild(lastmod);
-        }
+	for (const toolPage of Object.keys(toolsMeta)) {
+		//for each tool page
+		const url = doc.createElement('url');
+		const loc = doc.createElement('loc');
+		const leadingTrim = toolsMeta[toolPage].url.startsWith('/') ? '' : '/';
+		loc.textContent =
+			rootUrl + '/tools' + leadingTrim + toolsMeta[toolPage].url.replace(' ', '%20'); //add the url of the page
+		url.appendChild(loc);
+		if (toolsMeta[toolPage].date) {
+			const lastmod = doc.createElement('lastmod');
+			const date = new Date(toolsMeta[toolPage].date);
+			lastmod.textContent = date.toISOString();
+			url.appendChild(lastmod);
+		}
 
-        urlset.appendChild(url);
-    }
+		urlset.appendChild(url);
+	}
 
-    //for each download group, add the group page
-    for(const groupName of downloadsReader.groups){
-        const url = doc.createElement("url");
-        const loc = doc.createElement("loc");
-        const leadingTrim = groupName.startsWith("/") ? "" : "/";
-        loc.textContent = rootUrl + leadingTrim + "downloads/" + groupName.replace(" ", "%20"); //add the url of the page
-        url.appendChild(loc);
-        //iterate thorugh the content of the group to find the most recent date
-        let mostRecentDate = null;
-        for(const fileName of Object.keys(downloadsReader.groupedDownloads[groupName].content)){
-            const download = downloadsReader.groupedDownloads[groupName].content[fileName];
-            if(download.dateModified){
-                const date = new Date(download.dateModified);
-                if(mostRecentDate === null || date > mostRecentDate){
-                    mostRecentDate = date;
-                }
-            }else if(download.dateAdded){
-                const date = new Date(download.dateAdded);
-                if(mostRecentDate === null || date > mostRecentDate){
-                    mostRecentDate = date;
-                }
-            }
-        }
-        if(mostRecentDate){
-            const lastmod = doc.createElement("lastmod");
-            lastmod.textContent = mostRecentDate.toISOString();
-            url.appendChild(lastmod);
-        }
-        urlset.appendChild(url);
-    }
+	//for each download group, add the group page
+	for (const groupName of downloadsReader.groups) {
+		const url = doc.createElement('url');
+		const loc = doc.createElement('loc');
+		const leadingTrim = groupName.startsWith('/') ? '' : '/';
+		loc.textContent = rootUrl + leadingTrim + 'downloads/' + groupName.replace(' ', '%20'); //add the url of the page
+		url.appendChild(loc);
+		//iterate thorugh the content of the group to find the most recent date
+		let mostRecentDate = null;
+		for (const fileName of Object.keys(downloadsReader.groupedDownloads[groupName].content)) {
+			const download = downloadsReader.groupedDownloads[groupName].content[fileName];
+			if (download.dateModified) {
+				const date = new Date(download.dateModified);
+				if (mostRecentDate === null || date > mostRecentDate) {
+					mostRecentDate = date;
+				}
+			} else if (download.dateAdded) {
+				const date = new Date(download.dateAdded);
+				if (mostRecentDate === null || date > mostRecentDate) {
+					mostRecentDate = date;
+				}
+			}
+		}
+		if (mostRecentDate) {
+			const lastmod = doc.createElement('lastmod');
+			lastmod.textContent = mostRecentDate.toISOString();
+			url.appendChild(lastmod);
+		}
+		urlset.appendChild(url);
+	}
 
+	let serializer = new XMLSerializer();
+	let xmlString = serializer.serializeToString(doc);
 
-    let serializer = new XMLSerializer();
-    let xmlString = serializer.serializeToString(doc);
-    
-    return new Response(xmlString, {
-        headers: {
-            "Content-Type": "application/xml"
-        }
-    });
+	return new Response(xmlString, {
+		headers: {
+			'Content-Type': 'application/xml'
+		}
+	});
 };

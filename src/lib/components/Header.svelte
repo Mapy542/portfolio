@@ -1,12 +1,14 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { theme, Themes, type Theme } from '$lib/stores/theme';
+	import { browser } from '$app/env';
+	import { theme, Themes, type Theme } from '#lib/stores/theme.js';
 
-	import logo from '$lib/img/logo.svg';
-	import logoInverted from '$lib/img/logo-invert.svg';
+	import logo from '#lib/img/logo.svg';
+	import logoInverted from '#lib/img/logo-invert.svg';
 
-	import sun from '$lib/img/sun-solid-full.svg';
-	import moon from '$lib/img/moon-solid-full.svg';
+	import sun from '#lib/img/sun-solid-full.svg';
+	import moon from '#lib/img/moon-solid-full.svg';
+
+	import NetFlag from './netFlags/netFlag.svelte';
 
 	export let categories: string[] = [];
 	export let staticPages: any = {};
@@ -73,21 +75,23 @@
 				{#each Object.keys(staticPages) as pageName}
 					{#if staticPages[pageName].showHeader}
 						<li class="nav-item">
-							<a class="nav-link" href={staticPages[pageName].url}>
-								{staticPages[pageName].title}
+							<a class="nav-linka-remove" href={staticPages[pageName].url}>
+								<NetFlag flagType="input">
+									{staticPages[pageName].title}
+								</NetFlag>
 							</a>
 						</li>
 					{/if}
 				{/each}
 				<li class="nav-item">
 					<button
-						class="nav-link category-toggle"
+						class="category-toggle"
 						on:click={toggleCategories}
 						aria-expanded={showCategories}
 						aria-controls="category-menu"
 						type="button"
 					>
-						Categories
+						<NetFlag flagType="bidirectional">Categories</NetFlag>
 					</button>
 				</li>
 			</ul>
@@ -119,7 +123,9 @@
 	>
 		<div class="header-end" style="height: 2px;"></div>
 		{#each categories as category}
-			<a class="category-chip" href={'/' + category}><span>{category.replace('-', ' ')}</span></a>
+			<a class="" href={'/' + category}
+				><NetFlag flagType="input">{category.replace('-', ' ')}</NetFlag></a
+			>
 		{/each}
 		<div class="header-end" style="height: 2px;"></div>
 	</div>
@@ -135,7 +141,7 @@
 
 	.header-logo {
 		padding: 1rem;
-		width: 15%;
+		width: 7%;
 		max-width: 15rem;
 	}
 
@@ -160,21 +166,7 @@
 	.nav-item {
 		display: inline-flex;
 	}
-	.nav-link {
-		color: var(--theme-text-primary);
-		text-decoration: none;
-		padding: 0.4rem 0.8rem;
-		border-radius: 999px;
-		border: 1px solid transparent;
-		transition:
-			background-color 160ms ease,
-			color 160ms ease,
-			border-color 160ms ease;
-	}
-	.nav-link:hover {
-		background: color-mix(in oklab, var(--theme-accent) 15%, transparent 85%);
-		border-color: color-mix(in oklab, var(--theme-accent) 40%, transparent 60%);
-	}
+
 	.category-toggle {
 		cursor: pointer;
 		background: none;
@@ -268,25 +260,5 @@
 		background-color: var(--theme-highlight);
 		width: 100%;
 		opacity: 0.35;
-	}
-
-	.category-chip {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		gap: 0.25rem;
-		padding: 0.35rem 0.7rem;
-		border-radius: 999px;
-		color: var(--theme-text-primary);
-		text-decoration: none;
-		border: 1px solid color-mix(in oklab, var(--theme-accent) 35%, transparent 65%);
-		background: color-mix(in oklab, var(--theme-accent) 8%, transparent 92%);
-		transition:
-			background-color 160ms ease,
-			border-color 160ms ease;
-	}
-	.category-chip:hover {
-		background: color-mix(in oklab, var(--theme-accent) 18%, transparent 82%);
-		border-color: color-mix(in oklab, var(--theme-accent) 55%, transparent 45%);
 	}
 </style>

@@ -11,7 +11,14 @@
 	};
 
 	export let pageData: CategoryPageData;
+
+	let windowWidth: number = 0;
+
+	$: scaleFactor = windowWidth < 600 ? 1 : 0.22;
 </script>
+
+<!-- Bind the window width natively in Svelte -->
+<svelte:window bind:innerWidth={windowWidth} />
 
 {#if pageData?.error}
 	<h1>Error</h1>
@@ -31,7 +38,7 @@
 			/>
 		{/if}
 		{#if pageData?.title}
-			<h1 style="text-align:revert;">{pageData.title}</h1>
+			<h1 style="text-align:revert; overflow-wrap: break-word;">{pageData.title}</h1>
 		{/if}
 		{#if pageData?.description}
 			<p>{pageData.description}</p>
@@ -51,7 +58,7 @@
 									src={postMeta.image}
 									alt={postMeta.title}
 									caption=""
-									scaleFactor=".22"
+									{scaleFactor}
 									paddingCount="2"
 								/>
 							</div>

@@ -12,33 +12,33 @@
 	import '@xyflow/svelte/dist/style.css';
 	import { onDestroy, onMount, tick } from 'svelte';
 
-	import ProjectShareDialog from '$lib/components/share/ProjectShareDialog.svelte';
-	import TransferActionPill from '$lib/components/pinmux/TransferActionPill.svelte';
-	import BlockNode from '$lib/components/signal-sim/BlockNode.svelte';
-	import SignalPlot from '$lib/components/signal-sim/SignalPlot.svelte';
-	import { createTemporaryShareLink } from '$lib/share/api';
-	import { resolveSharedProjectFromUrl } from '$lib/share/load';
-	import { TEMPORARY_SHARE_AVAILABILITY_MESSAGE } from '$lib/share/tools';
+	import ProjectShareDialog from '#lib/components/share/ProjectShareDialog.svelte';
+	import TransferActionPill from '#lib/components/pinmux/TransferActionPill.svelte';
+	import BlockNode from '#lib/components/signal-sim/BlockNode.svelte';
+	import SignalPlot from '#lib/components/signal-sim/SignalPlot.svelte';
+	import { createTemporaryShareLink } from '#lib/share/api.js';
+	import { resolveSharedProjectFromUrl } from '#lib/share/load.js';
+	import { TEMPORARY_SHARE_AVAILABILITY_MESSAGE } from '#lib/share/tools.js';
 	import {
 		buildCompressedProjectUrl,
 		decodeCompressedProjectJson,
 		encodeCompressedProjectJson,
 		isShareUrlLarge
-	} from '$lib/share/url';
+	} from '#lib/share/url.js';
 	import {
 		describePort,
 		isConnectionCompatible,
 		toFlowEdges,
 		toFlowNodes
-	} from '$lib/signal-sim/flow';
+	} from '#lib/signal-sim/flow.js';
 	import {
 		parseProjectDocumentJson,
 		serializeProjectDocument,
 		type BlockParameterDefinition
-	} from '$lib/signal-sim/model';
-	import { getBlockDefinition } from '$lib/signal-sim/registry';
-	import { createSignalSimEditorStore, type SignalOption } from '$lib/signal-sim/stores';
-	import { createSignalKey } from '$lib/signal-sim/worker-types';
+	} from '#lib/signal-sim/model.js';
+	import { getBlockDefinition } from '#lib/signal-sim/registry.js';
+	import { createSignalSimEditorStore, type SignalOption } from '#lib/signal-sim/stores.js';
+	import { createSignalKey } from '#lib/signal-sim/worker-types.js';
 
 	const {
 		project,
@@ -417,9 +417,7 @@
 		}
 
 		const target = event.currentTarget as
-			| HTMLInputElement
-			| HTMLSelectElement
-			| HTMLTextAreaElement;
+			HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 		let nextValue: string | number | boolean | null = target.value;
 
 		switch (definition.kind) {
@@ -1097,8 +1095,7 @@
 													value={String(
 														$selectedNode.parameters[parameter.key] ?? parameter.defaultValue
 													)}
-													onchange={(event) => updateParameterField(parameter, event)}
-												></textarea>
+													onchange={(event) => updateParameterField(parameter, event)}></textarea>
 												{#if parameter.key === 'csvData'}
 													<button
 														type="button"

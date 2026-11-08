@@ -1,4 +1,4 @@
-import { browser } from '$app/environment';
+import { browser } from '$app/env';
 import { derived, get, writable } from 'svelte/store';
 
 import {
@@ -18,14 +18,14 @@ import {
 	type PinOverrideMode,
 	type PinmuxProjectDocument,
 	type RoutingChoiceKind
-} from '$lib/pinmux/model';
-import { getBuiltInDefinitions, isBuiltInDefinitionId } from '$lib/pinmux/registry';
+} from '#lib/pinmux/model.js';
+import { getBuiltInDefinitions, isBuiltInDefinitionId } from '#lib/pinmux/registry.js';
 import type {
 	PinmuxDiagnostic,
 	PinmuxSolveResponse,
 	PinmuxSolveSuccess,
 	ResolvedSignalAssignment
-} from '$lib/pinmux/worker-types';
+} from '#lib/pinmux/worker-types.js';
 
 export interface DefinitionOption {
 	id: string;

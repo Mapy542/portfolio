@@ -1,28 +1,28 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import DoubleRangeSlider from '$lib/components/mcu-select/DoubleRangeSlider.svelte';
-	import TransferActionPill from '$lib/components/pinmux/TransferActionPill.svelte';
-	import ProjectShareDialog from '$lib/components/share/ProjectShareDialog.svelte';
+	import DoubleRangeSlider from '#lib/components/mcu-select/DoubleRangeSlider.svelte';
+	import TransferActionPill from '#lib/components/pinmux/TransferActionPill.svelte';
+	import ProjectShareDialog from '#lib/components/share/ProjectShareDialog.svelte';
 	import {
 		mcuSelectEthernetMacInterfaceValues,
 		mcuSelectEthernetSpeedValues
-	} from '$lib/mcu-select/model';
-	import { packageKindValues, serializeMcuDefinitionDocument } from '$lib/pinmux/model';
-	import { createMcuSelectStore } from '$lib/mcu-select/stores';
-	import { createTemporaryShareLink } from '$lib/share/api';
+	} from '#lib/mcu-select/model.js';
+	import { packageKindValues, serializeMcuDefinitionDocument } from '#lib/pinmux/model.js';
+	import { createMcuSelectStore } from '#lib/mcu-select/stores.js';
+	import { createTemporaryShareLink } from '#lib/share/api.js';
 	import {
 		getRequiredShortShareUnavailableReason,
 		isShortShareEligibleProjectJson
-	} from '$lib/share/project-registry';
-	import { resolveSharedProjectFromUrl } from '$lib/share/load';
-	import { TEMPORARY_SHARE_AVAILABILITY_MESSAGE } from '$lib/share/tools';
+	} from '#lib/share/project-registry.js';
+	import { resolveSharedProjectFromUrl } from '#lib/share/load.js';
+	import { TEMPORARY_SHARE_AVAILABILITY_MESSAGE } from '#lib/share/tools.js';
 	import {
 		buildCompressedProjectUrl,
 		decodeCompressedProjectJson,
 		encodeCompressedProjectJson,
 		isShareUrlLarge
-	} from '$lib/share/url';
+	} from '#lib/share/url.js';
 
 	const {
 		catalog,

@@ -179,8 +179,7 @@
 					class="share-dialog__field"
 					readonly
 					spellcheck="false"
-					value={longUrl}
-				></textarea>
+					value={longUrl}></textarea>
 
 				{#if displayedLongStatus}
 					<p class="share-dialog__status">{displayedLongStatus}</p>
@@ -205,8 +204,7 @@
 						class="share-dialog__field"
 						readonly
 						spellcheck="false"
-						value={shortUrl}
-					></textarea>
+						value={shortUrl}></textarea>
 				{:else}
 					<div class="share-dialog__empty">{shortEmptyState}</div>
 				{/if}

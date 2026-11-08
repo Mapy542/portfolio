@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DynaImage from '$lib/components/Dynamics/DynaImage.svelte';
+	import DynaImage from '#lib/components/Dynamics/DynaImage.svelte';
 	export let data;
 </script>
 

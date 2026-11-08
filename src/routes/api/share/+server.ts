@@ -1,16 +1,16 @@
 import { json } from '@sveltejs/kit';
 
-import { validateSharedProjectJson } from '$lib/share/project-registry';
+import { validateSharedProjectJson } from '#lib/share/project-registry.js';
 import {
 	getShareToolDefinition,
 	isShareToolId,
 	TEMPORARY_SHARE_AVAILABILITY_MESSAGE
-} from '$lib/share/tools';
-import { buildTemporaryShareUrl } from '$lib/share/url';
+} from '#lib/share/tools.js';
+import { buildTemporaryShareUrl } from '#lib/share/url.js';
 import {
 	createTemporaryProjectShare,
 	getTemporaryProjectShare
-} from '$lib/server/project-short-links';
+} from '#lib/server/project-short-links.js';
 
 export async function GET({ url }: { url: URL }) {
 	const id = url.searchParams.get('id')?.trim() ?? '';

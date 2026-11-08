@@ -1,19 +1,20 @@
-import { getEffectiveEnabledSignalIds, getSignalRoutingOptionIds } from '$lib/pinmux/model';
+import { getEffectiveEnabledSignalIds, getSignalRoutingOptionIds } from '#lib/pinmux/model.js';
 import type {
 	McuDefinitionDocument,
 	PeripheralInstance,
 	PeripheralProjectState,
 	PeripheralSignal,
+	PeripheralSignalCandidate,
 	PinProjectState,
 	PinmuxProjectDocument
-} from '$lib/pinmux/model';
+} from '#lib/pinmux/model.js';
 import type {
 	PinmuxDiagnostic,
 	PinmuxSolution,
 	ResolvedPeripheralState,
 	ResolvedPinState,
 	ResolvedSignalAssignment
-} from '$lib/pinmux/worker-types';
+} from '#lib/pinmux/worker-types.js';
 
 interface SearchOverrides {
 	enabled?: Map<string, boolean>;
@@ -262,184 +263,244 @@ function getActiveSignals(
 	return peripheral.signals.filter((signal) => activeSignalIds.has(signal.id));
 }
 
-function chooseNextPeripheral(
-	remaining: PeripheralInstance[],
-	usedPins: Set<string>,
-	peripheralStateMap: Map<string, PeripheralProjectState>,
-	hardRoutingOptionIds: Map<string, string | null>,
-	hardSignalRoutingOptionIds: Map<string, string>
-): PeripheralInstance {
-	const ranked = remaining.map((peripheral) => {
-		const activeSignals = getActiveSignals(peripheral, peripheralStateMap);
-		const optionScore = getOrderedRoutingOptionIds(
-			peripheral,
-			peripheralStateMap,
-			hardRoutingOptionIds
-		)
-			.map((optionId) =>
-				activeSignals.reduce((score, signal) => {
-					const available = getSignalCandidates(
-						signal,
-						optionId,
-						getSelectedSignalRoutingOptionId(
-							peripheral.id,
-							signal.id,
-							peripheralStateMap,
-							hardSignalRoutingOptionIds
-						)
-					).filter((candidate) => !usedPins.has(candidate.pinId)).length;
-					return score + available;
-				}, 0)
-			)
-			.sort((left, right) => left - right)[0];
-
-		return {
-			peripheral,
-			score: optionScore ?? Number.POSITIVE_INFINITY
-		};
-	});
-
-	ranked.sort((left, right) => left.score - right.score);
-	return ranked[0].peripheral;
+interface SolverSlot {
+	peripheralIndex: number;
+	signalId: string;
+	selectedSignalRoutingOptionId: string | null;
+	// Per peripheral routing option: candidate pin indices and their source candidates.
+	optionPins: number[][];
+	optionCandidates: PeripheralSignalCandidate[][];
+	// Union of all option pins, used as a relaxation while the peripheral route is undecided.
+	relaxedPins: number[];
 }
 
+interface SolverPeripheral {
+	peripheral: PeripheralInstance;
+	optionIds: Array<string | null>;
+	slotIndices: number[];
+}
+
+interface MatchingState {
+	choice: Int32Array;
+	slotPin: Int32Array;
+	pinSlot: Int32Array;
+}
+
+// Signals-to-pins is bipartite matching once each peripheral's routing option is fixed, so only
+// peripheral-level routing options are branched on; each branch is pruned by a relaxed matching.
 function findSolution(
 	definition: McuDefinitionDocument,
 	project: PinmuxProjectDocument,
 	overrides: SearchOverrides = {}
 ): SolveBranch | null {
 	const peripheralStateMap = getPeripheralStateMap(project);
-	const pinStateMap = getPinStateMap(project);
 	const enabledOverrides = overrides.enabled ?? new Map<string, boolean>();
 	const hardRoutingOptionIds = overrides.hardRoutingOptionIds ?? new Map<string, string | null>();
 	const hardSignalRoutingOptionIds =
 		overrides.hardSignalRoutingOptionIds ?? new Map<string, string>();
 	const reservedPins = new Set(
-		Array.from(pinStateMap.values())
+		project.pinStates
 			.filter((pinState) => pinState.overrideMode !== 'auto')
 			.map((pinState) => pinState.pinId)
 	);
+	const pinIndexById = new Map<string, number>();
+	const pinIdByIndex: string[] = [];
+	const getPinIndex = (pinId: string): number => {
+		let index = pinIndexById.get(pinId);
 
-	const enabledPeripherals = definition.peripherals.filter((peripheral) => {
-		return getEffectiveEnabledState(peripheral.id, peripheralStateMap, enabledOverrides);
-	});
-
-	function search(
-		remainingPeripherals: PeripheralInstance[],
-		usedPins: Set<string>,
-		assignments: ResolvedSignalAssignment[],
-		activeRoutingOptionIds: Map<string, string | null>
-	): SolveBranch | null {
-		if (remainingPeripherals.length === 0) {
-			return {
-				assignments,
-				activeRoutingOptionIds
-			};
+		if (index === undefined) {
+			index = pinIdByIndex.length;
+			pinIndexById.set(pinId, index);
+			pinIdByIndex.push(pinId);
 		}
 
-		const peripheral = chooseNextPeripheral(
-			remainingPeripherals,
-			usedPins,
-			peripheralStateMap,
-			hardRoutingOptionIds,
-			hardSignalRoutingOptionIds
-		);
+		return index;
+	};
+
+	const solverPeripherals: SolverPeripheral[] = [];
+	const slots: SolverSlot[] = [];
+
+	for (const peripheral of definition.peripherals) {
+		if (!getEffectiveEnabledState(peripheral.id, peripheralStateMap, enabledOverrides)) {
+			continue;
+		}
+
 		const optionIds = getOrderedRoutingOptionIds(
 			peripheral,
 			peripheralStateMap,
 			hardRoutingOptionIds
 		);
-		const nextPeripherals = remainingPeripherals.filter(
-			(candidate) => candidate.id !== peripheral.id
-		);
 
-		for (const optionId of optionIds) {
-			const orderedSignals = [...getActiveSignals(peripheral, peripheralStateMap)].sort(
-				(left, right) => {
-					const leftCount = getSignalCandidates(
-						left,
-						optionId,
-						getSelectedSignalRoutingOptionId(
-							peripheral.id,
-							left.id,
-							peripheralStateMap,
-							hardSignalRoutingOptionIds
-						)
-					).filter((candidate) => !usedPins.has(candidate.pinId)).length;
-					const rightCount = getSignalCandidates(
-						right,
-						optionId,
-						getSelectedSignalRoutingOptionId(
-							peripheral.id,
-							right.id,
-							peripheralStateMap,
-							hardSignalRoutingOptionIds
-						)
-					).filter((candidate) => !usedPins.has(candidate.pinId)).length;
+		if (optionIds.length === 0) {
+			return null;
+		}
 
-					return leftCount - rightCount;
-				}
+		const peripheralIndex = solverPeripherals.length;
+		const slotIndices: number[] = [];
+
+		for (const signal of getActiveSignals(peripheral, peripheralStateMap)) {
+			const selectedSignalRoutingOptionId = getSelectedSignalRoutingOptionId(
+				peripheral.id,
+				signal.id,
+				peripheralStateMap,
+				hardSignalRoutingOptionIds
 			);
+			const optionPins: number[][] = [];
+			const optionCandidates: PeripheralSignalCandidate[][] = [];
+			const relaxedPinSet = new Set<number>();
 
-			const assignSignals = (
-				signalIndex: number,
-				localUsedPins: Set<string>,
-				localAssignments: ResolvedSignalAssignment[]
-			): SolveBranch | null => {
-				if (signalIndex === orderedSignals.length) {
-					const nextRoutingOptions = new Map(activeRoutingOptionIds);
-					nextRoutingOptions.set(peripheral.id, optionId);
+			for (const optionId of optionIds) {
+				const pins: number[] = [];
+				const candidates: PeripheralSignalCandidate[] = [];
+				const seenPins = new Set<number>();
 
-					return search(
-						nextPeripherals,
-						localUsedPins,
-						[...assignments, ...localAssignments],
-						nextRoutingOptions
-					);
-				}
-
-				const signal = orderedSignals[signalIndex];
-				const selectedSignalRoutingOptionId = getSelectedSignalRoutingOptionId(
-					peripheral.id,
-					signal.id,
-					peripheralStateMap,
-					hardSignalRoutingOptionIds
-				);
-				const candidates = getSignalCandidates(
+				for (const candidate of getSignalCandidates(
 					signal,
 					optionId,
 					selectedSignalRoutingOptionId
-				).filter((candidate) => !localUsedPins.has(candidate.pinId));
-
-				if (candidates.length === 0) {
-					return null;
-				}
-
-				for (const candidate of candidates) {
-					const nextUsedPins = new Set(localUsedPins);
-					nextUsedPins.add(candidate.pinId);
-
-					const result = assignSignals(signalIndex + 1, nextUsedPins, [
-						...localAssignments,
-						{
-							peripheralId: peripheral.id,
-							signalId: signal.id,
-							pinId: candidate.pinId,
-							af: candidate.af,
-							routingOptionId:
-								selectedSignalRoutingOptionId ?? optionId ?? candidate.routingOptionIds[0] ?? null
-						}
-					]);
-
-					if (result) {
-						return result;
+				)) {
+					if (reservedPins.has(candidate.pinId)) {
+						continue;
 					}
+
+					const pinIndex = getPinIndex(candidate.pinId);
+
+					if (seenPins.has(pinIndex)) {
+						continue;
+					}
+
+					seenPins.add(pinIndex);
+					relaxedPinSet.add(pinIndex);
+					pins.push(pinIndex);
+					candidates.push(candidate);
 				}
 
-				return null;
-			};
+				optionPins.push(pins);
+				optionCandidates.push(candidates);
+			}
 
-			const result = assignSignals(0, new Set(usedPins), []);
+			if (relaxedPinSet.size === 0) {
+				return null;
+			}
+
+			slotIndices.push(slots.length);
+			slots.push({
+				peripheralIndex,
+				signalId: signal.id,
+				selectedSignalRoutingOptionId,
+				optionPins,
+				optionCandidates,
+				relaxedPins: Array.from(relaxedPinSet)
+			});
+		}
+
+		solverPeripherals.push({ peripheral, optionIds, slotIndices });
+	}
+
+	const pinCount = pinIdByIndex.length;
+	const visitStamp = new Int32Array(pinCount);
+	let currentStamp = 0;
+
+	const getAllowedPins = (slotIndex: number, choice: Int32Array): number[] => {
+		const slot = slots[slotIndex];
+		const chosen = choice[slot.peripheralIndex];
+
+		return chosen === -1 ? slot.relaxedPins : slot.optionPins[chosen];
+	};
+
+	const tryAugment = (slotIndex: number, state: MatchingState): boolean => {
+		for (const pinIndex of getAllowedPins(slotIndex, state.choice)) {
+			if (visitStamp[pinIndex] === currentStamp) {
+				continue;
+			}
+
+			visitStamp[pinIndex] = currentStamp;
+			const owner = state.pinSlot[pinIndex];
+
+			if (owner === -1 || tryAugment(owner, state)) {
+				state.pinSlot[pinIndex] = slotIndex;
+				state.slotPin[slotIndex] = pinIndex;
+				return true;
+			}
+		}
+
+		return false;
+	};
+
+	const matchSlot = (slotIndex: number, state: MatchingState): boolean => {
+		currentStamp += 1;
+		return tryAugment(slotIndex, state);
+	};
+
+	const rootState: MatchingState = {
+		choice: new Int32Array(solverPeripherals.length).fill(-1),
+		slotPin: new Int32Array(slots.length).fill(-1),
+		pinSlot: new Int32Array(pinCount).fill(-1)
+	};
+
+	solverPeripherals.forEach((entry, index) => {
+		if (entry.optionIds.length === 1) {
+			rootState.choice[index] = 0;
+		}
+	});
+
+	// Match the most constrained signals first so the greedy choice keeps preferred pins stable.
+	const rootOrder = slots
+		.map((_, index) => index)
+		.sort(
+			(left, right) =>
+				getAllowedPins(left, rootState.choice).length -
+				getAllowedPins(right, rootState.choice).length
+		);
+
+	for (const slotIndex of rootOrder) {
+		if (!matchSlot(slotIndex, rootState)) {
+			return null;
+		}
+	}
+
+	const branchOrder = solverPeripherals
+		.map((entry, index) => ({ index, optionCount: entry.optionIds.length }))
+		.filter((entry) => entry.optionCount > 1)
+		.sort((left, right) => left.optionCount - right.optionCount || left.index - right.index)
+		.map((entry) => entry.index);
+
+	const search = (depth: number, state: MatchingState): MatchingState | null => {
+		if (depth === branchOrder.length) {
+			return state;
+		}
+
+		const peripheralIndex = branchOrder[depth];
+		const { slotIndices, optionIds } = solverPeripherals[peripheralIndex];
+
+		for (let optionIndex = 0; optionIndex < optionIds.length; optionIndex += 1) {
+			const nextState: MatchingState = {
+				choice: state.choice.slice(),
+				slotPin: state.slotPin.slice(),
+				pinSlot: state.pinSlot.slice()
+			};
+			nextState.choice[peripheralIndex] = optionIndex;
+
+			const unmatched: number[] = [];
+
+			for (const slotIndex of slotIndices) {
+				const pinIndex = nextState.slotPin[slotIndex];
+
+				if (!slots[slotIndex].optionPins[optionIndex].includes(pinIndex)) {
+					if (pinIndex !== -1) {
+						nextState.pinSlot[pinIndex] = -1;
+					}
+
+					nextState.slotPin[slotIndex] = -1;
+					unmatched.push(slotIndex);
+				}
+			}
+
+			if (!unmatched.every((slotIndex) => matchSlot(slotIndex, nextState))) {
+				continue;
+			}
+
+			const result = search(depth + 1, nextState);
 
 			if (result) {
 				return result;
@@ -447,9 +508,41 @@ function findSolution(
 		}
 
 		return null;
+	};
+
+	const finalState = search(0, rootState);
+
+	if (!finalState) {
+		return null;
 	}
 
-	return search(enabledPeripherals, reservedPins, [], new Map());
+	const assignments: ResolvedSignalAssignment[] = [];
+	const activeRoutingOptionIds = new Map<string, string | null>();
+
+	solverPeripherals.forEach((entry, peripheralIndex) => {
+		const optionIndex = finalState.choice[peripheralIndex];
+		const optionId = entry.optionIds[optionIndex] ?? null;
+
+		activeRoutingOptionIds.set(entry.peripheral.id, optionId);
+
+		for (const slotIndex of entry.slotIndices) {
+			const slot = slots[slotIndex];
+			const pinIndex = finalState.slotPin[slotIndex];
+			const candidate =
+				slot.optionCandidates[optionIndex][slot.optionPins[optionIndex].indexOf(pinIndex)];
+
+			assignments.push({
+				peripheralId: entry.peripheral.id,
+				signalId: slot.signalId,
+				pinId: candidate.pinId,
+				af: candidate.af,
+				routingOptionId:
+					slot.selectedSignalRoutingOptionId ?? optionId ?? candidate.routingOptionIds[0] ?? null
+			});
+		}
+	});
+
+	return { assignments, activeRoutingOptionIds };
 }
 
 function buildResolvedPinStates(

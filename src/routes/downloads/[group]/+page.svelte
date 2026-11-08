@@ -1,6 +1,6 @@
 <script lang="ts">
-	import DownloadsDisplay from '$lib/components/downloadsDisplay.svelte';
-	import DynaImage from '$lib/components/Dynamics/DynaImage.svelte';
+	import DownloadsDisplay from '#lib/components/downloadsDisplay.svelte';
+	import DynaImage from '#lib/components/Dynamics/DynaImage.svelte';
 
 	export let data;
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import MarkdownParser from '$lib/components/MDParser/MarkdownParser.svelte';
-	import AutoHtmHeader from '$lib/components/AutoHTMHeader.svelte';
+	import MarkdownParser from '#lib/components/MDParser/MarkdownParser.svelte';
+	import AutoHtmHeader from '#lib/components/AutoHTMHeader.svelte';
 	export let data: {
 		postKey: string;
 		props: {

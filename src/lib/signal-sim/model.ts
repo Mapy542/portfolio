@@ -4,7 +4,13 @@ export const SIGNAL_SIM_PROJECT_VERSION = 1;
 
 export const signalKindValues = ['scalar', 'boolean', 'vector'] as const;
 export const timingModeValues = ['continuous', 'discrete', 'hybrid'] as const;
-export const parameterEditorKindValues = ['number', 'text', 'textarea', 'boolean', 'select'] as const;
+export const parameterEditorKindValues = [
+	'number',
+	'text',
+	'textarea',
+	'boolean',
+	'select'
+] as const;
 export const outputKindValues = ['value', 'plot'] as const;
 
 export type SignalKind = (typeof signalKindValues)[number];

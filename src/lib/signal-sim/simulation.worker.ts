@@ -1,8 +1,8 @@
 /// <reference lib="webworker" />
 
-import { compileProject } from '$lib/signal-sim/compiler';
-import { simulateCompiledProject } from '$lib/signal-sim/runtime';
-import type { SimulationRunRequest, SimulationRunResponse } from '$lib/signal-sim/worker-types';
+import { compileProject } from '#lib/signal-sim/compiler.js';
+import { simulateCompiledProject } from '#lib/signal-sim/runtime.js';
+import type { SimulationRunRequest, SimulationRunResponse } from '#lib/signal-sim/worker-types.js';
 
 const workerScope = self as unknown as DedicatedWorkerGlobalScope;
 

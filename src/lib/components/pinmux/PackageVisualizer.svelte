@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 
-	import type { PackageDefinition } from '$lib/pinmux/model';
-	import type { PinRow } from '$lib/pinmux/stores';
+	import type { PackageDefinition } from '#lib/pinmux/model.js';
+	import type { PinRow } from '#lib/pinmux/stores.js';
 
 	export let packageDefinition: PackageDefinition | null = null;
 	export let pins: PinRow[] = [];

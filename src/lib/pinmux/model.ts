@@ -189,17 +189,16 @@ export function normalizeEnabledSignalIds(
 	}
 
 	const optionalSignalIds = new Set(getOptionalSignalIds(peripheral));
-	const normalized = Array.from(new Set(signalIds)).filter((signalId) => optionalSignalIds.has(signalId));
+	const normalized = Array.from(new Set(signalIds)).filter((signalId) =>
+		optionalSignalIds.has(signalId)
+	);
 
 	return normalized;
 }
 
 export function normalizeSelectedSignalRoutingOptionIds(
 	peripheral: PeripheralInstance,
-	selectedSignalRoutingOptionIds:
-		| Record<string, string>
-		| null
-		| undefined
+	selectedSignalRoutingOptionIds: Record<string, string> | null | undefined
 ): Record<string, string> | undefined {
 	if (!selectedSignalRoutingOptionIds) {
 		return undefined;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DownloadsDisplay from '$lib/components/downloadsDisplay.svelte';
+	import DownloadsDisplay from '#lib/components/downloadsDisplay.svelte';
 
 	export let data;
 </script>

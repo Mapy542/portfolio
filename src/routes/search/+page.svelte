@@ -1,6 +1,6 @@
 <script lang="ts">
-	import DynaImage from '$lib/components/Dynamics/DynaImage.svelte';
-	import SearchBar from '$lib/components/SearchBar.svelte';
+	import DynaImage from '#lib/components/Dynamics/DynaImage.svelte';
+	import SearchBar from '#lib/components/SearchBar.svelte';
 
 	type SearchResultMeta = {
 		author?: string;

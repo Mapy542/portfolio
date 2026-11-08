@@ -1,7 +1,7 @@
 <script lang="ts">
-	import bioData from '$lib/data/bio.json';
-	import footerData from '$lib/data/headerFooterData.json';
-	import staticMetas from '$lib/data/staticMeta.json';
+	import bioData from '#lib/data/bio.json';
+	import footerData from '#lib/data/headerFooterData.json';
+	import staticMetas from '#lib/data/staticMeta.json';
 </script>
 
 <footer>

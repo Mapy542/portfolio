@@ -1,5 +1,5 @@
 <script>
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import Header from '../lib/components/Header.svelte';
 	import './styles.css';
 	import './columns.css';
@@ -13,11 +13,11 @@
 	<Header categories={data.props.categories} staticPages={data.props.staticPages} />
 
 	<main
-		class:main--full-width={$page.url.pathname.startsWith('/tools/signal-sim') ||
-			$page.url.pathname.startsWith('/tools/pinmux') ||
-			$page.url.pathname.startsWith('/tools/mcu-select')}
+		class:main--full-width={page.url.pathname.startsWith('/tools/signal-sim') ||
+			page.url.pathname.startsWith('/tools/pinmux') ||
+			page.url.pathname.startsWith('/tools/mcu-select')}
 	>
-		<slot />
+		<slot></slot>
 	</main>
 
 	<Footer />

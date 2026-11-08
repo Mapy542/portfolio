@@ -1,19 +1,8 @@
 <script>
-	import { page } from '$app/stores';
-	import { browser } from '$app/environment';
+	import { page } from '$app/state';
 
-	export let data;
-
-	// Safe way to access page data during error rendering
-	let currentUrl = '';
-	let statusCode = data?.status || 500;
-
-	// Only access page store in browser environment
-	if (browser) {
-		page.subscribe(($page) => {
-			currentUrl = $page.url.pathname;
-		});
-	}
+	const currentUrl = $derived(page.url.pathname);
+	const statusCode = $derived(page.status);
 </script>
 
 <svelte:head>
@@ -29,7 +18,7 @@
 	<p>Something went wrong. Please try again later.</p>
 {/if}
 
-{#if browser && currentUrl}
+{#if typeof window !== 'undefined' && currentUrl}
 	<p>Requested URL: {currentUrl}</p>
 {/if}
 

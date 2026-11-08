@@ -1,7 +1,7 @@
 /// <reference lib="webworker" />
 
-import { analyzePinmuxProject } from '$lib/pinmux/solver';
-import type { PinmuxSolveRequest, PinmuxSolveResponse } from '$lib/pinmux/worker-types';
+import { analyzePinmuxProject } from '#lib/pinmux/solver.js';
+import type { PinmuxSolveRequest, PinmuxSolveResponse } from '#lib/pinmux/worker-types.js';
 
 const workerScope = self as unknown as DedicatedWorkerGlobalScope;
 

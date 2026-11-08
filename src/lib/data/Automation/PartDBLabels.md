@@ -1,4 +1,4 @@
-#! title: SMD Reel PartDB Labels 
+#! title: SMD Reel PartDB Labels
 #! date: 7/18/2026
 #! tags: automation, controls, process, industrial, hot runner, molding, imm, plastics
 #! description: A Twig script to generate labels for SMD reels in a PartDB system.
@@ -45,8 +45,7 @@ PartDB allows you to automatically import data from distributors, which LCSC (un
 
 PartDB has a built-in label generator which can be used to describe parts or stock locations. It also has some level of automation for batch generating labels. The system to customize data on the labels provides a ton of flexibility, but it is not very readable. It supports a simple placeholder mode, or Twig templating which allows you to access all of the data for a part and do some level of processing on it. I was able to take this customization and build a 2x1 inch label which can fold over the SMD reel. The quick identification parameters, resistance, footprint, voltage, and if the part is "favorite" are on the top of the reel. Down the side of the reel, full part information is provided, including the PN, description, and the QR code linking to the PartDB entry for the part. It's as simple as scanning the QR code, and applying a inventory adjustment like marking the parts as used.
 
-
-To build these labels, create a template in PartDB which can be used in the future. The first step is to enable Twig Access to your account. It is disabled by default. 
+To build these labels, create a template in PartDB which can be used in the future. The first step is to enable Twig Access to your account. It is disabled by default.
 ![twig permission](partdb-label/twig-permission.webp){}
 Under user settings, enable Twig access for anyone who will be generating labels.
 
@@ -56,6 +55,7 @@ Then you can build the template. Enable Twig on this specific template.
 Finally add in the code and styling for the label.
 
 Paste this code into the main content body of the label:
+
 ```
 {% set name = placeholder('[[NAME]]', element) %}
 {% set footprint = placeholder('[[FOOTPRINT]]', element)|trim %}
@@ -117,115 +117,115 @@ On the additional styling/css tab, paste this code to format the content of the 
 
 ```css
 .reel-label {
-  position: relative;
-  width: 100%;
-  height: 100%;
+	position: relative;
+	width: 100%;
+	height: 100%;
 }
 
 .main-block {
-  position: absolute;
-  left: 15.8mm;
-  right: 0;
-  top: 0;
-  height: 30mm;
-  overflow: hidden;
+	position: absolute;
+	left: 15.8mm;
+	right: 0;
+	top: 0;
+	height: 30mm;
+	overflow: hidden;
 }
 
 .flap-block {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 12.0mm;
-  height: 30mm;
-  border-right: 0.2mm dashed #000;
-  padding-right: 0.7mm;
-  text-align: center;
-  box-sizing: border-box;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 12mm;
+	height: 30mm;
+	border-right: 0.2mm dashed #000;
+	padding-right: 0.7mm;
+	text-align: center;
+	box-sizing: border-box;
 }
 
 .flap-favorite {
-  position: absolute;
-  top: 0;
-  left: 0.4mm;
-  font-size: 6.2pt;
-  font-weight: bold;
-  line-height: 1.0;
+	position: absolute;
+	top: 0;
+	left: 0.4mm;
+	font-size: 6.2pt;
+	font-weight: bold;
+	line-height: 1;
 }
 
 .qr-cell {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 10mm;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 10mm;
 }
 
 .qr-wrap {
-  width: 10mm;
-  margin-left: auto;
+	width: 10mm;
+	margin-left: auto;
 }
 
 .qr-wrap img {
-  display: block;
-  width: 10mm;
-  height: auto;
-  min-height: 0 !important;
+	display: block;
+	width: 10mm;
+	height: auto;
+	min-height: 0 !important;
 }
 
 .text-cell {
-  position: absolute;
-  left: 0.4mm;
-  right: 11.6mm;
-  top: 0;
-  overflow: hidden;
-  box-sizing: border-box;
+	position: absolute;
+	left: 0.4mm;
+	right: 11.6mm;
+	top: 0;
+	overflow: hidden;
+	box-sizing: border-box;
 }
 
 .part-name,
 .footprint-line,
 .meta-line {
-  display: block;
-  max-width: 100%;
-  overflow-wrap: anywhere;
-  word-break: break-word;
-  white-space: normal;
+	display: block;
+	max-width: 100%;
+	overflow-wrap: anywhere;
+	word-break: break-word;
+	white-space: normal;
 }
 
 .part-name {
-  font-size: 7.1pt;
-  font-weight: bold;
-  line-height: 1.0;
-  margin-bottom: 0.7mm;
+	font-size: 7.1pt;
+	font-weight: bold;
+	line-height: 1;
+	margin-bottom: 0.7mm;
 }
 
 .footprint-line {
-  font-size: 5.5pt;
-  font-weight: bold;
-  margin-bottom: 0.6mm;
+	font-size: 5.5pt;
+	font-weight: bold;
+	margin-bottom: 0.6mm;
 }
 
 .meta-line {
-  font-size: 4.7pt;
-  line-height: 1.08;
+	font-size: 4.7pt;
+	line-height: 1.08;
 }
 
 .flap-footprint {
-  font-size: 4.8pt;
-  font-weight: bold;
-  margin-top: 0.8mm;
-  margin-bottom: 0.6mm;
+	font-size: 4.8pt;
+	font-weight: bold;
+	margin-top: 0.8mm;
+	margin-bottom: 0.6mm;
 }
 
 .flap-primary {
-  font-size: 7.7pt;
-  font-weight: bold;
-  line-height: 1.0;
-  margin-bottom: 0.5mm;
+	font-size: 7.7pt;
+	font-weight: bold;
+	line-height: 1;
+	margin-bottom: 0.5mm;
 }
 
 .flap-spec {
-  font-size: 4.8pt;
-  line-height: 1.0;
-  margin-bottom: 0.35mm;
+	font-size: 4.8pt;
+	line-height: 1;
+	margin-bottom: 0.35mm;
 }
 ```
 
@@ -235,6 +235,7 @@ On the additional styling/css tab, paste this code to format the content of the 
 ![generated label](partdb-label/generated-label.webp){}
 
 Some additional notes:
+
 - This uses `{{ placeholder('[[BARCODE_QR]]', element)|raw }}` instead of the barcode dropdown so the QR can be positioned manually.
 - The short fold-over section is on the left side of the label, with the divider on its right edge and the QR anchored to the far right of the main section.
 - The main text block is inset from the divider and hard-wrapped so long names and descriptions stay out of the fold area.
