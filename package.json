@@ -37,7 +37,7 @@
 		"@friendofsvelte/mermaid": "^0.0.4",
 		"@sveltejs/adapter-node": "^6.0.2",
 		"@xmldom/xmldom": "^0.9.12",
-		"@xyflow/svelte": "^1.6.6",
+		"@xyflow/svelte": "^1.7.1",
 		"highlight.js": "^11.12.0",
 		"lz-string": "^1.5.0",
 		"plotly.js-dist-min": "^4.3.0",
